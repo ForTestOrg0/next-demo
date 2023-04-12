@@ -1,14 +1,14 @@
-''
 import Image from 'next/image'
-import Link from 'next/link';
 import { Inter } from 'next/font/google'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Link href={`/referenda_v2`}>referenda_v2</Link>
+    <main>
+      <p>This is referenda_v2 home page</p>
+      <Link  href='/referenda_v2/001'>referenda-001</Link>
     </main>
   )
 }
