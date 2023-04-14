@@ -1,8 +1,9 @@
 
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 import { useEffect, useState } from 'react';
+import Chart from '@/components/Echart';
 
-async function getTransferData(hostname = '') {
+export async function getTransferData(hostname = '') {
   let domain = 'polkadot';
   if(hostname.indexOf('localhost') > -1) domain = 'polkadot'
   if(hostname.indexOf('kusama') > -1) domain = 'kusama'
@@ -111,6 +112,7 @@ function About({ data }: {data: Transfer[]}) {
         })}
       </tbody>
     </table>
+    <Chart />
   </div>
 }
 

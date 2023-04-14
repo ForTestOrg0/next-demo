@@ -1,4 +1,5 @@
-export type PageProps = {
-  params?: any;
-  children?: React.ReactNode;
-};
+export type PageProps = any;
+
+export interface Ac  {
+  a: string;
+}

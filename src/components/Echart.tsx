@@ -4,9 +4,8 @@ import { use, useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
 import { PageProps } from '@/types/page';
 
-export default function Page({ params }: PageProps) {
+export default function Page() {
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (!ref || !ref.current) return;
     var myChart = echarts.init(ref.current);
@@ -28,7 +27,6 @@ export default function Page({ params }: PageProps) {
       ]
     });
   }, [ref]);
-
 
   return (
     <div className='w-80 h-80' ref={ref}>Echart</div>
