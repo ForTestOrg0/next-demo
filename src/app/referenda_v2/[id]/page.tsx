@@ -1,6 +1,6 @@
 
 import { use } from 'react';
-import { PageProps, Ac } from '@/types/page';
+import { PageProps } from '@/types/page';
 // import Chart from '@/components/Echart';
 import styles from './styles.module.scss';
 
@@ -17,15 +17,11 @@ const fetchCategory = async (
 
 export default function Page({ params }: PageProps) {
   const result = use(fetchCategory(params.id));
-  const aa: Ac = {
-    a: "start"
-  }
 
   if (!result) return null;
 
   return (
     <div>
-      ac: {aa.a}
       id: {params.id}
       category: {result}
       <div className={styles.dashboard}>

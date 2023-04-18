@@ -7,22 +7,36 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --network-color: #FF0083;
+
+  --ui-black: #302B3C;
+  --ui-white: #FFFFFF;
+  --ui-link: #0085FF;
+  --ui-error: #FF475D;
+  --ui-success: #6BC10E;
+  --ui-warning: #FFB600;
+  --ui-b2: #9D9D9D;
+  --ui-b3: #D8D8D8;
+  --ui-b4: #F2F4FA;
+  --ui-bg: #FBFBFD;
 }
 
-@media (prefers-color-scheme: dark) {
+:root html.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* color: rgb(var(--foreground-rgb)); */
+  @apply bg-sub-bg;
 }

@@ -85,6 +85,7 @@ const Tabs = (props) => {
   if (mode === MODE_UNCONTROLLED) {
     // Ensure that we handle removed tabs and don't let selectedIndex get out of bounds
     const tabsCount = getTabsCount(children);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       if (selectedIndex != null) {
         const maxTabIndex = Math.max(0, tabsCount - 1);

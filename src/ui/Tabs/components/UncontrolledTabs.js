@@ -184,6 +184,7 @@ const UncontrolledTabs = (props) => {
     // Add ids if new tabs have been added
     // Don't bother removing ids, just keep them in case they are added again
     // This is more efficient, and keeps the uuid counter under control
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const id = useId();
     while (diff++ < 0) {
       tabIds.current.push(`${id}${tabIds.current.length}`);

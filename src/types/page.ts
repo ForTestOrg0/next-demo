@@ -1,5 +1,7 @@
 export type PageProps = any;
 
-export interface Ac  {
-  a: string;
+export interface BareProps {
+  children?: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
 }
