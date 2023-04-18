@@ -4,6 +4,14 @@ const nextConfig = {
     appDir: false,
     runtime: 'experimental-edge'
   },
+  async rewrites() {
+    return [
+      {
+        source: '/democracy_proposal',
+        destination: '/democracy_proposal/waiting',
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig

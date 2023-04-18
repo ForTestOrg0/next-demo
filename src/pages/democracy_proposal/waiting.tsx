@@ -1,6 +1,3 @@
-
-import Chart from '@/components/Echart';
-import styles from './styles.module.scss';
 import { Tab, Tabs, TabList, TabPanel, Button, Boundary, PageContent, Container, Text, TabsServer } from '@/ui';
 import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { getDemocracyProposals, GetDemocracyProposalsDataProps } from '@/utils/api';
