@@ -1,7 +1,13 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import clsx from 'clsx';
+import { BareProps } from '@/types/page';
 
-const Flex: React.FC<HTMLAttributes<HTMLDivElement>> = ({ children, className, ...props }) => (
+interface Props extends BareProps {
+  key?: string;
+}
+
+
+const Flex: React.FC<Props> = ({ children, className, ...props }) => (
   <div className={clsx('flex', className)} {...props}>
     {children}
   </div>
