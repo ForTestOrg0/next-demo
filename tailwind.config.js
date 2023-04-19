@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-eina)']
+      },
       colors: {
         sub: {
           black: '#302B3C',
