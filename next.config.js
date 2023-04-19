@@ -6,10 +6,6 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-      {
-        source: '/democracy_proposal',
-        destination: '/democracy_proposal/waiting',
-      },
     ]
   }
 }

@@ -6,10 +6,12 @@ export async function subscanFetch(
   params = {}
 ) {
   let domain = "polkadot";
-  if (hostname.indexOf("localhost") > -1) domain = "polkadot";
+  if (hostname.indexOf("localhost") > -1) domain = "kusama";
   if (hostname.indexOf("kusama") > -1) domain = "kusama";
   if (hostname.indexOf("darwinia") > -1) domain = "darwinia";
-
+  console.info('subscanFetch:')
+  console.info({domain, path, params})
+  
   const res = await fetch(`https://${domain}.api.subscan.io/${path}`, {
     method: "POST",
     headers: {

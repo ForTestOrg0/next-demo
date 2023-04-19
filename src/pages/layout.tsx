@@ -6,11 +6,11 @@ import localFont from 'next/font/local'
 const eina = localFont({
   src: [
     {
-      path: '../fonts/Eina01.otf',
+      path: '../styles/fonts/Eina01.otf',
       weight: '400',
     },
     {
-      path: '../fonts/Eina01-SemiBold.otf',
+      path: '../styles/fonts/Eina01-SemiBold.otf',
       weight: '600',
     },
   ],

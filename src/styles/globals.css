@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -20,6 +19,7 @@
   --ui-b3: #D8D8D8;
   --ui-b4: #F2F4FA;
   --ui-bg: #FBFBFD;
+  --ui-hover: '#fbfbfb';
 }
 
 :root html.dark {
@@ -37,6 +37,6 @@
 } */
 
 body {
-  /* color: rgb(var(--foreground-rgb)); */
+  color: var(--ui-black);
   @apply bg-sub-bg;
 }

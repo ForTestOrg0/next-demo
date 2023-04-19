@@ -1,3 +1,5 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'media',
@@ -10,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-eina)']
+        sans: ['var(--font-eina)', ...fontFamily.sans]
       },
       colors: {
         sub: {
@@ -24,6 +26,7 @@ module.exports = {
           b3: '#D8D8D8',
           b4: '#F2F4FA',
           bg: '#FBFBFD',
+          hover: '#fbfbfb',
           network: 'var(--network-color)',
         }
       },
@@ -34,7 +37,7 @@ module.exports = {
       },
       boxShadow: {
         'module': '0px 2px 10px rgba(0, 0, 0, 0.05)',
-      }
+      },
     },
   },
   plugins: [],
