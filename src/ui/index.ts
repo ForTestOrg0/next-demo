@@ -6,3 +6,5 @@ export * from './Text';
 export * from './Table';
 export * from './Link';
 export * from './Pagination';
+export * from './Tooltip';
+export * from './Popover';

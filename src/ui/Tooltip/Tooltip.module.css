@@ -1,0 +1,12 @@
+.Tooltip {
+  @apply bg-sub-white;
+  @apply text-sub-black;
+  @apply border-sub-black;
+  border: 1px solid;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: calc(100vw - 10px);
+}
