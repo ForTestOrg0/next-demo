@@ -1,7 +1,6 @@
 
 import { use, useRef } from 'react';
 import { PageProps } from '../../../types/page';
-import Chart from '@/components/Echart';
 import styles from './styles.module.scss';
 
 
@@ -27,7 +26,6 @@ export default function Page({ params }: PageProps) {
         <p>p - text text text</p>
         <span>span - text text text</span>
       </div>
-      <Chart />
     </div>
   );
 }
