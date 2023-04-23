@@ -31,6 +31,7 @@ jobs:
         with:
           append: true
           message: ${{ steps.deploy-pages.outputs.url }}
+
       - name: Slack Notification
         if: failure()
         uses: rtCamp/action-slack-notify@v2
