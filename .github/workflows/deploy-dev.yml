@@ -1,8 +1,7 @@
-name: Deploy staging
+name: Deploy dev
 
 on:
-  push:
-    branches: ["develop"]
+  pull_request:
 
 jobs:
   deploy:
@@ -23,20 +22,9 @@ jobs:
           cloudflare_project_id: subscan-ui-next
           wait_until_ready: true
           commit_hash: ${{ github.sha }}
-          environment: staging
+          environment: develop
 
       - uses: marocchino/sticky-pull-request-comment@v2
         with:
           append: true
           message: ${{ steps.cloudflare_preview_url.outputs.preview_url }}
-
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_ICON: https://avatars.githubusercontent.com/u/14985020?s=48&v=4
-          SLACK_MESSAGE: "${{ steps.cloudflare_preview_url.outputs.preview_url }}"
-          SLACK_TITLE: Preview
-          SLACK_USERNAME: Pages
-          SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
