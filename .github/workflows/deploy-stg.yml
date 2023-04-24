@@ -23,6 +23,7 @@ jobs:
         with:
           cloudflare_project_id: 'subscan-ui-next'
           wait_until_ready: true
+
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
