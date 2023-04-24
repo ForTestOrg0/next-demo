@@ -27,7 +27,7 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: "#test-subscan-ui-next"
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
           SLACK_COLOR: ${{ job.status }}
           SLACK_ICON: https://avatars.githubusercontent.com/u/14985020?s=48&v=4
           SLACK_MESSAGE: "https://${{ steps.cloudflare_preview_url.outputs.preview_url }}"
