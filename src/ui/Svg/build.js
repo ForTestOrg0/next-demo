@@ -4,7 +4,6 @@ const { promisify } = require('util')
 const rimraf = promisify(require('rimraf'))
 const svgr = require('@svgr/core').default
 const babel = require('@babel/core')
-const { compile: compileVue } = require('@vue/compiler-dom')
 const { dirname } = require('path')
 const root = './src/ui/Svg';
 
@@ -73,15 +72,15 @@ async function ensureWrite(file, text) {
   await fs.writeFile(file, text, 'utf8')
 }
 
-async function buildIcons(package, format) {
-  let outDir = `${root}/${package}`
+async function buildIcons(library, format) {
+  let outDir = `${root}/${library}`
   let icons = await getIcons()
 
   await Promise.all(
     icons.flatMap(async ({ componentName, svg }) => {
-      let content = await transform[package](svg, componentName, format)
+      let content = await transform[library](svg, componentName, format)
       let types =
-        package === 'react'
+        library === 'react'
           ? `import * as React from 'react';\ndeclare const ${componentName}: React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & { title?: string, titleId?: string } & React.RefAttributes<SVGSVGElement>>;\nexport default ${componentName};\n`
           : `import type { FunctionalComponent, HTMLAttributes, VNodeProps } from 'vue';\ndeclare const ${componentName}: FunctionalComponent<HTMLAttributes & VNodeProps>;\nexport default ${componentName};\n`
 
@@ -99,25 +98,25 @@ async function buildIcons(package, format) {
   await ensureWrite(`${root}/Icons.tsx`, storybook(icons))
 }
 
-async function main(package) {
+async function main(library) {
 
-  console.log(`Building ${package} package...`)
+  console.log(`Building ${library} library...`)
 
   await Promise.all([
-    rimraf(`${root}/${package}/*`),
+    rimraf(`${root}/${library}/*`),
   ])
 
   await Promise.all([
-    buildIcons(package, 'esm'),
+    buildIcons(library, 'esm'),
   ])
 
-  return console.log(`Finished building ${package} package.`)
+  return console.log(`Finished building ${library} library.`)
 }
 
-let [package] = process.argv.slice(2)
+let [library] = process.argv.slice(2)
 
-if (!package) {
-  throw new Error('Please specify a package')
+if (!library) {
+  throw new Error('Please specify a library')
 }
 
-main(package)
+main(library)
