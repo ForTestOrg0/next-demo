@@ -25,11 +25,6 @@ jobs:
           commit_hash: ${{ github.sha }}
           environment: preview
 
-      - uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          append: true
-          message: ${{ steps.cloudflare_preview_url.outputs.preview_url }}
-
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         if: failure() == false
