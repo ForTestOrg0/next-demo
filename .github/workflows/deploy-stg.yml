@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v3
-      - run: sleep 30
+      - run: sleep 60
       - name: cloudflare-preview-url
         uses: zentered/cloudflare-preview-url@v1.4.0
         id: cloudflare_preview_url
