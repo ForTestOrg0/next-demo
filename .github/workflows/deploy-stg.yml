@@ -23,7 +23,7 @@ jobs:
           cloudflare_project_id: subscan-ui-next
           wait_until_ready: true
           commit_hash: ${{ github.sha }}
-          environment: staging
+          environment: preview
 
       - uses: marocchino/sticky-pull-request-comment@v2
         with:
