@@ -24,6 +24,7 @@ jobs:
           apiToken: ${{ secrets.CF_PAGES_TOKEN }}
           accountId: ${{ secrets.CF_PAGES_ACCOUNT_ID }}
           projectName: subscan-ui-next
+          directory: ./
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: staging
 
