@@ -14,8 +14,8 @@ jobs:
         uses: cloudflare/pages-action@v1
         id: deploy-pages
         with:
-          apiToken: ${{ secrets.CF_PAGES_TOKEN }}
-          accountId: ${{ secrets.CF_PAGES_ACCOUNT_ID }}
+          apiToken: ${{ secrets.PERROR_CF_PAGES_TOKEN }}
+          accountId: ${{ secrets.PERROR_CF_PAGES_ACCOUNT_ID }}
           projectName: subscan-ui-next
           directory: ./
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
