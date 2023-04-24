@@ -8,3 +8,4 @@ export * from './Link';
 export * from './Pagination';
 export * from './Tooltip';
 export * from './Popover';
+export * from './Menu';
