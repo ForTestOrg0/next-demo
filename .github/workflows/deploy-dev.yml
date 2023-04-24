@@ -14,6 +14,7 @@ jobs:
       - run: sleep 60
       - name: cloudflare-preview-url
         uses: zentered/cloudflare-preview-url@v1.4.0
+        if: failure() == false
         id: cloudflare_preview_url
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.PERROR_CF_PAGES_TOKEN }}
@@ -24,7 +25,11 @@ jobs:
           commit_hash: ${{ github.sha }}
           environment: preview
 
-      - uses: marocchino/sticky-pull-request-comment@v2
+      - uses: 8398a7/action-slack@v3
+        if: failure()
         with:
-          append: true
-          message: ${{ steps.cloudflare_preview_url.outputs.preview_url }}
+          status: ${{ job.status }}
+          fields: repo,author,eventName,workflow,ref,commit
+          channel: ${{ secrets.SLACK_CHANNEL_ID }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}

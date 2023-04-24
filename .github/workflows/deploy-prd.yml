@@ -24,3 +24,12 @@ jobs:
           wait_until_ready: true
           commit_hash: ${{ github.sha }}
           environment: production
+
+      - uses: 8398a7/action-slack@v3
+        if: failure()
+        with:
+          status: ${{ job.status }}
+          fields: repo,author,eventName,workflow,ref,commit
+          channel: ${{ secrets.SLACK_CHANNEL_ID }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
