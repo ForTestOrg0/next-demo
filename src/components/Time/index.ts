@@ -1,0 +1,1 @@
+export { default as TimeFromNow }  from './TimeFromNow';

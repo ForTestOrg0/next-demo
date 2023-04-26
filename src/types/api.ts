@@ -31,6 +31,6 @@ export interface ProposalTimeline {
 
 export interface AccountDisplay {
   address: string;
-  display: string;
-  identity: boolean;
+  display?: string;
+  identity?: boolean;
 }

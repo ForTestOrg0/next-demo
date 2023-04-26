@@ -4,6 +4,23 @@ import {
   ProposalPreImage,
   ProposalTimeline,
 } from "@/types/api";
+import useSWR from "swr";
+
+export function unwrap<T>(apiData: APIWarpperProps<T> | undefined): T | null {
+  if (!apiData || apiData.code !== 0) {
+    return null;
+  }
+
+  return apiData.data;
+}
+
+const swrFetcher = async ([hostname, path, params]: [
+  string,
+  string,
+  object
+]) => {
+  return await subscanFetch(hostname, path, params);
+};
 
 export async function subscanFetch(
   hostname: string,
@@ -95,3 +112,10 @@ export async function getDemocracySeconded(
 ): Promise<APIWarpperProps<GetDemocracySecondedProps>> {
   return await subscanFetch(hostname, "api/scan/democracy/seconded", params);
 }
+
+export const useDemocracySeconded = (
+  hostname = "",
+  params: { page: number; row: number; proposal_id: number }
+) => {
+  return useSWR<APIWarpperProps<GetDemocracySecondedProps>, Error>([hostname, "api/scan/democracy/seconded", params], swrFetcher);
+};

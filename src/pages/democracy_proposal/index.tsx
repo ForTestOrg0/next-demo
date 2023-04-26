@@ -2,6 +2,7 @@ import { Boundary, PageContent, Container, Text, TabsServer, Table, Th, Td, Tr, 
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getDemocracyProposals, GetDemocracyProposalsDataProps } from '@/utils/api';
 import { PAGE_ROW } from '@/config/constants';
+import { ProposalList } from '@/components/Governance';
 
 const orderFieldMap = {
   waiting: 'seconded_count',
@@ -56,33 +57,7 @@ export default function Page({ data, type }: InferGetServerSidePropsType<typeof 
           ]
         } />
         <Boundary>
-          <Table className='w-full'>
-            <thead>
-              <Tr>
-                <Th>Proposal ID</Th>
-                <Th>Block</Th>
-                <Th>Action</Th>
-                <Th>Seconds</Th>
-                <Th>Time</Th>
-                <Th>Status</Th>
-                <Th></Th>
-              </Tr>
-            </thead>
-            <tbody>
-              {data.list.map((proposal) => {
-                return (
-                  <Tr key={proposal.proposal_id}>
-                    <Td><LinkRouter href={`/democracy_proposal/${proposal.proposal_id}`}>{proposal.proposal_id}</LinkRouter></Td>
-                    <Td><LinkRouter href={`/block/${proposal.created_block}`}>{proposal.created_block}</LinkRouter></Td>
-                    <Td><LinkRouter href={`/extrinsic?module=${proposal.call_module}&call=${proposal.call_name}`}>{proposal.call_module} ({proposal.call_name})</LinkRouter></Td>
-                    <Td><LinkRouter href={`/democracy_proposal/proposal_second/${proposal.proposal_id}`}>{proposal.seconded_count}</LinkRouter></Td>
-                    <Td>{proposal.block_timestamp}</Td>
-                    <Td>{proposal.status}</Td>
-                    <Td>action</Td>
-                  </Tr>)
-              })}
-            </tbody>
-          </Table>
+          <ProposalList proposals={data.list}/>
         </Boundary>
         <LinkRouter href={`/democracy_proposal_list?status=${type}`}>
           <Button outline className='mt-4'>View Other {data.count - PAGE_ROW} {type} </Button>
