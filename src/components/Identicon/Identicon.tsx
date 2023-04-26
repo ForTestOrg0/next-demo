@@ -8,10 +8,12 @@ interface Props extends BareProps {
   account: AccountDisplay;
 }
 
-const Identicon: React.FC<Props> = ({ account, className }) => (
-  <div className={clsx('flex', className)}>
+const Identicon: React.FC<Props> = ({ account, className }) => {
+  if (!account) return <Text>-</Text>;
+
+  return (<div className={clsx('flex', className)}>
     <Text>{account.display || account.address}</Text>
-  </div>
-);
+  </div>);
+};
 
 export default Identicon;

@@ -1,11 +1,12 @@
+'use client'
+
 import React from 'react';
 import { BareProps } from '@/types/page';
 import { unwrap, useDemocracySeconded } from '@/utils/api';
 import { PAGE_ROW } from '@/config/constants';
-import { Table, Td, Th, Tr } from '@/ui';
-import { Identicon } from '@/components/Identicon';
-import { ExtrinsicLink } from '@/components/Links';
 import ProposalSeconds from './ProposalSeconds';
+import { Empty } from '@/components/Empty';
+import { Loading } from '@/components/Loading';
 
 interface Props extends BareProps {
   host: string;
@@ -15,13 +16,17 @@ interface Props extends BareProps {
 }
 
 const ProposalSecondsClient: React.FC<Props> = ({ host, page = 0, row = PAGE_ROW, children, proposalId, className }) => {
-  const { data, error } = useDemocracySeconded(host, {
+  const { data, error, isLoading } = useDemocracySeconded(host, {
     page,
     row,
     proposal_id: proposalId
   });
   const seconds = unwrap(data);
-  return (<ProposalSeconds seconds={seconds?.list || []} />)
+
+  if (isLoading) return <Loading />
+  if (!seconds) return <Empty />;
+
+  return (<ProposalSeconds total={seconds?.count} start={(page - 1) * row} seconds={seconds?.list || []} />)
 };
 
 export default ProposalSecondsClient;

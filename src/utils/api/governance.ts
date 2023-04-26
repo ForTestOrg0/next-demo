@@ -1,6 +1,9 @@
 import {
   APIWarpperProps,
   AccountDisplay,
+  DemocracyReferendum,
+  DemocracyReferendumDetail,
+  DemocracyVote,
   ProposalPreImage,
   ProposalTimeline,
 } from "@/types/api";
@@ -94,6 +97,7 @@ export async function getDemocracyProposalById(
   return await subscanFetch(hostname, "api/scan/democracy/proposal", params);
 }
 
+/***** Democracy Seconded *****/
 export interface GetDemocracySecondedProps {
   count: number;
   list: {
@@ -118,4 +122,52 @@ export const useDemocracySeconded = (
   params: { page: number; row: number; proposal_id: number }
 ) => {
   return useSWR<APIWarpperProps<GetDemocracySecondedProps>, Error>([hostname, "api/scan/democracy/seconded", params], swrFetcher);
+};
+
+/***** Democracy Referendums *****/
+
+export interface GetDemocracyReferendumsProps {
+  count: number;
+  list: DemocracyReferendum[];
+}
+
+export async function getDemocracyReferendums(
+  hostname = "",
+  params: { page: number; row: number; }
+): Promise<APIWarpperProps<GetDemocracyReferendumsProps>> {
+  return await subscanFetch(hostname, "api/scan/democracy/referendums", params);
+}
+
+
+/***** Democracy Referendum *****/
+export interface GetDemocracyReferendumProps {
+  info: DemocracyReferendumDetail;
+}
+
+export async function getDemocracyReferendum(
+  hostname = "",
+  params: { referendum_index: number; }
+): Promise<APIWarpperProps<GetDemocracyReferendumProps>> {
+  return await subscanFetch(hostname, "api/scan/democracy/referendum", params);
+}
+
+
+/***** Democracy Referendum Votes *****/
+export interface GetDemocracyVotesProps {
+  count: number;
+  list: DemocracyVote[];
+}
+
+export async function getDemocracyVotes(
+  hostname = "",
+  params: { page: number; row: number; referendum_index: number; }
+): Promise<APIWarpperProps<GetDemocracyVotesProps>> {
+  return await subscanFetch(hostname, "api/scan/democracy/votes", params);
+}
+
+export const useDemocracyVotes = (
+  hostname = "",
+  params: { page: number; row: number; referendum_index: number }
+) => {
+  return useSWR<APIWarpperProps<GetDemocracyVotesProps>, Error>([hostname, "api/scan/democracy/votes", params], swrFetcher);
 };

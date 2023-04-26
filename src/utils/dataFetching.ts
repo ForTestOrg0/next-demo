@@ -6,7 +6,6 @@ export function setCache(
   maxage = 12,
   revalidate = 59
 ) {
-  console.log(1, res)
   res.setHeader(
     "Cache-Control",
     `public, s-maxage=${maxage}, stale-while-revalidate=${revalidate}`

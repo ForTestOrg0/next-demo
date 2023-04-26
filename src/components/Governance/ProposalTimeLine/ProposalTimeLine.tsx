@@ -1,7 +1,7 @@
 import React from 'react';
 import { BareProps } from '@/types/page';
 import { Table, Td, Th, Tr } from '@/ui';
-import { ExtrinsicLink } from '@/components/Links';
+import { BlockLink, ExtrinsicLink } from '@/components/Links';
 import { ProposalTimeline } from '@/types/api';
 import { TimeFromNow } from '@/components/Time';
 
@@ -20,7 +20,7 @@ const ProposalTimeLine: React.FC<Props> = ({ timeline }) => {
 
       {timeline.map((item, index) => {
         return (
-          <Tr key={`${item.extrinsic_index}${item.index}`}>
+          <Tr key={`${item.block}${item.index}`}>
             <Td>
               {item.status}
             </Td>
@@ -28,7 +28,7 @@ const ProposalTimeLine: React.FC<Props> = ({ timeline }) => {
               <TimeFromNow date={item.time}/>
             </Td>
             <Td>
-              <ExtrinsicLink extrinsicIndex={item.extrinsic_index} />
+              <BlockLink blockNumber={item.block} query={{tab: 'event', event: `${item.block}-${item.index}`}}>{item.block}-{item.index}</BlockLink>
             </Td>
           </Tr>
         );

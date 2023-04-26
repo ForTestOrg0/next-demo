@@ -28,7 +28,7 @@ const ProposalPreImage: React.FC<Props> = ({ preimage }) => {
       </Tr>
       <Tr>
         <Td className='font-semibold'>Author</Td>
-        <Td><Identicon account={preimage.author} /></Td>
+        <Td><Identicon account={preimage?.author} /></Td>
       </Tr>
       <Tr>
         <Td className='font-semibold'>Module</Td>

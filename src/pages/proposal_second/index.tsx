@@ -5,8 +5,9 @@ import { PAGE_ROW } from '@/config/constants';
 import ProposalSeconds from '@/components/Governance/ProposalSeconds/ProposalSeconds';
 
 export const getServerSideProps: GetServerSideProps<{
-  data: GetDemocracySecondedProps,
-  page: number,
+  data: GetDemocracySecondedProps;
+  page: number;
+  row: number;
   proposalId: number;
 }> = async (context) => {
   const page = parseInt(context.query.page as string) || 1;
@@ -30,22 +31,22 @@ export const getServerSideProps: GetServerSideProps<{
     props: {
       data: data.data,
       page: page,
+      row: PAGE_ROW,
       proposalId
     },
   }
 }
 
-export default function Layout({ data, page, proposalId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Layout({ data, page, row, proposalId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-6'>Seconds</Text>
         <Text block bold className='mb-2'>For Democracy Proposal#{proposalId} ({data.count})</Text>
         <Boundary>
-          <ProposalSeconds seconds={data.list} />
+          <ProposalSeconds total={data.count} start={(page - 1) * row} seconds={data.list} />
         </Boundary>
         <Flex className='mt-5 flex-row-reverse'>
-          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/proposal_second?proposal_id=${proposalId}page=${_page}`} />
+          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/proposal_second?proposal_id=${proposalId}&page=${_page}`} />
         </Flex>
       </Container>
     </PageContent >

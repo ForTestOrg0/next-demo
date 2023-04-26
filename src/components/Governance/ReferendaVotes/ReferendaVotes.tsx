@@ -2,37 +2,44 @@ import React from 'react';
 import { BareProps } from '@/types/page';
 import { GetDemocracySecondedProps, unwrap, useDemocracySeconded } from '@/utils/api';
 import { PAGE_ROW } from '@/config/constants';
-import { Table, Td, Th, Tr } from '@/ui';
+import { Table, Td, Th, Tr, Text } from '@/ui';
 import { Identicon } from '@/components/Identicon';
 import { ExtrinsicLink } from '@/components/Links';
+import { DemocracyVote } from '@/types/api';
+import { Time } from '@/components/Time';
 
 interface Props extends BareProps {
-  seconds: GetDemocracySecondedProps['list'];
-  total: number;
-  start: number;
+  votes: DemocracyVote[];
 }
 
-const ProposalSeconds: React.FC<Props> = ({ seconds, total, start }) => {
+const ReferendaVotes: React.FC<Props> = ({ votes }) => {
   return (<Table className='w-full'>
     <tbody>
       <Tr>
         <Th>Extrinsic ID</Th>
         <Th>Account</Th>
-        <Th>Second Upper Bond</Th>
+        <Th>Locked Value</Th>
+        <Th>Time</Th>
+        <Th>Voted</Th>
       </Tr>
 
-      {seconds?.map((item, index) => {
-        const secondUpperBond = total - index - start > 0 ? total - index - start : '-';
+      {votes?.map((item, index) => {
         return (
-          <Tr key={item.event_index}>
+          <Tr key={item.extrinsic_index}>
             <Td>
               <ExtrinsicLink extrinsicIndex={item.extrinsic_index} />
             </Td>
             <Td>
-              <Identicon account={item.account_display} />
+              <Identicon account={item.account} />
             </Td>
             <Td>
-              {secondUpperBond}
+              <Text>{item.conviction} * {item.amount}</Text>
+            </Td>
+            <Td>
+              <Time date={item.voting_time}/>
+            </Td>
+            <Td>
+              <Text>{item.passed.toString()}</Text>
             </Td>
           </Tr>
         );
@@ -41,4 +48,4 @@ const ProposalSeconds: React.FC<Props> = ({ seconds, total, start }) => {
   </Table>)
 };
 
-export default ProposalSeconds;
+export default ReferendaVotes;
