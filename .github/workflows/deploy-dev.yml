@@ -1,21 +1,25 @@
-name: Deploy staging
+name: Deploy develop
 
 on:
-  push:
-    branches: ["develop"]
+  pull_request:
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+      deployments: write
 
+    # 15 minutes timeout
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v3
       - name: Config
         id: config
         run: |
-          echo "branch=develop" >> $GITHUB_ENV
+          echo "branch=preview" >> $GITHUB_ENV
           echo "commit_hash=${{ github.sha }}" >> $GITHUB_ENV
           echo "project_name=subscan-ui-next" >> $GITHUB_ENV
           echo "environment=preview" >> $GITHUB_ENV
@@ -38,6 +42,11 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ env.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          append: true
+          message: ${{ env.CF_PAGES_URL }}
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
