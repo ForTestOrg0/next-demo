@@ -28,7 +28,7 @@ jobs:
           cache: 'npm'
 
       - name: Build
-        run: npm ci && npx @cloudflare/next-on-pages --experimental-minify
+        run: npm install && npx @cloudflare/next-on-pages --experimental-minify
 
       - name: Push to Cloudflare Pages
         run: |
@@ -38,6 +38,17 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ env.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: check pages deployment status
+        run: |
+          sleep 10
+          result=$(curl -X GET \
+             https://api.cloudflare.com/client/v4/accounts/${{ env.CLOUDFLARE_ACCOUNT_ID }}/pages/projects/${{ env.project_name }}/deployments \
+             -H 'Accept: application/json' \
+             -H 'Authorization: Bearer ${{ env.CLOUDFLARE_API_TOKEN }}')
+          status=$(echo $result | jq '.result[] | select(.url == "${{ env.CF_PAGES_URL }}").latest_stage.status')
+          echo "deployment status: $status"
+          echo $status | grep -q 'success' || exit 1
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
