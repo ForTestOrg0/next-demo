@@ -1,5 +1,13 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
+const getNetworkColor = (network) => {
+  // TODO
+  void network;
+  return {
+    primary: '#ff0083',
+  };
+};
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'media',
@@ -28,7 +36,8 @@ module.exports = {
           bg: '#FBFBFD',
           hover: '#fbfbfb',
           network: 'var(--network-color)',
-        }
+        },
+        ...getNetworkColor(),
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
