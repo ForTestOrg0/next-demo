@@ -40,24 +40,24 @@ export default function Page({ data, type }: InferGetServerSidePropsType<typeof 
     <PageContent>
       <Container className='flex-1'>
         <Text block bold className='mb-2'>Democracy Proposals</Text>
-        <TabsServer className='mb-4' items={
-          [
-            {
-              label: 'Waiting Queue',
-              value: '/democracy_proposal?status=waiting',
-              replace: true,
-              active: type === 'waiting'
-            },
-            {
-              label: 'Historical Proposal',
-              value: '/democracy_proposal?status=historical',
-              replace: true,
-              active: type === 'historical'
-            }
-          ]
-        } />
         <Boundary>
-          <ProposalList proposals={data.list}/>
+          <TabsServer className='mb-4' items={
+            [
+              {
+                label: 'Waiting Queue',
+                value: '/democracy_proposal?status=waiting',
+                replace: true,
+                active: type === 'waiting'
+              },
+              {
+                label: 'Historical Proposal',
+                value: '/democracy_proposal?status=historical',
+                replace: true,
+                active: type === 'historical'
+              }
+            ]
+          } />
+          <ProposalList proposals={data.list} />
         </Boundary>
         <LinkRouter href={`/democracy_proposal_list?status=${type}`}>
           <Button outline className='mt-4'>View Other {data.count - PAGE_ROW} {type} </Button>

@@ -11,7 +11,7 @@ export interface ProposalPreImage {
   amount: string;
   author: {
     address: string;
-  },
+  };
   call_module: string;
   call_name: string;
   created_block: number;
@@ -35,6 +35,8 @@ export interface AccountDisplay {
   address: string;
   display?: string;
   identity?: boolean;
+  judgements?: any[];
+  account_index?: string;
   parent?: {
     address: string;
     display?: string;
@@ -74,7 +76,6 @@ export interface DemocracyReferendumDetail {
   value: string;
 }
 
-
 export interface DemocracyVote {
   account: AccountDisplay;
   amount: string;
@@ -83,4 +84,36 @@ export interface DemocracyVote {
   extrinsic_index: string;
   passed: boolean;
   voting_time: string;
+}
+
+export interface CouncilProposal {
+  proposal_id: number;
+  created_block: BlockNumber;
+  block_timestamp: number;
+  status: string;
+  member_count: number;
+  aye_votes: number;
+  nay_votes: number;
+  call_module: string;
+  call_name: string;
+}
+
+export interface CouncilProposalVote {
+  account: AccountDisplay;
+  extrinsic_hash: string;
+  extrinsic_index: string;
+  passed: boolean;
+  voting_time: string;
+}
+
+export interface CouncilProposalDetail extends CouncilProposal {
+  updated_block: BlockNumber;
+  proposal_hash: string;
+  proposer: AccountDisplay;
+  executed_success: boolean;
+  value: string;
+  params: string;
+  pre_image: ProposalPreImage;
+  votes: CouncilProposalVote[];
+  timeline: ProposalTimeline[];
 }

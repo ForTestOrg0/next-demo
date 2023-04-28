@@ -9,9 +9,11 @@ export const getServerSideProps: GetServerSideProps<{
   page: number;
   row: number;
   proposalId: number;
+}, {
+  id: string;
 }> = async (context) => {
   const page = parseInt(context.query.page as string) || 1;
-  const proposalId = parseInt((context.query.proposal_id || '')?.toString());
+  const proposalId = parseInt(context.params?.id.toString() || '');
 
   if (Number.isNaN(proposalId)) {
     return {
@@ -46,7 +48,7 @@ export default function Layout({ data, page, row, proposalId }: InferGetServerSi
           <ProposalSeconds total={data.count} start={(page - 1) * row} seconds={data.list} />
         </Boundary>
         <Flex className='mt-5 flex-row-reverse'>
-          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/proposal_second?proposal_id=${proposalId}&page=${_page}`} />
+          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/proposal_second/${proposalId}?page=${_page}`} />
         </Flex>
       </Container>
     </PageContent >

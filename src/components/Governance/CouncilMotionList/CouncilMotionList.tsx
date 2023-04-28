@@ -1,22 +1,24 @@
 import React from 'react';
 import { BareProps } from '@/types/page';
-import { LinkRouter, Table, Td, Th, Tr } from '@/ui';
-import { BlockLink, ExtrinsicLink } from '@/components/Links';
-import { GetDemocracyProposalsDataProps } from '@/utils/api';
+import { Table, Td, Th, Tr, Text } from '@/ui';
+import { BlockLink, CouncilProposalLink, ExtrinsicLink, ReferendaLink } from '@/components/Links';
 import { TimeFromNow } from '@/components/Time';
+import { CouncilProposal, DemocracyReferendum } from '@/types/api';
 
 interface Props extends BareProps {
-  proposals: GetDemocracyProposalsDataProps['list'];
+  proposals: CouncilProposal[];
 }
 
-const ProposalList: React.FC<Props> = ({ proposals }) => {
+const CouncilMotionList: React.FC<Props> = ({ proposals }) => {
   return (<Table className='w-full'>
   <tbody>
     <Tr>
       <Th>Proposal ID</Th>
       <Th>Block</Th>
+      <Th>Member Threshold</Th>
+      <Th>Aye</Th>
+      <Th>Nay</Th>
       <Th>Action</Th>
-      <Th>Seconds</Th>
       <Th>Time</Th>
       <Th>Status</Th>
       <Th></Th>
@@ -24,10 +26,12 @@ const ProposalList: React.FC<Props> = ({ proposals }) => {
     {proposals.map((proposal) => {
       return (
         <Tr key={proposal.proposal_id}>
-          <Td><LinkRouter href={`/democracy_proposal/${proposal.proposal_id}`}>{proposal.proposal_id}</LinkRouter></Td>
+          <Td><CouncilProposalLink index={proposal.proposal_id} /></Td>
           <Td><BlockLink blockNumber={proposal.created_block}/></Td>
+          <Td><Text>{proposal.member_count}</Text></Td>
+          <Td><Text>{proposal.aye_votes}</Text></Td>
+          <Td><Text>{proposal.nay_votes}</Text></Td>
           <Td><ExtrinsicLink empty={!proposal.call_module} query={{module: proposal.call_module, call: proposal.call_name}}>{`${proposal.call_module} (${proposal.call_name})`}</ExtrinsicLink></Td>
-          <Td><LinkRouter href={`/proposal_second/${proposal.proposal_id}`}>{proposal.seconded_count}</LinkRouter></Td>
           <Td><TimeFromNow date={proposal.block_timestamp}/></Td>
           <Td>{proposal.status}</Td>
           <Td>action</Td>
@@ -37,4 +41,4 @@ const ProposalList: React.FC<Props> = ({ proposals }) => {
 </Table>)
 };
 
-export default ProposalList;
+export default CouncilMotionList;

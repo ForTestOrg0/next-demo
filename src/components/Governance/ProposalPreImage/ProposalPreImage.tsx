@@ -20,7 +20,7 @@ const ProposalPreImage: React.FC<Props> = ({ preimage }) => {
       </Tr>
       <Tr>
         <Td className='font-semibold'>Updated at Block</Td>
-        <Td><BlockLink blockNumber={preimage?.created_block + preimage?.updated_block} /></Td>
+        <Td><BlockLink blockNumber={preimage?.updated_block || preimage?.created_block} /></Td>
       </Tr>
       <Tr>
         <Td className='font-semibold'>Proposed Hash</Td>

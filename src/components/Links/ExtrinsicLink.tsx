@@ -13,8 +13,8 @@ const ExtrinsicLink: React.FC<Props> = ({ empty, query, children, extrinsicIndex
   if (empty) {
     return <Text>-</Text>;
   }
-  const searchParams = objectToSearchParams(query);
-  return (<LinkRouter className={className} href={`/extrinsic/${extrinsicIndex}${searchParams ? `?${searchParams}` : ''}`}>{children ?? extrinsicIndex}</LinkRouter>);
+  const searchParams = objectToSearchParams(query)
+  return (<LinkRouter className="text-su" href={`/extrinsic/${extrinsicIndex}${searchParams ? `?${searchParams}` : ''}`}>{children ?? extrinsicIndex}</LinkRouter>);
 };
 
 export default ExtrinsicLink;

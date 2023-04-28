@@ -1,6 +1,8 @@
 import {
   APIWarpperProps,
   AccountDisplay,
+  CouncilProposal,
+  CouncilProposalDetail,
   DemocracyReferendum,
   DemocracyReferendumDetail,
   DemocracyVote,
@@ -8,6 +10,7 @@ import {
   ProposalTimeline,
 } from "@/types/api";
 import useSWR from "swr";
+import { subscanFetch, swrFetcher } from "./fetcher";
 
 export function unwrap<T>(apiData: APIWarpperProps<T> | undefined): T | null {
   if (!apiData || apiData.code !== 0) {
@@ -15,38 +18,6 @@ export function unwrap<T>(apiData: APIWarpperProps<T> | undefined): T | null {
   }
 
   return apiData.data;
-}
-
-const swrFetcher = async ([hostname, path, params]: [
-  string,
-  string,
-  object
-]) => {
-  return await subscanFetch(hostname, path, params);
-};
-
-export async function subscanFetch(
-  hostname: string,
-  path: string,
-  params = {}
-) {
-  let domain = "polkadot";
-  if (hostname.indexOf("localhost") > -1) domain = "kusama";
-  if (hostname.indexOf("kusama") > -1) domain = "kusama";
-  if (hostname.indexOf("darwinia") > -1) domain = "darwinia";
-  console.info("subscanFetch:");
-  console.info({ domain, path, params });
-
-  const res = await fetch(`https://${domain}.api.subscan.io/${path}`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(params || {}),
-  });
-  const data = await res.json();
-  return data;
 }
 
 export async function getTransfers(hostname = "", params: any) {
@@ -171,3 +142,29 @@ export const useDemocracyVotes = (
 ) => {
   return useSWR<APIWarpperProps<GetDemocracyVotesProps>, Error>([hostname, "api/scan/democracy/votes", params], swrFetcher);
 };
+
+/***** Council Proposals *****/
+export interface GetCouncilProposalsProps {
+  count: number;
+  list: CouncilProposal[];
+}
+
+export async function getCouncilProposals(
+  hostname = "",
+  params: { page: number; row: number;}
+): Promise<APIWarpperProps<GetCouncilProposalsProps>> {
+  return await subscanFetch(hostname, "api/scan/council/proposals", params);
+}
+
+
+/***** Council Proposal *****/
+export interface GetCouncilProposalProps {
+  info: CouncilProposalDetail;
+}
+
+export async function getCouncilProposal(
+  hostname = "",
+  params: { proposal_id: number;}
+): Promise<APIWarpperProps<GetCouncilProposalProps>> {
+  return await subscanFetch(hostname, "api/scan/council/proposal", params);
+}

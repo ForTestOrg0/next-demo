@@ -18,7 +18,7 @@ const ReferendaInfo: React.FC<Props> = ({ referenda }) => {
       </Tr>
       <Tr>
         <Td className='font-semibold'>Updated at Block</Td>
-        <Td><BlockLink blockNumber={referenda?.created_block + referenda?.updated_block} /></Td>
+        <Td><BlockLink blockNumber={referenda?.updated_block || referenda?.created_block} /></Td>
       </Tr>
       <Tr>
         <Td className='font-semibold'>Status</Td>

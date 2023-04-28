@@ -1,1 +1,1 @@
-export const PAGE_ROW = 25;
+export const PAGE_ROW = 10;

@@ -8,6 +8,7 @@ import Link from 'next/link';
 const govLinks = [
   { href: "/democracy_proposal", label: "Democracy Proposals" },
   { href: "/referenda", label: "Democracy Referenda" },
+  { href: "/council", label: "Council Motions" },
 ];
 
 export default function Header() {
@@ -15,7 +16,7 @@ export default function Header() {
     <PageContent>
       <Container className='flex flex-1 justify-between'>
         <Image width={119} height={25} src='/website/logo.png' alt="subscan" />
-        <Flex>
+        <Flex className='space-x-4'>
           <Link href={'/'}>Home</Link>
           <Menu>
             <MenuButton>Governance</MenuButton>
