@@ -1,7 +1,6 @@
 export * from "./common";
 export * from "./ProposalSeconds";
 export * from "./ProposalTimeLine";
-export * from "./ProposalPreImage";
 export * from "./ProposalInfo";
 export * from "./ProposalList";
 export * from "./ReferendaList";
@@ -9,4 +8,5 @@ export * from "./ReferendaInfo";
 export * from "./ReferendaVotes";
 export * from "./CouncilMotionList";
 export * from "./CouncilMotionInfo";
-export * from "./CouncilMotionVotes";
+export * from "./TechcommProposalInfo";
+export * from "./TechcommProposalList";

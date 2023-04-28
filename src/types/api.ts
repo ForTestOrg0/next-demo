@@ -98,7 +98,7 @@ export interface CouncilProposal {
   call_name: string;
 }
 
-export interface CouncilProposalVote {
+export interface SimpleProposalVote {
   account: AccountDisplay;
   extrinsic_hash: string;
   extrinsic_index: string;
@@ -114,6 +114,9 @@ export interface CouncilProposalDetail extends CouncilProposal {
   value: string;
   params: string;
   pre_image: ProposalPreImage;
-  votes: CouncilProposalVote[];
+  votes: SimpleProposalVote[];
   timeline: ProposalTimeline[];
 }
+
+export type TechcommProposal = CouncilProposal;
+export type TechcommProposalDetail = CouncilProposalDetail;

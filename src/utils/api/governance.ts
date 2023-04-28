@@ -8,6 +8,8 @@ import {
   DemocracyVote,
   ProposalPreImage,
   ProposalTimeline,
+  TechcommProposal,
+  TechcommProposalDetail,
 } from "@/types/api";
 import useSWR from "swr";
 import { subscanFetch, swrFetcher } from "./fetcher";
@@ -92,7 +94,10 @@ export const useDemocracySeconded = (
   hostname = "",
   params: { page: number; row: number; proposal_id: number }
 ) => {
-  return useSWR<APIWarpperProps<GetDemocracySecondedProps>, Error>([hostname, "api/scan/democracy/seconded", params], swrFetcher);
+  return useSWR<APIWarpperProps<GetDemocracySecondedProps>, Error>(
+    [hostname, "api/scan/democracy/seconded", params],
+    swrFetcher
+  );
 };
 
 /***** Democracy Referendums *****/
@@ -104,11 +109,10 @@ export interface GetDemocracyReferendumsProps {
 
 export async function getDemocracyReferendums(
   hostname = "",
-  params: { page: number; row: number; }
+  params: { page: number; row: number }
 ): Promise<APIWarpperProps<GetDemocracyReferendumsProps>> {
   return await subscanFetch(hostname, "api/scan/democracy/referendums", params);
 }
-
 
 /***** Democracy Referendum *****/
 export interface GetDemocracyReferendumProps {
@@ -117,11 +121,10 @@ export interface GetDemocracyReferendumProps {
 
 export async function getDemocracyReferendum(
   hostname = "",
-  params: { referendum_index: number; }
+  params: { referendum_index: number }
 ): Promise<APIWarpperProps<GetDemocracyReferendumProps>> {
   return await subscanFetch(hostname, "api/scan/democracy/referendum", params);
 }
-
 
 /***** Democracy Referendum Votes *****/
 export interface GetDemocracyVotesProps {
@@ -131,7 +134,7 @@ export interface GetDemocracyVotesProps {
 
 export async function getDemocracyVotes(
   hostname = "",
-  params: { page: number; row: number; referendum_index: number; }
+  params: { page: number; row: number; referendum_index: number }
 ): Promise<APIWarpperProps<GetDemocracyVotesProps>> {
   return await subscanFetch(hostname, "api/scan/democracy/votes", params);
 }
@@ -140,7 +143,10 @@ export const useDemocracyVotes = (
   hostname = "",
   params: { page: number; row: number; referendum_index: number }
 ) => {
-  return useSWR<APIWarpperProps<GetDemocracyVotesProps>, Error>([hostname, "api/scan/democracy/votes", params], swrFetcher);
+  return useSWR<APIWarpperProps<GetDemocracyVotesProps>, Error>(
+    [hostname, "api/scan/democracy/votes", params],
+    swrFetcher
+  );
 };
 
 /***** Council Proposals *****/
@@ -151,11 +157,10 @@ export interface GetCouncilProposalsProps {
 
 export async function getCouncilProposals(
   hostname = "",
-  params: { page: number; row: number;}
+  params: { page: number; row: number }
 ): Promise<APIWarpperProps<GetCouncilProposalsProps>> {
   return await subscanFetch(hostname, "api/scan/council/proposals", params);
 }
-
 
 /***** Council Proposal *****/
 export interface GetCouncilProposalProps {
@@ -164,7 +169,34 @@ export interface GetCouncilProposalProps {
 
 export async function getCouncilProposal(
   hostname = "",
-  params: { proposal_id: number;}
+  params: { proposal_id: number }
 ): Promise<APIWarpperProps<GetCouncilProposalProps>> {
   return await subscanFetch(hostname, "api/scan/council/proposal", params);
+}
+
+/***** Techcomm Proposals *****/
+
+export interface GetTechcommProposalsProps {
+  count: number;
+  list: TechcommProposal[];
+}
+
+export async function getTechcommProposals(
+  hostname = "",
+  params: { page: number; row: number }
+): Promise<APIWarpperProps<GetTechcommProposalsProps>> {
+  return await subscanFetch(hostname, "api/scan/techcomm/proposals", params);
+}
+
+/***** Techcomm Proposal *****/
+
+export interface GetTechcommProposalProps {
+  info: TechcommProposalDetail;
+}
+
+export async function getTechcommProposal(
+  hostname = "",
+  params: { proposal_id: number }
+): Promise<APIWarpperProps<GetTechcommProposalProps>> {
+  return await subscanFetch(hostname, "api/scan/techcomm/proposal", params);
 }

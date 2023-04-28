@@ -3,14 +3,14 @@ import { BareProps } from '@/types/page';
 import { Table, Td, Th, Tr, Text } from '@/ui';
 import { Identicon } from '@/components/Identicon';
 import { ExtrinsicLink } from '@/components/Links';
-import { CouncilProposalVote } from '@/types/api';
+import { SimpleProposalVote } from '@/types/api';
 import { Time } from '@/components/Time';
 
 interface Props extends BareProps {
-  votes: CouncilProposalVote[];
+  votes: SimpleProposalVote[];
 }
 
-const CouncilMotionVotes: React.FC<Props> = ({ votes }) => {
+const SimpleProposalVotes: React.FC<Props> = ({ votes }) => {
   return (<Table className='w-full'>
     <tbody>
       <Tr>
@@ -42,4 +42,4 @@ const CouncilMotionVotes: React.FC<Props> = ({ votes }) => {
   </Table>)
 };
 
-export default CouncilMotionVotes;
+export default SimpleProposalVotes;
