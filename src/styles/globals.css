@@ -64,3 +64,18 @@ body {
   opacity: 0;
   transition: transform 100ms, opacity 100ms;
 }
+
+.fade-drawer-enter {
+  transform: translateX(100%);
+}
+.fade-drawer-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms;
+}
+.fade-drawer-exit {
+  transform: translateX(0);
+}
+.fade-drawer-exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms;
+}
