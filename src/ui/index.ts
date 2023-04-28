@@ -10,3 +10,5 @@ export * from './Tooltip';
 export * from './Popover';
 export * from './Menu';
 export * from './Tabs/client/Tab';
+export * from './DatePicker';
+export * from './Notification';

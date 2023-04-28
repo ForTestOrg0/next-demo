@@ -6,7 +6,6 @@ import { DAY_OF_THE_WEEK, DEFAULT_FORMAT } from "./config";
 import { Button } from "./Button";
 import { usePopper } from "react-popper";
 import { CSSTransition } from "react-transition-group";
-import "./styles.css";
 
 export interface DatePickerProps {
   className?: string;

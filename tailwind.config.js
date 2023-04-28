@@ -22,6 +22,11 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-eina)', ...fontFamily.sans]
       },
+      spacing: {
+        small: "0.3125rem", // 5px
+        middle: "0.625rem", // 10px
+        large: "1.25rem", // 20px
+      },
       colors: {
         sub: {
           black: '#302B3C',
@@ -46,6 +51,29 @@ module.exports = {
       },
       boxShadow: {
         'module': '0px 2px 10px rgba(0, 0, 0, 0.05)',
+      },
+      keyframes: {
+        rightenter: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        rightleave: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+        notificationfadeout: {
+          "100%": { height: 0 },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+      },
+      animation: {
+        "notification-enter": "rightenter 400ms ease-out",
+        "notification-leave": "rightleave 400ms ease-out",
+        "notification-fadeout": "notificationfadeout 200ms ease-out",
+        "marquee-infinite": "marquee 25s linear infinite",
       },
     },
   },
