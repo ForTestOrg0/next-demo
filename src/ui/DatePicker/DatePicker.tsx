@@ -4,8 +4,16 @@ import { getCalendar, getDayText, getMonthText, getYear } from "./utils";
 import { Month } from "./types";
 import { DAY_OF_THE_WEEK, DEFAULT_FORMAT } from "./config";
 import { Button } from "./Button";
-import { usePopper } from "react-popper";
-import { Transition } from "@headlessui/react";
+import {
+  useFloating,
+  useInteractions,
+  useClick,
+  useDismiss,
+  useTransitionStyles,
+  offset,
+  flip,
+  shift,
+} from "@floating-ui/react";
 
 export interface DatePickerProps {
   className?: string;
@@ -23,20 +31,35 @@ const DatePicker = ({
   onClear = () => undefined,
 }: DatePickerProps) => {
   const [isShowing, setIsShowing] = useState(false);
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
-  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    modifiers: [
-      {
-        name: "offset",
-        options: {
-          offset: [0, 8],
-        },
-      },
-    ],
-  });
   const [currentDate, setCurrentDate] = useState(new Date());
   const [months, setMonths] = useState<Month[]>([]);
+
+  const { x, y, strategy, refs, context } = useFloating({
+    open: isShowing,
+    onOpenChange: setIsShowing,
+    middleware: [offset(8), flip(), shift()],
+  });
+  const click = useClick(context);
+  const dismiss = useDismiss(context);
+  const { isMounted, styles } = useTransitionStyles(context, {
+    duration: 100,
+    initial: {
+      opacity: 0,
+      transform: "scaleY(0.9)",
+    },
+    open: {
+      opacity: 1,
+      transform: "scaleY(1)",
+    },
+    close: {
+      opacity: 0,
+      transform: "scaleY(0.9)",
+    },
+    common: {
+      transformOrigin: "top",
+    },
+  });
+  const { getFloatingProps, getReferenceProps } = useInteractions([click, dismiss]);
 
   const handleClickNextMonth = () => {
     setCurrentDate((prev) => addMonths(prev, 1));
@@ -66,18 +89,6 @@ const DatePicker = ({
     setMonths(getCalendar(currentDate, 1));
   }, [currentDate]);
 
-  useEffect(() => {
-    const listener = (e: MouseEvent) => {
-      if (e.target && !popperElement?.contains(e.target as Node) && !referenceElement?.contains(e.target as Node)) {
-        setIsShowing(false);
-      }
-    };
-    document.addEventListener("click", listener);
-    return () => {
-      document.removeEventListener("click", listener);
-    };
-  }, [popperElement, referenceElement]);
-
   const btnClassNames = useMemo(() => {
     const result = [
       "flex items-center justify-center gap-2 border rounded px-4 py-1 font-normal text-sm active:border-primary/40 hover:border-primary/60",
@@ -92,11 +103,7 @@ const DatePicker = ({
 
   return (
     <>
-      <Button
-        ref={setReferenceElement}
-        onClick={() => setIsShowing((prev) => !prev)}
-        className={`${btnClassNames} ${className}`}
-      >
+      <Button ref={refs.setReference} {...getReferenceProps()} className={`${btnClassNames} ${className}`}>
         <span>{value ? format(value, DEFAULT_FORMAT) : placeholder}</span>
         {/* TODO: improve clear icon */}
         {value ? (
@@ -111,16 +118,18 @@ const DatePicker = ({
           </span>
         ) : null}
       </Button>
-      <Transition
-        show={isShowing}
-        enter="origin-top transition duration-100"
-        enterFrom="opacity-0 scale-y-90"
-        enterTo="opacity-100 scale-y-100"
-        leave="origin-top transition duration-100"
-        leaveFrom="opacity-100 scale-y-100"
-        leaveTo="opacity-0 scale-y-90"
-      >
-        <div ref={setPopperElement} style={styles.popper} {...attributes.popper} className="z-10">
+      {isMounted && (
+        <div
+          ref={refs.setFloating}
+          style={{
+            position: strategy,
+            top: y ?? 0,
+            left: x ?? 0,
+            width: "max-content",
+            ...styles,
+          }}
+          {...getFloatingProps()}
+        >
           <div className="border rounded-lg shadow-lg w-fit h-fit">
             {months.map((month, index) => {
               return (
@@ -199,7 +208,7 @@ const DatePicker = ({
             })}
           </div>
         </div>
-      </Transition>
+      )}
     </>
   );
 };
