@@ -16,14 +16,14 @@ export default meta;
 type Story = StoryObj<typeof Drawer>;
 
 const DrawerWithHooks = () => {
-  const [open, setOpen] = useState(false);
+  const [isShowing, setIsShowing] = useState(false);
 
   return (
     <>
-      <button onClick={() => setOpen(true)} className="rounded border border-sub-network px-2">
+      <button onClick={() => setIsShowing(true)} className="rounded border border-sub-network px-2">
         Open Drawer
       </button>
-      <Drawer open={open} title="Title" onClose={() => setOpen(false)} maskClosable>
+      <Drawer show={isShowing} title="Title" onClose={() => setIsShowing(false)} maskClosable>
         <div>
           <p>GM</p>
           <span>Frens</span>

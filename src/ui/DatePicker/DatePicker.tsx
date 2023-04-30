@@ -1,11 +1,11 @@
 import { isToday, isSameDay, subMonths, addMonths, subYears, addYears, format } from "date-fns";
-import { useEffect, useState, Fragment, useRef, useMemo, useCallback } from "react";
+import { useEffect, useState, Fragment, useMemo, useCallback } from "react";
 import { getCalendar, getDayText, getMonthText, getYear } from "./utils";
 import { Month } from "./types";
 import { DAY_OF_THE_WEEK, DEFAULT_FORMAT } from "./config";
 import { Button } from "./Button";
 import { usePopper } from "react-popper";
-import { CSSTransition } from "react-transition-group";
+import { Transition } from "@headlessui/react";
 
 export interface DatePickerProps {
   className?: string;
@@ -22,8 +22,7 @@ const DatePicker = ({
   onSelect = () => undefined,
   onClear = () => undefined,
 }: DatePickerProps) => {
-  const nodeRef = useRef<HTMLDivElement | null>(null);
-  const [open, setOpen] = useState(false);
+  const [isShowing, setIsShowing] = useState(false);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
   const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -57,7 +56,7 @@ const DatePicker = ({
 
   const handleSelect = useCallback(
     (date: Date) => {
-      setOpen(false);
+      setIsShowing(false);
       onSelect(date);
     },
     [onSelect]
@@ -70,7 +69,7 @@ const DatePicker = ({
   useEffect(() => {
     const listener = (e: MouseEvent) => {
       if (e.target && !popperElement?.contains(e.target as Node) && !referenceElement?.contains(e.target as Node)) {
-        setOpen(false);
+        setIsShowing(false);
       }
     };
     document.addEventListener("click", listener);
@@ -95,7 +94,7 @@ const DatePicker = ({
     <>
       <Button
         ref={setReferenceElement}
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => setIsShowing((prev) => !prev)}
         className={`${btnClassNames} ${className}`}
       >
         <span>{value ? format(value, DEFAULT_FORMAT) : placeholder}</span>
@@ -112,9 +111,17 @@ const DatePicker = ({
           </span>
         ) : null}
       </Button>
-      <CSSTransition in={open} timeout={100} unmountOnExit nodeRef={nodeRef} classNames="fade-picker">
+      <Transition
+        show={isShowing}
+        enter="origin-top transition duration-100"
+        enterFrom="opacity-0 scale-y-90"
+        enterTo="opacity-100 scale-y-100"
+        leave="origin-top transition duration-100"
+        leaveFrom="opacity-100 scale-y-100"
+        leaveTo="opacity-0 scale-y-90"
+      >
         <div ref={setPopperElement} style={styles.popper} {...attributes.popper} className="z-10">
-          <div ref={nodeRef} className="border rounded-lg shadow-lg w-fit h-fit">
+          <div className="border rounded-lg shadow-lg w-fit h-fit">
             {months.map((month, index) => {
               return (
                 <Fragment key={index}>
@@ -192,7 +199,7 @@ const DatePicker = ({
             })}
           </div>
         </div>
-      </CSSTransition>
+      </Transition>
     </>
   );
 };

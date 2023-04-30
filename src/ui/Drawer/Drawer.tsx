@@ -1,18 +1,17 @@
 import { PropsWithChildren, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { CSSTransition } from "react-transition-group";
-import Image from "next/image"
+import { Transition } from "@headlessui/react";
+import Image from "next/image";
 import closeIcon from "../Svg/optimized/times.svg";
 
 export interface DrawerProps {
   title: string;
-  open: boolean;
+  show: boolean;
   maskClosable?: boolean;
   onClose?: () => void;
 }
 
-const Drawer = ({ open, title, children, maskClosable, onClose }: PropsWithChildren<DrawerProps>) => {
-  const nodeRef = useRef(null);
+const Drawer = ({ show, title, children, maskClosable, onClose }: PropsWithChildren<DrawerProps>) => {
   const container = useRef<HTMLDivElement>(document.createElement("div"));
 
   container.current.className = "fixed top-0 left-0 w-screen h-screen flex items-center justify-end z-30";
@@ -42,26 +41,28 @@ const Drawer = ({ open, title, children, maskClosable, onClose }: PropsWithChild
   }, [maskClosable, onClose]);
 
   return createPortal(
-    <CSSTransition
-      in={open}
-      nodeRef={nodeRef}
-      unmountOnExit
-      onEnter={() => {
+    <Transition
+      show={show}
+      enter="transition-transform duration-300"
+      leave="transition-transform duration-300"
+      enterFrom="translate-x-[100%] w-4/5"
+      enterTo="translate-x-[0] w-4/5"
+      leaveFrom="translate-x-[0] w-4/5"
+      leaveTo="translate-x-[100%] w-4/5"
+      beforeEnter={() => {
         if (!document.body.contains(container.current)) {
           document.body.style.overflow = "hidden";
           document.body.appendChild(container.current);
         }
       }}
-      onExited={() => {
+      afterLeave={() => {
         if (document.body.contains(container.current)) {
           document.body.removeChild(container.current);
           document.body.style.overflow = "auto";
         }
       }}
-      timeout={300}
-      classNames="fade-drawer"
     >
-      <div ref={nodeRef} className="bg-white h-screen w-4/5 px-5 py-4 flex flex-col">
+      <div className="bg-white h-screen w-full px-5 py-4 flex flex-col">
         {/* header */}
         <div className="flex items-center justify-between">
           <h3 className="text-semibold text-sm uppercase">{title}</h3>
@@ -75,9 +76,9 @@ const Drawer = ({ open, title, children, maskClosable, onClose }: PropsWithChild
 
         {children}
       </div>
-    </CSSTransition>,
+    </Transition>,
     container.current
   );
-}
+};
 
 export default Drawer;
