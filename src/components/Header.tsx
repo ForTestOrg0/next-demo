@@ -11,6 +11,7 @@ const govLinks = [
   { href: "/council", label: "Council Motions" },
   { href: "/tech", label: "Tech. comm. Proposals" },
   { href: "/treasury", label: "Treasury Proposals" },
+  { href: "/treasury_tip", label: "Treasury Tips" },
 ];
 
 export default function Header() {

@@ -11,3 +11,6 @@ export * from "./CouncilMotionInfo";
 export * from "./TechcommProposalInfo";
 export * from "./TechcommProposalList";
 export * from "./TreasuryProposalList";
+export * from "./TreasuryTipsList";
+export * from "./TreasuryTipInfo";
+export * from "./TreasuryTippers";

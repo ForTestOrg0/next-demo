@@ -12,6 +12,9 @@ import {
   TechcommProposalDetail,
   TreasuryProposal,
   TreasuryProposalDetail,
+  TreasuryTip,
+  TreasuryTipDetail,
+  TreasuryTipper,
 } from "@/types/api";
 import useSWR from "swr";
 import { subscanFetch, swrFetcher } from "./fetcher";
@@ -229,3 +232,53 @@ export async function getTreasuryProposal(
 ): Promise<APIWarpperProps<GetTreasuryProposalProps>> {
   return await subscanFetch(hostname, "api/scan/treasury/proposal", params);
 }
+
+/***** Treasury Tips *****/
+
+export interface GetTreasuryTipsProps {
+  count: number;
+  list: TreasuryTip[];
+}
+
+export async function getTreasuryTips(
+  hostname = "",
+  params: { page: number; row: number }
+): Promise<APIWarpperProps<GetTreasuryTipsProps>> {
+  return await subscanFetch(hostname, "api/scan/treasury/tips", params);
+}
+
+
+/***** Treasury Tip *****/
+
+export interface GetTreasuryTipProps {
+  info: TreasuryTipDetail;
+}
+
+export async function getTreasuryTip(
+  hostname = "",
+  params: { hash: string }
+): Promise<APIWarpperProps<GetTreasuryTipProps>> {
+  return await subscanFetch(hostname, "api/scan/treasury/tip", params);
+}
+
+/***** Treasury Tippers *****/
+export interface GetTreasuryTippersProps {
+  list: TreasuryTipper[];
+}
+
+export async function getTreasuryTippers(
+  hostname = "",
+  params: { hash: string }
+): Promise<APIWarpperProps<GetTreasuryTippersProps>> {
+  return await subscanFetch(hostname, "api/scan/treasury/tippers", params);
+}
+
+export const useTreasuryTippers = (
+  hostname = "",
+  params: { hash: string }
+) => {
+  return useSWR<APIWarpperProps<GetTreasuryTippersProps>, Error>(
+    [hostname, "api/scan/treasury/tippers", params],
+    swrFetcher
+  );
+};

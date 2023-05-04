@@ -4,3 +4,4 @@ export { default as ReferendaLink }  from './ReferendaLink';
 export { default as CouncilProposalLink }  from './CouncilProposalLink';
 export { default as TechcommProposalLink }  from './TechcommProposalLink';
 export { default as TreasuryProposalLink }  from './TreasuryProposalLink';
+export { default as TreasuryTipsLink }  from './TreasuryTipsLink';

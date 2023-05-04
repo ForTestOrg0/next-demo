@@ -1,4 +1,4 @@
-import { BlockNumber } from "./base";
+import { BlockNumber, Timestamp } from "./base";
 
 export interface APIWarpperProps<T> {
   code: number;
@@ -47,7 +47,7 @@ export interface AccountDisplay {
 
 export interface DemocracyReferendum {
   author: AccountDisplay | null;
-  block_timestamp: number;
+  block_timestamp: Timestamp;
   call_module: string;
   call_name: string;
   created_block: BlockNumber;
@@ -89,7 +89,7 @@ export interface DemocracyVote {
 export interface CouncilProposal {
   proposal_id: number;
   created_block: BlockNumber;
-  block_timestamp: number;
+  block_timestamp: Timestamp;
   status: string;
   member_count: number;
   aye_votes: number;
@@ -124,7 +124,7 @@ export type TechcommProposalDetail = CouncilProposalDetail;
 export interface TreasuryProposal {
   proposal_id: number;
   created_block: BlockNumber;
-  block_timestamp: number;
+  block_timestamp: Timestamp;
   status: string;
   reward: string;
   reward_extra: string;
@@ -135,4 +135,29 @@ export interface TreasuryProposal {
 export interface TreasuryProposalDetail extends TreasuryProposal {
   council: CouncilProposalDetail;
   timeline: ProposalTimeline[];
+}
+
+export interface TreasuryTip {
+  amount: string;
+  beneficiary: AccountDisplay;
+  block_num: BlockNumber;
+  block_timestamp: Timestamp;
+  close_block_num: BlockNumber;
+  extrinsic_index: string;
+  finder: AccountDisplay;
+  hash: string;
+  reason: string;
+  status: string;
+  tipper_num: number;
+}
+
+export interface TreasuryTipDetail extends TreasuryTip {
+
+}
+
+
+export interface TreasuryTipper {
+  amount: string;
+  extrinsic_index: string;
+  rewarder: AccountDisplay;
 }
