@@ -8,13 +8,14 @@ interface Props extends BareProps {
   nayAmount?: string;
   nayWithoutConviction?: string;
   turnout?: string;
+  threshold?: string;
 }
 
 
-const SuperMajorityApprove: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => (
+const VotePredict: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => (
   <div className={clsx('flex', className)}>
     aye:{ayeAmount}, nay:{nayAmount}
   </div>
 );
 
-export default SuperMajorityApprove;
+export default VotePredict;

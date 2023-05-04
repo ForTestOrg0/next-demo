@@ -3,7 +3,7 @@ import { BareProps } from '@/types/page';
 import { Table, Td, Tr } from '@/ui';
 import { BlockLink } from '@/components/Links';
 import { CouncilProposalDetail } from '@/types/api';
-import { BaseVoteStatistics, SuperMajorityApprove } from '@/components/VoteThreshold';
+import { BaseVoteStatistics } from '@/components/VoteThreshold';
 import { Identicon } from '@/components/Identicon';
 
 interface Props extends BareProps {
