@@ -120,3 +120,19 @@ export interface CouncilProposalDetail extends CouncilProposal {
 
 export type TechcommProposal = CouncilProposal;
 export type TechcommProposalDetail = CouncilProposalDetail;
+
+export interface TreasuryProposal {
+  proposal_id: number;
+  created_block: BlockNumber;
+  block_timestamp: number;
+  status: string;
+  reward: string;
+  reward_extra: string;
+  beneficiary: AccountDisplay;
+  proposer: AccountDisplay;
+}
+
+export interface TreasuryProposalDetail extends TreasuryProposal {
+  council: CouncilProposalDetail;
+  timeline: ProposalTimeline[];
+}

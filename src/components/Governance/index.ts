@@ -10,3 +10,4 @@ export * from "./CouncilMotionList";
 export * from "./CouncilMotionInfo";
 export * from "./TechcommProposalInfo";
 export * from "./TechcommProposalList";
+export * from "./TreasuryProposalList";

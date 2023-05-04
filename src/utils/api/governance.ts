@@ -10,6 +10,8 @@ import {
   ProposalTimeline,
   TechcommProposal,
   TechcommProposalDetail,
+  TreasuryProposal,
+  TreasuryProposalDetail,
 } from "@/types/api";
 import useSWR from "swr";
 import { subscanFetch, swrFetcher } from "./fetcher";
@@ -199,4 +201,31 @@ export async function getTechcommProposal(
   params: { proposal_id: number }
 ): Promise<APIWarpperProps<GetTechcommProposalProps>> {
   return await subscanFetch(hostname, "api/scan/techcomm/proposal", params);
+}
+
+/***** Treasury Proposals *****/
+
+export interface GetTreasuryProposalsProps {
+  count: number;
+  list: TreasuryProposal[];
+}
+
+export async function getTreasuryProposals(
+  hostname = "",
+  params: { page: number; row: number }
+): Promise<APIWarpperProps<GetTreasuryProposalsProps>> {
+  return await subscanFetch(hostname, "api/scan/treasury/proposals", params);
+}
+
+/***** Treasury Proposal *****/
+
+export interface GetTreasuryProposalProps {
+  info: TreasuryProposalDetail;
+}
+
+export async function getTreasuryProposal(
+  hostname = "",
+  params: { proposal_id: number }
+): Promise<APIWarpperProps<GetTreasuryProposalProps>> {
+  return await subscanFetch(hostname, "api/scan/treasury/proposal", params);
 }

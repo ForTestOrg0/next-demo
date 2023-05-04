@@ -10,6 +10,7 @@ const govLinks = [
   { href: "/referenda", label: "Democracy Referenda" },
   { href: "/council", label: "Council Motions" },
   { href: "/tech", label: "Tech. comm. Proposals" },
+  { href: "/treasury", label: "Treasury Proposals" },
 ];
 
 export default function Header() {
