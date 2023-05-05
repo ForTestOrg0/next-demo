@@ -7,21 +7,25 @@ import ayeImg from '@/styles/images/aye.png'
 import nayImg from '@/styles/images/nay.png'
 
 interface Props extends BareProps {
-  ayeAmount: number;
-  nayAmount: number;
+  ayeAmount?: string;
+  ayeWithoutConviction?: string;
+  nayAmount?: string;
+  nayWithoutConviction?: string;
+  turnout?: string;
+  threshold?: string;
 }
 
 
-const BaseVoteStatistics: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => {
+const VotePredict: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => {
   const currentProgress = useMemo(()=>{
-    if (ayeAmount == 0) {
-      if (nayAmount == 0) {
+    if (ayeAmount == '0') {
+      if (nayAmount == '0') {
         return 50;
       } else {
         return 0;
       }
     }
-    if (nayAmount == 0) {
+    if (nayAmount == '0') {
       return 100;
     }
     return new BigNumber(Number(ayeAmount))
@@ -35,6 +39,7 @@ const BaseVoteStatistics: React.FC<Props> = ({ ayeAmount, nayAmount, className }
     };
   }, [currentProgress]) as React.CSSProperties;
   return (
+  // todo: add turnout and threshold
   <div className={clsx('flex', className)}>
     <div className="relative inline-block px-5 pt-2.5 pb-11" style={cssVars}>
       <div className="relative w-[500px]">
@@ -64,4 +69,4 @@ const BaseVoteStatistics: React.FC<Props> = ({ ayeAmount, nayAmount, className }
   )
 };
 
-export default BaseVoteStatistics;
+export default VotePredict;

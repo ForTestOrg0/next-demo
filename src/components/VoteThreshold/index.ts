@@ -1,2 +1,2 @@
-export { default as SuperMajorityApprove }  from './SuperMajorityApprove';
+export { default as VotePredict }  from './VotePredict';
 export { default as BaseVoteStatistics }  from './BaseVoteStatistics';
