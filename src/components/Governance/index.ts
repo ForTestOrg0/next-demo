@@ -14,3 +14,5 @@ export * from "./TreasuryProposalList";
 export * from "./TreasuryTipsList";
 export * from "./TreasuryTipInfo";
 export * from "./TreasuryTippers";
+export * from "./BountiesList";
+export * from "./BountiesInfo";

@@ -1,6 +1,8 @@
 import {
   APIWarpperProps,
   AccountDisplay,
+  BountiesProposal,
+  BountiesProposalDetail,
   CouncilProposal,
   CouncilProposalDetail,
   DemocracyReferendum,
@@ -282,3 +284,28 @@ export const useTreasuryTippers = (
     swrFetcher
   );
 };
+
+/***** Bounties Proposals *****/
+export interface GetBountiesProposalsProps {
+  count: number;
+  list: BountiesProposal[];
+}
+
+export async function getBountiesProposals(
+  hostname = "",
+  params: { page: number; row: number; status: string; }
+): Promise<APIWarpperProps<GetBountiesProposalsProps>> {
+  return await subscanFetch(hostname, "api/scan/bounties/proposals", params);
+}
+
+/***** Bounties Proposal *****/
+export interface GetBountiesProposalProps extends BountiesProposalDetail {
+
+}
+
+export async function getBountiesProposal(
+  hostname = "",
+  params: { proposal_id: number; }
+): Promise<APIWarpperProps<GetBountiesProposalProps>> {
+  return await subscanFetch(hostname, "api/scan/bounties/proposal", params);
+}

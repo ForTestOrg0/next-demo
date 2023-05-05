@@ -151,13 +151,30 @@ export interface TreasuryTip {
   tipper_num: number;
 }
 
-export interface TreasuryTipDetail extends TreasuryTip {
-
-}
-
+export interface TreasuryTipDetail extends TreasuryTip {}
 
 export interface TreasuryTipper {
   amount: string;
   extrinsic_index: string;
   rewarder: AccountDisplay;
+}
+
+export interface BountiesProposal {
+  proposal_id: number;
+  block_timestamp: Timestamp;
+  status: string;
+  value: string;
+  description: string;
+  proposer: AccountDisplay;
+}
+
+export interface BountiesProposalDetail extends BountiesProposal {
+  beneficiary: AccountDisplay,
+  bond: string;
+  created_block: BlockNumber;
+  curator: AccountDisplay;
+  curator_deposit: string;
+  curator_fee: string;
+  expire_block: BlockNumber;
+  timeline: ProposalTimeline[];
 }

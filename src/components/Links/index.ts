@@ -5,3 +5,4 @@ export { default as CouncilProposalLink }  from './CouncilProposalLink';
 export { default as TechcommProposalLink }  from './TechcommProposalLink';
 export { default as TreasuryProposalLink }  from './TreasuryProposalLink';
 export { default as TreasuryTipsLink }  from './TreasuryTipsLink';
+export { default as BountyLink }  from './BountyLink';

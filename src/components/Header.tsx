@@ -12,6 +12,7 @@ const govLinks = [
   { href: "/tech", label: "Tech. comm. Proposals" },
   { href: "/treasury", label: "Treasury Proposals" },
   { href: "/treasury_tip", label: "Treasury Tips" },
+  { href: "/bounty", label: "Bounties" },
 ];
 
 export default function Header() {
