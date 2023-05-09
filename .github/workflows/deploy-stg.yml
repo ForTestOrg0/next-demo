@@ -41,7 +41,7 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ env.project_name }}
           directory: .vercel/output/static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
