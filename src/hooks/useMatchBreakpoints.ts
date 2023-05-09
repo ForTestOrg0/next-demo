@@ -1,6 +1,3 @@
-// Copyright 2018-2021 evolution.land authors & contributors
-// SPDX-License-Identifier: Apache-2.0
-
 import { useEffect, useState } from 'react';
 import { breakpointMap } from '@/styles/theme/base';
 

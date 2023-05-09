@@ -2,8 +2,10 @@ import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPane
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getTechcommProposal, GetTechcommProposalProps } from '@/utils/api';
 import { SimpleProposalVotes, ProposalParamsInfo, ProposalPreImage, ProposalTimeLine, TechcommProposalInfo } from '@/components/Governance';
+import { getChainProps } from '@/utils/chain';
+import { BareServerSideProps } from '@/types/page';
 
-export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTechcommProposalProps, tab: string, proposalId: number }, { id: string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTechcommProposalProps, tab: string, proposalId: number } & BareServerSideProps, { id: string }> = async (context) => {
   const host = context.req.headers.host || '';
   const tab = (context.query.tab || '')?.toString();
   const proposalId = context.params?.id;
@@ -14,8 +16,9 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTec
     }
   }
   const data = await getTechcommProposal(host, { proposal_id: parseInt(proposalId) });
+  const chainProps = await getChainProps(context.req.headers.host);
 
-  if (!data || data.code !== 0) {
+  if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
     }
@@ -27,12 +30,13 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTec
       data: data.data,
       tab,
       proposalId: parseInt(proposalId),
+      chain: chainProps,
     },
   }
 }
 
 
-export default function Page({ data, proposalId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ data, proposalId, chain }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const proposal = data.info;
 
   return (
@@ -57,7 +61,7 @@ export default function Page({ data, proposalId }: InferGetServerSidePropsType<t
             <TabPanels>
               <TabPanel><SimpleProposalVotes votes={proposal.votes} /></TabPanel>
               <TabPanel><ProposalTimeLine timeline={proposal.timeline} /></TabPanel>
-              <TabPanel>{proposal?.pre_image ? <ProposalPreImage preimage={proposal?.pre_image} /> : null}</TabPanel>
+              <TabPanel>{proposal?.pre_image ? <ProposalPreImage preimage={proposal?.pre_image} chain={chain} /> : null}</TabPanel>
               <TabPanel>{proposal?.params ? <ProposalParamsInfo callModule={proposal?.call_module} callName={proposal?.call_name} params={proposal?.params} /> : null}</TabPanel>
               <TabPanel>post</TabPanel>
               <TabPanel>comments</TabPanel>

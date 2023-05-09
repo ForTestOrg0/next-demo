@@ -2,8 +2,10 @@ import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPane
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getCouncilProposal, GetCouncilProposalProps, getDemocracyReferendum, GetDemocracyReferendumProps, unwrap } from '@/utils/api';
 import { CouncilMotionInfo, SimpleProposalVotes, ProposalParamsInfo, ProposalPreImage, ProposalTimeLine, ReferendaInfo, ReferendaVotesClient } from '@/components/Governance';
+import { getChainProps } from '@/utils/chain';
+import { BareServerSideProps } from '@/types/page';
 
-export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCouncilProposalProps, tab: string, proposalId: number }, { id: string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCouncilProposalProps, tab: string, proposalId: number } & BareServerSideProps, { id: string }> = async (context) => {
   const host = context.req.headers.host || '';
   const tab = (context.query.tab || '')?.toString();
   const proposalId = context.params?.id;
@@ -14,8 +16,9 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCou
     }
   }
   const data = await getCouncilProposal(host, { proposal_id: parseInt(proposalId) });
-
-  if (!data || data.code !== 0) {
+  const chainProps = await getChainProps(context.req.headers.host);
+  
+  if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
     }
@@ -27,12 +30,13 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCou
       data: data.data,
       tab,
       proposalId: parseInt(proposalId),
+      chain: chainProps
     },
   }
 }
 
 
-export default function Page({ host, data, tab, proposalId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ data, proposalId, chain }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const council = data.info;
 
   return (
@@ -59,7 +63,7 @@ export default function Page({ host, data, tab, proposalId }: InferGetServerSide
                 <SimpleProposalVotes votes={council.votes} />
               </TabPanel>
               <TabPanel><ProposalTimeLine timeline={council.timeline} /></TabPanel>
-              <TabPanel>{council?.pre_image ? <ProposalPreImage preimage={council?.pre_image} /> : null}</TabPanel>
+              <TabPanel>{council?.pre_image ? <ProposalPreImage preimage={council?.pre_image} chain={chain}/> : null}</TabPanel>
               <TabPanel>{council?.params ? <ProposalParamsInfo callModule={council?.call_module} callName={council?.call_name} params={council?.params} /> : null}</TabPanel>
               <TabPanel>post</TabPanel>
               <TabPanel>comments</TabPanel>

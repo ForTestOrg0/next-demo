@@ -178,3 +178,26 @@ export interface BountiesProposalDetail extends BountiesProposal {
   expire_block: BlockNumber;
   timeline: ProposalTimeline[];
 }
+
+export interface TokenMetadata {
+  symbol: string;
+  unique_id: string;
+  display_name: string;
+  asset_type: string;
+  token_decimals: number;
+  price: string;
+  price_change: string;
+  total_issuance: string;
+  free_balance: string;
+  available_balance: string;
+  locked_balance: string;
+  reserved_balance: string;
+  validator_bonded: string;
+  nominator_bonded: string;
+  bonded_locked_balance: string;
+  unbonded_locked_balance: string;
+  democracy_locked_balance: string;
+  election_locked_balance: string;
+  vesting_balance: string;
+  inflation: string;
+};

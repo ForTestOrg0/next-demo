@@ -1,17 +1,18 @@
 import React from 'react';
-import { BareProps } from '@/types/page';
+import { BareProps, BareServerSideProps } from '@/types/page';
 import { Table, Td, Tr } from '@/ui';
 import { Identicon } from '@/components/Identicon';
 import { BlockLink } from '@/components/Links';
 import { ProposalPreImage } from '@/types/api';
 import { ExtrinsicCall, ExtrinsicModule } from '@/components/ExtrinsicModuleCall';
 import { Parameters } from '@/components/Parameters';
+import { Balance } from '@/components/Balance';
 
-interface Props extends BareProps {
+interface Props extends BareProps, BareServerSideProps {
   preimage: ProposalPreImage;
 }
 
-const ProposalPreImage: React.FC<Props> = ({ preimage }) => {
+const Component: React.FC<Props> = ({ preimage, chain }) => {
   return (<Table className='w-full'>
     <tbody>
       <Tr>
@@ -32,15 +33,15 @@ const ProposalPreImage: React.FC<Props> = ({ preimage }) => {
       </Tr>
       <Tr>
         <Td className='font-semibold'>Module</Td>
-        <Td><ExtrinsicModule module={preimage?.call_module}/></Td>
+        <Td><ExtrinsicModule module={preimage?.call_module} /></Td>
       </Tr>
       <Tr>
         <Td className='font-semibold'>Call</Td>
-        <Td><ExtrinsicCall call={preimage?.call_name}/></Td>
+        <Td><ExtrinsicCall call={preimage?.call_name} /></Td>
       </Tr>
       <Tr>
         <Td className='font-semibold'>Deposit</Td>
-        <Td>{preimage?.amount}</Td>
+        <Td><Balance value={preimage?.amount} token={chain.nativeTokenConf} /></Td>
       </Tr>
       <Tr>
         <Td className='font-semibold'>Status</Td>
@@ -48,10 +49,10 @@ const ProposalPreImage: React.FC<Props> = ({ preimage }) => {
       </Tr>
       <Tr>
         <Td className='font-semibold'>Parameters</Td>
-        <Td><Parameters value={preimage?.params}/></Td>
+        <Td><Parameters value={preimage?.params} /></Td>
       </Tr>
     </tbody>
   </Table>)
 };
 
-export default ProposalPreImage;
+export default Component;

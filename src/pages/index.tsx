@@ -1,5 +1,7 @@
-import { Tab, TabGroup, TabPanels, TabPanel, TabList, Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverClose, PopoverContent, PopoverDescription, PopoverHeading, PopoverTrigger, Tooltip, TooltipContent, TooltipTrigger, } from "@/ui";
+'use client'
 
+import { Tab, TabGroup, TabPanels, TabPanel, TabList, Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverClose, PopoverContent, PopoverDescription, PopoverHeading, PopoverTrigger, Tooltip, TooltipContent, TooltipTrigger, } from "@/ui";
+import { DarkMode } from "./dark";
 
 const TabDemo: React.FC = () => {
   return (
@@ -74,7 +76,8 @@ export default function Page() {
       <Uncontrolled />
       <UncontrolledPopver />
       <Dropdown /><a>asdfasdf</a>
-      <TabDemo/>
+      <TabDemo />
+      <DarkMode />
     </div>
   );
 }

@@ -21,14 +21,6 @@ import {
 import useSWR from "swr";
 import { subscanFetch, swrFetcher } from "./fetcher";
 
-export function unwrap<T>(apiData: APIWarpperProps<T> | undefined): T | null {
-  if (!apiData || apiData.code !== 0) {
-    return null;
-  }
-
-  return apiData.data;
-}
-
 export async function getTransfers(hostname = "", params: any) {
   return await subscanFetch(hostname, "api/v2/scan/transfers", params);
 }
