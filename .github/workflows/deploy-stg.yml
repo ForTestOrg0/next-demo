@@ -30,43 +30,36 @@ jobs:
       - name: Build
         run: npm install && npx @cloudflare/next-on-pages@0.0.0-b33639f --experimental-minify
 
-      - name: Push to Cloudflare Pages
-        run: |
-        
-          npx wrangler pages publish .vercel/output/static --project-name=${{ env.project_name }} --branch=${{ env.branch }} --commit-hash=${{ env.commit_hash }} | tee ./out.log
-          echo "CF_PAGES_URL=$(cat ./out.log | grep -o 'https://.*.pages.dev')" >> $GITHUB_ENV
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ env.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+      - uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '2.20.0'
+          command: pages publish .vercel/output/static --project-name=${{ env.project_name }} --branch=${{ env.branch }} --commit-hash=${{ env.commit_hash }}
 
-      - name: check pages deployment status
-        run: |
-          sleep 10
-          result=$(curl -X GET \
-             https://api.cloudflare.com/client/v4/accounts/${{ env.CLOUDFLARE_ACCOUNT_ID }}/pages/projects/${{ env.project_name }}/deployments \
-             -H 'Accept: application/json' \
-             -H 'Authorization: Bearer ${{ env.CLOUDFLARE_API_TOKEN }}')
-          status=$(echo $result | jq '.result[] | select(.url == "${{ env.CF_PAGES_URL }}").latest_stage.status')
-          echo "deployment status: $status"
-          echo $status | grep -q 'success' || exit 1
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ env.project_name }}
+          directory: .vercel/output/static
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          append: true
+          message: ${{ steps.deploy-pages.outputs.url }}
 
       - name: Slack Notification
+        if: failure()
         uses: rtCamp/action-slack-notify@v2
-        if: failure() == false
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
           SLACK_COLOR: ${{ job.status }}
           SLACK_ICON: https://avatars.githubusercontent.com/u/14985020?s=48&v=4
-          SLACK_MESSAGE: "${{ env.CF_PAGES_URL }}"
+          SLACK_MESSAGE: "${{ steps.deploy-pages.outputs.url }}"
           SLACK_TITLE: Preview
           SLACK_USERNAME: Pages
           SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
 
-      - uses: 8398a7/action-slack@v3
-        if: failure()
-        with:
-          status: ${{ job.status }}
-          fields: repo,author,eventName,workflow,ref,commit
-          channel: ${{ secrets.SLACK_CHANNEL_ID }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
