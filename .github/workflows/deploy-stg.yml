@@ -32,6 +32,7 @@ jobs:
 
       - name: Push to Cloudflare Pages
         run: |
+        
           npx wrangler pages publish .vercel/output/static --project-name=${{ env.project_name }} --branch=${{ env.branch }} --commit-hash=${{ env.commit_hash }} | tee ./out.log
           echo "CF_PAGES_URL=$(cat ./out.log | grep -o 'https://.*.pages.dev')" >> $GITHUB_ENV
         env:
