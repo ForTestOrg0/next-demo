@@ -2,7 +2,7 @@
 const nextConfig = {
   experimental: {
     appDir: false,
-    runtime: 'edge'
+    runtime: 'experimental-edge'
   },
   async rewrites() {
     return [
