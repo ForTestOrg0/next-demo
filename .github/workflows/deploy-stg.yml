@@ -30,20 +30,13 @@ jobs:
       - name: Build
         run: npm install && npx @cloudflare/next-on-pages@0.0.0-b33639f --experimental-minify
 
-      - uses: cloudflare/wrangler-action@2.0.0
-        with:
-          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          wranglerVersion: '2.20.0'
-          command: pages publish .vercel/output/static --project-name=${{ env.project_name }} --branch=${{ env.branch }} --commit-hash=${{ env.commit_hash }}
-
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ env.project_name }}
-          directory: .vercel/output/static
+          directory: ./.vercel/output/static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: marocchino/sticky-pull-request-comment@v2
