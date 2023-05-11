@@ -5,7 +5,6 @@ function ExportIcon({
   ...props
 }, svgRef) {
   return /*#__PURE__*/React.createElement("svg", Object.assign({
-    xmlns: "http://www.w3.org/2000/svg",
     className: "icon",
     viewBox: "0 0 1024 1024",
     fill: "currentColor",
@@ -15,7 +14,7 @@ function ExportIcon({
   }, props), title ? /*#__PURE__*/React.createElement("title", {
     id: titleId
   }, title) : null, /*#__PURE__*/React.createElement("path", {
-    d: "M715.788 180.598V379.44h-66.28V246.88H185.545V777.12h463.963v-132.56h66.28V843.4H119.265V180.599h596.523zm66.28 198.841L914.63 512 782.07 644.56v-66.28H450.666V445.72h331.401v-66.28z"
+    d: "M715.78810471 180.59820247V379.43928098h-66.28035952V246.87856197H185.54522864v530.24287606h463.96251655v-132.56071901H715.78810471v198.84107851H119.26486914v-662.80359506H715.78810471z m66.2803595 198.84107851l132.560719 132.56071902-132.560719 132.56071902v-66.28035952H450.66666668v-132.560719h331.40179753V379.43928098z"
   }));
 }
 const ForwardRef = React.forwardRef(ExportIcon);

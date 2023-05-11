@@ -5,7 +5,6 @@ function EthIcon({
   ...props
 }, svgRef) {
   return /*#__PURE__*/React.createElement("svg", Object.assign({
-    xmlns: "http://www.w3.org/2000/svg",
     className: "icon",
     viewBox: "0 0 1024 1024",
     fill: "currentColor",
@@ -15,7 +14,7 @@ function EthIcon({
   }, props), title ? /*#__PURE__*/React.createElement("title", {
     id: titleId
   }, title) : null, /*#__PURE__*/React.createElement("path", {
-    d: "M475.446 992L179.692 567.385l295.754 175.901L771.2 567.385zm0-295.385l-295.754-179.63L475.446 32 771.2 516.985z"
+    d: "M475.44615406 992L179.69230812 567.38461531l295.75384594 175.90153875 295.75384594-175.90153875zM475.44615406 696.61538469L179.69230812 516.98461531 475.44615406 32l295.75384594 484.98461531z"
   }));
 }
 const ForwardRef = React.forwardRef(EthIcon);

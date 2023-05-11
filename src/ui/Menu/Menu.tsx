@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, ElementType, ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import { Menu as HeadlessuiMenu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
@@ -23,22 +23,22 @@ export const MenuItems: React.FC<BareProps> = ({ children, className }) => (
     leaveTo="transform opacity-0 scale-95"
   >
     <HeadlessuiMenu.Items className={clsx('absolute origin-top-right divide-y divide-gray-100 rounded bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none', className)}>
-      <div className="px-1 py-1 ">
+      <div className="px-1 py-1">
         {children}
       </div>
     </HeadlessuiMenu.Items>
   </Transition>
 );
 
-export const MenuItem: React.FC<BareProps> = ({ children }) => {
-  return (<HeadlessuiMenu.Item>
-    {({ active }) => (
-      <div
-        className={`${active ? "bg-sub-b4" : "text-sub-black"
-          } group flex w-full items-center rounded px-2 py-2 text-sm cursor-pointer whitespace-nowrap`}
-      >
-        {children}
-      </div>
-    )}
-  </HeadlessuiMenu.Item>)
-};
+export const MenuItem = HeadlessuiMenu.Item;
+
+// export const MenuItem: React.FC<{ Component: ElementType } & BareProps> = ({ Component }) => {
+//   return (<HeadlessuiMenu.Item>
+//     {({ active }) => (
+//       <Component
+//         className={`${active ? "bg-sub-b4" : "text-sub-black"
+//           } group flex w-full items-center rounded px-2 py-2 text-sm cursor-pointer whitespace-nowrap`}
+//       />
+//     )}
+//   </HeadlessuiMenu.Item>)
+// };

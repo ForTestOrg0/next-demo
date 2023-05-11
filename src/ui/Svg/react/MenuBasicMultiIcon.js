@@ -5,7 +5,6 @@ function MenuBasicMultiIcon({
   ...props
 }, svgRef) {
   return /*#__PURE__*/React.createElement("svg", Object.assign({
-    xmlns: "http://www.w3.org/2000/svg",
     className: "icon",
     viewBox: "0 0 1024 1024",
     fill: "currentColor",
@@ -15,7 +14,7 @@ function MenuBasicMultiIcon({
   }, props), title ? /*#__PURE__*/React.createElement("title", {
     id: titleId
   }, title) : null, /*#__PURE__*/React.createElement("path", {
-    d: "M889.062 87.806v848.388H134.938V87.806h754.124zM687.946 700.53H336.054v94.265h351.892v-94.265zm0-235.664H336.054v94.266h351.892v-94.266zm0-235.663H336.054v94.265h351.892v-94.265z"
+    d: "M889.06160122 87.80569917v848.38860166H134.93839878V87.80569917h754.12320244z m-201.11523223 612.72510074h-351.89273798v94.26540066h351.89273798v-94.26540066z m0-235.66349955h-351.89273798v94.26539928h351.89273798v-94.26539928z m0-235.66350093h-351.89273798v94.26540066h351.89273798V229.20379943z"
   }));
 }
 const ForwardRef = React.forwardRef(MenuBasicMultiIcon);

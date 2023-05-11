@@ -40,7 +40,7 @@ module.exports = {
           b4: '#F2F4FA',
           bg: '#FBFBFD',
           hover: '#fbfbfb',
-          network: 'var(--network-color)',
+          network: '#FF0083',
         },
         ...getNetworkColor(),
       },

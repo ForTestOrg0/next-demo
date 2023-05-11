@@ -5,7 +5,6 @@ function CopyIcon({
   ...props
 }, svgRef) {
   return /*#__PURE__*/React.createElement("svg", Object.assign({
-    xmlns: "http://www.w3.org/2000/svg",
     className: "icon",
     viewBox: "0 0 1024 1024",
     fill: "currentColor",
@@ -15,7 +14,7 @@ function CopyIcon({
   }, props), title ? /*#__PURE__*/React.createElement("title", {
     id: titleId
   }, title) : null, /*#__PURE__*/React.createElement("path", {
-    d: "M260.626 80.86h628.436v678.71h-83.809V165.673H260.626V80.86zm460.87 169.677v678.711H134.937v-678.71h586.557zm-83.809 84.864h-418.94v508.983h418.94V335.401z"
+    d: "M260.62559901 80.85941244h628.43600174v678.71088134h-83.80822562V165.67313465H260.62559901V80.85941244z m460.86982637 169.67772032v678.71088136H134.93839925v-678.71088136h586.55702613zM637.68719975 335.40113087H218.74662487v508.98288515H637.68719975V335.40113087z"
   }));
 }
 const ForwardRef = React.forwardRef(CopyIcon);

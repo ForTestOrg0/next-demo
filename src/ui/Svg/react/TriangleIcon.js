@@ -5,7 +5,6 @@ function TriangleIcon({
   ...props
 }, svgRef) {
   return /*#__PURE__*/React.createElement("svg", Object.assign({
-    xmlns: "http://www.w3.org/2000/svg",
     className: "icon",
     viewBox: "0 0 1024 1024",
     fill: "currentColor",
@@ -15,7 +14,7 @@ function TriangleIcon({
   }, props), title ? /*#__PURE__*/React.createElement("title", {
     id: titleId
   }, title) : null, /*#__PURE__*/React.createElement("path", {
-    d: "M172.59 977.455V46.545L851.41 512z"
+    d: "M172.590545 977.454545V46.545455l678.81891 465.454545z"
   }));
 }
 const ForwardRef = React.forwardRef(TriangleIcon);

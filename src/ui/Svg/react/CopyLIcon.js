@@ -5,7 +5,6 @@ function CopyLIcon({
   ...props
 }, svgRef) {
   return /*#__PURE__*/React.createElement("svg", Object.assign({
-    xmlns: "http://www.w3.org/2000/svg",
     className: "icon",
     viewBox: "0 0 1024 1024",
     fill: "currentColor",
@@ -15,7 +14,7 @@ function CopyLIcon({
   }, props), title ? /*#__PURE__*/React.createElement("title", {
     id: titleId
   }, title) : null, /*#__PURE__*/React.createElement("path", {
-    d: "M734.24 233.333v720H112v-720h622.24zm-88.88 90H200.8v540h444.48v-540zm266.64-270v720h-88.88v-630H245.36v-90H912z"
+    d: "M734.24 233.33333333v720H111.99999969v-720h622.24000031zM645.36000031 323.33333333H200.79999969v540h444.48v-540zM912.00000031 53.33333333v720H823.11999969V143.33333333H245.36V53.33333333H912.00000031z"
   }));
 }
 const ForwardRef = React.forwardRef(CopyLIcon);

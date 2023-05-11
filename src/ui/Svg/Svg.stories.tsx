@@ -17,6 +17,6 @@ type Story = StoryObj<typeof Icons>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    className: 'h-14 w-14 text-sub-black border'
+    className: 'h-14 w-14 text-sub-network border'
   },
 };

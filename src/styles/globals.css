@@ -7,19 +7,19 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
-  --network-color: #FF0083;
+  --network-color: #ff0083;
 
-  --ui-black: #302B3C;
-  --ui-white: #FFFFFF;
-  --ui-link: #0085FF;
-  --ui-error: #FF475D;
-  --ui-success: #6BC10E;
-  --ui-warning: #FFB600;
-  --ui-b2: #9D9D9D;
-  --ui-b3: #D8D8D8;
-  --ui-b4: #F2F4FA;
-  --ui-bg: #FBFBFD;
-  --ui-hover: '#fbfbfb';
+  --ui-black: #302b3c;
+  --ui-white: #ffffff;
+  --ui-link: #0085ff;
+  --ui-error: #ff475d;
+  --ui-success: #6bc10e;
+  --ui-warning: #ffb600;
+  --ui-b2: #9d9d9d;
+  --ui-b3: #d8d8d8;
+  --ui-b4: #f2f4fa;
+  --ui-bg: #fbfbfd;
+  --ui-hover: "#fbfbfb";
 }
 
 :root html.dark {
@@ -39,4 +39,10 @@
 body {
   color: var(--ui-black);
   @apply bg-sub-bg;
+}
+
+@layer components {
+  .menu-item {
+    @apply flex w-full items-center rounded px-2 py-2 text-sm cursor-pointer whitespace-nowrap !text-sub-black;
+  }
 }

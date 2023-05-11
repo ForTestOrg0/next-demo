@@ -5,7 +5,6 @@ function ClockIcon({
   ...props
 }, svgRef) {
   return /*#__PURE__*/React.createElement("svg", Object.assign({
-    xmlns: "http://www.w3.org/2000/svg",
     className: "icon",
     viewBox: "0 0 1024 1024",
     fill: "currentColor",
@@ -15,7 +14,7 @@ function ClockIcon({
   }, props), title ? /*#__PURE__*/React.createElement("title", {
     id: titleId
   }, title) : null, /*#__PURE__*/React.createElement("path", {
-    d: "M512 32c264.96 0 480 215.04 480 480S776.96 992 512 992 32 776.96 32 512 247.04 32 512 32zm34.464 193.92h-68.928v297.408L687.968 733.76l48.336-48.912-189.84-189.84v-269.04z"
+    d: "M512 32c264.96 0 480 215.04 480 480s-215.04 480-480 480S32 776.96 32 512 247.04 32 512 32z m34.464 193.92H477.536v297.408l210.432 210.432 48.336-48.912-189.84-189.84V225.968z"
   }));
 }
 const ForwardRef = React.forwardRef(ClockIcon);

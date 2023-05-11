@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Menu, MenuButton, MenuItems, MenuItem } from "./";
 import { BareProps } from "@/types/page";
+import { Link } from "../Link";
+import clsx from "clsx";
 
 const links = [
   { href: "/account-settings", label: "Account settings" },
@@ -16,8 +18,13 @@ const Dropdown: React.FC<BareProps> = () => {
       <MenuButton>Options</MenuButton>
       <MenuItems>
         {links.map((link) => (
-          <MenuItem key={link.href}>
-            {link.label}
+          <MenuItem as="div" key={link.href}>
+            {({ active }) => (
+              <Link
+                className={clsx({ 'bg-sub-b4': active }, 'menu-item')}
+                href={link.href}
+              >{link.label}</Link>
+            )}
           </MenuItem>
         ))}
       </MenuItems>
