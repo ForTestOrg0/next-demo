@@ -30,15 +30,15 @@ jobs:
       - name: Build
         run: npm install && npx @cloudflare/next-on-pages@0.0.0-4740c02 --experimental-minify
 
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        id: deploy-pages
-        with:
-          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ env.project_name }}
-          directory: ./.vercel/output/static
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to Cloudflare Pages
+        run: |
+          npm i -g wrangler@2.16.0
+          wrangler pages publish .vercel/output/static --project-name=${{ env.project_name }}  --branch=${{ env.branch }} | tee ./out.log
+          echo "CF_PAGES_URL=$(cat ./out.log | grep -o 'https://.*.pages.dev')" >> $GITHUB_ENV
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ env.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+          PROJECT_NAME: ${{ env.project_name }}
 
       - name: check pages deployment status
         run: |
@@ -47,7 +47,7 @@ jobs:
              https://api.cloudflare.com/client/v4/accounts/${{ env.CLOUDFLARE_ACCOUNT_ID }}/pages/projects/${{ env.project_name }}/deployments \
              -H 'Accept: application/json' \
              -H 'Authorization: Bearer ${{ env.CLOUDFLARE_API_TOKEN }}')
-          status=$(echo $result | jq '.result[] | select(.url == "${{ steps.deploy-pages.outputs.url }}").latest_stage.status')
+          status=$(echo $result | jq '.result[] | select(.url == "${{ env.CF_PAGES_URL }}").latest_stage.status')
           echo "deployment status: $status"
           echo $status | grep -q 'success' || exit 1
 
@@ -55,7 +55,7 @@ jobs:
         if: failure() == false
         with:
           append: true
-          message: ${{ steps.deploy-pages.outputs.url }}
+          message: ${{ env.CF_PAGES_URL }}
 
       - name: Slack Notification
         if: failure() == false
@@ -64,7 +64,7 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
           SLACK_COLOR: ${{ job.status }}
           SLACK_ICON: https://avatars.githubusercontent.com/u/14985020?s=48&v=4
-          SLACK_MESSAGE: "${{ steps.deploy-pages.outputs.url }}"
+          SLACK_MESSAGE: "${{ env.CF_PAGES_URL }}"
           SLACK_TITLE: Preview
           SLACK_USERNAME: Pages
           SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
