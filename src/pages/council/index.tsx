@@ -3,6 +3,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getCouncilProposals, GetCouncilProposalsProps, getDemocracyReferendums, GetDemocracyReferendumsProps, getDemocracySeconded, GetDemocracySecondedProps } from '@/utils/api';
 import { PAGE_ROW } from '@/config/constants';
 import { CouncilMotionList, ReferendaList } from '@/components/Governance';
+import { useTranslation } from 'next-i18next'
 
 export const getServerSideProps: GetServerSideProps<{
   data: GetCouncilProposalsProps,
@@ -26,10 +27,11 @@ export const getServerSideProps: GetServerSideProps<{
 }
 
 export default function Layout({ data, page }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { t } = useTranslation('common')
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2'>Council Motions</Text>
+        <Text block bold className='mb-2'>{t('council_motions')}</Text>
         <Boundary>
           <CouncilMotionList proposals={data.list} />
         </Boundary>

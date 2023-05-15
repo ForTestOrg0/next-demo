@@ -12,6 +12,7 @@ import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { ChainProps } from '@/types/page'
 import ReactGA from "react-ga4";
+import { appWithTranslation } from 'next-i18next'
 
 // add global ga4
 // https://www.npmjs.com/package/react-ga4
@@ -29,7 +30,7 @@ BigNumber.config({
 });
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
+  getLayout?: (page: ReactElement) => ReactElement
 }
 
 type AppPropsWithLayout = AppProps & {
@@ -57,7 +58,7 @@ export const getInitialProps: GetServerSideProps<{
   }
 }
 
-export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+const MyApp: React.FC<AppPropsWithLayout> = (({ Component, pageProps }) => {
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url: string, options: { shallow: boolean; }) => {
@@ -73,8 +74,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     }
   }, [router.events]);
   // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout
-  
+  const getLayout = Component.getLayout;
   if (getLayout) {
     return getLayout(<Component {...pageProps} />);
   }
@@ -86,4 +86,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     </div>
     <Footer chain={pageProps?.chain as ChainProps} />
   </RootLayout>);
-}
+})
+
+export default appWithTranslation(MyApp)
