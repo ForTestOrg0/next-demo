@@ -36,6 +36,10 @@
   }
 } */
 
+a {
+  @apply text-sub-link;
+}
+
 body {
   color: var(--ui-black);
   @apply bg-sub-bg;

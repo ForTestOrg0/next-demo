@@ -4,17 +4,17 @@ import { LinkRouter, Text } from '@/ui';
 import { objectToSearchParams } from '@/utils/url';
 
 interface Props extends BareProps {
-  extrinsicIndex?: string;
+  address?: string;
   query?: Record<string, string>;
   empty?: boolean;
 }
 
-const ExtrinsicLink: React.FC<Props> = ({ empty, query, children, extrinsicIndex = '', className }) => {
+const Components: React.FC<Props> = ({ empty, query, children, address = '', className }) => {
   if (empty) {
     return <Text>-</Text>;
   }
   const searchParams = objectToSearchParams(query)
-  return (<LinkRouter className="text-sm" href={`/extrinsic/${extrinsicIndex}${searchParams ? `?${searchParams}` : ''}`}>{children ?? extrinsicIndex}</LinkRouter>);
+  return (<LinkRouter className="text-sm" href={`/account/${address}${searchParams ? `?${searchParams}` : ''}`}>{children ?? address}</LinkRouter>);
 };
 
-export default ExtrinsicLink;
+export default Components;

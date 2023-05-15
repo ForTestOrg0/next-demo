@@ -1,4 +1,4 @@
-import Footer from '@/components/Footer';
+import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import '@/styles/globals.css';
 
@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header/>
+        <Header />
         {children}
-        <Footer reactVersion="v18" nextVersion='v13'/>
+        <Footer />
       </body>
     </html>
   )

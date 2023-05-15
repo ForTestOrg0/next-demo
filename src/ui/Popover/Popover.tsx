@@ -59,8 +59,8 @@ export function usePopover({
 
   const click = useHover(context, {
     delay: {
-      open: 0,
-      close: 30000
+      open: 150,
+      close: 500
     },
     enabled: controlledOpen == null
   });

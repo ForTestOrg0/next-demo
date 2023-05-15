@@ -10,3 +10,4 @@ export const BIGNUMBER_FMT = {
   fractionGroupSize: 0,
   suffix: "",
 };
+export const COPYRIGHT_PERIOD = '2023';

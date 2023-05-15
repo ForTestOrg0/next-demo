@@ -60,7 +60,13 @@ function UncontrolledPopver() {
       <Popover>
         <PopoverTrigger>My trigger</PopoverTrigger>
         <PopoverContent>
-          123
+event - compiled client and server successfully in 621 ms (1861 modules)
+wait  - compiling...
+event - compiled client and server successfully in 464 ms (1861 modules)
+wait  - compiling...
+event - compiled client and server successfully in 470 ms (1861 modules)
+wait  - compiling...
+event - compiled client and server successfully in 278 ms (1861 modules)
         </PopoverContent>
       </Popover>
     </div>

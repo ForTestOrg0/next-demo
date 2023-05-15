@@ -14,7 +14,7 @@ const getExternalLinkProps = (): { target: string; rel: string } => ({
 const Link: React.FC<LinkProps> = ({ children, className, external, ...props }) => {
   const internalProps = external ? getExternalLinkProps() : {};
 
-  return (<a className={clsx('text-sm text-sub-link', className)} {...internalProps} {...props}>
+  return (<a className={clsx('text-sm', className)} {...internalProps} {...props}>
     {children}
   </a>)
 };
