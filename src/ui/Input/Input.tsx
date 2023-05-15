@@ -16,7 +16,7 @@ interface InputRef {
   select: () => void;
   input: HTMLInputElement | null;
 }
-const Input = forwardRef<InputRef, InputProps & HTMLAttributes<HTMLInputElement>>(function Input(props, ref) {
+const Input = forwardRef<InputRef & HTMLInputElement, InputProps & HTMLAttributes<HTMLInputElement>>(function Input(props, ref) {
   const { className, prefix, prefixCls, suffix, suffixCls } = props;
   return (
     <div className={clsx("relative inline-block", className)}>
