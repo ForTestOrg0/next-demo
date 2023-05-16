@@ -28,11 +28,11 @@ jobs:
           cache: 'npm'
 
       - name: Build
-        run: npm install && npx @cloudflare/next-on-pages@0.10.1 --experimental-minify
+        run: npm install && npx @cloudflare/next-on-pages@0.0.0-4740c02 --experimental-minify
 
       - name: Push to Cloudflare Pages
         run: |
-          npm i -g wrangler@2.16.0
+          npm i -g wrangler@2.20.0
           wrangler pages publish .vercel/output/static --project-name=${{ env.project_name }}  --branch=${{ env.branch }} | tee ./out.log
           echo "CF_PAGES_URL=$(cat ./out.log | grep -o 'https://.*.pages.dev')" >> $GITHUB_ENV
         env:
