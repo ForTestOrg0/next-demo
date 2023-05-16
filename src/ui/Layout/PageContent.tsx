@@ -1,8 +1,12 @@
 import React, { HTMLAttributes } from 'react';
 import clsx from 'clsx';
 
-const PageContent: React.FC<HTMLAttributes<HTMLDivElement>> = ({ children, className, ...props }) => (
-  <div className={clsx('flex justify-center', className)} {...props}>
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  disablePadding?: boolean
+}
+
+const PageContent: React.FC<Props> = ({ children, className, disablePadding, ...props }) => (
+  <div className={clsx('flex justify-center', { 'py-4': !disablePadding }, className)} {...props}>
     {children}
   </div>
 );

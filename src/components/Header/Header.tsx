@@ -137,7 +137,7 @@ function AutoLink({
 
 export default function Header() {
   return (
-    <PageContent className="bg-sub-network">
+    <PageContent disablePadding className="bg-sub-network">
       <Container className="flex flex-1 justify-between items-center">
         <LinkRouter href="/">
           <Image
@@ -154,19 +154,21 @@ export default function Header() {
               return (
                 <Menu key={nav.label}>
                   <MenuButton className="h-[50px]">
-                    <Text className="inline-block">{nav.label}</Text>
-                    <ArrowDownFillingIcon className="w-3 inline-block ml-1" />
+                    <Text className="inline-block text-white">{nav.label}</Text>
+                    <ArrowDownFillingIcon className="w-3 inline-block ml-1 text-white" />
                   </MenuButton>
                   <MenuItems>
                     {nav.menu.map((link) => (
                       <MenuItem as="div" key={link.href}>
-                        {({ active }) => (
-                          <AutoLink
-                            className={clsx({ 'bg-sub-b4': active }, 'menu-item')}
-                            label={link.label}
-                            href={link.href}
-                            external={link.targetBlank}
-                          />
+                        {({ active, close }) => (
+                          <div onClick={close}>
+                            <AutoLink
+                              className={clsx({ 'bg-sub-b4': active }, 'menu-item')}
+                              label={link.label}
+                              href={link.href}
+                              external={link.targetBlank}
+                            />
+                          </div>
                         )}
                       </MenuItem>
                     ))}
@@ -177,7 +179,7 @@ export default function Header() {
             if (nav.href) {
               return (
                 <AutoLink
-                  className="text-sub-white"
+                  className="text-white"
                   key={nav.href}
                   label={nav.label}
                   href={nav.href}

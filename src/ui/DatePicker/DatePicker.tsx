@@ -91,10 +91,10 @@ const DatePicker = ({
 
   const btnClassNames = useMemo(() => {
     const result = [
-      "flex items-center justify-center gap-2 border rounded px-4 py-1 font-normal text-sm active:border-primary/40 hover:border-primary/60",
+      "flex items-center justify-center gap-2 border rounded px-4 py-1 font-normal text-sm active:border-sub-network/40 hover:border-sub-network/60",
     ];
     if (value) {
-      result.push("text-primary");
+      result.push("text-sub-network");
     } else if (placeholder) {
       result.push("text-zinc-400");
     }
@@ -108,7 +108,7 @@ const DatePicker = ({
         {/* TODO: improve clear icon */}
         {value ? (
           <span
-            className="rounded-full border w-4 h-4 inline-flex items-center justify-center text-xs transition-colors duration-150 hover:cursor-pointer hover:border-primary/60"
+            className="rounded-full border w-4 h-4 inline-flex items-center justify-center text-xs transition-colors duration-150 hover:cursor-pointer hover:border-sub-network/60"
             onClick={(e) => {
               e.stopPropagation();
               onClear();
@@ -137,10 +137,10 @@ const DatePicker = ({
                   {/* header */}
                   <div className="flex items-center justify-between p-2">
                     <div className="flex items-center justify-center gap-2">
-                      <Button className="hover:text-primary/60" onClick={handleClickPreviousYear}>
+                      <Button className="hover:text-sub-network/60" onClick={handleClickPreviousYear}>
                         {"<<"}
                       </Button>
-                      <Button className="hover:text-primary/60" onClick={handleClickPreviousMonth}>
+                      <Button className="hover:text-sub-network/60" onClick={handleClickPreviousMonth}>
                         {"<"}
                       </Button>
                     </div>
@@ -149,10 +149,10 @@ const DatePicker = ({
                       <span className="font-semibold">{getYear(month.month)}</span>
                     </div>
                     <div className="flex items-center justify-center gap-2">
-                      <Button className="hover:text-primary/60" onClick={handleClickNextMonth}>
+                      <Button className="hover:text-sub-network/60" onClick={handleClickNextMonth}>
                         {">"}
                       </Button>
-                      <Button className="hover:text-primary/60" onClick={handleClickNextYear}>
+                      <Button className="hover:text-sub-network/60" onClick={handleClickNextYear}>
                         {">>"}
                       </Button>
                     </div>
@@ -171,15 +171,15 @@ const DatePicker = ({
                     {/* days */}
                     <div className="grid grid-cols-7 gap-y-[2px] place-items-center place-content-between">
                       {month.dates.map((day, index) => {
-                        let hover = "hover:text-primary/60";
+                        let hover = "hover:text-sub-network/60";
                         const classNames = ["w-10 h-10 rounded-full font-normal flex items-center justify-center"];
 
                         if (isToday(day.date)) {
-                          classNames.push("text-primary"); // today
+                          classNames.push("text-sub-network"); // today
                           hover = "";
                         }
                         if (isSameDay(value || 0, day.date)) {
-                          classNames.push("!bg-primary/60"); // selected day
+                          classNames.push("!bg-sub-network/60"); // selected day
                           hover = "";
                         }
                         if (!day.isCurrentMonth) {

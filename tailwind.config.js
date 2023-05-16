@@ -10,7 +10,7 @@ const getNetworkColor = (network) => {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'media',
+  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
@@ -29,18 +29,18 @@ module.exports = {
       },
       colors: {
         sub: {
-          black: '#302B3C',
-          white: '#FFFFFF',
-          link: '#0085FF',
-          error: '#FF475D',
-          success: '#6BC10E',
-          warning: '#FFB600',
-          b2: '#9D9D9D',
-          b3: '#D8D8D8',
-          b4: '#F2F4FA',
-          bg: '#FBFBFD',
-          hover: '#fbfbfb',
-          network: '#FF0083',
+          black: 'rgb(var(--ui-black) / <alpha-value>)',
+          white: 'rgb(var(--ui-white) / <alpha-value>)',
+          link: 'rgb(var(--ui-link) / <alpha-value>)',
+          error: 'rgb(var(--ui-error) / <alpha-value>)',
+          success: 'rgb(var(--ui-success) / <alpha-value>)',
+          warning: 'rgb(var(--ui-warning) / <alpha-value>)',
+          b2: 'rgb(var(--ui-b2) / <alpha-value>)',
+          b3: 'rgb(var(--ui-b3) / <alpha-value>)',
+          b4: 'rgb(var(--ui-b4) / <alpha-value>)',
+          bg: 'rgb(var(--ui-bg) / <alpha-value>)',
+          hover: 'rgb(var(--ui-hover) / <alpha-value>)',
+          network: 'rgb(var(--network-color) / <alpha-value>)',
         },
         ...getNetworkColor(),
       },

@@ -16,7 +16,7 @@ export const Tab: React.FC<BareProps> = ({ children }) => {
   return (<HeadlessuiTab as={Fragment}>
     {({ selected }) => (
       <div
-        className={clsx('py-2 text-sm focus:outline-none cursor-pointer text-sub-black font-semibold', selected ? 'border-b-4 border-sub-network' : 'bg-white text-black')}
+        className={clsx('py-2 text-sm focus:outline-none cursor-pointer text-sub-black font-semibold', selected ? 'border-b-4 border-sub-network' : 'bg-sub-white text-black')}
       >
         {children}
       </div>

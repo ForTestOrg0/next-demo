@@ -1,6 +1,6 @@
-import { Chain } from "@/config/chains";
 import { GetTokenUniqueIdProps } from "@/utils/api";
 import { TokenMetadata } from "./api";
+import { Chain } from "@/config/networks/template";
 
 export type PageProps = any;
 

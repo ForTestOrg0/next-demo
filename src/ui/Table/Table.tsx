@@ -21,7 +21,7 @@ export const Tr: React.FC<BareProps> = ({ children, className, ...props }) => (
 );
 
 export const Td: React.FC<BareProps> = ({ children, className, ...props }) => (
-  <td className={clsx('px-2 py-4 border-b border-sub-b4 group-hover:bg-sub-hover', className)} {...props}>
+  <td className={clsx('px-2 py-4 border-b border-sub-b4 group-hover:bg-sub-b4/60', className)} {...props}>
     {children}
   </td>
 );

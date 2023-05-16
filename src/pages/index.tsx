@@ -1,6 +1,8 @@
 'use client'
 
 import { Tab, TabGroup, TabPanels, TabPanel, TabList, Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverClose, PopoverContent, PopoverDescription, PopoverHeading, PopoverTrigger, Tooltip, TooltipContent, TooltipTrigger, } from "@/ui";
+import { useDarkMode } from 'usehooks-ts'
+
 // import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 type Props = {}
@@ -55,6 +57,20 @@ function Uncontrolled() {
   );
 }
 
+
+export function Dark() {
+  const { isDarkMode, toggle, enable, disable } = useDarkMode()
+
+  return (
+    <div>
+      <p suppressHydrationWarning>Current theme: {isDarkMode ? 'dark' : 'light'}</p>
+      <button onClick={toggle}>Toggle</button>
+      <button onClick={enable}>Enable</button>
+      <button onClick={disable}>Disable</button>
+    </div>
+  )
+}
+
 function UncontrolledPopver() {
   return (
     <div className="App">
@@ -62,13 +78,13 @@ function UncontrolledPopver() {
       <Popover>
         <PopoverTrigger>My trigger</PopoverTrigger>
         <PopoverContent>
-event - compiled client and server successfully in 621 ms (1861 modules)
-wait  - compiling...
-event - compiled client and server successfully in 464 ms (1861 modules)
-wait  - compiling...
-event - compiled client and server successfully in 470 ms (1861 modules)
-wait  - compiling...
-event - compiled client and server successfully in 278 ms (1861 modules)
+          event - compiled client and server successfully in 621 ms (1861 modules)
+          wait  - compiling...
+          event - compiled client and server successfully in 464 ms (1861 modules)
+          wait  - compiling...
+          event - compiled client and server successfully in 470 ms (1861 modules)
+          wait  - compiling...
+          event - compiled client and server successfully in 278 ms (1861 modules)
         </PopoverContent>
       </Popover>
     </div>
@@ -93,6 +109,7 @@ export default function Page() {
       <UncontrolledPopver />
       <Dropdown /><a>asdfasdf</a>
       <TabDemo />
+      <Dark />
     </div>
   );
 }

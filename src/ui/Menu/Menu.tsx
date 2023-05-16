@@ -1,4 +1,4 @@
-import React, { Component, ElementType, ReactElement, ReactNode } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { Menu as HeadlessuiMenu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
@@ -22,7 +22,7 @@ export const MenuItems: React.FC<BareProps> = ({ children, className }) => (
     leaveFrom="transform opacity-100 scale-100"
     leaveTo="transform opacity-0 scale-95"
   >
-    <HeadlessuiMenu.Items className={clsx('absolute origin-top-right divide-y divide-gray-100 rounded bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none', className)}>
+    <HeadlessuiMenu.Items className={clsx('absolute origin-top-right divide-y divide-gray-100 rounded bg-sub-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none', className)}>
       <div className="px-1 py-1">
         {children}
       </div>

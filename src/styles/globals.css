@@ -2,47 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* https://www.w3schools.com/colors/colors_hexadecimal.asp */
+/* hex -> rgb */
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
-  --network-color: #ff0083;
+  --network-color: 255 0 131; /* #ff0083 */
 
-  --ui-black: #302b3c;
-  --ui-white: #ffffff;
-  --ui-link: #0085ff;
-  --ui-error: #ff475d;
-  --ui-success: #6bc10e;
-  --ui-warning: #ffb600;
-  --ui-b2: #9d9d9d;
-  --ui-b3: #d8d8d8;
-  --ui-b4: #f2f4fa;
-  --ui-bg: #fbfbfd;
-  --ui-hover: "#fbfbfb";
+  --ui-black: 48 43 60; /* #302b3c */
+  --ui-white: 255 255 255; /* #ffffff */
+  --ui-link: 0 133 255; /* #0085ff */
+  --ui-error: 255 71 93; /* #ff475d */
+  --ui-success: 107 193 14; /* #6bc10e */
+  --ui-warning: 255 182 0; /* #ffb600 */
+  --ui-b2: 157 157 157; /* #9d9d9d */
+  --ui-b3: 216 216 216; /* #d8d8d8 */
+  --ui-b4: 242 244 250; /* #f2f4fa */
+  --ui-bg: 251 251 253;   /* #fbfbfd */
+  --ui-hover: 251 251 251; /* #fbfbfb */
 }
 
-:root html.dark {
+html.dark {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
+
+  --network-color: 255 0 131; /* #ff0083 */
+
+  --ui-black: 255 255 255; /* #ffffff */
+  --ui-white: 24 26 27; /* #181a1b */
+  --ui-link: 0 133 255; /* #0085ff */
+  --ui-error: 255 71 93; /* #ff475d */
+  --ui-success: 107 193 14; /* #6bc10e */
+  --ui-warning: 255 182 0; /* #ffb600 */
+  --ui-b2: 157 157 157; /* #9d9d9d */
+  --ui-b3: 216 216 216; /* #d8d8d8 */
+  --ui-b4: 38 34 48; /* #262230 */
+  --ui-bg: 27 30 31;   /* #1b1e1f */
+  --ui-hover: 251 251 251; /* #fbfbfb */
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-} */
+}
 
 a {
   @apply text-sub-link;
 }
 
 body {
-  color: var(--ui-black);
   @apply bg-sub-bg;
+  @apply text-sub-black;
 }
 
 @layer components {

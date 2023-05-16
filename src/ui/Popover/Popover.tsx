@@ -13,7 +13,8 @@ import {
   Placement,
   FloatingPortal,
   FloatingFocusManager,
-  useId
+  useId,
+  useClick
 } from "@floating-ui/react";
 import styles from './Popover.module.css'
 
@@ -57,11 +58,11 @@ export function usePopover({
 
   const context = data.context;
 
-  const click = useHover(context, {
-    delay: {
-      open: 150,
-      close: 500
-    },
+  const click = useClick(context, {
+    // delay: {
+    //   open: 150,
+    //   close: 500
+    // },
     enabled: controlledOpen == null
   });
   const dismiss = useDismiss(context);
