@@ -1,0 +1,53 @@
+import { Chain } from './template'
+
+export const darwinia_para: Chain = {
+    name: "darwinia-parachain",
+    nativeTokenUniqueId: "RING",
+    label: 'Darwinia2',
+    type: "mainnet",
+    theme: {
+        colors: ['#EA3382', '#F499C0', '#d7d7d7'],
+    },
+    gtag: 'G-MYEDJ9WZY6',
+    api: "https://darwinia.webapi.subscan.io",
+    domain: "https://darwinia.subscan.io",
+    subdomain: ["darwinia"],
+    social: {
+        telegram: "https://t.me/DarwiniaNetwork",
+        twitter: "https://twitter.com/DarwiniaNetwork",
+        github: "https://github.com/darwinia-network",
+        price: "https://www.coingecko.com/en/coins/darwinia-network-native-token",
+    },
+    donate: "0x9c0fEf6b48Cb0B16EDc72a61d9503A78782c19e2",
+    modules: {
+        SYSTEM_ACCOUNT: true,
+        VESTING: true,
+        GRANDPA_VOTE: false,
+        BOUNTY: false,
+        NOMINATION_POOL: false,
+        NOMINATE_FEATURE: false,
+        PARACHAIN: false,
+        POLKASSEMBLY_LINK: false,
+        PRICE: true,
+        PRICE_HISTORY: true,
+        PRICE_CONVERT: true,
+        V2_REWARD: false,
+        MULTISIG_TOOL: false,
+        EVM_NETWORK: true,
+        CONTRACT: true,
+        CONTRACT_SOURCIFY: true,
+        ETH_ADDRESS: true,
+        EVM: true,
+        ASSETS_MODULE: true,
+        PARATHREAD: true,
+        REFERENDA_V2: false,
+        FELLOWSHIP: false,
+        V2_API: false,
+        WASM_CONTRACT: false,
+        WASM_CONTRACT_SOURCIFY: false,
+        // has hide prefix before
+        TREASURY_CHART: true,
+        VALIDATOR: false,
+        SS58: false,
+    }
+}
