@@ -12,7 +12,7 @@ import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { ChainProps } from '@/types/page'
 import ReactGA from "react-ga4";
-import { appWithTranslation } from 'next-i18next'
+// import { appWithTranslation } from 'next-i18next'
 
 // add global ga4
 // https://www.npmjs.com/package/react-ga4
@@ -88,4 +88,4 @@ const MyApp: React.FC<AppPropsWithLayout> = (({ Component, pageProps }) => {
   </RootLayout>);
 })
 
-export default appWithTranslation(MyApp)
+export default MyApp

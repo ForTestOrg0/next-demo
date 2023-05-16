@@ -1,7 +1,7 @@
 'use client'
 
 import { Tab, TabGroup, TabPanels, TabPanel, TabList, Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverClose, PopoverContent, PopoverDescription, PopoverHeading, PopoverTrigger, Tooltip, TooltipContent, TooltipTrigger, } from "@/ui";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+// import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 type Props = {}
 const TabDemo: React.FC = () => {
@@ -74,15 +74,15 @@ event - compiled client and server successfully in 278 ms (1861 modules)
     </div>
   );
 }
-export const getStaticProps: GetStaticProps<Props> = async ({
-  locale,
-}) => ({
-  props: {
-    ...(await serverSideTranslations(locale ?? 'en', [
-      'common',
-    ])),
-  },
-})
+// export const getStaticProps: GetStaticProps<Props> = async ({
+//   locale,
+// }) => ({
+//   props: {
+//     ...(await serverSideTranslations(locale ?? 'en', [
+//       'common',
+//     ])),
+//   },
+// })
 
 export default function Page() {
 

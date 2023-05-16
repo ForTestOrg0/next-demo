@@ -4,7 +4,7 @@ import { getCouncilProposal, GetCouncilProposalProps, getDemocracyReferendum, Ge
 import { CouncilMotionInfo, SimpleProposalVotes, ProposalParamsInfo, ProposalPreImage, ProposalTimeLine, ReferendaInfo, ReferendaVotesClient } from '@/components/Governance';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
-import { useTranslation } from 'next-i18next'
+// import { useTranslation } from 'next-i18next'
 
 export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCouncilProposalProps, tab: string, proposalId: number } & BareServerSideProps, { id: string }> = async (context) => {
   const host = context.req.headers.host || '';
@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCou
 
 export default function Page({ data, proposalId, chain }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const council = data.info;
-  const { t } = useTranslation('common')
+  // const { t } = useTranslation('common')
 
   return (
     <PageContent>
@@ -54,7 +54,7 @@ export default function Page({ data, proposalId, chain }: InferGetServerSideProp
           <TabGroup>
             <TabList>
               <Tab>Voting Detail</Tab>
-              <Tab>{t('timeline')}</Tab>
+              <Tab>Timeline</Tab>
               <Tab>Proposal Preimage</Tab>
               <Tab>Proposal</Tab>
               <Tab>Post</Tab>
