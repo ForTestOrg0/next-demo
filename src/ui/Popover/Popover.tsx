@@ -181,6 +181,7 @@ export const PopoverContent = React.forwardRef<
               top: context.y ?? 0,
               left: context.x ?? 0,
               width: "max-content",
+              zIndex: 100,
               ...props.style
             }}
             className={styles.Popover}

@@ -6,6 +6,7 @@ import { DonateIcon, EarthIcon, MailIcon, MoonIcon, SunIcon } from '@/ui/Svg';
 import { AccountLink } from '../Links';
 import { useDarkMode } from 'usehooks-ts';
 import { docCookies } from '@/utils/cookies';
+import clsx from 'clsx';
 
 interface Props extends BareProps {
   chain?: ChainProps | undefined;
@@ -53,7 +54,7 @@ function ThemeSwitcher() {
   )
 }
 
-function LanguageSwitcher() {
+export function LanguageSwitcher({ className }: BareProps) {
   const languages = [{
     value: 'en',
     label: 'English'
@@ -64,10 +65,10 @@ function LanguageSwitcher() {
 
   return (
     <Popover>
-      <PopoverTrigger><EarthIcon className='w-5 text-sub-b2 cursor-pointer' /></PopoverTrigger>
-      <PopoverContent>
+      <PopoverTrigger><EarthIcon className={clsx(className, { 'w-5 text-sub-b2 cursor-pointer': !className })} /></PopoverTrigger>
+      <PopoverContent className='bg-sub-b4 p-3 rounded'>
         {languages.map((lang) => {
-          return <div key={lang.value}>{lang.label}</div>
+          return <div className='py-2 focus:bg-sub-b4/60' key={lang.value}>{lang.label}</div>
         })}
       </PopoverContent>
     </Popover>
@@ -76,10 +77,10 @@ function LanguageSwitcher() {
 
 const Component: React.FC<Props> = ({ chain, children, className }) => {
   return (<PageContent disablePadding className='bg-sub-b4'>
-    <Container className="flex flex-1 justify-between items-center py-5">
-      <Flex className='w-full justify-between'>
+    <Container className="flex flex-1 justify-between items-center py-3 lg:py-5">
+      <Flex className='w-full justify-between px-4 lg:px-0'>
         <Text className='text-xs text-sub-b2'>Subscan © {COPYRIGHT_PERIOD} - Developed by Subscan Team</Text>
-        <Flex className='space-x-5 items-center'>
+        <Flex className='space-x-5 items-center hidden lg:flex'>
           <Link className='text-xs text-sub-b2' href='https://medium.com/subscan/tagged/subscan-update'>Version History</Link>
           <Link className='text-xs text-sub-b2' href='https://www.subscan.io/privacy'>Privacy Policy</Link>
           <Link className='text-xs text-sub-b2' href='https://www.subscan.io/term'>Terms of Use</Link>
@@ -90,6 +91,10 @@ const Component: React.FC<Props> = ({ chain, children, className }) => {
           <MailIcon className='w-5 text-sub-b2' />
           <ThemeSwitcher />
           <LanguageSwitcher />
+        </Flex>
+        <Flex className='space-x-5 items-center lg:hidden'>
+          <ThemeSwitcher />
+          {chain?.chainConf.donate ? <DonatePopver symbol={chain?.nativeTokenConf.symbol} address={chain?.chainConf.donate} /> : null}
         </Flex>
       </Flex>
     </Container>

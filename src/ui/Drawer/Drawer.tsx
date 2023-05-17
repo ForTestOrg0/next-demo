@@ -1,8 +1,7 @@
 import { PropsWithChildren, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Transition } from "@headlessui/react";
-import Image from "next/image";
-import closeIcon from "../Svg/optimized/times.svg";
+import { TimesIcon } from "../Svg";
 
 export interface DrawerProps {
   title: string;
@@ -45,10 +44,10 @@ const Drawer = ({ show, title, children, maskClosable, onClose }: PropsWithChild
       show={show}
       enter="transition-transform duration-300"
       leave="transition-transform duration-300"
-      enterFrom="translate-x-[100%] w-4/5"
-      enterTo="translate-x-[0] w-4/5"
-      leaveFrom="translate-x-[0] w-4/5"
-      leaveTo="translate-x-[100%] w-4/5"
+      enterFrom="translate-x-[100%] w-64"
+      enterTo="translate-x-[0] w-64"
+      leaveFrom="translate-x-[0] w-64"
+      leaveTo="translate-x-[100%] w-64"
       beforeEnter={() => {
         if (!document.body.contains(container.current)) {
           document.body.style.overflow = "hidden";
@@ -62,15 +61,15 @@ const Drawer = ({ show, title, children, maskClosable, onClose }: PropsWithChild
         }
       }}
     >
-      <div className="bg-white h-screen w-full px-5 py-4 flex flex-col">
+      <div className="bg-sub-b4-dark h-screen w-full  flex flex-col">
         {/* header */}
-        <div className="flex items-center justify-between">
-          <h3 className="text-semibold text-sm uppercase">{title}</h3>
+        <div className="flex items-center justify-between px-2 py-2 bg-[#3a3545]">
+          <h3 className="text-semibold text-sm uppercase text-sub-white-light">{title}</h3>
           <button
             className="flex items-center justify-center w-8 h-8 rounded-full hover:outline-none focus-visible:outline-none active:bg-gray-800/10 transition-transform active:scale-95"
             onClick={onClose}
           >
-            <Image alt="..." src={closeIcon} className="w-4 h-4" />
+            <TimesIcon className="w-4 h-4 text-sub-white-light" />
           </button>
         </div>
 

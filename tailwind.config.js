@@ -8,6 +8,20 @@ const getNetworkColor = (network) => {
   };
 };
 
+const colorKeys = ['black', 'white', 'link', 'error', 'success', 'warning', 'b2', 'b3', 'b4', 'bg', 'hover', 'network'];
+const extendColors = () => {
+  const colors = {}
+  colorKeys.forEach(key => {
+    colors[key] = {
+      DEFAULT: `rgb(var(--ui-${key}) / <alpha-value>)`,
+      light: `rgb(var(--ui-${key}-light) / <alpha-value>)`,
+      dark: `rgb(var(--ui-${key}-dark) / <alpha-value>)`,
+    }
+  });
+
+  return colors;
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -28,20 +42,7 @@ module.exports = {
         large: "1.25rem", // 20px
       },
       colors: {
-        sub: {
-          black: 'rgb(var(--ui-black) / <alpha-value>)',
-          white: 'rgb(var(--ui-white) / <alpha-value>)',
-          link: 'rgb(var(--ui-link) / <alpha-value>)',
-          error: 'rgb(var(--ui-error) / <alpha-value>)',
-          success: 'rgb(var(--ui-success) / <alpha-value>)',
-          warning: 'rgb(var(--ui-warning) / <alpha-value>)',
-          b2: 'rgb(var(--ui-b2) / <alpha-value>)',
-          b3: 'rgb(var(--ui-b3) / <alpha-value>)',
-          b4: 'rgb(var(--ui-b4) / <alpha-value>)',
-          bg: 'rgb(var(--ui-bg) / <alpha-value>)',
-          hover: 'rgb(var(--ui-hover) / <alpha-value>)',
-          network: 'rgb(var(--network-color) / <alpha-value>)',
-        },
+        sub: extendColors(),
         ...getNetworkColor(),
       },
       backgroundImage: {

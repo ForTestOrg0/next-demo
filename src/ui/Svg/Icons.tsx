@@ -1,4 +1,4 @@
-import { DolphinIcon, EthIcon, FishIcon, RiotIcon, ShrimpIcon, WhaleIcon, AccountElementIcon, AccountindexIcon, ActiveAccountsIcon, AddressIcon, ArchivedBlockIcon, ArrowDownFillingIcon, AssetIcon, BarChartIcon, BestBlockIcon, BlockchainHistorySizeIcon, CandidacyBondIcon, CandidatesIcon, ChainIcon, ChartIcon, CheckCircleIcon, CircleExchangeIcon, CircleMinusSolidIcon, CirclePlusIcon, CircleTimesIcon, ClockIcon, CloseSquareIcon, CodeIcon, CollatorsIcon, ConfirmingReferendaIcon, ContractCheckIcon, ContractNewIcon, ContractOIcon, ContractIcon, Contract1Icon, CopyLIcon, CopySolidIcon, CopyIcon, CouncilIcon, DarwiniaIcon, DeleteIcon, DetailIcon, DiscordIcon, DollarPeopleIcon, DollarSackIcon, DonateIcon, DownRightAndUpLeftToCenterIcon, DownloadCsvIcon, EarthIcon, EraIcon, Erc20Icon, EvmPeopleIcon, EvmTransferIcon, ExclaimIcon, ExportIcon, ExternalLinkIcon, EyeCloseIcon, EyeOpenIcon, FilterIcon, FinalizedIcon, FoldAllIcon, FromToIcon, FullIcon, GithubIcon, HamburgerButtonIcon, HolderIcon, HotIcon, InflationIcon, Inflation2Icon, InfomationIcon, InputDataIcon, InvulnerblesIcon, IssuanceIcon, KeyIcon, LatestBlocksIcon, LinkIcon, LockedIcon, MailIcon, MediumIcon, MenuBasicMultiIcon, MenuBasicIcon, ModuleEventsIcon, MoonIcon, MultisigMemberIcon, NftIcon, NominatorIcon, ParachainIcon, ParachainsIcon, PieChartIcon, ProxiedIcon, ProxyIcon, QrCodeIcon, QualifiedRewardAdressesIcon, QuestionIcon, RiotImIcon, RotateIcon, SackIcon, SaltIcon, SandglassIcon, SearchIcon, SerarchIcon, SettingIcon, SignedExtrinsicsIcon, StakeIcon, StorageIcon, SubIcon, Sub1Icon, SubaccountIcon, SubidIcon, SuccessIcon, SunIcon, SwitchIcon, SymbolAIcon, SymbolFIcon, TechnicalCommIcon, TelegramIcon, ThumbDownIcon, ThumbUpIcon, TimesIcon, TokenIcon, TotalRewardAdressesIcon, TotalRewardsUnlockedIcon, TransfersIcon, TriangleIcon, TwitterIcon, UnfoldAllIcon, UpLeftAndDownRightFromCenterIcon, UploadIcon, UserIcon, UsersIcon, VIcon, ValidatorIcon, VotingReferendaIcon, WaitIcon, WasmTransferIcon, WhitePaperIcon, ZoomIcon } from "./";
+import { DolphinIcon, EthIcon, FishIcon, RiotIcon, ShrimpIcon, WhaleIcon, AccountElementIcon, AccountindexIcon, ActiveAccountsIcon, AddressIcon, ArchivedBlockIcon, ArrowDownFillingIcon, ArrowRightBoldIcon, AssetIcon, BarChartIcon, BestBlockIcon, BlockchainHistorySizeIcon, CandidacyBondIcon, CandidatesIcon, ChainIcon, ChartIcon, CheckCircleIcon, CircleExchangeIcon, CircleMinusSolidIcon, CirclePlusIcon, CircleTimesIcon, ClockIcon, CloseSquareIcon, CodeIcon, CollatorsIcon, ConfirmingReferendaIcon, ContractCheckIcon, ContractNewIcon, ContractOIcon, ContractIcon, Contract1Icon, CopyLIcon, CopySolidIcon, CopyIcon, CouncilIcon, DarwiniaIcon, DeleteIcon, DetailIcon, DiscordIcon, DollarPeopleIcon, DollarSackIcon, DonateIcon, DownRightAndUpLeftToCenterIcon, DownloadCsvIcon, EarthIcon, EmailBlockIcon, EraIcon, Erc20Icon, EvmPeopleIcon, EvmTransferIcon, ExclaimIcon, ExportIcon, ExternalLinkIcon, EyeCloseIcon, EyeOpenIcon, FilterIcon, FinalizedIcon, FoldAllIcon, FromToIcon, FullIcon, GithubBlockIcon, GithubIcon, HamburgerButtonIcon, HolderIcon, HotIcon, InflationIcon, Inflation2Icon, InfomationIcon, InputDataIcon, InvulnerblesIcon, IssuanceIcon, KeyIcon, LatestBlocksIcon, LinkIcon, LockedIcon, MailIcon, MediumBlockIcon, MediumIcon, MenuBasicMultiIcon, MenuBasicIcon, ModuleEventsIcon, MoonIcon, MultisigMemberIcon, NftIcon, NominatorIcon, ParachainIcon, ParachainsIcon, PieChartIcon, ProxiedIcon, ProxyIcon, QrCodeIcon, QualifiedRewardAdressesIcon, QuestionIcon, RiotBlockIcon, RiotImIcon, RotateIcon, SackIcon, SaltIcon, SandglassIcon, SearchIcon, SerarchIcon, SettingIcon, SignedExtrinsicsIcon, StakeIcon, StorageIcon, SubIcon, Sub1Icon, SubaccountIcon, SubidIcon, SuccessIcon, SunIcon, SwitchIcon, SymbolAIcon, SymbolFIcon, TechnicalCommIcon, TelegramIcon, ThumbDownIcon, ThumbUpIcon, TimesIcon, TokenIcon, TotalRewardAdressesIcon, TotalRewardsUnlockedIcon, TransfersIcon, TriangleIcon, TwitterBlockIcon, TwitterIcon, UnfoldAllIcon, UpLeftAndDownRightFromCenterIcon, UploadIcon, UserIcon, UsersIcon, VIcon, ValidatorIcon, VotingReferendaIcon, WaitIcon, WasmTransferIcon, WhitePaperIcon, ZoomIcon } from "./";
 
   export function Icons({className = ''}) {
   return (
@@ -50,6 +50,10 @@ import { DolphinIcon, EthIcon, FishIcon, RiotIcon, ShrimpIcon, WhaleIcon, Accoun
       <div className="flex flex-col justify-center items-center border w-32">
      <ArrowDownFillingIcon className={className} />
      <span className="text-sm">ArrowDownFillingIcon</span>
+   </div>
+      <div className="flex flex-col justify-center items-center border w-32">
+     <ArrowRightBoldIcon className={className} />
+     <span className="text-sm">ArrowRightBoldIcon</span>
    </div>
       <div className="flex flex-col justify-center items-center border w-32">
      <AssetIcon className={className} />
@@ -200,6 +204,10 @@ import { DolphinIcon, EthIcon, FishIcon, RiotIcon, ShrimpIcon, WhaleIcon, Accoun
      <span className="text-sm">EarthIcon</span>
    </div>
       <div className="flex flex-col justify-center items-center border w-32">
+     <EmailBlockIcon className={className} />
+     <span className="text-sm">EmailBlockIcon</span>
+   </div>
+      <div className="flex flex-col justify-center items-center border w-32">
      <EraIcon className={className} />
      <span className="text-sm">EraIcon</span>
    </div>
@@ -254,6 +262,10 @@ import { DolphinIcon, EthIcon, FishIcon, RiotIcon, ShrimpIcon, WhaleIcon, Accoun
       <div className="flex flex-col justify-center items-center border w-32">
      <FullIcon className={className} />
      <span className="text-sm">FullIcon</span>
+   </div>
+      <div className="flex flex-col justify-center items-center border w-32">
+     <GithubBlockIcon className={className} />
+     <span className="text-sm">GithubBlockIcon</span>
    </div>
       <div className="flex flex-col justify-center items-center border w-32">
      <GithubIcon className={className} />
@@ -314,6 +326,10 @@ import { DolphinIcon, EthIcon, FishIcon, RiotIcon, ShrimpIcon, WhaleIcon, Accoun
       <div className="flex flex-col justify-center items-center border w-32">
      <MailIcon className={className} />
      <span className="text-sm">MailIcon</span>
+   </div>
+      <div className="flex flex-col justify-center items-center border w-32">
+     <MediumBlockIcon className={className} />
+     <span className="text-sm">MediumBlockIcon</span>
    </div>
       <div className="flex flex-col justify-center items-center border w-32">
      <MediumIcon className={className} />
@@ -378,6 +394,10 @@ import { DolphinIcon, EthIcon, FishIcon, RiotIcon, ShrimpIcon, WhaleIcon, Accoun
       <div className="flex flex-col justify-center items-center border w-32">
      <QuestionIcon className={className} />
      <span className="text-sm">QuestionIcon</span>
+   </div>
+      <div className="flex flex-col justify-center items-center border w-32">
+     <RiotBlockIcon className={className} />
+     <span className="text-sm">RiotBlockIcon</span>
    </div>
       <div className="flex flex-col justify-center items-center border w-32">
      <RiotImIcon className={className} />
@@ -498,6 +518,10 @@ import { DolphinIcon, EthIcon, FishIcon, RiotIcon, ShrimpIcon, WhaleIcon, Accoun
       <div className="flex flex-col justify-center items-center border w-32">
      <TriangleIcon className={className} />
      <span className="text-sm">TriangleIcon</span>
+   </div>
+      <div className="flex flex-col justify-center items-center border w-32">
+     <TwitterBlockIcon className={className} />
+     <span className="text-sm">TwitterBlockIcon</span>
    </div>
       <div className="flex flex-col justify-center items-center border w-32">
      <TwitterIcon className={className} />

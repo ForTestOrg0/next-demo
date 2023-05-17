@@ -6,5 +6,5 @@
 }
 
 .active {
-  border-bottom: 4px solid var(--network-color);
+  border-bottom: 4px solid var(--ui-network);
 }

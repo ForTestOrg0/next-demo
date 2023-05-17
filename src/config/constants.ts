@@ -11,3 +11,10 @@ export const BIGNUMBER_FMT = {
   suffix: "",
 };
 export const COPYRIGHT_PERIOD = '2023';
+
+export const TWITTER = 'https://twitter.com/subscan_io';
+export const GITHUB = 'https://github.com/subscan-explorer';
+export const RIOT = 'https://riot.im/app/#/room/!uaYUrKBueiKUurHliJ:matrix.org?via=matrix.org&via=matrix.parity.io&via=web3.foundation';
+export const MEDIUM = 'https://medium.com/subscan';
+export const EMAIL = 'hello@subscan.io';
+

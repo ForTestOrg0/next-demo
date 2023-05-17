@@ -1,5 +1,4 @@
 import React, { AnchorHTMLAttributes } from 'react';
-import clsx from 'clsx';
 import { BareProps } from '@/types/page';
 
 export interface LinkProps extends BareProps, AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -14,7 +13,7 @@ const getExternalLinkProps = (): { target: string; rel: string } => ({
 const Link: React.FC<LinkProps> = ({ children, className, external, ...props }) => {
   const internalProps = external ? getExternalLinkProps() : {};
 
-  return (<a className={clsx('text-sm', className)} {...internalProps} {...props}>
+  return (<a className={className} {...internalProps} {...props}>
     {children}
   </a>)
 };

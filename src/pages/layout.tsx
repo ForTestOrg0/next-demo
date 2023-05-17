@@ -25,6 +25,7 @@ export default function RootLayout({
   return (<div id="subscan-app" className={`${eina.variable} font-sans flex h-screen flex-col ${context?.req.cookies.theme || ''}`} >
     <Head>
       <title>Subscan | Aggregate Substrate ecological network high-precision Web3 explorer</title>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0"></meta>
       <meta name="description" data-vmid="description" content="Subscan | Substrate ecological explorer: Search, analyze, and visualize blockchain that occurs on Substrate based network (Polkadot, Kusama, Moonbeam, Acala, Darwinia), such as extrinsics, transfers, accounts, tokens, prices, staking, PLO and other activities." />
     </Head>
     {children}

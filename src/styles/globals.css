@@ -9,7 +9,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
-  --network-color: 255 0 131; /* #ff0083 */
+  --ui-network: 255 0 131; /* #ff0083 */
 
   --ui-black: 48 43 60; /* #302b3c */
   --ui-white: 255 255 255; /* #ffffff */
@@ -22,14 +22,37 @@
   --ui-b4: 242 244 250; /* #f2f4fa */
   --ui-bg: 251 251 253;   /* #fbfbfd */
   --ui-hover: 251 251 251; /* #fbfbfb */
+
+
+  --ui-black-light: 48 43 60; /* #302b3c */
+  --ui-white-light: 255 255 255; /* #ffffff */
+  --ui-link-light: 0 133 255; /* #0085ff */
+  --ui-error-light: 255 71 93; /* #ff475d */
+  --ui-success-light: 107 193 14; /* #6bc10e */
+  --ui-warning-light: 255 182 0; /* #ffb600 */
+  --ui-b2-light: 157 157 157; /* #9d9d9d */
+  --ui-b3-light: 216 216 216; /* #d8d8d8 */
+  --ui-b4-light: 242 244 250; /* #f2f4fa */
+  --ui-bg-light: 251 251 253;   /* #fbfbfd */
+  --ui-hover-light: 251 251 251; /* #fbfbfb */
+
+  --ui-black-dark: 255 255 255; /* #ffffff */
+  --ui-white-dark: 24 26 27; /* #181a1b */
+  --ui-link-dark: 0 133 255; /* #0085ff */
+  --ui-error-dark: 255 71 93; /* #ff475d */
+  --ui-success-dark: 107 193 14; /* #6bc10e */
+  --ui-warning-dark: 255 182 0; /* #ffb600 */
+  --ui-b2-dark: 157 157 157; /* #9d9d9d */
+  --ui-b3-dark: 216 216 216; /* #d8d8d8 */
+  --ui-b4-dark: 38 34 48; /* #262230 */
+  --ui-bg-dark: 27 30 31;   /* #1b1e1f */
+  --ui-hover-dark: 251 251 251; /* #fbfbfb */
 }
 
 html.dark {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
-
-  --network-color: 255 0 131; /* #ff0083 */
 
   --ui-black: 255 255 255; /* #ffffff */
   --ui-white: 24 26 27; /* #181a1b */
