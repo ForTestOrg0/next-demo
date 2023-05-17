@@ -5,6 +5,7 @@ import { PAGE_ROW } from '@/config/constants';
 import { TreasuryTipsList } from '@/components/Governance';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
+import { serializeContext } from '@/utils/contextProps';
 
 export const getServerSideProps: GetServerSideProps<{
   data: GetTreasuryTipsProps,
@@ -24,6 +25,7 @@ export const getServerSideProps: GetServerSideProps<{
       data: data.data,
       page: page,
       chain: chainProps,
+      context: serializeContext(context),
     },
   }
 }

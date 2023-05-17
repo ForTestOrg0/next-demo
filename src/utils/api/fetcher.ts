@@ -1,4 +1,6 @@
+import { getChainConfigBySubdomain } from "@/config/chains";
 import { APIWarpperProps } from "@/types/api";
+import { getSubdomain } from "../url";
 
 export function unwrap<T>(apiData: APIWarpperProps<T> | undefined): T | null {
   if (!apiData || apiData.code !== 0) {
@@ -13,14 +15,11 @@ export async function subscanFetch(
   path: string,
   params = {}
 ) {
-  let domain = "polkadot";
-  if (hostname.indexOf("localhost") > -1) domain = "kusama";
-  if (hostname.indexOf("kusama") > -1) domain = "kusama";
-  if (hostname.indexOf("darwinia") > -1) domain = "darwinia";
+  const chainConf = getChainConfigBySubdomain(getSubdomain(hostname));
   console.info(`subscanFetch(${path}):`);
-  console.info({ domain, path, params });
-
-  const res = await fetch(`https://${domain}.api.subscan.io/${path}`, {
+  console.info({ api: chainConf?.api, path, params });
+  
+  const res = await fetch(`${chainConf?.api}/${path}`, {
     method: "POST",
     headers: {
       Accept: "application/json",

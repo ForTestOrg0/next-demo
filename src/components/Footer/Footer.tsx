@@ -5,6 +5,7 @@ import { COPYRIGHT_PERIOD } from '@/config/constants';
 import { DonateIcon, EarthIcon, MailIcon, MoonIcon, SunIcon } from '@/ui/Svg';
 import { AccountLink } from '../Links';
 import { useDarkMode } from 'usehooks-ts';
+import { docCookies } from '@/utils/cookies';
 
 interface Props extends BareProps {
   chain?: ChainProps | undefined;
@@ -29,11 +30,13 @@ function ThemeSwitcher() {
 
   const enableDark = useCallback(() => {
     document.documentElement.classList.add('dark');
+    docCookies.setItem('theme', 'dark')
     enable();
   }, [enable])
 
   const disableDark = useCallback(() => {
     document.documentElement.classList.remove('dark');
+    docCookies.setItem('theme', '')
     disable();
   }, [disable])
 

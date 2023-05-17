@@ -12,8 +12,8 @@
     "build-storybook": "storybook build",
     "build-react-icon": "node ./src/ui/Svg/build.js react",
     "build-optimized-icon": "rimraf ./src/ui/Svg/optimized/* && svgo --config=./src/ui/Svg/svgo.config.js -f ./src/ui/Svg/svg/ -o ./src/ui/Svg/optimized --pretty --indent=2",
-    "cloudflare-build": "npx @cloudflare/next-on-pages",
-    "cloudflare-dev": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
+    "cloudflare-build": "npx @cloudflare/next-on-pages@0.10.1",
+    "cloudflare-dev": "npx wrangler@2.20.0 pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
     "@floating-ui/react": "0.23.1",
