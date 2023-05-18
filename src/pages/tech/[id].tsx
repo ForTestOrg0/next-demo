@@ -42,7 +42,7 @@ export default function Page({ data, proposalId, chain }: InferGetServerSideProp
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2'>Technical Committee Proposals#{proposalId}</Text>
+        <Text block bold className='mb-2 break-all'>Technical Committee Proposals#{proposalId}</Text>
 
         <Boundary>
           <TechcommProposalInfo proposal={proposal} />

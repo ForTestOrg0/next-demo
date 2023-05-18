@@ -29,7 +29,7 @@ export default function Layout({ data, page }: InferGetServerSidePropsType<typeo
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2'>Technical Committee Proposals</Text>
+        <Text block bold className='mb-2 break-all'>Technical Committee Proposals</Text>
         <Boundary>
           <TechcommProposalList proposals={data.list} />
         </Boundary>

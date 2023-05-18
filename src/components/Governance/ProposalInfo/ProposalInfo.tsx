@@ -12,23 +12,23 @@ const ProposalInfo: React.FC<Props> = ({ proposal }) => {
   return (<Table className='w-full'>
     <tbody>
       <Tr>
-        <Td className='font-semibold'>Created at Block</Td>
+        <Td className='font-semibold whitespace-nowrap'>Created at Block</Td>
         <Td><BlockLink blockNumber={proposal?.created_block} /></Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Updated at Block</Td>
+        <Td className='font-semibold whitespace-nowrap'>Updated at Block</Td>
         <Td><BlockLink blockNumber={proposal?.updated_block} /></Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Motion Hash</Td>
+        <Td className='font-semibold whitespace-nowrap'>Motion Hash</Td>
         <Td>{proposal?.proposal_hash}</Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Seconds</Td>
+        <Td className='font-semibold whitespace-nowrap'>Seconds</Td>
         <Td>{proposal?.seconded_count}</Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Status</Td>
+        <Td className='font-semibold whitespace-nowrap'>Status</Td>
         <Td>{proposal?.status}</Td>
       </Tr>
     </tbody>

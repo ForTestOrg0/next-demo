@@ -14,15 +14,15 @@ const ProposalParamsInfo: React.FC<Props> = ({ callModule, callName, params }) =
   return (<Table className='w-full'>
     <tbody>
       <Tr>
-        <Td className='font-semibold'>Module</Td>
+        <Td className='font-semibold whitespace-nowrap'>Module</Td>
         <Td><ExtrinsicModule module={callModule}/></Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Call</Td>
+        <Td className='font-semibold whitespace-nowrap'>Call</Td>
         <Td><ExtrinsicCall call={callName}/></Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Parameters</Td>
+        <Td className='font-semibold whitespace-nowrap'>Parameters</Td>
         <Td><Parameters value={params}/></Td>
       </Tr>
     </tbody>

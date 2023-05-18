@@ -9,7 +9,7 @@ export const Table: React.FC<BareProps> = ({ children, className, ...props }) =>
 );
 
 export const Th: React.FC<BareProps> = ({ children, className, ...props }) => (
-  <th className={clsx('px-2 py-4 bg-sub-b4 text-left font-semibold', className)} {...props}>
+  <th className={clsx('px-2 py-4 bg-sub-b4 text-left font-semibold whitespace-nowrap', className)} {...props}>
     {children}
   </th>
 );

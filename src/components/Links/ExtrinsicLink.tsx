@@ -14,7 +14,7 @@ const ExtrinsicLink: React.FC<Props> = ({ empty, query, children, extrinsicIndex
     return <Text>-</Text>;
   }
   const searchParams = objectToSearchParams(query)
-  return (<LinkRouter className="text-sm" href={`/extrinsic/${extrinsicIndex}${searchParams ? `?${searchParams}` : ''}`}>{children ?? extrinsicIndex}</LinkRouter>);
+  return (<LinkRouter className="text-sm whitespace-nowrap" href={`/extrinsic/${extrinsicIndex}${searchParams ? `?${searchParams}` : ''}`}>{children ?? extrinsicIndex}</LinkRouter>);
 };
 
 export default ExtrinsicLink;

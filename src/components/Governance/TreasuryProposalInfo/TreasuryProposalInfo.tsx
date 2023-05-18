@@ -13,23 +13,23 @@ const Page: React.FC<Props> = ({ proposal }) => {
   return (<Table className='w-full'>
     <tbody>
       <Tr>
-        <Td className='font-semibold w-44'>Created at Block</Td>
+        <Td className='font-semibold whitespace-nowrap w-44'>Created at Block</Td>
         <Td><BlockLink blockNumber={proposal?.created_block} /></Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Proposed by</Td>
+        <Td className='font-semibold whitespace-nowrap'>Proposed by</Td>
         <Td><Identicon account={proposal?.proposer} /></Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Beneficiary</Td>
+        <Td className='font-semibold whitespace-nowrap'>Beneficiary</Td>
         <Td><Identicon account={proposal?.beneficiary} /></Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Reward</Td>
+        <Td className='font-semibold whitespace-nowrap'>Reward</Td>
         <Td><Text>{proposal.reward}</Text></Td>
       </Tr>
       <Tr>
-        <Td className='font-semibold'>Status</Td>
+        <Td className='font-semibold whitespace-nowrap'>Status</Td>
         <Td>{proposal?.status}</Td>
       </Tr>
     </tbody>

@@ -115,7 +115,7 @@ export default function Header() {
         <Flex className="flex-1 justify-start">
 
         </Flex>
-        <Flex className="flex-1 justify-center items-center">
+        <Flex className="flex-2 justify-center items-center">
           <LinkRouter href="/">
             <Image
               className="h-[25px]"

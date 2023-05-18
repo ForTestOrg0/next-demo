@@ -37,7 +37,7 @@ export default function Page({ host, data, tab, proposalId }: InferGetServerSide
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2'>Bounty#{proposalId}</Text>
+        <Text block bold className='mb-2 break-all'>Bounty#{proposalId}</Text>
 
         <Boundary>
           <BountiesInfo proposal={data}/>

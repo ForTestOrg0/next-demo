@@ -34,7 +34,7 @@ export default function Layout({ data, page, chain }: InferGetServerSidePropsTyp
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2'>Treasury Tips</Text>
+        <Text block bold className='mb-2 break-all'>Treasury Tips</Text>
         <Boundary>
           <TreasuryTipsList proposals={data.list} chain={chain}/>
         </Boundary>

@@ -15,7 +15,7 @@ const statusMap = {
 }
 
 export const getServerSideProps: GetServerSideProps<{ data: GetDemocracyProposalsDataProps, type: keyof typeof orderFieldMap }> = async (context) => {
-  const tab = (context.query.status || '')?.toString() as (keyof typeof orderFieldMap);
+  const tab = (context.query.tab || '')?.toString() as (keyof typeof orderFieldMap);
   const type = typeof orderFieldMap[tab] === 'undefined' ? 'waiting' : tab;
   const orderField = orderFieldMap[type] || orderFieldMap.waiting;
   const status = statusMap[type] || statusMap.waiting;
@@ -39,19 +39,19 @@ export default function Page({ data, type }: InferGetServerSidePropsType<typeof 
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2'>Democracy Proposals</Text>
+        <Text block bold className='mb-2 break-all'>Democracy Proposals</Text>
         <Boundary>
           <TabsServer className='mb-4' items={
             [
               {
                 label: 'Waiting Queue',
-                value: '/democracy_proposal?status=waiting',
+                value: '/democracy_proposal?tab=waiting',
                 replace: true,
                 active: type === 'waiting'
               },
               {
                 label: 'Historical Proposal',
-                value: '/democracy_proposal?status=historical',
+                value: '/democracy_proposal?tab=historical',
                 replace: true,
                 active: type === 'historical'
               }
@@ -59,7 +59,7 @@ export default function Page({ data, type }: InferGetServerSidePropsType<typeof 
           } />
           <ProposalList proposals={data.list} />
         </Boundary>
-        <LinkRouter href={`/democracy_proposal_list?status=${type}`}>
+        <LinkRouter href={`/democracy_proposal_list?tab=${type}`}>
           <Button outline className='mt-4'>View Other {data.count - PAGE_ROW} {type} </Button>
         </LinkRouter>
       </Container>
