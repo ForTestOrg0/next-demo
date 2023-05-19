@@ -3,15 +3,18 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getTechcommProposals, GetTechcommProposalsProps } from '@/utils/api';
 import { PAGE_ROW } from '@/config/constants';
 import { TechcommProposalList } from '@/components/Governance';
+import { getChainProps } from '@/utils/chain';
+import { BareServerSideProps } from '@/types/page';
 
 export const getServerSideProps: GetServerSideProps<{
   data: GetTechcommProposalsProps,
   page: number,
-}> = async (context) => {
+} & BareServerSideProps> = async (context) => {
   const page = parseInt(context.query.page as string) || 1;
   const data = await getTechcommProposals(context.req.headers.host || '', { "row": PAGE_ROW, "page": page - 1 });
-
-  if (!data || data.code !== 0) {
+  const chainProps = await getChainProps(context.req.headers.host);
+  
+  if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
     }
@@ -21,6 +24,7 @@ export const getServerSideProps: GetServerSideProps<{
     props: {
       data: data.data,
       page: page,
+      chain: chainProps,
     },
   }
 }

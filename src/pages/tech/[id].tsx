@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTec
   const host = context.req.headers.host || '';
   const tab = (context.query.tab || '')?.toString();
   const proposalId = context.params?.id;
-
+  
   if (typeof proposalId === 'undefined') {
     return {
       notFound: true,

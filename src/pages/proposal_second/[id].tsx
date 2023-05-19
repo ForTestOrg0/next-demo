@@ -3,18 +3,21 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getDemocracySeconded, GetDemocracySecondedProps } from '@/utils/api';
 import { PAGE_ROW } from '@/config/constants';
 import ProposalSeconds from '@/components/Governance/ProposalSeconds/ProposalSeconds';
+import { getChainProps } from '@/utils/chain';
+import { BareServerSideProps } from '@/types/page';
 
 export const getServerSideProps: GetServerSideProps<{
   data: GetDemocracySecondedProps;
   page: number;
   row: number;
   proposalId: number;
-}, {
+} & BareServerSideProps, {
   id: string;
 }> = async (context) => {
   const page = parseInt(context.query.page as string) || 1;
   const proposalId = parseInt(context.params?.id.toString() || '');
-
+  const chainProps = await getChainProps(context.req.headers.host);
+  
   if (Number.isNaN(proposalId)) {
     return {
       notFound: true,
@@ -23,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<{
 
   const data = await getDemocracySeconded(context.req.headers.host || '', { "row": PAGE_ROW, "page": page - 1, proposal_id: proposalId });
 
-  if (!data || data.code !== 0) {
+  if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
     }
@@ -34,7 +37,8 @@ export const getServerSideProps: GetServerSideProps<{
       data: data.data,
       page: page,
       row: PAGE_ROW,
-      proposalId
+      proposalId,
+      chain: chainProps,
     },
   }
 }

@@ -3,13 +3,16 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getTreasuryProposal, GetTreasuryProposalProps } from '@/utils/api';
 import { ProposalTimeLine } from '@/components/Governance';
 import { TreasuryProposalInfo } from '@/components/Governance/TreasuryProposalInfo';
+import { getChainProps } from '@/utils/chain';
+import { BareServerSideProps } from '@/types/page';
 
-export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTreasuryProposalProps, tab: string, proposalId: number }, { id: string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTreasuryProposalProps, tab: string, proposalId: number } & BareServerSideProps, { id: string }> = async (context) => {
   const host = context.req.headers.host || '';
   const tab = (context.query.tab || '')?.toString();
   const proposalId = context.params?.id;
+  const chainProps = await getChainProps(context.req.headers.host);
 
-  if (typeof proposalId === 'undefined') {
+  if (typeof proposalId === 'undefined' || !chainProps) {
     return {
       notFound: true,
     }
@@ -28,6 +31,7 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTre
       data: data.data,
       tab,
       proposalId: parseInt(proposalId),
+      chain: chainProps,
     },
   }
 }

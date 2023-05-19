@@ -11,9 +11,9 @@ export const getServerSideProps: GetServerSideProps<{
   data: GetTreasuryTipsProps,
   page: number,
 } & BareServerSideProps> = async (context) => {
+  const chainProps = await getChainProps(context.req.headers.host);
   const page = parseInt(context.query.page as string) || 1;
   const data = await getTreasuryTips(context.req.headers.host || '', { "row": PAGE_ROW, "page": page - 1 });
-  const chainProps = await getChainProps(context.req.headers.host);
   if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,

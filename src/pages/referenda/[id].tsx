@@ -58,7 +58,7 @@ export default function Page({ host, data, chain, referendumIndex }: InferGetSer
             </TabList>
             <TabPanels>
               <TabPanel>
-                <ReferendaVotesClient host={host} page={0} row={PAGE_ROW} referendumIndex={referendumIndex} />
+                <ReferendaVotesClient chain={chain} host={host} page={0} row={PAGE_ROW} referendumIndex={referendumIndex} />
               </TabPanel>
               <TabPanel><ProposalTimeLine timeline={data.info.timeline} /></TabPanel>
               <TabPanel>{data.info?.pre_image ? <ProposalPreImage preimage={data.info?.pre_image} chain={chain} /> : null}</TabPanel>

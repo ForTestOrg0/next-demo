@@ -15,7 +15,7 @@ interface Props extends BareProps {
 const Identicon: React.FC<Props> = ({ account, className }) => {
   const judgements = useMemo(() => {
     let result: string[] = [];
-    account.judgements?.forEach((item) => {
+    account?.judgements?.forEach((item) => {
       result.push(item.judgement);
     });
     return result;
@@ -53,7 +53,7 @@ const Identicon: React.FC<Props> = ({ account, className }) => {
       return "Identity level: " + "No Judgement";
     }
   }, [judgements]);
-  const displayName = account.display || account.address;
+  const displayName = account?.display || account?.address;
   if (!account) return <Text>-</Text>;
   return (
     <div className={clsx("flex", className)}>
@@ -82,7 +82,7 @@ const Identicon: React.FC<Props> = ({ account, className }) => {
         ) : null}
         <Tooltip copyable>
           <TooltipTrigger>
-            <AccountLink address={account.address}>
+            <AccountLink address={account?.address}>
               <Text>{formatHash(displayName)}</Text>
             </AccountLink>
           </TooltipTrigger>

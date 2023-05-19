@@ -1,7 +1,7 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, LinkRouter, Button } from '@/ui';
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { getCouncilProposal, GetCouncilProposalProps, getDemocracyReferendum, GetDemocracyReferendumProps, unwrap } from '@/utils/api';
-import { CouncilMotionInfo, SimpleProposalVotes, ProposalParamsInfo, ProposalPreImage, ProposalTimeLine, ReferendaInfo, ReferendaVotesClient } from '@/components/Governance';
+import { getCouncilProposal, GetCouncilProposalProps } from '@/utils/api';
+import { CouncilMotionInfo, SimpleProposalVotes, ProposalParamsInfo, ProposalPreImage, ProposalTimeLine } from '@/components/Governance';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
 // import { useTranslation } from 'next-i18next'

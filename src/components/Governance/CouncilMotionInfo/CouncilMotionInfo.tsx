@@ -5,6 +5,7 @@ import { BlockLink } from '@/components/Links';
 import { CouncilProposalDetail } from '@/types/api';
 import { BaseVoteStatistics } from '@/components/VoteThreshold';
 import { Identicon } from '@/components/Identicon';
+import CouncilMotionStatus from '../CouncilMotionList/CouncilMotionStatus';
 
 interface Props extends BareProps {
   proposal: CouncilProposalDetail;
@@ -39,7 +40,7 @@ const CouncilMotionInfo: React.FC<Props> = ({ proposal }) => {
       </TrCol>
       <TrCol>
         <TdCol className='font-semibold whitespace-nowrap'>Status</TdCol>
-        <TdCol>{proposal?.status}</TdCol>
+        <TdCol><CouncilMotionStatus status={proposal.status} text={proposal.status}/></TdCol>
       </TrCol>
       <TrCol>
         <TdCol className='font-semibold whitespace-nowrap'>Execution Result</TdCol>

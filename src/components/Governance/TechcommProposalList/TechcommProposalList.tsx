@@ -4,6 +4,7 @@ import { Table, Td, Th, Tr, Text } from '@/ui';
 import { BlockLink, ExtrinsicLink, TechcommProposalLink } from '@/components/Links';
 import { TimeFromNow } from '@/components/Time';
 import { CouncilProposal } from '@/types/api';
+import TechcommProposalStatus from './TechcommProposalStatus';
 
 interface Props extends BareProps {
   proposals: CouncilProposal[];
@@ -33,7 +34,7 @@ const Page: React.FC<Props> = ({ proposals }) => {
           <Td><Text>{proposal.nay_votes}</Text></Td>
           <Td><ExtrinsicLink empty={!proposal.call_module} query={{module: proposal.call_module, call: proposal.call_name}}>{`${proposal.call_module} (${proposal.call_name})`}</ExtrinsicLink></Td>
           <Td><TimeFromNow date={proposal.block_timestamp}/></Td>
-          <Td>{proposal.status}</Td>
+          <Td><TechcommProposalStatus status={proposal.status} text={proposal.status}/></Td>
           <Td>action</Td>
         </Tr>)
     })}

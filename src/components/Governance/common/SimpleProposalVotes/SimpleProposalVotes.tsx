@@ -5,6 +5,7 @@ import { Identicon } from '@/components/Identicon';
 import { ExtrinsicLink } from '@/components/Links';
 import { SimpleProposalVote } from '@/types/api';
 import { Time } from '@/components/Time';
+import { ReplyStatus } from '@/components/Status';
 
 interface Props extends BareProps {
   votes: SimpleProposalVote[];
@@ -33,7 +34,7 @@ const SimpleProposalVotes: React.FC<Props> = ({ votes }) => {
               <Time date={item.voting_time} />
             </Td>
             <Td>
-              <Text>{item.passed.toString()}</Text>
+              <ReplyStatus type={item.passed} />
             </Td>
           </Tr>
         );

@@ -1,18 +1,18 @@
 import React from 'react';
-import { BareProps } from '@/types/page';
-import { GetDemocracySecondedProps, unwrap, useDemocracySeconded } from '@/utils/api';
-import { PAGE_ROW } from '@/config/constants';
+import { BareProps, BareServerSideProps } from '@/types/page';
 import { Table, Td, Th, Tr, Text } from '@/ui';
 import { Identicon } from '@/components/Identicon';
 import { ExtrinsicLink } from '@/components/Links';
 import { DemocracyVote } from '@/types/api';
 import { Time } from '@/components/Time';
+import { ReplyStatus } from '@/components/Status';
+import { Balance } from '@/components/Balance';
 
-interface Props extends BareProps {
+interface Props extends BareProps, BareServerSideProps {
   votes: DemocracyVote[];
 }
 
-const ReferendaVotes: React.FC<Props> = ({ votes }) => {
+const ReferendaVotes: React.FC<Props> = ({ votes, chain }) => {
   return (<Table className='w-full'>
     <tbody>
       <Tr>
@@ -33,13 +33,13 @@ const ReferendaVotes: React.FC<Props> = ({ votes }) => {
               <Identicon account={item.account} />
             </Td>
             <Td>
-              <Text>{item.conviction} * {item.amount}</Text>
+              <Text className='whitespace-nowrap'>{item.conviction} x <Balance value={item.amount} token={chain?.nativeTokenConf} /></Text>
             </Td>
             <Td>
-              <Time date={item.voting_time}/>
+              <Time date={item.voting_time} />
             </Td>
             <Td>
-              <Text>{item.passed.toString()}</Text>
+              <ReplyStatus type={item.passed} />
             </Td>
           </Tr>
         );

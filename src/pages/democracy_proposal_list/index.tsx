@@ -3,6 +3,8 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getDemocracyProposals, GetDemocracyProposalsDataProps } from '@/utils/api';
 import { PAGE_ROW } from '@/config/constants';
 import { ProposalList } from '@/components/Governance';
+import { getChainProps } from '@/utils/chain';
+import { BareServerSideProps } from '@/types/page';
 
 const orderFieldMap = {
   waiting: 'seconded_count',
@@ -18,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<{
   data: GetDemocracyProposalsDataProps,
   type: keyof typeof orderFieldMap,
   page: number,
-}> = async (context) => {
+} & BareServerSideProps> = async (context) => {
   const tab = (context.query.status || '')?.toString() as (keyof typeof orderFieldMap);
   const page = parseInt(context.query.page as string) || 1;
 
@@ -26,8 +28,9 @@ export const getServerSideProps: GetServerSideProps<{
   const orderField = typeof orderFieldMap[type] === 'undefined' ? orderFieldMap.waiting : orderFieldMap[type];
   const status = typeof statusMap[type] === 'undefined' ? statusMap.waiting : statusMap[type];
   const data = await getDemocracyProposals(context.req.headers.host || '', { "row": PAGE_ROW, "page": page - 1, "order_field": orderField, "status": status });
-
-  if (!data || data.code !== 0) {
+  const chainProps = await getChainProps(context.req.headers.host);
+  
+  if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
     }
@@ -38,6 +41,7 @@ export const getServerSideProps: GetServerSideProps<{
       data: data.data,
       type,
       page: page,
+      chain: chainProps,
     },
   }
 }

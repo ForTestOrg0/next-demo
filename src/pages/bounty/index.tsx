@@ -3,19 +3,22 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getBountiesProposals, GetBountiesProposalsProps } from '@/utils/api';
 import { PAGE_ROW } from '@/config/constants';
 import { BountiesList } from '@/components/Governance';
+import { getChainProps } from '@/utils/chain';
+import { BareServerSideProps } from '@/types/page';
 
 const statusMap = {
   waiting: 'active',
   historical: 'historical',
 }
 
-export const getServerSideProps: GetServerSideProps<{ data: GetBountiesProposalsProps, type: keyof typeof statusMap }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<{ data: GetBountiesProposalsProps, type: keyof typeof statusMap } & BareServerSideProps> = async (context) => {
   const tab = (context.query.tab || '')?.toString() as (keyof typeof statusMap);
   const type = typeof statusMap[tab] === 'undefined' ? 'waiting' : tab;
   const status = statusMap[type] || statusMap.waiting;
   const data = await getBountiesProposals(context.req.headers.host || '', { "row": PAGE_ROW, "page": 0, "status": status });
-
-  if (!data || data.code !== 0) {
+  const chainProps = await getChainProps(context.req.headers.host);
+  
+  if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
     }
@@ -25,11 +28,12 @@ export const getServerSideProps: GetServerSideProps<{ data: GetBountiesProposals
     props: {
       data: data.data,
       type,
+      chain: chainProps,
     },
   }
 }
 
-export default function Page({ data, type }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ data, type, chain }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
       <Container className='flex-1'>
@@ -51,7 +55,7 @@ export default function Page({ data, type }: InferGetServerSidePropsType<typeof 
               }
             ]
           } />
-          <BountiesList proposals={data.list} />
+          <BountiesList proposals={data.list} chain={chain} />
         </Boundary>
         <LinkRouter href={`/bounty?tab=${type}`}>
           <Button outline className='mt-4'>View Other {data.count - PAGE_ROW} {type} </Button>

@@ -2,13 +2,16 @@ import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPane
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { GetTreasuryTipProps, getTreasuryTip } from '@/utils/api';
 import { TreasuryTipInfo, TreasuryTippersClient } from '@/components/Governance';
+import { getChainProps } from '@/utils/chain';
+import { BareServerSideProps } from '@/types/page';
 
-export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTreasuryTipProps, tab: string, tipHash: string }, { id: string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTreasuryTipProps, tab: string, tipHash: string } & BareServerSideProps, { id: string }> = async (context) => {
   const host = context.req.headers.host || '';
   const tab = (context.query.tab || '')?.toString();
   const tipHash = context.params?.id;
-
-  if (typeof tipHash === 'undefined') {
+  const chainProps = await getChainProps(context.req.headers.host);
+  
+  if (typeof tipHash === 'undefined' || !chainProps) {
     return {
       notFound: true,
     }
@@ -27,6 +30,7 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTre
       data: data.data,
       tab,
       tipHash,
+      chain: chainProps,
     },
   }
 }

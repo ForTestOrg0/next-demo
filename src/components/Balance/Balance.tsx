@@ -11,9 +11,9 @@ interface Props extends BareProps {
 
 const Component: React.FC<Props> = ({ value, token, className }) => {
   const balance = getFullDisplayBalance(new BigNumber(value), token.decimals).toString();
-  return (<div className={clsx('flex whitespace-nowrap', className)}>
+  return (<span className={clsx('whitespace-nowrap', className)}>
     {formatNumber(balance)} {token.symbol}
-  </div>);
+  </span>);
 };
 
 export default Component;
