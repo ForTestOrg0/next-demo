@@ -41,7 +41,7 @@ export default function Page({ host, data, chain, referendumIndex }: InferGetSer
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>Democracy Proposals#{referendumIndex}</Text>
+        <Text block bold className='mb-4 break-all'>Democracy Proposals#{referendumIndex}</Text>
 
         <Boundary>
           <ReferendaInfo referenda={data.info} />

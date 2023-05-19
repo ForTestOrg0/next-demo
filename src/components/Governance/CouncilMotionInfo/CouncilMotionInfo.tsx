@@ -1,6 +1,6 @@
 import React from 'react';
 import { BareProps } from '@/types/page';
-import { Table, Td, Tr } from '@/ui';
+import { TableCol, TdCol, TrCol } from '@/ui';
 import { BlockLink } from '@/components/Links';
 import { CouncilProposalDetail } from '@/types/api';
 import { BaseVoteStatistics } from '@/components/VoteThreshold';
@@ -11,42 +11,42 @@ interface Props extends BareProps {
 }
 
 const CouncilMotionInfo: React.FC<Props> = ({ proposal }) => {
-  return (<Table className='w-full'>
+  return (<TableCol className='w-full'>
     <tbody>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap w-44'>Created at Block</Td>
-        <Td><BlockLink blockNumber={proposal?.created_block} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Updated at Block</Td>
-        <Td><BlockLink blockNumber={proposal?.updated_block || proposal?.created_block} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Motion Hash</Td>
-        <Td>{proposal?.proposal_hash}</Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Proposer</Td>
-        <Td><Identicon account={proposal?.proposer} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Member Threshold</Td>
-        <Td>{proposal?.member_count}</Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Vote Statistics</Td>
-        <Td><BaseVoteStatistics ayeAmount={proposal.aye_votes} nayAmount={proposal.nay_votes} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Status</Td>
-        <Td>{proposal?.status}</Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Execution Result</Td>
-        <Td>{proposal.executed_success.toString()}</Td>
-      </Tr>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap w-44'>Created at Block</TdCol>
+        <TdCol><BlockLink blockNumber={proposal?.created_block} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Updated at Block</TdCol>
+        <TdCol><BlockLink blockNumber={proposal?.updated_block || proposal?.created_block} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Motion Hash</TdCol>
+        <TdCol>{proposal?.proposal_hash}</TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Proposer</TdCol>
+        <TdCol><Identicon account={proposal?.proposer} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Member Threshold</TdCol>
+        <TdCol>{proposal?.member_count}</TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Vote Statistics</TdCol>
+        <TdCol><BaseVoteStatistics ayeAmount={proposal.aye_votes} nayAmount={proposal.nay_votes} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Status</TdCol>
+        <TdCol>{proposal?.status}</TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Execution Result</TdCol>
+        <TdCol>{proposal.executed_success.toString()}</TdCol>
+      </TrCol>
     </tbody>
-  </Table>)
+  </TableCol>)
 };
 
 export default CouncilMotionInfo;

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { BareProps, ChainProps } from '@/types/page';
 import { PageContent, Container, Text, Flex, Link, Popover, PopoverTrigger, PopoverContent, Menu, MenuButton, MenuItems, MenuItem } from '@/ui';
-import { COPYRIGHT_PERIOD } from '@/config/constants';
-import { DonateIcon, EarthIcon, MailIcon, MoonIcon, SunIcon } from '@/ui/Svg';
+import { COPYRIGHT_PERIOD, EMAIL } from '@/config/constants';
+import { DonateIcon, EarthIcon, EmailBlockIcon, MailIcon, MoonIcon, SunIcon } from '@/ui/Svg';
 import { AccountLink } from '../Links';
 import { useDarkMode } from 'usehooks-ts';
 import { docCookies } from '@/utils/cookies';
@@ -88,7 +88,7 @@ const Component: React.FC<Props> = ({ chain, children, className }) => {
           <Link className='text-xs text-sub-b2' href='https://subscan.statuspage.io/'>Service Status</Link>
           <Link className='text-xs text-sub-b2' href='https://github.com/itering/subscan-issue-tracker/issues/new/choose'>Feedback</Link>
           {chain?.chainConf.donate ? <DonatePopver symbol={chain?.nativeTokenConf.symbol} address={chain?.chainConf.donate} /> : null}
-          <MailIcon className='w-5 text-sub-b2' />
+          <Link href={`mailto:${EMAIL}`} external><EmailBlockIcon className='w-5 text-sub-b2' /></Link>
           <ThemeSwitcher />
           <LanguageSwitcher />
         </Flex>

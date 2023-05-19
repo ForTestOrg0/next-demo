@@ -33,7 +33,7 @@ export default function Page({ data, type }: InferGetServerSidePropsType<typeof 
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>Bounties</Text>
+        <Text block bold className='mb-4 break-all'>Bounties</Text>
         <Boundary>
           <TabsServer className='mb-4' items={
             [

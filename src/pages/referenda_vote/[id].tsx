@@ -44,7 +44,7 @@ export default function Layout({ data, page, referendumIndex }: InferGetServerSi
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>For Democracy Referenda#{referendumIndex} ({data.count})</Text>
+        <Text block bold className='mb-4 break-all'>For Democracy Referenda#{referendumIndex} ({data.count})</Text>
         <Boundary>
           <ReferendaVotes votes={data.list} />
         </Boundary>

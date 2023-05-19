@@ -38,7 +38,7 @@ export default function Page({ host, data, tipHash }: InferGetServerSidePropsTyp
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>Treasury Tips#{tipHash}</Text>
+        <Text block bold className='mb-4 break-all'>Treasury Tips#{tipHash}</Text>
 
         <Boundary>
           <TreasuryTipInfo proposal={proposal} />

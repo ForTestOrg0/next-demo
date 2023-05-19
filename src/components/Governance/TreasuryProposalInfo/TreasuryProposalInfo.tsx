@@ -1,6 +1,6 @@
 import React from 'react';
 import { BareProps } from '@/types/page';
-import { Table, Td, Tr, Text } from '@/ui';
+import { TableCol, TdCol, TrCol, Text } from '@/ui';
 import { BlockLink } from '@/components/Links';
 import { TreasuryProposalDetail } from '@/types/api';
 import { Identicon } from '@/components/Identicon';
@@ -10,30 +10,30 @@ interface Props extends BareProps {
 }
 
 const Page: React.FC<Props> = ({ proposal }) => {
-  return (<Table className='w-full'>
+  return (<TableCol className='w-full'>
     <tbody>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap w-44'>Created at Block</Td>
-        <Td><BlockLink blockNumber={proposal?.created_block} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Proposed by</Td>
-        <Td><Identicon account={proposal?.proposer} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Beneficiary</Td>
-        <Td><Identicon account={proposal?.beneficiary} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Reward</Td>
-        <Td><Text>{proposal.reward}</Text></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Status</Td>
-        <Td>{proposal?.status}</Td>
-      </Tr>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap w-44'>Created at Block</TdCol>
+        <TdCol><BlockLink blockNumber={proposal?.created_block} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Proposed by</TdCol>
+        <TdCol><Identicon account={proposal?.proposer} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Beneficiary</TdCol>
+        <TdCol><Identicon account={proposal?.beneficiary} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Reward</TdCol>
+        <TdCol><Text>{proposal.reward}</Text></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Status</TdCol>
+        <TdCol>{proposal?.status}</TdCol>
+      </TrCol>
     </tbody>
-  </Table>)
+  </TableCol>)
 };
 
 export default Page;

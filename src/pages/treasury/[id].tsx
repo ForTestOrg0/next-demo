@@ -39,7 +39,7 @@ export default function Page({ data, proposalId }: InferGetServerSidePropsType<t
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>Treasury Proposals#{proposalId}</Text>
+        <Text block bold className='mb-4 break-all'>Treasury Proposals#{proposalId}</Text>
 
         <Boundary>
           <TreasuryProposalInfo proposal={proposal} />

@@ -43,11 +43,11 @@ const VotePredict: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => {
   <div className={clsx('flex', className)}>
     <div className="relative inline-block px-5 pt-2.5 pb-11" style={cssVars}>
       <div className="relative w-[500px]">
-        <div className="w-full h-7 bg-[var(--ui-error)]"></div>
-        <div className="w-[var(--aye-progress)] absolute top-0 h-7 bg-[var(--ui-success)]"></div>
+        <div className="w-full h-7 bg-sub-error-light"></div>
+        <div className="w-[var(--aye-progress)] absolute top-0 h-7 bg-sub-success-light"></div>
       </div>
       <div className="flex absolute top-2.5 flex-col left-0 items-start">
-        <div className="w-9 h-7 rounded-l flex justify-center items-center bg-[var(--ui-success)]">
+        <div className="w-9 h-7 rounded-l flex justify-center items-center bg-sub-success-light">
           <Image src={ayeImg} width={16} height={16} alt={'aye'} />
         </div>
         <div className="mt-1">Aye</div>
@@ -56,7 +56,7 @@ const VotePredict: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => {
         </div>
       </div>
       <div className="flex absolute top-2.5 flex-col right-0 items-end">
-        <div className="w-9 h-7 rounded-r flex justify-center items-center bg-[var(--ui-error)]">
+        <div className="w-9 h-7 rounded-r flex justify-center items-center bg-sub-error-light">
           <Image src={nayImg} width={16} height={16} alt={'nay'} />
         </div>
         <div className="mt-1">Nay</div>

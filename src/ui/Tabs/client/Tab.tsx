@@ -7,7 +7,7 @@ import clsx from 'clsx';
 // https://headlessui.com/react/tabs
 export const TabGroup = HeadlessuiTab.Group;
 export const TabList: React.FC<BareProps> = ({ children, className, ...props }) => {
-  return (<HeadlessuiTab.List className={clsx('flex space-x-10', className)} {...props}>
+  return (<HeadlessuiTab.List className={clsx('flex space-x-10 overflow-x-auto mb-2', className)} {...props}>
     {children}
   </HeadlessuiTab.List>)
 };

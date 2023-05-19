@@ -1,6 +1,6 @@
 import React from "react";
 import { BareProps } from "@/types/page";
-import { Table, Td, Tr } from "@/ui";
+import { TableCol, TdCol, TrCol } from "@/ui";
 import { BlockLink } from "@/components/Links";
 import { DemocracyReferendumDetail } from "@/types/api";
 import { VotePredict } from "@/components/VoteThreshold";
@@ -11,42 +11,42 @@ interface Props extends BareProps {
 
 const ReferendaInfo: React.FC<Props> = ({ referenda }) => {
   return (
-    <Table className="w-full">
+    <TableCol className="w-full">
       <tbody>
-        <Tr>
-          <Td className="font-semibold w-44">Created at Block</Td>
-          <Td>
+        <TrCol>
+          <TdCol className="font-semibold w-44">Created at Block</TdCol>
+          <TdCol>
             <BlockLink blockNumber={referenda?.created_block} />
-          </Td>
-        </Tr>
-        <Tr>
-          <Td className="font-semibold">Updated at Block</Td>
-          <Td>
+          </TdCol>
+        </TrCol>
+        <TrCol>
+          <TdCol className="font-semibold">Updated at Block</TdCol>
+          <TdCol>
             <BlockLink
               blockNumber={referenda?.updated_block || referenda?.created_block}
             />
-          </Td>
-        </Tr>
-        <Tr>
-          <Td className="font-semibold">Status</Td>
-          <Td>{referenda?.status}</Td>
-        </Tr>
-        <Tr>
-          <Td className="font-semibold">Delay</Td>
-          <Td>{referenda?.delay}</Td>
-        </Tr>
-        <Tr>
-          <Td className="font-semibold">End</Td>
-          <Td>{referenda?.end}</Td>
-        </Tr>
+          </TdCol>
+        </TrCol>
+        <TrCol>
+          <TdCol className="font-semibold">Status</TdCol>
+          <TdCol>{referenda?.status}</TdCol>
+        </TrCol>
+        <TrCol>
+          <TdCol className="font-semibold">Delay</TdCol>
+          <TdCol>{referenda?.delay}</TdCol>
+        </TrCol>
+        <TrCol>
+          <TdCol className="font-semibold">End</TdCol>
+          <TdCol>{referenda?.end}</TdCol>
+        </TrCol>
 
-        <Tr>
-          <Td className="font-semibold">Vote Threshold</Td>
-          <Td>{referenda?.vote_threshold}</Td>
-        </Tr>
-        <Tr>
-          <Td className="font-semibold">Outcome Prediction</Td>
-          <Td>
+        <TrCol>
+          <TdCol className="font-semibold">Vote Threshold</TdCol>
+          <TdCol>{referenda?.vote_threshold}</TdCol>
+        </TrCol>
+        <TrCol>
+          <TdCol className="font-semibold">Outcome Prediction</TdCol>
+          <TdCol>
             <VotePredict
               ayeAmount={referenda.aye_amount}
               ayeWithoutConviction={referenda.aye_without_conviction}
@@ -55,10 +55,10 @@ const ReferendaInfo: React.FC<Props> = ({ referenda }) => {
               turnout={referenda.turnout}
               threshold={referenda.vote_threshold}
             />
-          </Td>
-        </Tr>
+          </TdCol>
+        </TrCol>
       </tbody>
-    </Table>
+    </TableCol>
   );
 };
 

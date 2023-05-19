@@ -1,6 +1,6 @@
 import React from 'react';
 import { BareProps } from '@/types/page';
-import { Table, Td, Tr } from '@/ui';
+import { TableCol, TdCol, TrCol } from '@/ui';
 import { BlockLink } from '@/components/Links';
 import { GetDemocracyProposalByIdDataProps } from '@/utils/api';
 
@@ -9,30 +9,30 @@ interface Props extends BareProps {
 }
 
 const ProposalInfo: React.FC<Props> = ({ proposal }) => {
-  return (<Table className='w-full'>
+  return (<TableCol className='w-full'>
     <tbody>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Created at Block</Td>
-        <Td><BlockLink blockNumber={proposal?.created_block} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Updated at Block</Td>
-        <Td><BlockLink blockNumber={proposal?.updated_block} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Motion Hash</Td>
-        <Td>{proposal?.proposal_hash}</Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Seconds</Td>
-        <Td>{proposal?.seconded_count}</Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Status</Td>
-        <Td>{proposal?.status}</Td>
-      </Tr>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Created at Block</TdCol>
+        <TdCol><BlockLink blockNumber={proposal?.created_block} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Updated at Block</TdCol>
+        <TdCol><BlockLink blockNumber={proposal?.updated_block} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Motion Hash</TdCol>
+        <TdCol>{proposal?.proposal_hash}</TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Seconds</TdCol>
+        <TdCol>{proposal?.seconded_count}</TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Status</TdCol>
+        <TdCol>{proposal?.status}</TdCol>
+      </TrCol>
     </tbody>
-  </Table>)
+  </TableCol>)
 };
 
 export default ProposalInfo;

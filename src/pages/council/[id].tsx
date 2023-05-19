@@ -44,7 +44,7 @@ export default function Page({ data, proposalId, chain }: InferGetServerSideProp
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>Council Motions#{proposalId}</Text>
+        <Text block bold className='mb-4 break-all'>Council Motions#{proposalId}</Text>
 
         <Boundary>
           <CouncilMotionInfo proposal={council} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BareProps } from '@/types/page';
-import { Table, Td, Tr, Text } from '@/ui';
+import { TableCol, TdCol, TrCol, Text } from '@/ui';
 import { BlockLink } from '@/components/Links';
 import { BountiesProposalDetail } from '@/types/api';
 import { Identicon } from '@/components/Identicon';
@@ -10,50 +10,50 @@ interface Props extends BareProps {
 }
 
 const Page: React.FC<Props> = ({ proposal }) => {
-  return (<Table className='w-full'>
+  return (<TableCol className='w-full'>
     <tbody>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Created at Block</Td>
-        <Td><BlockLink blockNumber={proposal?.created_block} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Proposer</Td>
-        <Td><Identicon account={proposal?.proposer} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Curator</Td>
-        <Td><Identicon account={proposal?.curator} /></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Description</Td>
-        <Td><Text>{proposal?.description}</Text></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Bounty Value</Td>
-        <Td><Text>{proposal?.value}</Text></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Proposer Bond</Td>
-        <Td><Text>{proposal?.bond}</Text></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Curator Deposit</Td>
-        <Td><Text>{proposal?.curator_deposit}</Text></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Curator Fee</Td>
-        <Td><Text>{proposal?.curator_fee}</Text></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Expiry Time</Td>
-        <Td><Text>{proposal?.expire_block}</Text></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Status</Td>
-        <Td><Text>{proposal?.status}</Text></Td>
-      </Tr>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Created at Block</TdCol>
+        <TdCol><BlockLink blockNumber={proposal?.created_block} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Proposer</TdCol>
+        <TdCol><Identicon account={proposal?.proposer} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Curator</TdCol>
+        <TdCol><Identicon account={proposal?.curator} /></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Description</TdCol>
+        <TdCol><Text>{proposal?.description}</Text></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Bounty Value</TdCol>
+        <TdCol><Text>{proposal?.value}</Text></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Proposer Bond</TdCol>
+        <TdCol><Text>{proposal?.bond}</Text></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Curator Deposit</TdCol>
+        <TdCol><Text>{proposal?.curator_deposit}</Text></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Curator Fee</TdCol>
+        <TdCol><Text>{proposal?.curator_fee}</Text></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Expiry Time</TdCol>
+        <TdCol><Text>{proposal?.expire_block}</Text></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Status</TdCol>
+        <TdCol><Text>{proposal?.status}</Text></TdCol>
+      </TrCol>
     </tbody>
-  </Table>)
+  </TableCol>)
 };
 
 export default Page;

@@ -39,9 +39,9 @@ export default function Page({ data, type }: InferGetServerSidePropsType<typeof 
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>Democracy Proposals</Text>
+        <Text block bold className='mb-4 break-all'>Democracy Proposals</Text>
         <Boundary>
-          <TabsServer className='mb-4' items={
+          <TabsServer className='mb-2' items={
             [
               {
                 label: 'Waiting Queue',

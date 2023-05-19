@@ -40,7 +40,7 @@ export default function Page({ host, data, chain, democracyId }: InferGetServerS
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>Democracy Proposals#{democracyId}</Text>
+        <Text block bold className='mb-4 break-all'>Democracy Proposals#{democracyId}</Text>
 
         <Boundary>
           <ProposalInfo proposal={data.info} />

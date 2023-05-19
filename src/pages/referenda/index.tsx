@@ -30,7 +30,7 @@ export default function Layout({ data, page }: InferGetServerSidePropsType<typeo
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>Democracy Referenda</Text>
+        <Text block bold className='mb-4 break-all'>Democracy Referenda</Text>
         <Boundary>
           <ReferendaList referendums={data.list} />
         </Boundary>

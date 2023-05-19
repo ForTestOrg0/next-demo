@@ -46,7 +46,7 @@ export default function Layout({ data, type, page }: InferGetServerSidePropsType
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>Democracy Proposals - {type} ({data.count})</Text>
+        <Text block bold className='mb-4 break-all'>Democracy Proposals - {type} ({data.count})</Text>
         <Boundary>
           <ProposalList proposals={data.list} />
         </Boundary>

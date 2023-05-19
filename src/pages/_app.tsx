@@ -12,6 +12,9 @@ import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { ChainProps } from '@/types/page'
 import ReactGA from "react-ga4";
+import utc from 'dayjs/plugin/utc';
+import dayjs from 'dayjs';
+
 // import { appWithTranslation } from 'next-i18next'
 
 // add global ga4
@@ -28,6 +31,9 @@ BigNumber.config({
   DECIMAL_PLACES: 80,
   ROUNDING_MODE: 1
 });
+
+// dayjs
+dayjs.extend(utc);
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactElement

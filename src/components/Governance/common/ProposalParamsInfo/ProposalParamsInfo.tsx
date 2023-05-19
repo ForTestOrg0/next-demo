@@ -1,6 +1,6 @@
 import React from 'react';
 import { BareProps } from '@/types/page';
-import { Table, Td, Tr } from '@/ui';
+import { TableCol, TdCol, TrCol } from '@/ui';
 import { ExtrinsicCall, ExtrinsicModule } from '@/components/ExtrinsicModuleCall';
 import { Parameters } from '@/components/Parameters';
 
@@ -11,22 +11,22 @@ interface Props extends BareProps {
 }
 
 const ProposalParamsInfo: React.FC<Props> = ({ callModule, callName, params }) => {
-  return (<Table className='w-full'>
+  return (<TableCol className='w-full'>
     <tbody>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Module</Td>
-        <Td><ExtrinsicModule module={callModule}/></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Call</Td>
-        <Td><ExtrinsicCall call={callName}/></Td>
-      </Tr>
-      <Tr>
-        <Td className='font-semibold whitespace-nowrap'>Parameters</Td>
-        <Td><Parameters value={params}/></Td>
-      </Tr>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Module</TdCol>
+        <TdCol><ExtrinsicModule module={callModule}/></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Call</TdCol>
+        <TdCol><ExtrinsicCall call={callName}/></TdCol>
+      </TrCol>
+      <TrCol>
+        <TdCol className='font-semibold whitespace-nowrap'>Parameters</TdCol>
+        <TdCol><Parameters value={params}/></TdCol>
+      </TrCol>
     </tbody>
-  </Table>)
+  </TableCol>)
 };
 
 export default ProposalParamsInfo;

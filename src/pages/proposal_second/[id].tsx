@@ -43,7 +43,7 @@ export default function Layout({ data, page, row, proposalId }: InferGetServerSi
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-2 break-all'>For Democracy Proposal#{proposalId} ({data.count})</Text>
+        <Text block bold className='mb-4 break-all'>For Democracy Proposal#{proposalId} ({data.count})</Text>
         <Boundary>
           <ProposalSeconds total={data.count} start={(page - 1) * row} seconds={data.list} />
         </Boundary>

@@ -12,7 +12,7 @@ interface Props extends BareProps {
 
 const normalCls = 'relative inline-flex items-center px-4 py-2 rounded text-sm text-sub-b2 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0';
 const currentCls = 'relative z-10 inline-flex items-center px-4 py-2 rounded ring-1 ring-inset ring-sub-network text-sm text-sub-network focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600';
-const disableCls = 'relative inline-flex items-center px-4 py-2 rounded text-sm text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0';
+const disableCls = 'relative inline-flex items-center px-4 py-2 rounded text-sm text-sub-b2 ring-1 ring-inset ring-gray-300 focus:outline-offset-0';
 const boxCls = 'isolate inline-flex -space-x-px rounded-md shadow-sm space-x-1';
 
 const PreviousBtn = ({ current, minPageNumber, urlRender }: { current: number, minPageNumber: number, urlRender: (page: number) => string; }) => {
