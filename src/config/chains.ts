@@ -7,5 +7,5 @@ export function getChainConfigBySubdomain(name: string): Chain | null {
   if (result.length > 0) {
     return result[0];
   }
-  return null;
+  return CHAINS[0];
 }
