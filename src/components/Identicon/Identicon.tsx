@@ -86,7 +86,7 @@ const Identicon: React.FC<Props> = ({ account, className }) => {
               <Text>{formatHash(displayName)}</Text>
             </AccountLink>
           </TooltipTrigger>
-          <TooltipContent className="Tooltip">{displayName}</TooltipContent>
+          <TooltipContent className="Tooltip">{account?.address}</TooltipContent>
         </Tooltip>
       </div>
     </div>
