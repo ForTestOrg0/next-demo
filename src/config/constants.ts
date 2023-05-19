@@ -12,6 +12,9 @@ export const BIGNUMBER_FMT = {
 };
 export const COPYRIGHT_PERIOD = '2023';
 
+export const GOOD_JUDGEMENTS = ['reasonable', 'known good', 'knowngood'];
+export const BAD_JUDGEMENTS = ['out of date', 'outofdate', 'low quality', 'lowquality'];
+
 export const TWITTER = 'https://twitter.com/subscan_io';
 export const GITHUB = 'https://github.com/subscan-explorer';
 export const RIOT = 'https://riot.im/app/#/room/!uaYUrKBueiKUurHliJ:matrix.org?via=matrix.org&via=matrix.parity.io&via=web3.foundation';

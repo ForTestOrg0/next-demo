@@ -15,15 +15,23 @@ import {
 } from "@floating-ui/react";
 import type { Placement } from "@floating-ui/react";
 import styles from './Tooltip.module.css';
+import useCopyToClipboard from '@/hooks/useCopyToClipboard';
+import { message } from '../Message';
 
 interface TooltipOptions {
   initialOpen?: boolean;
   placement?: Placement;
   open?: boolean;
+  copyable?: boolean;
   onOpenChange?: (open: boolean) => void;
 }
 
+type TooltipContentType = {
+  copyable?: boolean;
+}
+
 export function useTooltip({
+  copyable,
   initialOpen = false,
   placement = "top",
   open: controlledOpen,
@@ -68,6 +76,7 @@ export function useTooltip({
 
   return React.useMemo(
     () => ({
+      copyable,
       open,
       setOpen,
       ...interactions,
@@ -141,17 +150,26 @@ export const TooltipTrigger = React.forwardRef<
 
 export const TooltipContent = React.forwardRef<
   HTMLDivElement,
-  React.HTMLProps<HTMLDivElement>
+  React.HTMLProps<HTMLDivElement> & TooltipContentType
 >(function TooltipContent(props, propRef) {
   const context = useTooltipContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
-
+  const [value, copy] = useCopyToClipboard();
+  const copyFn = () => {
+    if (context.copyable) {
+      if (typeof props.children == 'string') {
+        copy(props.children)
+        message['success']("Copy Succeeded");
+      }
+    }
+  };
   if (!context.open) return null;
 
   return (
     <FloatingPortal>
       <div
         ref={ref}
+        onClick={copyFn}
         style={{
           position: context.strategy,
           top: context.y ?? 0,
