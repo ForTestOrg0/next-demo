@@ -4,6 +4,7 @@ import { getDemocracyProposalById, getDemocracyProposals, GetDemocracyProposalBy
 import { ProposalInfo, ProposalPreImage, ProposalSecondsClient, ProposalTimeLine } from '@/components/Governance';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
+import METADATA from "@/config/metadata";
 
 
 export const getServerSideProps: GetServerSideProps<{ host: string; data: GetDemocracyProposalByIdDataProps, tab: string, democracyId: number } & BareServerSideProps, { id: string }> = async (context) => {
@@ -31,6 +32,8 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetDem
       tab,
       democracyId: parseInt(democracyId),
       chain: chainProps,
+      title: METADATA['democracy_proposal']['title'] + democracyId,
+      description: METADATA['democracy_proposal']['description']
     },
   }
 }

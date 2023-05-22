@@ -4,6 +4,7 @@ import { getTechcommProposal, GetTechcommProposalProps } from '@/utils/api';
 import { SimpleProposalVotes, ProposalParamsInfo, ProposalPreImage, ProposalTimeLine, TechcommProposalInfo } from '@/components/Governance';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
+import METADATA from "@/config/metadata";
 
 export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTechcommProposalProps, tab: string, proposalId: number } & BareServerSideProps, { id: string }> = async (context) => {
   const host = context.req.headers.host || '';
@@ -31,6 +32,8 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTec
       tab,
       proposalId: parseInt(proposalId),
       chain: chainProps,
+      title: METADATA['tech']['title'] + proposalId,
+      description: METADATA['tech']['description']
     },
   }
 }

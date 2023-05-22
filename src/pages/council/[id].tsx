@@ -4,6 +4,7 @@ import { getCouncilProposal, GetCouncilProposalProps } from '@/utils/api';
 import { CouncilMotionInfo, SimpleProposalVotes, ProposalParamsInfo, ProposalPreImage, ProposalTimeLine } from '@/components/Governance';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
+import METADATA from "@/config/metadata";
 // import { useTranslation } from 'next-i18next'
 
 export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCouncilProposalProps, tab: string, proposalId: number } & BareServerSideProps, { id: string }> = async (context) => {
@@ -31,7 +32,9 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCou
       data: data.data,
       tab,
       proposalId: parseInt(proposalId),
-      chain: chainProps
+      chain: chainProps,
+      title: METADATA['council_motion']['title'] + proposalId,
+      description: METADATA['council_motion']['description']
     },
   }
 }

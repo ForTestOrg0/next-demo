@@ -5,6 +5,7 @@ import { ProposalTimeLine } from '@/components/Governance';
 import { TreasuryProposalInfo } from '@/components/Governance/TreasuryProposalInfo';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
+import METADATA from "@/config/metadata";
 
 export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTreasuryProposalProps, tab: string, proposalId: number } & BareServerSideProps, { id: string }> = async (context) => {
   const host = context.req.headers.host || '';
@@ -32,6 +33,8 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTre
       tab,
       proposalId: parseInt(proposalId),
       chain: chainProps,
+      title: METADATA['treasury']['title'] + proposalId,
+      description: METADATA['treasury']['description']
     },
   }
 }

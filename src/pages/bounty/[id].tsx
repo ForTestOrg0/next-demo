@@ -4,6 +4,7 @@ import { getBountiesProposal, GetBountiesProposalProps } from '@/utils/api';
 import { BountiesInfo, ProposalTimeLine } from '@/components/Governance';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
+import METADATA from "@/config/metadata";
 
 
 export const getServerSideProps: GetServerSideProps<{ host: string; data: GetBountiesProposalProps, tab: string, proposalId: number } & BareServerSideProps, { id: string }> = async (context) => {
@@ -32,6 +33,8 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetBou
       tab,
       proposalId: parseInt(proposalId),
       chain: chainProps,
+      title: METADATA['bounty']['title'] + proposalId,
+      description: METADATA['bounty']['description']
     },
   }
 }

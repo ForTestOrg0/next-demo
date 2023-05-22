@@ -4,6 +4,7 @@ import { GetTreasuryTipProps, getTreasuryTip } from '@/utils/api';
 import { TreasuryTipInfo, TreasuryTippersClient } from '@/components/Governance';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
+import METADATA from "@/config/metadata";
 
 export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTreasuryTipProps, tab: string, tipHash: string } & BareServerSideProps, { id: string }> = async (context) => {
   const host = context.req.headers.host || '';
@@ -31,6 +32,8 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTre
       tab,
       tipHash,
       chain: chainProps,
+      title: METADATA['tip']['title'] + tipHash,
+      description: METADATA['tip']['description']
     },
   }
 }

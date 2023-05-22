@@ -85,7 +85,7 @@ const MyApp: React.FC<AppPropsWithLayout> = (({ Component, pageProps }) => {
     return getLayout(<Component {...pageProps} />);
   }
 
-  return (<RootLayout>
+  return (<RootLayout pageProps={pageProps}>
     <Header />
     <div className='flex-1'>
       <Component {...pageProps} />

@@ -5,6 +5,7 @@ import { ProposalPreImage, ProposalTimeLine, ReferendaInfo, ReferendaVotesClient
 import { PAGE_ROW } from '@/config/constants';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
+import METADATA from "@/config/metadata";
 
 export const getServerSideProps: GetServerSideProps<{ host: string; data: GetDemocracyReferendumProps, tab: string, referendumIndex: number } & BareServerSideProps, { id: string }> = async (context) => {
   const host = context.req.headers.host || '';
@@ -31,7 +32,9 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetDem
       data: data.data,
       tab,
       referendumIndex: parseInt(referendumIndex),
-      chain: chainProps
+      chain: chainProps,
+      title: METADATA['referendum']['title'] + referendumIndex,
+      description: METADATA['referendum']['description']
     },
   }
 }
@@ -41,7 +44,7 @@ export default function Page({ host, data, chain, referendumIndex }: InferGetSer
   return (
     <PageContent>
       <Container className='flex-1'>
-        <Text block bold className='mb-4 break-all'>Democracy Proposals#{referendumIndex}</Text>
+        <Text block bold className='mb-4 break-all'>Democracy Referenda#{referendumIndex}</Text>
 
         <Boundary>
           <ReferendaInfo referenda={data.info} />
