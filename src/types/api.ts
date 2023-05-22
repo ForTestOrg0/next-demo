@@ -7,6 +7,7 @@ export interface APIWarpperProps<T> {
   message: string;
 }
 
+/** Governance **/
 export interface ProposalPreImage {
   amount: string;
   author: {
@@ -169,7 +170,7 @@ export interface BountiesProposal {
 }
 
 export interface BountiesProposalDetail extends BountiesProposal {
-  beneficiary: AccountDisplay,
+  beneficiary: AccountDisplay;
   bond: string;
   created_block: BlockNumber;
   curator: AccountDisplay;
@@ -200,4 +201,69 @@ export interface TokenMetadata {
   election_locked_balance: string;
   vesting_balance: string;
   inflation: string;
-};
+}
+
+/** General **/
+export interface Block {
+  block_num: BlockNumber;
+  block_timestamp: Timestamp;
+  hash: string;
+  event_count: number;
+  extrinsics_count: number;
+  finalized: boolean;
+  account_display: AccountDisplay;
+}
+
+export interface Extrinsic {
+  block_timestamp: number;
+  block_num: number;
+  extrinsic_index: string;
+  call_module_function: string;
+  call_module: string;
+  params: string;
+  account_id: string;
+  account_index: string;
+  signature: string;
+  nonce: number;
+  extrinsic_hash: string;
+  success: boolean;
+  fee: string;
+  fee_used: string;
+  from_hex: string;
+  finalized: boolean;
+  account_display: AccountDisplay;
+}
+
+export interface Event {
+  event_index: string;
+  block_num: BlockNumber;
+  extrinsic_idx: number;
+  module_id: string;
+  event_id: string;
+  params: string;
+  phase: number;
+  event_idx: number;
+  extrinsic_hash: string;
+  finalized: boolean;
+  block_timestamp: Timestamp;
+}
+
+export interface Log {
+  id: number;
+  block_num: BlockNumber;
+  log_index: string;
+  log_type: string;
+  engine: string;
+  data: string;
+}
+
+export interface BlockDetail extends Block {
+  parent_hash: string;
+  state_root: string;
+  extrinsics_root: string;
+  spec_version: number;
+  validator: string;
+  events: Event[];
+  extrinsics: Extrinsic[];
+  logs: Log[];
+}

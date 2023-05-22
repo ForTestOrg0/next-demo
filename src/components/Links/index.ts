@@ -7,3 +7,4 @@ export { default as TreasuryProposalLink }  from './TreasuryProposalLink';
 export { default as TreasuryTipsLink }  from './TreasuryTipsLink';
 export { default as BountyLink }  from './BountyLink';
 export { default as AccountLink }  from './AccountLink';
+export { default as ValidatorLink }  from './ValidatorLink';
