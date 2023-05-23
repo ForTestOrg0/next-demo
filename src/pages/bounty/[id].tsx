@@ -33,8 +33,10 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetBou
       tab,
       proposalId: parseInt(proposalId),
       chain: chainProps,
-      title: METADATA['bounty']['title'] + proposalId,
-      description: METADATA['bounty']['description']
+      metadata: {
+        ...METADATA['bounty'],
+        title: METADATA['bounty']['title'] + proposalId,
+      }
     },
   }
 }

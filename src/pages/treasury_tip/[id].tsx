@@ -32,8 +32,10 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTre
       tab,
       tipHash,
       chain: chainProps,
-      title: METADATA['tip']['title'] + tipHash,
-      description: METADATA['tip']['description']
+      metadata: {
+        ...METADATA['tip'],
+        title: METADATA['tip']['title'] + tipHash,
+      }
     },
   }
 }

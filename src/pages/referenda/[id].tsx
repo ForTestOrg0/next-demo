@@ -33,8 +33,10 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetDem
       tab,
       referendumIndex: parseInt(referendumIndex),
       chain: chainProps,
-      title: METADATA['referendum']['title'] + referendumIndex,
-      description: METADATA['referendum']['description']
+      metadata: {
+        ...METADATA['referendum'],
+        title: METADATA['referendum']['title'] + referendumIndex,
+      }
     },
   }
 }

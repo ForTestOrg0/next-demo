@@ -32,8 +32,10 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetDem
       tab,
       democracyId: parseInt(democracyId),
       chain: chainProps,
-      title: METADATA['democracy_proposal']['title'] + democracyId,
-      description: METADATA['democracy_proposal']['description']
+      metadata: {
+        ...METADATA['democracy_proposal'],
+        title: METADATA['democracy_proposal']['title'] + democracyId,
+      }
     },
   }
 }

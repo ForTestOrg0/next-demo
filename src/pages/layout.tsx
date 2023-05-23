@@ -3,9 +3,11 @@ import METADATA from "@/config/metadata";
 import localFont from "next/font/local";
 import { GetServerSidePropsContext } from "next";
 import type { AppProps } from "next/app";
-type metaProps = {
-  title: string;
-  description: string;
+type MetaProps = {
+  metadata: {
+    title: string;
+    description: string;
+  }
 };
 
 const eina = localFont({
@@ -28,8 +30,9 @@ export default function RootLayout({
 }: {
   context?: GetServerSidePropsContext;
   children: React.ReactNode;
-  pageProps: AppProps & metaProps;
+  pageProps: AppProps & MetaProps;
 }) {
+  const metadata = pageProps?.metadata || {};
   return (
     <div
       id="subscan-app"
@@ -38,7 +41,7 @@ export default function RootLayout({
       }`}
     >
       <Head>
-        <title>{pageProps?.title || METADATA["default"]["title"]}</title>
+        <title>{metadata?.title || METADATA["default"]["title"]}</title>
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1.0"
@@ -46,15 +49,15 @@ export default function RootLayout({
         <meta name="Keywords" content="Polkadot,explorer,Kusama,Edgeware,search,extrinsic"></meta>
         <meta
           name="description"
-          content={pageProps?.description || METADATA["default"]["description"]}
+          content={metadata?.description || METADATA["default"]["description"]}
         />
         <meta
           property="og:title"
-          content={pageProps?.title || METADATA["default"]["title"]}
+          content={metadata?.title || METADATA["default"]["title"]}
         />
         <meta
           property="og:description"
-          content={pageProps?.description || METADATA["default"]["description"]}
+          content={metadata?.description || METADATA["default"]["description"]}
         />
         <meta property="og:type" content="website" />
         <meta
@@ -63,9 +66,9 @@ export default function RootLayout({
         />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@subscan_io" />
-        <meta name="twitter:title" data-vmid="twitter:title" content={pageProps?.title || METADATA["default"]["title"]} />
+        <meta name="twitter:title" data-vmid="twitter:title" content={metadata?.title || METADATA["default"]["title"]} />
         <meta name="twitter:image" content="https://www.subscan.io/favicon.png" />
-        <meta name="twitter:description" content={pageProps?.description || METADATA["default"]["description"]} />
+        <meta name="twitter:description" content={metadata?.description || METADATA["default"]["description"]} />
       </Head>
       {children}
     </div>

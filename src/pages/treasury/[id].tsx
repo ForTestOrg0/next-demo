@@ -33,8 +33,10 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetTre
       tab,
       proposalId: parseInt(proposalId),
       chain: chainProps,
-      title: METADATA['treasury']['title'] + proposalId,
-      description: METADATA['treasury']['description']
+      metadata: {
+        ...METADATA['treasury'],
+        title: METADATA['treasury']['title'] + proposalId,
+      }
     },
   }
 }

@@ -33,8 +33,10 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCou
       tab,
       proposalId: parseInt(proposalId),
       chain: chainProps,
-      title: METADATA['council_motion']['title'] + proposalId,
-      description: METADATA['council_motion']['description']
+      metadata: {
+        ...METADATA['council_motion'],
+        title: METADATA['council_motion']['title'] + proposalId,
+      }
     },
   }
 }
