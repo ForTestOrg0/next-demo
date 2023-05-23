@@ -14,6 +14,7 @@ import { ChainProps } from '@/types/page'
 import ReactGA from "react-ga4";
 import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';
+import { PageProgress, Button } from '@/ui';
 
 // import { appWithTranslation } from 'next-i18next'
 
@@ -86,6 +87,7 @@ const MyApp: React.FC<AppPropsWithLayout> = (({ Component, pageProps }) => {
   }
 
   return (<RootLayout pageProps={pageProps}>
+    <PageProgress />
     <Header />
     <div className='flex-1'>
       <Component {...pageProps} />

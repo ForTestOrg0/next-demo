@@ -14,3 +14,4 @@ export * from './Tabs/client/Tab';
 export * from './DatePicker';
 export * from './Notification';
 export * from './Message';
+export * from './PageProgress';
