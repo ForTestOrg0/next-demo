@@ -25,3 +25,7 @@ export interface ChainProps {
 export interface BareServerSideProps {
   chain: ChainProps;
 }
+
+export interface DownloadRef  {
+  downloadCsv: (param: any[][], name: string) => void;
+}
