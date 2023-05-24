@@ -4,6 +4,7 @@ import {
   BlockDetail,
   Event,
   Extrinsic,
+  ExtrinsicDetail,
   TokenMetadata,
   Log,
 } from "@/types/api";
@@ -62,7 +63,7 @@ export async function getExtrinsics(
   params: {
     page: number;
     row: number;
-    signed?: boolean;
+    signed?: string;
     address?: string;
     module?: string;
     call?: string;
@@ -73,7 +74,7 @@ export async function getExtrinsics(
     order?: "desc" | "asc";
   }
 ): Promise<APIWarpperProps<GetExtrinsicsProps>> {
-  return await subscanFetch(hostname, "api/v2/scan/blocks", params);
+  return await subscanFetch(hostname, "api/v2/scan/extrinsics", params);
 }
 
 export const useExtrinsics = (
@@ -81,7 +82,7 @@ export const useExtrinsics = (
   params: {
     page: number;
     row: number;
-    signed?: boolean;
+    signed?: string;
     address?: string;
     module?: string;
     call?: string;
@@ -98,6 +99,19 @@ export const useExtrinsics = (
   );
 };
 
+export interface GetExtrinsicProps extends ExtrinsicDetail { }
+
+export async function getExtrinsic(
+  hostname = "",
+  params: {
+    extrinsic_index?: string;
+    hash?: string;
+    events_limit?: number;
+    focus?: string;
+  }
+): Promise<APIWarpperProps<GetExtrinsicProps>> {
+  return await subscanFetch(hostname, "api/scan/extrinsic", params);
+}
 
 /***** Events *****/
 export interface GetEventsProps {
@@ -120,7 +134,6 @@ export async function getEvents(
     address?: string;
     after_id?: number;
     order?: "desc" | "asc";
-    signed?: boolean;
   }
 ): Promise<APIWarpperProps<GetEventsProps>> {
   return await subscanFetch(hostname, "api/v2/scan/events", params);
@@ -141,7 +154,6 @@ export const useEvents = (
     address?: string;
     after_id?: number;
     order?: "desc" | "asc";
-    signed?: boolean;
   }
 ) => {
   return useSWR<APIWarpperProps<GetEventsProps>, Error>(

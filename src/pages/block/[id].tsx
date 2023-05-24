@@ -1,7 +1,6 @@
 import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { getBlock, GetBlockProps, getBountiesProposal, GetBountiesProposalProps } from '@/utils/api';
-import { BountiesInfo, ProposalTimeLine } from '@/components/Governance';
+import { getBlock, GetBlockProps } from '@/utils/api';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
 import { BlockInfo } from '@/components/Pages/Blockchain/BlockInfo';
@@ -63,7 +62,7 @@ export default function Page({ host, data, chain, blockId }: InferGetServerSideP
               <Tab>Log</Tab>
             </TabList>
             <TabPanels>
-              <TabPanel><BlockExtrinsicsClient host={host} block_num={data.block_num} page={0} row={PAGE_ROW} order="asc" /></TabPanel>
+              <TabPanel><BlockExtrinsicsClient host={host} block_num={data.block_num} page={0} row={PAGE_ROW} order="asc" disableBlockTd /></TabPanel>
               <TabPanel><BlockEventsClient host={host} block_num={data.block_num} page={0} row={PAGE_ROW} order="asc" /></TabPanel>
               <TabPanel><BlockLogs logs={data.logs}/></TabPanel>
             </TabPanels>

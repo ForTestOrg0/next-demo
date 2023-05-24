@@ -13,9 +13,10 @@ import { Button } from '@/ui';
 type UseExtrinsicsArgs = Parameters<typeof useExtrinsics>[1];
 interface Props extends BareProps, UseExtrinsicsArgs {
   host: string;
+  disableBlockTd?: boolean;
 }
 
-export const BlockExtrinsicsClient: React.FC<Props> = ({ host, block_num, page = 0, row = PAGE_ROW, order }) => {
+export const BlockExtrinsicsClient: React.FC<Props> = ({ host, block_num, page = 0, row = PAGE_ROW, order, disableBlockTd }) => {
   const { data, error, isLoading } = useExtrinsics(host, {
     order, page, row, block_num
   });
@@ -25,7 +26,7 @@ export const BlockExtrinsicsClient: React.FC<Props> = ({ host, block_num, page =
   if (!extrinsics) return <Empty />;
 
   return (<div>
-    <BlockExtrinsics extrinsics={extrinsics?.extrinsics || []} />
+    <BlockExtrinsics extrinsics={extrinsics?.extrinsics || []} disableBlockTd={disableBlockTd} />
     {extrinsics?.count - PAGE_ROW > 0 ?
       <ExtrinsicLink query={{ block: block_num?.toString() || '' }}>
         <Button outline className='mt-4'>View Other {extrinsics?.count - PAGE_ROW} Events Details</Button>

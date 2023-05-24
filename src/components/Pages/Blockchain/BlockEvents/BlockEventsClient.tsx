@@ -15,9 +15,9 @@ interface Props extends BareProps, UseEventsArgs {
   host: string;
 }
 
-export const BlockEventsClient: React.FC<Props> = ({ host, block_num, page = 0, row, order }) => {
+export const BlockEventsClient: React.FC<Props> = ({ host, ...props }) => {
   const { data, error, isLoading } = useEvents(host, {
-    order, page, row, block_num
+    ...props
   });
   const events = unwrap(data);
 
@@ -27,7 +27,7 @@ export const BlockEventsClient: React.FC<Props> = ({ host, block_num, page = 0, 
   return (<div>
     <BlockEvents events={events?.events || []} />
     {events?.count - PAGE_ROW > 0 ?
-      <EventLink query={{ block: block_num?.toString() || '' }}>
+      <EventLink query={{ block: props.block_num?.toString() || '', extrinsic: props.extrinsic_index?.toString() || '' }}>
         <Button outline className='mt-4'>View Other {events?.count - PAGE_ROW} Events Details</Button>
       </EventLink>
       : null}

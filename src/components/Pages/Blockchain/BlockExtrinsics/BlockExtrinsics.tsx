@@ -1,20 +1,22 @@
 import React from 'react';
 import { BareProps } from '@/types/page';
 import { Table, Td, Th, Tr, Text } from '@/ui';
-import { ExtrinsicLink } from '@/components/Links';
+import { BlockLink, ExtrinsicLink } from '@/components/Links';
 import { Extrinsic } from '@/types/api';
 import { TimeFromNow } from '@/components/Time';
 import { ResultStatus } from '@/components/Status';
 
 interface Props extends BareProps {
   extrinsics: Extrinsic[];
+  disableBlockTd?: boolean;
 }
 
-export const BlockExtrinsics: React.FC<Props> = ({ extrinsics }) => {
+export const BlockExtrinsics: React.FC<Props> = ({ extrinsics, disableBlockTd }) => {
   return (<Table className='w-full'>
     <tbody>
       <Tr>
         <Th>Extrinsic Id</Th>
+        {!disableBlockTd ? <Th>Block</Th> : null}
         <Th>Hash</Th>
         <Th>Time</Th>
         <Th>Result</Th>
@@ -27,6 +29,9 @@ export const BlockExtrinsics: React.FC<Props> = ({ extrinsics }) => {
             <Td>
               <ExtrinsicLink empty={!item.extrinsic_index} extrinsicIndex={item.extrinsic_index} />
             </Td>
+            {!disableBlockTd ? <Td>
+              <BlockLink blockNumber={item.block_num} />
+            </Td> : null}
             <Td>
               <ExtrinsicLink empty={!item.extrinsic_hash} extrinsicIndex={item.extrinsic_hash} />
             </Td>

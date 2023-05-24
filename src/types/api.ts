@@ -220,7 +220,7 @@ export interface Extrinsic {
   extrinsic_index: string;
   call_module_function: string;
   call_module: string;
-  params: string;
+  params: Params[];
   account_id: string;
   account_index: string;
   signature: string;
@@ -232,6 +232,28 @@ export interface Extrinsic {
   from_hex: string;
   finalized: boolean;
   account_display: AccountDisplay;
+}
+
+export interface Params {
+  name: string;
+  type: string;
+  type_name: string;
+  value: string;
+}
+
+export interface ExtrinsicDetail extends Extrinsic {
+  events: Event[];
+  event_count: number;
+  lifetime: {
+    birth: number;
+    death: number;
+  };
+  tip: string;
+  crosschain_op: string;
+  block_hash: string;
+  pending: boolean;
+  proxy: any;
+  multisig: any;
 }
 
 export interface Event {
