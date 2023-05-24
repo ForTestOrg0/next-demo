@@ -1,4 +1,5 @@
 export const PAGE_ROW = 10;
+export const List_PAGE_ROW = 25;
 export const BALANCE_DECIMALS = 3;
 export const BIGNUMBER_FMT = {
   prefix: "",

@@ -5,6 +5,7 @@ import {
   Event,
   Extrinsic,
   TokenMetadata,
+  Log,
 } from "@/types/api";
 import { subscanFetch, swrFetcher } from "./fetcher";
 import useSWR from "swr";
@@ -122,7 +123,7 @@ export async function getEvents(
     signed?: boolean;
   }
 ): Promise<APIWarpperProps<GetEventsProps>> {
-  return await subscanFetch(hostname, "api/v2/scan/blocks", params);
+  return await subscanFetch(hostname, "api/v2/scan/events", params);
 }
 
 export const useEvents = (
@@ -148,3 +149,17 @@ export const useEvents = (
     swrFetcher
   );
 };
+
+/***** Logs *****/
+export interface GetLogsProps {
+  count: number;
+  logs: Log[];
+}
+
+export async function getLogs(
+  hostname = "",
+  params: { page: number; row: number; engine?: string; type?: string; }
+): Promise<APIWarpperProps<GetLogsProps>> {
+  return await subscanFetch(hostname, "api/v2/scan/logs", params);
+}
+
