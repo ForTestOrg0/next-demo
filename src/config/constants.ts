@@ -21,3 +21,8 @@ export const RIOT = 'https://riot.im/app/#/room/!uaYUrKBueiKUurHliJ:matrix.org?v
 export const MEDIUM = 'https://medium.com/subscan';
 export const EMAIL = 'hello@subscan.io';
 
+export const EVENT_PHASE = {
+  EXTRINSIC: 0,
+  FINALIZATION: 1,
+  INITIALIZATION: 2,
+};

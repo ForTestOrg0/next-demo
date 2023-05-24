@@ -134,7 +134,7 @@ export default function Header() {
             {navTree.map((nav) => {
               if (nav.menu) {
                 return (
-                  <Disclosure key={nav.href}>
+                  <Disclosure key={nav.label}>
                     {({ open }) => (
                       <>
                         <Disclosure.Button className="flex w-full py-2 pr-2 justify-between focus:outline-none items-center">
@@ -147,7 +147,7 @@ export default function Header() {
                         <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                           {nav.menu?.map((link) => (
                             <AutoLink
-                              key={link.href}
+                              key={`${link.href}${link.label}`}
                               className='menu-item text-sm !text-sub-white-light'
                               label={link.label}
                               href={link.href}

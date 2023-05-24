@@ -235,17 +235,19 @@ export interface Extrinsic {
 }
 
 export interface Event {
+  id: number;
   event_index: string;
   block_num: BlockNumber;
-  extrinsic_idx: number;
+  extrinsic_idx?: number;
   module_id: string;
   event_id: string;
   params: string;
   phase: number;
-  event_idx: number;
+  event_idx?: number;
   extrinsic_hash: string;
   finalized: boolean;
   block_timestamp: Timestamp;
+  extrinsic_index: string;
 }
 
 export interface Log {

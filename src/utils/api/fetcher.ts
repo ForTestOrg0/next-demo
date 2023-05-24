@@ -28,8 +28,8 @@ export async function subscanFetch(
     body: JSON.stringify(params || {}),
   });
   const data = await res.json();
-  // console.info(`subscanFetch(${path}) result:`);
-  // console.info(data);
+  console.info(`subscanFetch(${path}) result:`);
+  console.info(data);
   return data;
 }
 
