@@ -4,10 +4,10 @@
  * https://github.com/apal21/nextjs-progressbar/
  */
 
-import Router from "next/router";
-import * as NProgress from "nprogress";
-import * as PropTypes from "prop-types";
-import * as React from "react";
+import Router from 'next/router';
+import * as NProgress from 'nprogress';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
 export interface NextNProgressProps {
   /**
@@ -55,7 +55,7 @@ export interface NextNProgressProps {
 }
 
 const NextNProgress = ({
-  color = "#29D",
+  color = '#29D',
   startPosition = 0.3,
   stopDelayMs = 200,
   height = 3,
@@ -70,13 +70,13 @@ const NextNProgress = ({
     if (options) {
       NProgress.configure(options);
     }
-    Router.events.on("routeChangeStart", routeChangeStart);
-    Router.events.on("routeChangeComplete", routeChangeEnd);
-    Router.events.on("routeChangeError", routeChangeError);
+    Router.events.on('routeChangeStart', routeChangeStart);
+    Router.events.on('routeChangeComplete', routeChangeEnd);
+    Router.events.on('routeChangeError', routeChangeError);
     return () => {
-      Router.events.off("routeChangeStart", routeChangeStart);
-      Router.events.off("routeChangeComplete", routeChangeEnd);
-      Router.events.off("routeChangeError", routeChangeError);
+      Router.events.off('routeChangeStart', routeChangeStart);
+      Router.events.off('routeChangeComplete', routeChangeEnd);
+      Router.events.off('routeChangeError', routeChangeError);
     };
   }, []);
 

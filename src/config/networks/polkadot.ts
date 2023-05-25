@@ -1,24 +1,24 @@
-import { Chain } from './template'
+import { Chain } from './template';
 
 export const polkadot: Chain = {
-  name: "polkadot",
-  nativeTokenUniqueId: "DOT",
+  name: 'polkadot',
+  nativeTokenUniqueId: 'DOT',
   label: 'Polkadot',
-  type: "mainnet",
+  type: 'mainnet',
   theme: {
     colors: ['#E90979', '#F081B9', '#d7d7d7'],
   },
   gtag: 'G-1HVHK949MH',
-  api: "https://polkadot.webapi.subscan.io",
-  domain: "https://polkadot.subscan.io",
-  subdomain: ["polkadot"],
+  api: 'https://polkadot.webapi.subscan.io',
+  domain: 'https://polkadot.subscan.io',
+  subdomain: ['polkadot'],
   social: {
-    telegram: "https://t.me/polkadotofficial",
-    twitter: "https://twitter.com/Polkadot",
-    github: "https://github.com/paritytech/polkadot/",
-    price: "https://www.coingecko.com/en/coins/polkadot",
+    telegram: 'https://t.me/polkadotofficial',
+    twitter: 'https://twitter.com/Polkadot',
+    github: 'https://github.com/paritytech/polkadot/',
+    price: 'https://www.coingecko.com/en/coins/polkadot',
   },
-  donate: "14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ",
+  donate: '14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ',
   modules: {
     SYSTEM_ACCOUNT: false,
     VESTING: true,
@@ -49,5 +49,5 @@ export const polkadot: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
     SS58: true,
-  }
-}
+  },
+};

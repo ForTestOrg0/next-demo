@@ -1,1 +1,1 @@
-export { default as ProposalPreImage }  from './ProposalPreImage';
+export { default as ProposalPreImage } from './ProposalPreImage';

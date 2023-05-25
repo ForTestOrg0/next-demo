@@ -7,12 +7,24 @@ interface TextProps {
   block?: boolean;
 }
 
-const Text: React.FC<TextProps & HTMLAttributes<HTMLDivElement>> = ({ children, className, small, bold, block, ...props }) => (
-  <div className={clsx('text-sm',
-    { 'inline-block': !block },
-    { 'text-xs': small },
-    { 'font-semibold': bold },
-    className)} {...props}>
+const Text: React.FC<TextProps & HTMLAttributes<HTMLDivElement>> = ({
+  children,
+  className,
+  small,
+  bold,
+  block,
+  ...props
+}) => (
+  <div
+    className={clsx(
+      'text-sm',
+      { 'inline-block': !block },
+      { 'text-xs': small },
+      { 'font-semibold': bold },
+      className
+    )}
+    {...props}
+  >
     {children}
   </div>
 );

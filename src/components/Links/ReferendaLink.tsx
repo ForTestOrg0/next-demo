@@ -7,7 +7,9 @@ interface Props extends BareProps {
 }
 
 const ReferendaLink: React.FC<Props> = ({ children, index, className }) => (
-  <LinkRouter className={className} href={`/referenda/${index}`}>{children ?? index}</LinkRouter>
+  <LinkRouter className={className} href={`/referenda/${index}`}>
+    {children ?? index}
+  </LinkRouter>
 );
 
 export default ReferendaLink;

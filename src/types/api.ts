@@ -1,4 +1,4 @@
-import { BlockNumber, Timestamp } from "./base";
+import { BlockNumber, Timestamp } from './base';
 
 export interface APIWarpperProps<T> {
   code: number;

@@ -1,12 +1,12 @@
-import React, { useMemo } from "react";
-import clsx from "clsx";
-import { BareProps } from "@/types/page";
-import { AccountDisplay } from "@/types/api";
-import { Text, Tooltip, TooltipContent, TooltipTrigger } from "@/ui";
-import { AccountLink } from "@/components/Links";
-import { formatHash } from "@/utils/formatText";
-import { GOOD_JUDGEMENTS, BAD_JUDGEMENTS } from "@/config/constants";
-import styles from "./Identicon.module.css";
+import React, { useMemo } from 'react';
+import clsx from 'clsx';
+import { BareProps } from '@/types/page';
+import { AccountDisplay } from '@/types/api';
+import { Text, Tooltip, TooltipContent, TooltipTrigger } from '@/ui';
+import { AccountLink } from '@/components/Links';
+import { formatHash } from '@/utils/formatText';
+import { GOOD_JUDGEMENTS, BAD_JUDGEMENTS } from '@/config/constants';
+import styles from './Identicon.module.css';
 
 interface Props extends BareProps {
   account: AccountDisplay;
@@ -45,23 +45,23 @@ const Identicon: React.FC<Props> = ({ account, className }) => {
     if (judgements && judgements.length > 0) {
       judgements.forEach((item) => {
         const text = item && item.toLowerCase();
-        text.replace(" ", "");
+        text.replace(' ', '');
         judgementText.push(text);
       });
-      return "Identity level: " + judgementText.join(", ");
+      return 'Identity level: ' + judgementText.join(', ');
     } else {
-      return "Identity level: " + "No Judgement";
+      return 'Identity level: ' + 'No Judgement';
     }
   }, [judgements]);
   const displayName = account?.display || account?.address;
   if (!account) return <Text>-</Text>;
   return (
-    <div className={clsx("flex", className)}>
-      <div className={clsx("flex items-center")}>
+    <div className={clsx('flex', className)}>
+      <div className={clsx('flex items-center')}>
         {judgements && account?.identity ? (
           <div
             className={clsx(
-              "flex justify-center w-5 h-5 rounded-full text-center mr-2.5 bg-[#98959f] text-sub-bg-light",
+              'flex justify-center w-5 h-5 rounded-full text-center mr-2.5 bg-[#98959f] text-sub-bg-light',
               {
                 [styles.good]: isGoodJudgement,
               },
@@ -86,7 +86,9 @@ const Identicon: React.FC<Props> = ({ account, className }) => {
               <Text>{formatHash(displayName)}</Text>
             </AccountLink>
           </TooltipTrigger>
-          <TooltipContent className="Tooltip">{account?.address}</TooltipContent>
+          <TooltipContent className="Tooltip">
+            {account?.address}
+          </TooltipContent>
         </Tooltip>
       </div>
     </div>

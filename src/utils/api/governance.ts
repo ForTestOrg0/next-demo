@@ -17,12 +17,12 @@ import {
   TreasuryTip,
   TreasuryTipDetail,
   TreasuryTipper,
-} from "@/types/api";
-import useSWR from "swr";
-import { subscanFetch, swrFetcher } from "./fetcher";
+} from '@/types/api';
+import useSWR from 'swr';
+import { subscanFetch, swrFetcher } from './fetcher';
 
-export async function getTransfers(hostname = "", params: any) {
-  return await subscanFetch(hostname, "api/v2/scan/transfers", params);
+export async function getTransfers(hostname = '', params: any) {
+  return await subscanFetch(hostname, 'api/v2/scan/transfers', params);
 }
 
 export interface GetDemocracyProposalsDataProps {
@@ -39,10 +39,10 @@ export interface GetDemocracyProposalsDataProps {
 }
 
 export async function getDemocracyProposals(
-  hostname = "",
+  hostname = '',
   params: any
 ): Promise<APIWarpperProps<GetDemocracyProposalsDataProps>> {
-  return await subscanFetch(hostname, "api/scan/democracy/proposals", params);
+  return await subscanFetch(hostname, 'api/scan/democracy/proposals', params);
 }
 
 export interface GetDemocracyProposalByIdDataProps {
@@ -63,10 +63,10 @@ export interface GetDemocracyProposalByIdDataProps {
 }
 
 export async function getDemocracyProposalById(
-  hostname = "",
+  hostname = '',
   params: { democracy_id: number }
 ): Promise<APIWarpperProps<GetDemocracyProposalByIdDataProps>> {
-  return await subscanFetch(hostname, "api/scan/democracy/proposal", params);
+  return await subscanFetch(hostname, 'api/scan/democracy/proposal', params);
 }
 
 /***** Democracy Seconded *****/
@@ -83,18 +83,18 @@ export interface GetDemocracySecondedProps {
 }
 
 export async function getDemocracySeconded(
-  hostname = "",
+  hostname = '',
   params: { page: number; row: number; proposal_id: number }
 ): Promise<APIWarpperProps<GetDemocracySecondedProps>> {
-  return await subscanFetch(hostname, "api/scan/democracy/seconded", params);
+  return await subscanFetch(hostname, 'api/scan/democracy/seconded', params);
 }
 
 export const useDemocracySeconded = (
-  hostname = "",
+  hostname = '',
   params: { page: number; row: number; proposal_id: number }
 ) => {
   return useSWR<APIWarpperProps<GetDemocracySecondedProps>, Error>(
-    [hostname, "api/scan/democracy/seconded", params],
+    [hostname, 'api/scan/democracy/seconded', params],
     swrFetcher
   );
 };
@@ -107,10 +107,10 @@ export interface GetDemocracyReferendumsProps {
 }
 
 export async function getDemocracyReferendums(
-  hostname = "",
+  hostname = '',
   params: { page: number; row: number }
 ): Promise<APIWarpperProps<GetDemocracyReferendumsProps>> {
-  return await subscanFetch(hostname, "api/scan/democracy/referendums", params);
+  return await subscanFetch(hostname, 'api/scan/democracy/referendums', params);
 }
 
 /***** Democracy Referendum *****/
@@ -119,10 +119,10 @@ export interface GetDemocracyReferendumProps {
 }
 
 export async function getDemocracyReferendum(
-  hostname = "",
+  hostname = '',
   params: { referendum_index: number }
 ): Promise<APIWarpperProps<GetDemocracyReferendumProps>> {
-  return await subscanFetch(hostname, "api/scan/democracy/referendum", params);
+  return await subscanFetch(hostname, 'api/scan/democracy/referendum', params);
 }
 
 /***** Democracy Referendum Votes *****/
@@ -132,18 +132,18 @@ export interface GetDemocracyVotesProps {
 }
 
 export async function getDemocracyVotes(
-  hostname = "",
+  hostname = '',
   params: { page: number; row: number; referendum_index: number }
 ): Promise<APIWarpperProps<GetDemocracyVotesProps>> {
-  return await subscanFetch(hostname, "api/scan/democracy/votes", params);
+  return await subscanFetch(hostname, 'api/scan/democracy/votes', params);
 }
 
 export const useDemocracyVotes = (
-  hostname = "",
+  hostname = '',
   params: { page: number; row: number; referendum_index: number }
 ) => {
   return useSWR<APIWarpperProps<GetDemocracyVotesProps>, Error>(
-    [hostname, "api/scan/democracy/votes", params],
+    [hostname, 'api/scan/democracy/votes', params],
     swrFetcher
   );
 };
@@ -155,10 +155,10 @@ export interface GetCouncilProposalsProps {
 }
 
 export async function getCouncilProposals(
-  hostname = "",
+  hostname = '',
   params: { page: number; row: number }
 ): Promise<APIWarpperProps<GetCouncilProposalsProps>> {
-  return await subscanFetch(hostname, "api/scan/council/proposals", params);
+  return await subscanFetch(hostname, 'api/scan/council/proposals', params);
 }
 
 /***** Council Proposal *****/
@@ -167,10 +167,10 @@ export interface GetCouncilProposalProps {
 }
 
 export async function getCouncilProposal(
-  hostname = "",
+  hostname = '',
   params: { proposal_id: number }
 ): Promise<APIWarpperProps<GetCouncilProposalProps>> {
-  return await subscanFetch(hostname, "api/scan/council/proposal", params);
+  return await subscanFetch(hostname, 'api/scan/council/proposal', params);
 }
 
 /***** Techcomm Proposals *****/
@@ -181,10 +181,10 @@ export interface GetTechcommProposalsProps {
 }
 
 export async function getTechcommProposals(
-  hostname = "",
+  hostname = '',
   params: { page: number; row: number }
 ): Promise<APIWarpperProps<GetTechcommProposalsProps>> {
-  return await subscanFetch(hostname, "api/scan/techcomm/proposals", params);
+  return await subscanFetch(hostname, 'api/scan/techcomm/proposals', params);
 }
 
 /***** Techcomm Proposal *****/
@@ -194,10 +194,10 @@ export interface GetTechcommProposalProps {
 }
 
 export async function getTechcommProposal(
-  hostname = "",
+  hostname = '',
   params: { proposal_id: number }
 ): Promise<APIWarpperProps<GetTechcommProposalProps>> {
-  return await subscanFetch(hostname, "api/scan/techcomm/proposal", params);
+  return await subscanFetch(hostname, 'api/scan/techcomm/proposal', params);
 }
 
 /***** Treasury Proposals *****/
@@ -208,10 +208,10 @@ export interface GetTreasuryProposalsProps {
 }
 
 export async function getTreasuryProposals(
-  hostname = "",
+  hostname = '',
   params: { page: number; row: number }
 ): Promise<APIWarpperProps<GetTreasuryProposalsProps>> {
-  return await subscanFetch(hostname, "api/scan/treasury/proposals", params);
+  return await subscanFetch(hostname, 'api/scan/treasury/proposals', params);
 }
 
 /***** Treasury Proposal *****/
@@ -221,10 +221,10 @@ export interface GetTreasuryProposalProps {
 }
 
 export async function getTreasuryProposal(
-  hostname = "",
+  hostname = '',
   params: { proposal_id: number }
 ): Promise<APIWarpperProps<GetTreasuryProposalProps>> {
-  return await subscanFetch(hostname, "api/scan/treasury/proposal", params);
+  return await subscanFetch(hostname, 'api/scan/treasury/proposal', params);
 }
 
 /***** Treasury Tips *****/
@@ -235,12 +235,11 @@ export interface GetTreasuryTipsProps {
 }
 
 export async function getTreasuryTips(
-  hostname = "",
+  hostname = '',
   params: { page: number; row: number }
 ): Promise<APIWarpperProps<GetTreasuryTipsProps>> {
-  return await subscanFetch(hostname, "api/scan/treasury/tips", params);
+  return await subscanFetch(hostname, 'api/scan/treasury/tips', params);
 }
-
 
 /***** Treasury Tip *****/
 
@@ -249,10 +248,10 @@ export interface GetTreasuryTipProps {
 }
 
 export async function getTreasuryTip(
-  hostname = "",
+  hostname = '',
   params: { hash: string }
 ): Promise<APIWarpperProps<GetTreasuryTipProps>> {
-  return await subscanFetch(hostname, "api/scan/treasury/tip", params);
+  return await subscanFetch(hostname, 'api/scan/treasury/tip', params);
 }
 
 /***** Treasury Tippers *****/
@@ -261,18 +260,15 @@ export interface GetTreasuryTippersProps {
 }
 
 export async function getTreasuryTippers(
-  hostname = "",
+  hostname = '',
   params: { hash: string }
 ): Promise<APIWarpperProps<GetTreasuryTippersProps>> {
-  return await subscanFetch(hostname, "api/scan/treasury/tippers", params);
+  return await subscanFetch(hostname, 'api/scan/treasury/tippers', params);
 }
 
-export const useTreasuryTippers = (
-  hostname = "",
-  params: { hash: string }
-) => {
+export const useTreasuryTippers = (hostname = '', params: { hash: string }) => {
   return useSWR<APIWarpperProps<GetTreasuryTippersProps>, Error>(
-    [hostname, "api/scan/treasury/tippers", params],
+    [hostname, 'api/scan/treasury/tippers', params],
     swrFetcher
   );
 };
@@ -284,20 +280,18 @@ export interface GetBountiesProposalsProps {
 }
 
 export async function getBountiesProposals(
-  hostname = "",
-  params: { page: number; row: number; status: string; }
+  hostname = '',
+  params: { page: number; row: number; status: string }
 ): Promise<APIWarpperProps<GetBountiesProposalsProps>> {
-  return await subscanFetch(hostname, "api/scan/bounties/proposals", params);
+  return await subscanFetch(hostname, 'api/scan/bounties/proposals', params);
 }
 
 /***** Bounties Proposal *****/
-export interface GetBountiesProposalProps extends BountiesProposalDetail {
-
-}
+export interface GetBountiesProposalProps extends BountiesProposalDetail {}
 
 export async function getBountiesProposal(
-  hostname = "",
-  params: { proposal_id: number; }
+  hostname = '',
+  params: { proposal_id: number }
 ): Promise<APIWarpperProps<GetBountiesProposalProps>> {
-  return await subscanFetch(hostname, "api/scan/bounties/proposal", params);
+  return await subscanFetch(hostname, 'api/scan/bounties/proposal', params);
 }

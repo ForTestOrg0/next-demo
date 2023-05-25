@@ -6,11 +6,8 @@ interface Props extends BareProps {
   key?: string;
 }
 
-
 const Flex: React.FC<Props> = ({ children, className }) => (
-  <div className={clsx('flex', className)}>
-    {children}
-  </div>
+  <div className={clsx('flex', className)}>{children}</div>
 );
 
 export default Flex;

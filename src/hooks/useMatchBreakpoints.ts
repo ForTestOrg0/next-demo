@@ -36,11 +36,15 @@ const mediaQueries: MediaQueries = (() => {
     // Min width for next iteration
     prevMinWidth = breakpoint + 1;
 
-    return { ...accum, [size]: `(min-width: ${minWidth}px) and (max-width: ${breakpoint}px)` };
+    return {
+      ...accum,
+      [size]: `(min-width: ${minWidth}px) and (max-width: ${breakpoint}px)`,
+    };
   }, {});
 })();
 
-const getKey = (size: string) => `is${size.charAt(0).toUpperCase()}${size.slice(1)}`;
+const getKey = (size: string) =>
+  `is${size.charAt(0).toUpperCase()}${size.slice(1)}`;
 
 const useMatchBreakpoints = (): BreakpointChecks => {
   const [state, setState] = useState<State>(() => {
@@ -60,7 +64,7 @@ const useMatchBreakpoints = (): BreakpointChecks => {
         const key = getKey(size);
         setState((prevState) => ({
           ...prevState,
-          [key]: matchMediaQuery.matches
+          [key]: matchMediaQuery.matches,
         }));
       };
 
@@ -88,7 +92,7 @@ const useMatchBreakpoints = (): BreakpointChecks => {
     ...state,
     isMobile: state.isXs || state.isSm,
     isTablet: state.isMd || state.isLg,
-    isDesktop: state.isXl || state.isXxl
+    isDesktop: state.isXl || state.isXxl,
   };
 };
 

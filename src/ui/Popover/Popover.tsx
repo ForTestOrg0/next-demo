@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   useFloating,
   autoUpdate,
@@ -14,9 +14,9 @@ import {
   FloatingPortal,
   FloatingFocusManager,
   useId,
-  useClick
-} from "@floating-ui/react";
-import styles from './Popover.module.css'
+  useClick,
+} from '@floating-ui/react';
+import styles from './Popover.module.css';
 
 interface PopoverOptions {
   initialOpen?: boolean;
@@ -28,10 +28,10 @@ interface PopoverOptions {
 
 export function usePopover({
   initialOpen = false,
-  placement = "bottom",
+  placement = 'bottom',
   modal,
   open: controlledOpen,
-  onOpenChange: setControlledOpen
+  onOpenChange: setControlledOpen,
 }: PopoverOptions = {}) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
   const [labelId, setLabelId] = React.useState<string | undefined>();
@@ -50,10 +50,10 @@ export function usePopover({
     middleware: [
       offset(5),
       flip({
-        fallbackAxisSideDirection: "end"
+        fallbackAxisSideDirection: 'end',
       }),
-      shift({ padding: 5 })
-    ]
+      shift({ padding: 5 }),
+    ],
   });
 
   const context = data.context;
@@ -63,7 +63,7 @@ export function usePopover({
     //   open: 150,
     //   close: 500
     // },
-    enabled: controlledOpen == null
+    enabled: controlledOpen == null,
   });
   const dismiss = useDismiss(context);
   const role = useRole(context);
@@ -80,7 +80,7 @@ export function usePopover({
       labelId,
       descriptionId,
       setLabelId,
-      setDescriptionId
+      setDescriptionId,
     }),
     [open, setOpen, interactions, data, modal, labelId, descriptionId]
   );
@@ -101,7 +101,7 @@ export const usePopoverContext = () => {
   const context = React.useContext(PopoverContext);
 
   if (context == null) {
-    throw new Error("Popover components must be wrapped in <Popover />");
+    throw new Error('Popover components must be wrapped in <Popover />');
   }
 
   return context;
@@ -145,17 +145,17 @@ export const PopoverTrigger = React.forwardRef<
         ref,
         ...props,
         ...children.props,
-        "data-state": context.open ? "open" : "closed"
+        'data-state': context.open ? 'open' : 'closed',
       })
     );
   }
 
   return (
     <div
-    className="inline-block"
+      className="inline-block"
       ref={ref}
       // The user can style the trigger based on the state
-      data-state={context.open ? "open" : "closed"}
+      data-state={context.open ? 'open' : 'closed'}
       {...context.getReferenceProps(props)}
     >
       {children}
@@ -180,9 +180,9 @@ export const PopoverContent = React.forwardRef<
               position: context.strategy,
               top: context.y ?? 0,
               left: context.x ?? 0,
-              width: "max-content",
+              width: 'max-content',
               zIndex: 100,
-              ...props.style
+              ...props.style,
             }}
             className={styles.Popover}
             aria-labelledby={context.labelId}

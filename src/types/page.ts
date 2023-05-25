@@ -1,6 +1,6 @@
-import { GetTokenUniqueIdProps } from "@/utils/api";
-import { TokenMetadata } from "./api";
-import { Chain } from "@/config/networks/template";
+import { GetTokenUniqueIdProps } from '@/utils/api';
+import { TokenMetadata } from './api';
+import { Chain } from '@/config/networks/template';
 
 export type PageProps = any;
 
@@ -26,6 +26,6 @@ export interface BareServerSideProps {
   chain: ChainProps;
 }
 
-export interface DownloadRef  {
+export interface DownloadRef {
   downloadCsv: (param: any[][], name: string) => void;
 }

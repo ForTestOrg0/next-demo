@@ -6,11 +6,8 @@ interface Props extends BareProps {
   value?: string;
 }
 
-
 const Parameters: React.FC<Props> = ({ value, className }) => (
-  <div className={clsx('flex', className)}>
-    {value}
-  </div>
+  <div className={clsx('flex', className)}>{value}</div>
 );
 
 export default Parameters;

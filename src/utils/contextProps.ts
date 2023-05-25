@@ -1,5 +1,4 @@
-import { GetServerSidePropsContext } from "next";
-
+import { GetServerSidePropsContext } from 'next';
 
 export function serializeContext(context: GetServerSidePropsContext) {
   return {

@@ -1,1 +1,1 @@
-export { default as TechcommProposalList }  from './TechcommProposalList';
+export { default as TechcommProposalList } from './TechcommProposalList';

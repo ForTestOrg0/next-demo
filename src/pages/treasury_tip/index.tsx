@@ -7,17 +7,22 @@ import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
 import { serializeContext } from '@/utils/contextProps';
 
-export const getServerSideProps: GetServerSideProps<{
-  data: GetTreasuryTipsProps,
-  page: number,
-} & BareServerSideProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<
+  {
+    data: GetTreasuryTipsProps;
+    page: number;
+  } & BareServerSideProps
+> = async (context) => {
   const chainProps = await getChainProps(context.req.headers.host);
   const page = parseInt(context.query.page as string) || 1;
-  const data = await getTreasuryTips(context.req.headers.host || '', { "row": PAGE_ROW, "page": page - 1 });
+  const data = await getTreasuryTips(context.req.headers.host || '', {
+    row: PAGE_ROW,
+    page: page - 1,
+  });
   if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
@@ -27,21 +32,32 @@ export const getServerSideProps: GetServerSideProps<{
       chain: chainProps,
       context: serializeContext(context),
     },
-  }
-}
+  };
+};
 
-export default function Layout({ data, page, chain }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Layout({
+  data,
+  page,
+  chain,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
-      <Container className='flex-1'>
-        <Text block bold className='mb-4 break-all'>Treasury Tips</Text>
+      <Container className="flex-1">
+        <Text block bold className="mb-4 break-all">
+          Treasury Tips
+        </Text>
         <Boundary>
-          <TreasuryTipsList proposals={data.list} chain={chain}/>
+          <TreasuryTipsList proposals={data.list} chain={chain} />
         </Boundary>
-        <Flex className='mt-5 flex-row-reverse'>
-          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/treasury_tip?page=${_page}`} />
+        <Flex className="mt-5 flex-row-reverse">
+          <Pagination
+            total={data.count}
+            pageSize={PAGE_ROW}
+            current={page}
+            urlRender={(_page) => `/treasury_tip?page=${_page}`}
+          />
         </Flex>
       </Container>
-    </PageContent >
+    </PageContent>
   );
 }

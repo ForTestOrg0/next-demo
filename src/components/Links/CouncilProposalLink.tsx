@@ -6,8 +6,14 @@ interface Props extends BareProps {
   index: string | number;
 }
 
-const CouncilProposalLink: React.FC<Props> = ({ children, index, className }) => (
-  <LinkRouter className={className} href={`/council/${index}`}>{children ?? index}</LinkRouter>
+const CouncilProposalLink: React.FC<Props> = ({
+  children,
+  index,
+  className,
+}) => (
+  <LinkRouter className={className} href={`/council/${index}`}>
+    {children ?? index}
+  </LinkRouter>
 );
 
 export default CouncilProposalLink;

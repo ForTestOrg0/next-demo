@@ -1,6 +1,6 @@
-import { ReactNode, FC, useMemo } from "react";
+import { ReactNode, FC, useMemo } from 'react';
 
-export type Size = "small" | "middle" | "large";
+export type Size = 'small' | 'middle' | 'large';
 
 export interface LoadingProps {
   children?: ReactNode;
@@ -9,15 +9,20 @@ export interface LoadingProps {
   size?: Size;
 }
 
-const Loading: FC<LoadingProps> = ({ children, loading, className, size = "middle" }) => {
+const Loading: FC<LoadingProps> = ({
+  children,
+  loading,
+  className,
+  size = 'middle',
+}) => {
   const sizeStyle = useMemo(() => {
     switch (size) {
-      case "small":
-        return "w-4 h-4";
-      case "middle":
-        return "w-6 h-6";
-      case "large":
-        return "w-8 h-8";
+      case 'small':
+        return 'w-4 h-4';
+      case 'middle':
+        return 'w-6 h-6';
+      case 'large':
+        return 'w-8 h-8';
     }
   }, [size]);
 

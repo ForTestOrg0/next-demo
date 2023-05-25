@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { notification } from ".";
-import { useRef } from "react";
+import { notification } from '.';
+import { useRef } from 'react';
 
 interface Props {
   title?: string;
@@ -9,7 +9,7 @@ interface Props {
   duration?: number;
 }
 
-const methods = ["success", "error", "warn", "progress"] as const;
+const methods = ['success', 'error', 'warn', 'progress'] as const;
 
 const Demo = ({ title, description, duration }: Props) => {
   const ref = useRef<(() => void)[]>([]);
@@ -29,7 +29,11 @@ const Demo = ({ title, description, duration }: Props) => {
         <button
           key={index}
           onClick={() => {
-            const closer = notification[method]({ title, description, duration });
+            const closer = notification[method]({
+              title,
+              description,
+              duration,
+            });
             ref.current.push(closer);
           }}
           className="border rounded px-2 capitalize"
@@ -43,9 +47,9 @@ const Demo = ({ title, description, duration }: Props) => {
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Demo> = {
-  title: "UI/notification",
+  title: 'UI/notification',
   component: Demo,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 };
 
@@ -56,8 +60,8 @@ type Story = StoryObj<typeof Demo>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    title: "This is Title",
-    description: "This is Description",
+    title: 'This is Title',
+    description: 'This is Description',
     duration: 3000,
   },
 };

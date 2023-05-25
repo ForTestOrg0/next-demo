@@ -1,6 +1,6 @@
-import { FC, ReactNode } from "react";
-import Image from "next/image";
-import noData from "./assets/no-data.png";
+import { FC, ReactNode } from 'react';
+import Image from 'next/image';
+import noData from './assets/no-data.png';
 
 export interface EmptyProps {
   description?: ReactNode;

@@ -55,7 +55,7 @@ const checkForIllegalModeChange = (props, mode) => {
   ) {
     throw new Error(
       `Switching between controlled mode (by using \`selectedIndex\`) and uncontrolled mode is not supported in \`Tabs\`.
-For more information about controlled and uncontrolled mode of react-tabs see https://github.com/reactjs/react-tabs#controlled-vs-uncontrolled-mode.`,
+For more information about controlled and uncontrolled mode of react-tabs see https://github.com/reactjs/react-tabs#controlled-vs-uncontrolled-mode.`
     );
   }
 };
@@ -74,7 +74,7 @@ const Tabs = (props) => {
   const [focus, setFocus] = useState(defaultFocus);
   const [mode] = useState(getModeFromProps(props));
   const [selectedIndex, setSelectedIndex] = useState(
-    mode === MODE_UNCONTROLLED ? defaultIndex || 0 : null,
+    mode === MODE_UNCONTROLLED ? defaultIndex || 0 : null
   );
 
   useEffect(() => {

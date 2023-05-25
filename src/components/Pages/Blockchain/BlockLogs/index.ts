@@ -1,1 +1,1 @@
-export { BlockLogs }  from './BlockLogs';
+export { BlockLogs } from './BlockLogs';

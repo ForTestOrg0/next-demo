@@ -1,2 +1,2 @@
-export { BlockExtrinsicsClient }  from './BlockExtrinsicsClient';
-export { BlockExtrinsics }  from './BlockExtrinsics';
+export { BlockExtrinsicsClient } from './BlockExtrinsicsClient';
+export { BlockExtrinsics } from './BlockExtrinsics';

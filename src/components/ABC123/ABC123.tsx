@@ -7,9 +7,7 @@ interface Props extends BareProps {
 }
 
 const Component: React.FC<Props> = ({ children, className }) => {
-  return (<div className={clsx('flex', className)}>
-    ABC
-  </div>);
+  return <div className={clsx('flex', className)}>ABC</div>;
 };
 
 export default Component;

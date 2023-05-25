@@ -10,31 +10,33 @@ interface Props extends BareProps {
 }
 
 const Component: React.FC<Props> = ({ tippers }) => {
-  return (<Table className='w-full'>
-    <tbody>
-      <Tr>
-        <Th>Tippers</Th>
-        <Th>Extrinsic Index</Th>
-        <Th>Value</Th>
-      </Tr>
+  return (
+    <Table className="w-full">
+      <tbody>
+        <Tr>
+          <Th>Tippers</Th>
+          <Th>Extrinsic Index</Th>
+          <Th>Value</Th>
+        </Tr>
 
-      {tippers?.map((item, index) => {
-        return (
-          <Tr key={item.extrinsic_index}>
-            <Td>
-              <Identicon account={item.rewarder} />
-            </Td>
-            <Td>
-              <ExtrinsicLink extrinsicIndex={item.extrinsic_index} />
-            </Td>
-            <Td>
-              <Text>{item.amount}</Text>
-            </Td>
-          </Tr>
-        );
-      })}
-    </tbody>
-  </Table>)
+        {tippers?.map((item, index) => {
+          return (
+            <Tr key={item.extrinsic_index}>
+              <Td>
+                <Identicon account={item.rewarder} />
+              </Td>
+              <Td>
+                <ExtrinsicLink extrinsicIndex={item.extrinsic_index} />
+              </Td>
+              <Td>
+                <Text>{item.amount}</Text>
+              </Td>
+            </Tr>
+          );
+        })}
+      </tbody>
+    </Table>
+  );
 };
 
 export default Component;

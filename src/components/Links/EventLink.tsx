@@ -9,7 +9,14 @@ interface Props extends BareProps {
 
 const EventLink: React.FC<Props> = ({ children, className, query }) => {
   const searchParams = objectToSearchParams(query);
-  return <LinkRouter className={className} href={`/event${searchParams ? `?${searchParams}` : ''}`}>{children}</LinkRouter>
+  return (
+    <LinkRouter
+      className={className}
+      href={`/event${searchParams ? `?${searchParams}` : ''}`}
+    >
+      {children}
+    </LinkRouter>
+  );
 };
 
 export default EventLink;

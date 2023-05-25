@@ -7,7 +7,13 @@ interface Props extends BareProps {
   text?: string;
 }
 
-export const BlockStatus: React.FC<Props> = ({ children, finalized, className, text }) => {
-  return (<ResultStatus className={className} type={finalized ? 1 : 0} text={text} />)
+export const BlockStatus: React.FC<Props> = ({
+  children,
+  finalized,
+  className,
+  text,
+}) => {
+  return (
+    <ResultStatus className={className} type={finalized ? 1 : 0} text={text} />
+  );
 };
-

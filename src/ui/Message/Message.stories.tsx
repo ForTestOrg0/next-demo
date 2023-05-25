@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { message } from ".";
-import { useRef } from "react";
+import { message } from '.';
+import { useRef } from 'react';
 
 interface Props {
   content: JSX.Element | string;
   duration?: number;
 }
 
-const methods = ["success", "error", "warn", "info"] as const;
+const methods = ['success', 'error', 'warn', 'info'] as const;
 
 const Demo = ({ content, duration }: Props) => {
   const ref = useRef<(() => void)[]>([]);
@@ -42,9 +42,9 @@ const Demo = ({ content, duration }: Props) => {
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Demo> = {
-  title: "UI/message",
+  title: 'UI/message',
   component: Demo,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 };
 
@@ -55,7 +55,7 @@ type Story = StoryObj<typeof Demo>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    content: "This is Content",
+    content: 'This is Content',
     duration: 3000,
   },
 };

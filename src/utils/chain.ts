@@ -1,9 +1,9 @@
-import { getChainConfigBySubdomain } from "@/config/chains";
-import { getSubdomain } from "./url";
-import { getTokenUniqueId, unwrap } from "./api";
-import { ChainProps, Token } from "@/types/page";
+import { getChainConfigBySubdomain } from '@/config/chains';
+import { getSubdomain } from './url';
+import { getTokenUniqueId, unwrap } from './api';
+import { ChainProps, Token } from '@/types/page';
 
-export async function getChainProps(hostname = ""): Promise<ChainProps | null> {
+export async function getChainProps(hostname = ''): Promise<ChainProps | null> {
   const chainConf = getChainConfigBySubdomain(getSubdomain(hostname));
   if (!chainConf) return null;
 

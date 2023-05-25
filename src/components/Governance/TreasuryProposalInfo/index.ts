@@ -1,1 +1,1 @@
-export { default as TreasuryProposalInfo }  from './TreasuryProposalInfo';
+export { default as TreasuryProposalInfo } from './TreasuryProposalInfo';

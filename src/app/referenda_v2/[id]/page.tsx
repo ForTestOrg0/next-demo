@@ -1,12 +1,10 @@
-
 import { use } from 'react';
 import { PageProps } from '@/types/page';
 // import Chart from '@/components/Echart';
 import styles from './styles.module.scss';
 
-
 const fetchCategory = async (
-  id: string | undefined,
+  id: string | undefined
 ): Promise<string | undefined> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 

@@ -1,1 +1,1 @@
-export { default as BlockInfo }  from './BlockInfo';
+export { default as BlockInfo } from './BlockInfo';

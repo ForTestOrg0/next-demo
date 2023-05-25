@@ -8,9 +8,21 @@ interface Props extends BareProps {
   query?: Record<string, string>;
 }
 
-const BlockLink: React.FC<Props> = ({ children, blockNumber, className, query }) => {
+const BlockLink: React.FC<Props> = ({
+  children,
+  blockNumber,
+  className,
+  query,
+}) => {
   const searchParams = objectToSearchParams(query);
-  return <LinkRouter className={className} href={`/block/${blockNumber}${searchParams ? `?${searchParams}` : ''}`}>{children ?? blockNumber}</LinkRouter>
+  return (
+    <LinkRouter
+      className={className}
+      href={`/block/${blockNumber}${searchParams ? `?${searchParams}` : ''}`}
+    >
+      {children ?? blockNumber}
+    </LinkRouter>
+  );
 };
 
 export default BlockLink;

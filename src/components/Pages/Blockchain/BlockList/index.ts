@@ -1,2 +1,2 @@
-export { BlockStatus }  from './BlockStatus';
-export { default as BlockList }  from './BlockList';
+export { BlockStatus } from './BlockStatus';
+export { default as BlockList } from './BlockList';

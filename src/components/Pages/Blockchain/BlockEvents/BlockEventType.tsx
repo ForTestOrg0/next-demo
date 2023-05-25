@@ -8,11 +8,18 @@ interface Props extends BareProps {
   phase: number;
 }
 
-export const BlockEventType: React.FC<Props> = ({ children, phase, className }) => {
-  return (<div className={clsx('flex', className)}>
-    {phase === EVENT_PHASE.FINALIZATION ? <Text>Finalization</Text> : null}
-    {phase === EVENT_PHASE.INITIALIZATION ? <Text>Initialization</Text> : null}
-    {phase === EVENT_PHASE.EXTRINSIC ? <Text>Extrinsic</Text> : null}
-  </div>);
+export const BlockEventType: React.FC<Props> = ({
+  children,
+  phase,
+  className,
+}) => {
+  return (
+    <div className={clsx('flex', className)}>
+      {phase === EVENT_PHASE.FINALIZATION ? <Text>Finalization</Text> : null}
+      {phase === EVENT_PHASE.INITIALIZATION ? (
+        <Text>Initialization</Text>
+      ) : null}
+      {phase === EVENT_PHASE.EXTRINSIC ? <Text>Extrinsic</Text> : null}
+    </div>
+  );
 };
-

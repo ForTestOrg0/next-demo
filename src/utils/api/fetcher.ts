@@ -1,6 +1,6 @@
-import { getChainConfigBySubdomain } from "@/config/chains";
-import { APIWarpperProps } from "@/types/api";
-import { getSubdomain } from "../url";
+import { getChainConfigBySubdomain } from '@/config/chains';
+import { APIWarpperProps } from '@/types/api';
+import { getSubdomain } from '../url';
 
 export function unwrap<T>(apiData: APIWarpperProps<T> | undefined): T | null {
   if (!apiData || apiData.code !== 0) {
@@ -18,12 +18,12 @@ export async function subscanFetch(
   const chainConf = getChainConfigBySubdomain(getSubdomain(hostname));
   console.info(`subscanFetch(${path}):`);
   console.info({ api: chainConf?.api, path, params });
-  
+
   const res = await fetch(`${chainConf?.api}/${path}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(params || {}),
   });

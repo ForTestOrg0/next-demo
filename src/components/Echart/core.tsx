@@ -34,7 +34,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
       });
     });
   }
-  
+
   public getEchartsInstance(): ECharts {
     return this.echarts.getInstanceByDom(this.ele.current);
   }

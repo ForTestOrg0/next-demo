@@ -13,10 +13,10 @@ const map: Record<string, ResultStatusType> = {
   executed: 1,
   disapproved: -1,
   proposed: 0,
-}
+};
 
 const Component: React.FC<Props> = ({ children, status, className, text }) => {
-  return (<ResultStatus type={map[status]} text={text}/>)
+  return <ResultStatus type={map[status]} text={text} />;
 };
 
 export default Component;

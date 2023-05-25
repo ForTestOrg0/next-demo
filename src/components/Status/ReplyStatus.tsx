@@ -9,11 +9,19 @@ interface Props extends BareProps {
 }
 
 const Component: React.FC<Props> = ({ children, type, className }) => {
-  return (<div className={clsx('flex', className)}>
-    {type ? 
-    <Flex className='justify-center items-center bg-sub-success-light p-[6px] rounded-full'><AyeIcon className='w-4 text-sub-white-light' /></Flex> : 
-    <Flex className='justify-center items-center bg-sub-error-light p-[6px] rounded-full'><NayIcon className='w-4 text-sub-white-light' /></Flex>}
-  </div>);
+  return (
+    <div className={clsx('flex', className)}>
+      {type ? (
+        <Flex className="justify-center items-center bg-sub-success-light p-[6px] rounded-full">
+          <AyeIcon className="w-4 text-sub-white-light" />
+        </Flex>
+      ) : (
+        <Flex className="justify-center items-center bg-sub-error-light p-[6px] rounded-full">
+          <NayIcon className="w-4 text-sub-white-light" />
+        </Flex>
+      )}
+    </div>
+  );
 };
 
 export default Component;

@@ -1,6 +1,13 @@
-import { getDaysInMonth, getDay, format, isSameDay, isBefore, isAfter } from "date-fns";
-import { Month, MonthDate } from "./types";
-import { DISPLAY_DATA_EVERY_MONTH } from "./config";
+import {
+  getDaysInMonth,
+  getDay,
+  format,
+  isSameDay,
+  isBefore,
+  isAfter,
+} from 'date-fns';
+import { Month, MonthDate } from './types';
+import { DISPLAY_DATA_EVERY_MONTH } from './config';
 
 /**
  *
@@ -85,12 +92,19 @@ const getMonthDays = (month: number, year: number) => {
 
   const nextMonth = getNextMonth(month, year);
   const previousMonth = getPreviousMonth(month, year);
-  const totalDaysInPreviousMonth = getTotalDaysInMonth(previousMonth.month, previousMonth.year);
+  const totalDaysInPreviousMonth = getTotalDaysInMonth(
+    previousMonth.month,
+    previousMonth.year
+  );
 
   // previous month overflow days
   for (let i = dayOfWeekOfThisMonthFirstDay - 1; i >= 0; i--) {
     result.push({
-      date: new Date(previousMonth.year, previousMonth.month - 1, totalDaysInPreviousMonth - i),
+      date: new Date(
+        previousMonth.year,
+        previousMonth.month - 1,
+        totalDaysInPreviousMonth - i
+      ),
       isCurrentMonth: false,
     });
   }
@@ -135,7 +149,10 @@ export const getCalendar = (defaultDate: Date, monthCount = 1) => {
 
       calendar.push({
         month: new Date(defaultDate.getFullYear(), defaultDate.getMonth()),
-        dates: getMonthDays(defaultDate.getMonth() + 1, defaultDate.getFullYear()),
+        dates: getMonthDays(
+          defaultDate.getMonth() + 1,
+          defaultDate.getFullYear()
+        ),
       });
     } else {
       const next = getNextMonth(lastMonth, lastYear);
@@ -176,7 +193,7 @@ export const getMonth = (date: Date) => {
  * @returns Jan, Feb, ..., Dec
  */
 export const getMonthText = (date: Date) => {
-  return format(date, "MMM");
+  return format(date, 'MMM');
 };
 
 /**
@@ -185,7 +202,7 @@ export const getMonthText = (date: Date) => {
  * @returns 1, 2, ..., 31
  */
 export const getDayText = (date: Date) => {
-  return format(date, "d");
+  return format(date, 'd');
 };
 
 /**
@@ -195,7 +212,11 @@ export const getDayText = (date: Date) => {
  * @param compare the compare time
  * @returns compare is between start and end or not
  */
-export const isDayBetween = (start: Date | number, end: Date | number, compare: Date) => {
+export const isDayBetween = (
+  start: Date | number,
+  end: Date | number,
+  compare: Date
+) => {
   if (isSameDay(start, compare) || isSameDay(end, compare)) {
     return true;
   }

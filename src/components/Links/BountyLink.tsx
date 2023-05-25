@@ -7,7 +7,9 @@ interface Props extends BareProps {
 }
 
 const Component: React.FC<Props> = ({ children, index, className }) => (
-  <LinkRouter className={className} href={`/bounty/${index}`}>{children ?? index}</LinkRouter>
+  <LinkRouter className={className} href={`/bounty/${index}`}>
+    {children ?? index}
+  </LinkRouter>
 );
 
 export default Component;

@@ -1,13 +1,37 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui';
+import {
+  Boundary,
+  PageContent,
+  Container,
+  Text,
+  TabGroup,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+} from '@/ui';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getCouncilProposal, GetCouncilProposalProps } from '@/utils/api';
-import { CouncilMotionInfo, SimpleProposalVotes, ProposalParamsInfo, ProposalPreImage, ProposalTimeLine } from '@/components/Governance';
+import {
+  CouncilMotionInfo,
+  SimpleProposalVotes,
+  ProposalParamsInfo,
+  ProposalPreImage,
+  ProposalTimeLine,
+} from '@/components/Governance';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
-import METADATA from "@/config/metadata";
+import METADATA from '@/config/metadata';
 // import { useTranslation } from 'next-i18next'
 
-export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCouncilProposalProps, tab: string, proposalId: number } & BareServerSideProps, { id: string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<
+  {
+    host: string;
+    data: GetCouncilProposalProps;
+    tab: string;
+    proposalId: number;
+  } & BareServerSideProps,
+  { id: string }
+> = async (context) => {
   const host = context.req.headers.host || '';
   const tab = (context.query.tab || '')?.toString();
   const proposalId = context.params?.id;
@@ -15,15 +39,17 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCou
   if (typeof proposalId === 'undefined') {
     return {
       notFound: true,
-    }
+    };
   }
-  const data = await getCouncilProposal(host, { proposal_id: parseInt(proposalId) });
+  const data = await getCouncilProposal(host, {
+    proposal_id: parseInt(proposalId),
+  });
   const chainProps = await getChainProps(context.req.headers.host);
-  
+
   if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
@@ -36,26 +62,31 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetCou
       metadata: {
         ...METADATA['council_motion'],
         title: METADATA['council_motion']['title'] + proposalId,
-      }
+      },
     },
-  }
-}
+  };
+};
 
-
-export default function Page({ data, proposalId, chain }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({
+  data,
+  proposalId,
+  chain,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const council = data.info;
   // const { t } = useTranslation('common')
 
   return (
     <PageContent>
-      <Container className='flex-1'>
-        <Text block bold className='mb-4 break-all'>Council Motions#{proposalId}</Text>
+      <Container className="flex-1">
+        <Text block bold className="mb-4 break-all">
+          Council Motions#{proposalId}
+        </Text>
 
         <Boundary>
           <CouncilMotionInfo proposal={council} />
         </Boundary>
 
-        <Boundary className='mt-5'>
+        <Boundary className="mt-5">
           <TabGroup>
             <TabList>
               <Tab>Voting Detail</Tab>
@@ -69,9 +100,26 @@ export default function Page({ data, proposalId, chain }: InferGetServerSideProp
               <TabPanel>
                 <SimpleProposalVotes votes={council.votes} />
               </TabPanel>
-              <TabPanel><ProposalTimeLine timeline={council.timeline} /></TabPanel>
-              <TabPanel>{council?.pre_image ? <ProposalPreImage preimage={council?.pre_image} chain={chain}/> : null}</TabPanel>
-              <TabPanel>{council?.params ? <ProposalParamsInfo callModule={council?.call_module} callName={council?.call_name} params={council?.params} /> : null}</TabPanel>
+              <TabPanel>
+                <ProposalTimeLine timeline={council.timeline} />
+              </TabPanel>
+              <TabPanel>
+                {council?.pre_image ? (
+                  <ProposalPreImage
+                    preimage={council?.pre_image}
+                    chain={chain}
+                  />
+                ) : null}
+              </TabPanel>
+              <TabPanel>
+                {council?.params ? (
+                  <ProposalParamsInfo
+                    callModule={council?.call_module}
+                    callName={council?.call_name}
+                    params={council?.params}
+                  />
+                ) : null}
+              </TabPanel>
               <TabPanel>post</TabPanel>
               <TabPanel>comments</TabPanel>
             </TabPanels>

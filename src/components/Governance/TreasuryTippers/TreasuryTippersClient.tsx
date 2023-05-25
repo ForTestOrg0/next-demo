@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React from 'react';
 import { BareProps } from '@/types/page';
@@ -14,16 +14,18 @@ interface Props extends BareProps {
 
 const ReferendaVotesClient: React.FC<Props> = ({ host, hash }) => {
   const { data, error, isLoading } = useTreasuryTippers(host, {
-    hash
+    hash,
   });
   const tippers = unwrap(data);
 
-  if (isLoading) return <Loading />
+  if (isLoading) return <Loading />;
   if (!tippers) return <Empty />;
 
-  return (<div>
-    <TreasuryTippers tippers={tippers?.list || []} />
-  </div>)
+  return (
+    <div>
+      <TreasuryTippers tippers={tippers?.list || []} />
+    </div>
+  );
 };
 
 export default ReferendaVotesClient;

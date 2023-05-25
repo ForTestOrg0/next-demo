@@ -12,31 +12,60 @@ interface Props extends BareProps, BareServerSideProps {
 }
 
 const Page: React.FC<Props> = ({ blocks, chain }) => {
-  return (<Table className='w-full'>
-    <tbody>
-      <Tr>
-        <Th>Block</Th>
-        <Th>Status</Th>
-        <Th>Time</Th>
-        <Th>Extrinsics</Th>
-        <Th>Events</Th>
-        <Th>Validator</Th>
-        <Th>Block hash</Th>
-      </Tr>
-      {blocks.map((block) => {
-        return (
-          <Tr key={block.hash}>
-            <Td><BlockLink blockNumber={block.block_num} /></Td>
-            <Td><BlockStatus finalized={block.finalized} /></Td>
-            <Td><TimeFromNow date={block.block_timestamp} /></Td>
-            <Td><BlockLink blockNumber={block.block_num} query={{ tab: 'extrinsic' }}>{block.extrinsics_count}</BlockLink></Td>
-            <Td><BlockLink blockNumber={block.block_num} query={{ tab: 'event' }} >{block.event_count}</BlockLink></Td>
-            <Td><ValidatorLink address={block?.account_display?.address}><Identicon account={block.account_display} /></ValidatorLink></Td>
-            <Td><BlockLink blockNumber={block.hash} /></Td>
-          </Tr>)
-      })}
-    </tbody>
-  </Table>)
+  return (
+    <Table className="w-full">
+      <tbody>
+        <Tr>
+          <Th>Block</Th>
+          <Th>Status</Th>
+          <Th>Time</Th>
+          <Th>Extrinsics</Th>
+          <Th>Events</Th>
+          <Th>Validator</Th>
+          <Th>Block hash</Th>
+        </Tr>
+        {blocks.map((block) => {
+          return (
+            <Tr key={block.hash}>
+              <Td>
+                <BlockLink blockNumber={block.block_num} />
+              </Td>
+              <Td>
+                <BlockStatus finalized={block.finalized} />
+              </Td>
+              <Td>
+                <TimeFromNow date={block.block_timestamp} />
+              </Td>
+              <Td>
+                <BlockLink
+                  blockNumber={block.block_num}
+                  query={{ tab: 'extrinsic' }}
+                >
+                  {block.extrinsics_count}
+                </BlockLink>
+              </Td>
+              <Td>
+                <BlockLink
+                  blockNumber={block.block_num}
+                  query={{ tab: 'event' }}
+                >
+                  {block.event_count}
+                </BlockLink>
+              </Td>
+              <Td>
+                <ValidatorLink address={block?.account_display?.address}>
+                  <Identicon account={block.account_display} />
+                </ValidatorLink>
+              </Td>
+              <Td>
+                <BlockLink blockNumber={block.hash} />
+              </Td>
+            </Tr>
+          );
+        })}
+      </tbody>
+    </Table>
+  );
 };
 
 export default Page;

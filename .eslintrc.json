@@ -1,6 +1,14 @@
 {
   "extends": [
     "next/core-web-vitals",
+    "prettier",
     "plugin:storybook/recommended"
-  ]
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": ["error", { "singleQuote": true }]
+  },
+  "ignorePatterns": ["src/ui/Svg"]
 }

@@ -9,12 +9,25 @@ interface Props extends BareProps {
   empty?: boolean;
 }
 
-const Components: React.FC<Props> = ({ empty, query, children, address = '', className }) => {
+const Components: React.FC<Props> = ({
+  empty,
+  query,
+  children,
+  address = '',
+  className,
+}) => {
   if (empty) {
     return <Text>-</Text>;
   }
-  const searchParams = objectToSearchParams(query)
-  return (<LinkRouter className="text-sm" href={`/validator/${address}${searchParams ? `?${searchParams}` : ''}`}>{children ?? address}</LinkRouter>);
+  const searchParams = objectToSearchParams(query);
+  return (
+    <LinkRouter
+      className="text-sm"
+      href={`/validator/${address}${searchParams ? `?${searchParams}` : ''}`}
+    >
+      {children ?? address}
+    </LinkRouter>
+  );
 };
 
 export default Components;

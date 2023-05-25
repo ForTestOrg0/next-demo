@@ -1,1 +1,1 @@
-export { default as BountiesList }  from './BountiesList';
+export { default as BountiesList } from './BountiesList';

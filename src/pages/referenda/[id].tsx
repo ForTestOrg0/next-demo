@@ -1,13 +1,41 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, LinkRouter, Button } from '@/ui';
+import {
+  Boundary,
+  PageContent,
+  Container,
+  Text,
+  TabGroup,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+  LinkRouter,
+  Button,
+} from '@/ui';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { getDemocracyReferendum, GetDemocracyReferendumProps } from '@/utils/api';
-import { ProposalPreImage, ProposalTimeLine, ReferendaInfo, ReferendaVotesClient } from '@/components/Governance';
-import { PAGE_ROW } from '@/config/constants';
+import {
+  getDemocracyReferendum,
+  GetDemocracyReferendumProps,
+} from '@/utils/api';
+import {
+  ProposalPreImage,
+  ProposalTimeLine,
+  ReferendaInfo,
+  ReferendaVotesClient,
+} from '@/components/Governance';
+import { PAGE_ROW, TAB_ROW } from '@/config/constants';
 import { getChainProps } from '@/utils/chain';
 import { BareServerSideProps } from '@/types/page';
-import METADATA from "@/config/metadata";
+import METADATA from '@/config/metadata';
 
-export const getServerSideProps: GetServerSideProps<{ host: string; data: GetDemocracyReferendumProps, tab: string, referendumIndex: number } & BareServerSideProps, { id: string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<
+  {
+    host: string;
+    data: GetDemocracyReferendumProps;
+    tab: string;
+    referendumIndex: number;
+  } & BareServerSideProps,
+  { id: string }
+> = async (context) => {
   const host = context.req.headers.host || '';
   const tab = (context.query.tab || '')?.toString();
   const referendumIndex = context.params?.id;
@@ -15,15 +43,17 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetDem
   if (typeof referendumIndex === 'undefined') {
     return {
       notFound: true,
-    }
+    };
   }
-  const data = await getDemocracyReferendum(host, { referendum_index: parseInt(referendumIndex) });
+  const data = await getDemocracyReferendum(host, {
+    referendum_index: parseInt(referendumIndex),
+  });
   const chainProps = await getChainProps(context.req.headers.host);
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
@@ -36,23 +66,29 @@ export const getServerSideProps: GetServerSideProps<{ host: string; data: GetDem
       metadata: {
         ...METADATA['referendum'],
         title: METADATA['referendum']['title'] + referendumIndex,
-      }
+      },
     },
-  }
-}
+  };
+};
 
-
-export default function Page({ host, data, chain, referendumIndex }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({
+  host,
+  data,
+  chain,
+  referendumIndex,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
-      <Container className='flex-1'>
-        <Text block bold className='mb-4 break-all'>Democracy Referenda#{referendumIndex}</Text>
+      <Container className="flex-1">
+        <Text block bold className="mb-4 break-all">
+          Democracy Referenda#{referendumIndex}
+        </Text>
 
         <Boundary>
           <ReferendaInfo referenda={data.info} />
         </Boundary>
 
-        <Boundary className='mt-5'>
+        <Boundary className="mt-5">
           <TabGroup>
             <TabList>
               <Tab>Voting Detail</Tab>
@@ -63,10 +99,25 @@ export default function Page({ host, data, chain, referendumIndex }: InferGetSer
             </TabList>
             <TabPanels>
               <TabPanel>
-                <ReferendaVotesClient chain={chain} host={host} page={0} row={PAGE_ROW} referendumIndex={referendumIndex} />
+                <ReferendaVotesClient
+                  chain={chain}
+                  host={host}
+                  page={0}
+                  row={TAB_ROW}
+                  referendumIndex={referendumIndex}
+                />
               </TabPanel>
-              <TabPanel><ProposalTimeLine timeline={data.info.timeline} /></TabPanel>
-              <TabPanel>{data.info?.pre_image ? <ProposalPreImage preimage={data.info?.pre_image} chain={chain} /> : null}</TabPanel>
+              <TabPanel>
+                <ProposalTimeLine timeline={data.info.timeline} />
+              </TabPanel>
+              <TabPanel>
+                {data.info?.pre_image ? (
+                  <ProposalPreImage
+                    preimage={data.info?.pre_image}
+                    chain={chain}
+                  />
+                ) : null}
+              </TabPanel>
               <TabPanel>post</TabPanel>
               <TabPanel>comments</TabPanel>
             </TabPanels>

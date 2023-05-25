@@ -1,5 +1,5 @@
-import { Chain } from "./networks/template";
-import { CHAINS } from "./networks";
+import { Chain } from './networks/template';
+import { CHAINS } from './networks';
 
 export { CHAINS };
 export function getChainConfigBySubdomain(name: string): Chain | null {

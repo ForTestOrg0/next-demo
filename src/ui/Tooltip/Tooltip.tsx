@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   useFloating,
   autoUpdate,
@@ -12,8 +12,8 @@ import {
   useInteractions,
   useMergeRefs,
   FloatingPortal,
-} from "@floating-ui/react";
-import type { Placement } from "@floating-ui/react";
+} from '@floating-ui/react';
+import type { Placement } from '@floating-ui/react';
 import styles from './Tooltip.module.css';
 import useCopyToClipboard from '@/hooks/useCopyToClipboard';
 import { message } from '../Message';
@@ -28,14 +28,14 @@ interface TooltipOptions {
 
 type TooltipContentType = {
   copyable?: boolean;
-}
+};
 
 export function useTooltip({
   copyable,
   initialOpen = false,
-  placement = "top",
+  placement = 'top',
   open: controlledOpen,
-  onOpenChange: setControlledOpen
+  onOpenChange: setControlledOpen,
 }: TooltipOptions = {}) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
 
@@ -50,10 +50,10 @@ export function useTooltip({
     middleware: [
       offset(5),
       flip({
-        fallbackAxisSideDirection: "start"
+        fallbackAxisSideDirection: 'start',
       }),
-      shift({ padding: 5 })
-    ]
+      shift({ padding: 5 }),
+    ],
   });
 
   const context = data.context;
@@ -61,16 +61,16 @@ export function useTooltip({
   const hover = useHover(context, {
     delay: {
       open: 0,
-      close: 250
+      close: 250,
     },
     move: false,
-    enabled: controlledOpen == null
+    enabled: controlledOpen == null,
   });
   const focus = useFocus(context, {
-    enabled: controlledOpen == null
+    enabled: controlledOpen == null,
   });
   const dismiss = useDismiss(context);
-  const role = useRole(context, { role: "tooltip" });
+  const role = useRole(context, { role: 'tooltip' });
 
   const interactions = useInteractions([hover, focus, dismiss, role]);
 
@@ -80,7 +80,7 @@ export function useTooltip({
       open,
       setOpen,
       ...interactions,
-      ...data
+      ...data,
     }),
     [open, setOpen, interactions, data]
   );
@@ -94,7 +94,7 @@ export const useTooltipContext = () => {
   const context = React.useContext(TooltipContext);
 
   if (context == null) {
-    throw new Error("Tooltip components must be wrapped in <Tooltip />");
+    throw new Error('Tooltip components must be wrapped in <Tooltip />');
   }
 
   return context;
@@ -130,7 +130,7 @@ export const TooltipTrigger = React.forwardRef<
         ref,
         ...props,
         ...children.props,
-        "data-state": context.open ? "open" : "closed"
+        'data-state': context.open ? 'open' : 'closed',
       })
     );
   }
@@ -139,7 +139,7 @@ export const TooltipTrigger = React.forwardRef<
     <div
       ref={ref}
       // The user can style the trigger based on the state
-      data-state={context.open ? "open" : "closed"}
+      data-state={context.open ? 'open' : 'closed'}
       className="inline-block"
       {...context.getReferenceProps(props)}
     >
@@ -158,8 +158,8 @@ export const TooltipContent = React.forwardRef<
   const copyFn = () => {
     if (context.copyable) {
       if (typeof props.children == 'string') {
-        copy(props.children)
-        message['success']("Copy Succeeded");
+        copy(props.children);
+        message['success']('Copy Succeeded');
       }
     }
   };
@@ -174,7 +174,7 @@ export const TooltipContent = React.forwardRef<
           position: context.strategy,
           top: context.y ?? 0,
           left: context.x ?? 0,
-          ...props.style
+          ...props.style,
         }}
         {...context.getFloatingProps(props)}
         className={styles.Tooltip}

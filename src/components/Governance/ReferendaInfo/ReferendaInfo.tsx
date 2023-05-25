@@ -1,9 +1,9 @@
-import React from "react";
-import { BareProps } from "@/types/page";
-import { TableCol, TdCol, TrCol } from "@/ui";
-import { BlockLink } from "@/components/Links";
-import { DemocracyReferendumDetail } from "@/types/api";
-import { VotePredict } from "@/components/VoteThreshold";
+import React from 'react';
+import { BareProps } from '@/types/page';
+import { TableCol, TdCol, TrCol } from '@/ui';
+import { BlockLink } from '@/components/Links';
+import { DemocracyReferendumDetail } from '@/types/api';
+import { VotePredict } from '@/components/VoteThreshold';
 
 interface Props extends BareProps {
   referenda: DemocracyReferendumDetail;

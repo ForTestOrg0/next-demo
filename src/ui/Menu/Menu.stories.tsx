@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Menu, MenuButton, MenuItems, MenuItem } from "./";
-import { BareProps } from "@/types/page";
-import { Link } from "../Link";
-import clsx from "clsx";
+import { Menu, MenuButton, MenuItems, MenuItem } from './';
+import { BareProps } from '@/types/page';
+import { Link } from '../Link';
+import clsx from 'clsx';
 
 const links = [
-  { href: "/account-settings", label: "Account settings" },
-  { href: "/support", label: "Support" },
-  { href: "/license", label: "License" },
-  { href: "/sign-out", label: "Sign out" },
+  { href: '/account-settings', label: 'Account settings' },
+  { href: '/support', label: 'Support' },
+  { href: '/license', label: 'License' },
+  { href: '/sign-out', label: 'Sign out' },
 ];
 
 const Dropdown: React.FC<BareProps> = () => {
@@ -23,7 +23,9 @@ const Dropdown: React.FC<BareProps> = () => {
               <Link
                 className={clsx({ 'bg-sub-b4': active }, 'menu-item')}
                 href={link.href}
-              >{link.label}</Link>
+              >
+                {link.label}
+              </Link>
             )}
           </MenuItem>
         ))}
@@ -33,9 +35,9 @@ const Dropdown: React.FC<BareProps> = () => {
 };
 
 const meta: Meta<typeof Menu> = {
-  title: "UI/Menu",
+  title: 'UI/Menu',
   component: Dropdown,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 };
 

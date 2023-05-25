@@ -10,10 +10,10 @@ interface Props extends BareProps {
 }
 
 const TimeFromNow: React.FC<Props> = ({ date, isMilliseconds, className }) => {
-  const fromNow = isMilliseconds? timeAgo(date * 1000) : timeAgo(date);
-  return (<div className={clsx('flex whitespace-nowrap', className)}>
-    {fromNow}
-  </div>);
+  const fromNow = isMilliseconds ? timeAgo(date * 1000) : timeAgo(date);
+  return (
+    <div className={clsx('flex whitespace-nowrap', className)}>{fromNow}</div>
+  );
 };
 
 export default TimeFromNow;

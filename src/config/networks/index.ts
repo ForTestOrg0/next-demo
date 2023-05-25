@@ -1,4 +1,4 @@
-import { Chain } from './template'
+import { Chain } from './template';
 import { polkadot } from './polkadot';
 import { kusama } from './kusama';
 import { darwinia_para } from './darwinia-parachain';

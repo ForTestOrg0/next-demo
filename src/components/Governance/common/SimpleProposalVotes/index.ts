@@ -1,1 +1,1 @@
-export { default as SimpleProposalVotes }  from './SimpleProposalVotes';
+export { default as SimpleProposalVotes } from './SimpleProposalVotes';

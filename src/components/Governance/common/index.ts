@@ -1,3 +1,3 @@
-export * from "./ProposalParamsInfo";
-export * from "./SimpleProposalVotes";
-export * from "./ProposalPreImage";
+export * from './ProposalParamsInfo';
+export * from './SimpleProposalVotes';
+export * from './ProposalPreImage';
