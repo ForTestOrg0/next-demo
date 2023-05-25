@@ -1,1 +1,1 @@
-export { default as TreasuryTipInfo } from './TreasuryTipInfo';
+export { default as TreasuryTipInfo } from './TreasuryTipInfo'

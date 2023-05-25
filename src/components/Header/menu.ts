@@ -1,15 +1,15 @@
 export type MenuType = {
-  href: string;
-  label: string;
-  targetBlank?: boolean;
-}[];
+  href: string
+  label: string
+  targetBlank?: boolean
+}[]
 
 export type NavTree = {
-  href?: string;
-  label: string;
-  menu?: MenuType;
-  targetBlank?: boolean;
-}[];
+  href?: string
+  label: string
+  menu?: MenuType
+  targetBlank?: boolean
+}[]
 
 export const blockchainLinks = [
   { href: '/block', label: 'Blocks' },
@@ -19,7 +19,7 @@ export const blockchainLinks = [
   { href: '/assets', label: 'Assets' },
   { href: '/account', label: 'Accounts' },
   { href: '/log', label: 'Logs' },
-];
+]
 
 export const parachainLinks = [
   { href: '/auction_board', label: 'PLO Dashboard' },
@@ -27,14 +27,14 @@ export const parachainLinks = [
   { href: '/auction', label: 'Auction' },
   { href: '/crowdloan', label: 'Crowdloan' },
   { href: '/bid', label: 'Bid' },
-];
+]
 
 export const xcmLinks = [
   { href: '/xcm_dashboard', label: 'XCM Dashboard' },
   { href: '/xcm_message', label: 'XCM Message' },
   { href: '/xcm_transfer', label: 'XCM Transfers' },
   { href: '/xcm_channel', label: 'XCM Channels' },
-];
+]
 
 export const govLinks = [
   { href: '/democracy_proposal', label: 'Democracy Proposals' },
@@ -44,7 +44,7 @@ export const govLinks = [
   { href: '/treasury', label: 'Treasury Proposals' },
   { href: '/treasury_tip', label: 'Treasury Tips' },
   { href: '/bounty', label: 'Bounties' },
-];
+]
 
 export const toolsLinks = [
   { href: '/tools/charts', label: 'Charts' },
@@ -58,7 +58,7 @@ export const toolsLinks = [
   },
   { href: 'https://support.subscan.io/', label: 'API Docs', targetBlank: true },
   { href: 'https://pro.subscan.io/', label: 'Get API Key', targetBlank: true },
-];
+]
 
 export const navTree: NavTree = [
   {
@@ -89,4 +89,4 @@ export const navTree: NavTree = [
     label: 'Tools',
     menu: toolsLinks,
   },
-];
+]

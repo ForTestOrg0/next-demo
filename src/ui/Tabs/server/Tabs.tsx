@@ -1,30 +1,27 @@
-import React from 'react';
-import clsx from 'clsx';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { BareProps } from '@/types/page';
-import { Flex } from '../../Box';
-import styles from './Tabs.module.css';
+import React from 'react'
+import clsx from 'clsx'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { BareProps } from '@/types/page'
+import { Flex } from '../../Box'
+import styles from './Tabs.module.css'
 
 interface TabItem {
-  value: string;
-  label: React.ReactNode;
-  replace?: boolean;
-  active?: boolean;
+  value: string
+  label: React.ReactNode
+  replace?: boolean
+  active?: boolean
 }
 
 interface Props extends BareProps {
-  items: TabItem[];
+  items: TabItem[]
 }
 
 const Tabs: React.FC<Props> = ({ children, className, items, ...props }) => {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
-    <Flex
-      className={clsx('border-b border-sub-b4 text-sm', className)}
-      {...props}
-    >
+    <Flex className={clsx('border-b border-sub-b4 text-sm', className)} {...props}>
       {items.map((item) => {
         return (
           <Link
@@ -33,14 +30,13 @@ const Tabs: React.FC<Props> = ({ children, className, items, ...props }) => {
               [styles.active]: item.active,
             })}
             key={item.value}
-            href={`${item.value}`}
-          >
+            href={`${item.value}`}>
             {item.label}
           </Link>
-        );
+        )
       })}
     </Flex>
-  );
-};
+  )
+}
 
-export default Tabs;
+export default Tabs

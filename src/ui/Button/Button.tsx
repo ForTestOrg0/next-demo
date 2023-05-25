@@ -1,18 +1,13 @@
-'use client';
+'use client'
 
-import React, { HTMLAttributes } from 'react';
-import clsx from 'clsx';
+import React, { HTMLAttributes } from 'react'
+import clsx from 'clsx'
 
 interface ButtonProps {
-  outline?: boolean;
+  outline?: boolean
 }
 
-const Button: React.FC<ButtonProps & HTMLAttributes<HTMLButtonElement>> = ({
-  children,
-  className,
-  outline,
-  ...props
-}) => (
+const Button: React.FC<ButtonProps & HTMLAttributes<HTMLButtonElement>> = ({ children, className, outline, ...props }) => (
   <button
     type="button"
     className={clsx(
@@ -21,10 +16,9 @@ const Button: React.FC<ButtonProps & HTMLAttributes<HTMLButtonElement>> = ({
       { 'text-sub-white bg-sub-network': !outline },
       className
     )}
-    {...props}
-  >
+    {...props}>
     {children}
   </button>
-);
+)
 
-export default Button;
+export default Button

@@ -1,1 +1,1 @@
-export { default as ExtrinsicInfo } from './ExtrinsicInfo';
+export { default as ExtrinsicInfo } from './ExtrinsicInfo'

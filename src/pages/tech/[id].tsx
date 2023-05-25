@@ -1,54 +1,38 @@
-import {
-  Boundary,
-  PageContent,
-  Container,
-  Text,
-  TabGroup,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-} from '@/ui';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { getTechcommProposal, GetTechcommProposalProps } from '@/utils/api';
-import {
-  SimpleProposalVotes,
-  ProposalParamsInfo,
-  ProposalPreImage,
-  ProposalTimeLine,
-  TechcommProposalInfo,
-} from '@/components/Governance';
-import { getChainProps } from '@/utils/chain';
-import { BareServerSideProps } from '@/types/page';
-import METADATA from '@/config/metadata';
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { getTechcommProposal, GetTechcommProposalProps } from '@/utils/api'
+import { SimpleProposalVotes, ProposalParamsInfo, ProposalPreImage, ProposalTimeLine, TechcommProposalInfo } from '@/components/Governance'
+import { getChainProps } from '@/utils/chain'
+import { BareServerSideProps } from '@/types/page'
+import METADATA from '@/config/metadata'
 
 export const getServerSideProps: GetServerSideProps<
   {
-    host: string;
-    data: GetTechcommProposalProps;
-    tab: string;
-    proposalId: number;
+    host: string
+    data: GetTechcommProposalProps
+    tab: string
+    proposalId: number
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || '';
-  const tab = (context.query.tab || '')?.toString();
-  const proposalId = context.params?.id;
+  const host = context.req.headers.host || ''
+  const tab = (context.query.tab || '')?.toString()
+  const proposalId = context.params?.id
 
   if (typeof proposalId === 'undefined') {
     return {
       notFound: true,
-    };
+    }
   }
   const data = await getTechcommProposal(host, {
     proposal_id: parseInt(proposalId),
-  });
-  const chainProps = await getChainProps(context.req.headers.host);
+  })
+  const chainProps = await getChainProps(context.req.headers.host)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
-    };
+    }
   }
 
   return {
@@ -63,15 +47,11 @@ export const getServerSideProps: GetServerSideProps<
         title: METADATA['tech']['title'] + proposalId,
       },
     },
-  };
-};
+  }
+}
 
-export default function Page({
-  data,
-  proposalId,
-  chain,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const proposal = data.info;
+export default function Page({ data, proposalId, chain }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const proposal = data.info
 
   return (
     <PageContent>
@@ -101,21 +81,10 @@ export default function Page({
               <TabPanel>
                 <ProposalTimeLine timeline={proposal.timeline} />
               </TabPanel>
-              <TabPanel>
-                {proposal?.pre_image ? (
-                  <ProposalPreImage
-                    preimage={proposal?.pre_image}
-                    chain={chain}
-                  />
-                ) : null}
-              </TabPanel>
+              <TabPanel>{proposal?.pre_image ? <ProposalPreImage preimage={proposal?.pre_image} chain={chain} /> : null}</TabPanel>
               <TabPanel>
                 {proposal?.params ? (
-                  <ProposalParamsInfo
-                    callModule={proposal?.call_module}
-                    callName={proposal?.call_name}
-                    params={proposal?.params}
-                  />
+                  <ProposalParamsInfo callModule={proposal?.call_module} callName={proposal?.call_name} params={proposal?.params} />
                 ) : null}
               </TabPanel>
               <TabPanel>post</TabPanel>
@@ -125,5 +94,5 @@ export default function Page({
         </Boundary>
       </Container>
     </PageContent>
-  );
+  )
 }

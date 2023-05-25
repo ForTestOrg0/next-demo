@@ -1,11 +1,11 @@
-import React from 'react';
-import clsx from 'clsx';
-import { BareProps } from '@/types/page';
-import { AyeIcon, NayIcon } from '@/ui/Svg';
-import { Flex } from '@/ui';
+import React from 'react'
+import clsx from 'clsx'
+import { BareProps } from '@/types/page'
+import { AyeIcon, NayIcon } from '@/ui/Svg'
+import { Flex } from '@/ui'
 
 interface Props extends BareProps {
-  type: boolean;
+  type: boolean
 }
 
 const Component: React.FC<Props> = ({ children, type, className }) => {
@@ -21,7 +21,7 @@ const Component: React.FC<Props> = ({ children, type, className }) => {
         </Flex>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Component;
+export default Component

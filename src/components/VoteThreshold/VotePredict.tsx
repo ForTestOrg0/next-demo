@@ -1,44 +1,42 @@
-import React, { useMemo } from 'react';
-import clsx from 'clsx';
-import BigNumber from 'bignumber.js';
-import { BareProps } from '@/types/page';
-import Image from 'next/image';
-import ayeImg from '@/styles/images/aye.png';
-import nayImg from '@/styles/images/nay.png';
+import React, { useMemo } from 'react'
+import clsx from 'clsx'
+import BigNumber from 'bignumber.js'
+import { BareProps } from '@/types/page'
+import Image from 'next/image'
+import ayeImg from '@/styles/images/aye.png'
+import nayImg from '@/styles/images/nay.png'
 
 interface Props extends BareProps {
-  ayeAmount?: string;
-  ayeWithoutConviction?: string;
-  nayAmount?: string;
-  nayWithoutConviction?: string;
-  turnout?: string;
-  threshold?: string;
+  ayeAmount?: string
+  ayeWithoutConviction?: string
+  nayAmount?: string
+  nayWithoutConviction?: string
+  turnout?: string
+  threshold?: string
 }
 
 const VotePredict: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => {
   const currentProgress = useMemo(() => {
     if (ayeAmount == '0') {
       if (nayAmount == '0') {
-        return 50;
+        return 50
       } else {
-        return 0;
+        return 0
       }
     }
     if (nayAmount == '0') {
-      return 100;
+      return 100
     }
     return new BigNumber(Number(ayeAmount))
-      .div(
-        new BigNumber(Number(ayeAmount)).plus(new BigNumber(Number(nayAmount)))
-      )
+      .div(new BigNumber(Number(ayeAmount)).plus(new BigNumber(Number(nayAmount))))
       .times(100)
-      .toNumber();
-  }, [ayeAmount, nayAmount]);
+      .toNumber()
+  }, [ayeAmount, nayAmount])
   const cssVars = useMemo(() => {
     return {
       '--aye-progress': Math.min(Math.max(currentProgress, 5), 100) + '%',
-    };
-  }, [currentProgress]) as React.CSSProperties;
+    }
+  }, [currentProgress]) as React.CSSProperties
   return (
     // todo: add turnout and threshold
     <div className={clsx('flex', className)}>
@@ -63,7 +61,7 @@ const VotePredict: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default VotePredict;
+export default VotePredict

@@ -1,12 +1,12 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { TableCol, TdCol, TrCol, Text } from '@/ui';
-import { BlockLink } from '@/components/Links';
-import { TreasuryProposalDetail } from '@/types/api';
-import { Identicon } from '@/components/Identicon';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { TableCol, TdCol, TrCol, Text } from '@/ui'
+import { BlockLink } from '@/components/Links'
+import { TreasuryProposalDetail } from '@/types/api'
+import { Identicon } from '@/components/Identicon'
 
 interface Props extends BareProps {
-  proposal: TreasuryProposalDetail;
+  proposal: TreasuryProposalDetail
 }
 
 const Page: React.FC<Props> = ({ proposal }) => {
@@ -14,9 +14,7 @@ const Page: React.FC<Props> = ({ proposal }) => {
     <TableCol className="w-full">
       <tbody>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap w-44">
-            Created at Block
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap w-44">Created at Block</TdCol>
           <TdCol>
             <BlockLink blockNumber={proposal?.created_block} />
           </TdCol>
@@ -45,7 +43,7 @@ const Page: React.FC<Props> = ({ proposal }) => {
         </TrCol>
       </tbody>
     </TableCol>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

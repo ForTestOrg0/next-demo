@@ -1,1 +1,1 @@
-export { default as Parameters } from './Parameters';
+export { default as Parameters } from './Parameters'

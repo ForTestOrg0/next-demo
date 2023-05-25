@@ -1,44 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { BareProps, ChainProps } from '@/types/page';
-import {
-  PageContent,
-  Container,
-  Text,
-  Flex,
-  Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Menu,
-  MenuButton,
-  MenuItems,
-  MenuItem,
-} from '@/ui';
-import { COPYRIGHT_PERIOD, EMAIL } from '@/config/constants';
-import {
-  DonateIcon,
-  EarthIcon,
-  EmailBlockIcon,
-  MailIcon,
-  MoonIcon,
-  SunIcon,
-} from '@/ui/Svg';
-import { AccountLink } from '../Links';
-import { useDarkMode } from 'usehooks-ts';
-import { docCookies } from '@/utils/cookies';
-import clsx from 'clsx';
+import React, { useCallback, useEffect, useState } from 'react'
+import { BareProps, ChainProps } from '@/types/page'
+import { PageContent, Container, Text, Flex, Link, Popover, PopoverTrigger, PopoverContent, Menu, MenuButton, MenuItems, MenuItem } from '@/ui'
+import { COPYRIGHT_PERIOD, EMAIL } from '@/config/constants'
+import { DonateIcon, EarthIcon, EmailBlockIcon, MailIcon, MoonIcon, SunIcon } from '@/ui/Svg'
+import { AccountLink } from '../Links'
+import { useDarkMode } from 'usehooks-ts'
+import { docCookies } from '@/utils/cookies'
+import clsx from 'clsx'
 
 interface Props extends BareProps {
-  chain?: ChainProps | undefined;
+  chain?: ChainProps | undefined
 }
 
-function DonatePopver({
-  symbol,
-  address,
-}: {
-  symbol: string;
-  address: string;
-}) {
+function DonatePopver({ symbol, address }: { symbol: string; address: string }) {
   return (
     <Popover>
       <PopoverTrigger>
@@ -49,46 +23,40 @@ function DonatePopver({
         <AccountLink address={address} />
       </PopoverContent>
     </Popover>
-  );
+  )
 }
 
 function ThemeSwitcher() {
-  const [isDark, SetIsDark] = useState(true);
-  const { isDarkMode, enable, disable } = useDarkMode();
+  const [isDark, SetIsDark] = useState(true)
+  const { isDarkMode, enable, disable } = useDarkMode()
 
   const enableDark = useCallback(() => {
-    document.documentElement.classList.add('dark');
-    docCookies.setItem('theme', 'dark');
-    enable();
-  }, [enable]);
+    document.documentElement.classList.add('dark')
+    docCookies.setItem('theme', 'dark')
+    enable()
+  }, [enable])
 
   const disableDark = useCallback(() => {
-    document.documentElement.classList.remove('dark');
-    docCookies.setItem('theme', '');
-    disable();
-  }, [disable]);
+    document.documentElement.classList.remove('dark')
+    docCookies.setItem('theme', '')
+    disable()
+  }, [disable])
 
   useEffect(() => {
-    SetIsDark(isDarkMode);
-    isDarkMode ? enableDark() : disableDark();
+    SetIsDark(isDarkMode)
+    isDarkMode ? enableDark() : disableDark()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode]);
+  }, [isDarkMode])
 
   return (
     <>
       {isDark ? (
-        <SunIcon
-          onClick={disableDark}
-          className="w-5 text-sub-b2 cursor-pointer"
-        />
+        <SunIcon onClick={disableDark} className="w-5 text-sub-b2 cursor-pointer" />
       ) : (
-        <MoonIcon
-          onClick={enableDark}
-          className="w-5 text-sub-b2 cursor-pointer"
-        />
+        <MoonIcon onClick={enableDark} className="w-5 text-sub-b2 cursor-pointer" />
       )}
     </>
-  );
+  )
 }
 
 export function LanguageSwitcher({ className }: BareProps) {
@@ -101,7 +69,7 @@ export function LanguageSwitcher({ className }: BareProps) {
       value: 'zh',
       label: '简体中文',
     },
-  ];
+  ]
 
   return (
     <Popover>
@@ -118,11 +86,11 @@ export function LanguageSwitcher({ className }: BareProps) {
             <div className="py-2 focus:bg-sub-b4/60" key={lang.value}>
               {lang.label}
             </div>
-          );
+          )
         })}
       </PopoverContent>
     </Popover>
-  );
+  )
 }
 
 const Component: React.FC<Props> = ({ chain, children, className }) => {
@@ -130,52 +98,27 @@ const Component: React.FC<Props> = ({ chain, children, className }) => {
     <PageContent disablePadding className="bg-sub-b4">
       <Container className="flex flex-1 justify-between items-center py-3 lg:py-5">
         <Flex className="w-full justify-between px-4 lg:px-0">
-          <Text className="text-xs text-sub-b2">
-            Subscan © {COPYRIGHT_PERIOD} - Developed by Subscan Team
-          </Text>
+          <Text className="text-xs text-sub-b2">Subscan © {COPYRIGHT_PERIOD} - Developed by Subscan Team</Text>
           <Flex className="space-x-5 items-center hidden lg:flex">
-            <Link
-              className="text-xs text-sub-b2"
-              href="https://medium.com/subscan/tagged/subscan-update"
-            >
+            <Link className="text-xs text-sub-b2" href="https://medium.com/subscan/tagged/subscan-update">
               Version History
             </Link>
-            <Link
-              className="text-xs text-sub-b2"
-              href="https://www.subscan.io/privacy"
-            >
+            <Link className="text-xs text-sub-b2" href="https://www.subscan.io/privacy">
               Privacy Policy
             </Link>
-            <Link
-              className="text-xs text-sub-b2"
-              href="https://www.subscan.io/term"
-            >
+            <Link className="text-xs text-sub-b2" href="https://www.subscan.io/term">
               Terms of Use
             </Link>
-            <Link
-              className="text-xs text-sub-b2"
-              href="https://www.subscan.io/open-source-notices"
-            >
+            <Link className="text-xs text-sub-b2" href="https://www.subscan.io/open-source-notices">
               Open Source Notices
             </Link>
-            <Link
-              className="text-xs text-sub-b2"
-              href="https://subscan.statuspage.io/"
-            >
+            <Link className="text-xs text-sub-b2" href="https://subscan.statuspage.io/">
               Service Status
             </Link>
-            <Link
-              className="text-xs text-sub-b2"
-              href="https://github.com/itering/subscan-issue-tracker/issues/new/choose"
-            >
+            <Link className="text-xs text-sub-b2" href="https://github.com/itering/subscan-issue-tracker/issues/new/choose">
               Feedback
             </Link>
-            {chain?.chainConf.donate ? (
-              <DonatePopver
-                symbol={chain?.nativeTokenConf.symbol}
-                address={chain?.chainConf.donate}
-              />
-            ) : null}
+            {chain?.chainConf.donate ? <DonatePopver symbol={chain?.nativeTokenConf.symbol} address={chain?.chainConf.donate} /> : null}
             <Link href={`mailto:${EMAIL}`} external>
               <EmailBlockIcon className="w-5 text-sub-b2" />
             </Link>
@@ -184,17 +127,12 @@ const Component: React.FC<Props> = ({ chain, children, className }) => {
           </Flex>
           <Flex className="space-x-5 items-center lg:hidden">
             <ThemeSwitcher />
-            {chain?.chainConf.donate ? (
-              <DonatePopver
-                symbol={chain?.nativeTokenConf.symbol}
-                address={chain?.chainConf.donate}
-              />
-            ) : null}
+            {chain?.chainConf.donate ? <DonatePopver symbol={chain?.nativeTokenConf.symbol} address={chain?.chainConf.donate} /> : null}
           </Flex>
         </Flex>
       </Container>
     </PageContent>
-  );
-};
+  )
+}
 
-export default Component;
+export default Component

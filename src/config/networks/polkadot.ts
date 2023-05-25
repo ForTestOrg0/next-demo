@@ -1,4 +1,4 @@
-import { Chain } from './template';
+import { Chain } from './template'
 
 export const polkadot: Chain = {
   name: 'polkadot',
@@ -50,4 +50,4 @@ export const polkadot: Chain = {
     VALIDATOR: true,
     SS58: true,
   },
-};
+}

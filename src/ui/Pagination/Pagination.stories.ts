@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Pagination } from './';
+import { Pagination } from './'
 
 const meta: Meta<typeof Pagination> = {
   title: 'UI/Pagination',
   component: Pagination,
   tags: ['autodocs'],
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Pagination>;
+export default meta
+type Story = StoryObj<typeof Pagination>
 
 export const Primary: Story = {
   args: {
@@ -19,4 +19,4 @@ export const Primary: Story = {
     pageSize: 10,
     urlRender: (page) => `/test?page=${page}`,
   },
-};
+}

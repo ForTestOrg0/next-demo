@@ -1,14 +1,14 @@
-import React from 'react';
-import { BareProps, BareServerSideProps } from '@/types/page';
-import { Table, Td, Th, Tr } from '@/ui';
-import { BlockLink, ValidatorLink } from '@/components/Links';
-import { TimeFromNow } from '@/components/Time';
-import { Block } from '@/types/api';
-import { BlockStatus } from './BlockStatus';
-import { Identicon } from '@/components/Identicon';
+import React from 'react'
+import { BareProps, BareServerSideProps } from '@/types/page'
+import { Table, Td, Th, Tr } from '@/ui'
+import { BlockLink, ValidatorLink } from '@/components/Links'
+import { TimeFromNow } from '@/components/Time'
+import { Block } from '@/types/api'
+import { BlockStatus } from './BlockStatus'
+import { Identicon } from '@/components/Identicon'
 
 interface Props extends BareProps, BareServerSideProps {
-  blocks: Block[];
+  blocks: Block[]
 }
 
 const Page: React.FC<Props> = ({ blocks, chain }) => {
@@ -37,18 +37,12 @@ const Page: React.FC<Props> = ({ blocks, chain }) => {
                 <TimeFromNow date={block.block_timestamp} />
               </Td>
               <Td>
-                <BlockLink
-                  blockNumber={block.block_num}
-                  query={{ tab: 'extrinsic' }}
-                >
+                <BlockLink blockNumber={block.block_num} query={{ tab: 'extrinsic' }}>
                   {block.extrinsics_count}
                 </BlockLink>
               </Td>
               <Td>
-                <BlockLink
-                  blockNumber={block.block_num}
-                  query={{ tab: 'event' }}
-                >
+                <BlockLink blockNumber={block.block_num} query={{ tab: 'event' }}>
                   {block.event_count}
                 </BlockLink>
               </Td>
@@ -61,11 +55,11 @@ const Page: React.FC<Props> = ({ blocks, chain }) => {
                 <BlockLink blockNumber={block.hash} />
               </Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

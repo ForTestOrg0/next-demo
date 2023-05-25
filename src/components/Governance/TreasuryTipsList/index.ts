@@ -1,1 +1,1 @@
-export { default as TreasuryTipsList } from './TreasuryTipsList';
+export { default as TreasuryTipsList } from './TreasuryTipsList'

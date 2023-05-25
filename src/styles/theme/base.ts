@@ -1,5 +1,5 @@
-import { ZIndices } from '../types';
-import { MediaQueries, Breakpoints, Radii } from '../types';
+import { ZIndices } from '../types'
+import { MediaQueries, Breakpoints, Radii } from '../types'
 
 export const breakpointMap: { [key: string]: number } = {
   xs: 370,
@@ -8,18 +8,16 @@ export const breakpointMap: { [key: string]: number } = {
   lg: 992,
   xl: 1200,
   xxl: 1600,
-};
+}
 
 const radii: Radii = {
   small: '4px',
   default: '16px',
   card: '24px',
   circle: '50%',
-};
+}
 
-const breakpoints: Breakpoints = Object.values(breakpointMap).map(
-  (breakpoint) => `${breakpoint}px`
-);
+const breakpoints: Breakpoints = Object.values(breakpointMap).map((breakpoint) => `${breakpoint}px`)
 
 const mediaQueries: MediaQueries = {
   xs: `@media screen and (min-width: ${breakpointMap.xs}px)`,
@@ -28,12 +26,12 @@ const mediaQueries: MediaQueries = {
   lg: `@media screen and (min-width: ${breakpointMap.lg}px)`,
   xl: `@media screen and (min-width: ${breakpointMap.xl}px)`,
   xxl: `@media screen and (min-width: ${breakpointMap.xxl}px)`,
-};
+}
 
 const zIndices: ZIndices = {
   dropdown: 10,
   modal: 100,
-};
+}
 
 const bundle = {
   siteWidth: 1200,
@@ -41,6 +39,6 @@ const bundle = {
   mediaQueries,
   zIndices,
   radii,
-};
+}
 
-export default bundle;
+export default bundle

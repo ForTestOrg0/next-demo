@@ -1,13 +1,13 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { TableCol, TdCol, TrCol } from '@/ui';
-import { BlockLink } from '@/components/Links';
-import { CouncilProposalDetail } from '@/types/api';
-import { BaseVoteStatistics } from '@/components/VoteThreshold';
-import { Identicon } from '@/components/Identicon';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { TableCol, TdCol, TrCol } from '@/ui'
+import { BlockLink } from '@/components/Links'
+import { CouncilProposalDetail } from '@/types/api'
+import { BaseVoteStatistics } from '@/components/VoteThreshold'
+import { Identicon } from '@/components/Identicon'
 
 interface Props extends BareProps {
-  proposal: CouncilProposalDetail;
+  proposal: CouncilProposalDetail
 }
 
 const Page: React.FC<Props> = ({ proposal }) => {
@@ -15,21 +15,15 @@ const Page: React.FC<Props> = ({ proposal }) => {
     <TableCol className="w-full">
       <tbody>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap w-44">
-            Created at Block
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap w-44">Created at Block</TdCol>
           <TdCol>
             <BlockLink blockNumber={proposal?.created_block} />
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Updated at Block
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Updated at Block</TdCol>
           <TdCol>
-            <BlockLink
-              blockNumber={proposal?.updated_block || proposal?.created_block}
-            />
+            <BlockLink blockNumber={proposal?.updated_block || proposal?.created_block} />
           </TdCol>
         </TrCol>
         <TrCol>
@@ -43,20 +37,13 @@ const Page: React.FC<Props> = ({ proposal }) => {
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Member Threshold
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Member Threshold</TdCol>
           <TdCol>{proposal?.member_count}</TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Vote Statistics
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Vote Statistics</TdCol>
           <TdCol>
-            <BaseVoteStatistics
-              ayeAmount={proposal.aye_votes}
-              nayAmount={proposal.nay_votes}
-            />
+            <BaseVoteStatistics ayeAmount={proposal.aye_votes} nayAmount={proposal.nay_votes} />
           </TdCol>
         </TrCol>
         <TrCol>
@@ -64,14 +51,12 @@ const Page: React.FC<Props> = ({ proposal }) => {
           <TdCol>{proposal?.status}</TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Execution Result
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Execution Result</TdCol>
           <TdCol>{proposal.executed_success.toString()}</TdCol>
         </TrCol>
       </tbody>
     </TableCol>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

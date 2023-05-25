@@ -1,13 +1,13 @@
-import React from 'react';
-import { BareProps, BareServerSideProps } from '@/types/page';
-import { TableCol, TdCol, TrCol, Text } from '@/ui';
-import { BlockLink } from '@/components/Links';
-import { BountiesProposalDetail } from '@/types/api';
-import { Identicon } from '@/components/Identicon';
-import { Balance } from '@/components/Balance';
+import React from 'react'
+import { BareProps, BareServerSideProps } from '@/types/page'
+import { TableCol, TdCol, TrCol, Text } from '@/ui'
+import { BlockLink } from '@/components/Links'
+import { BountiesProposalDetail } from '@/types/api'
+import { Identicon } from '@/components/Identicon'
+import { Balance } from '@/components/Balance'
 
 interface Props extends BareProps, BareServerSideProps {
-  proposal: BountiesProposalDetail;
+  proposal: BountiesProposalDetail
 }
 
 const Page: React.FC<Props> = ({ proposal, chain }) => {
@@ -15,9 +15,7 @@ const Page: React.FC<Props> = ({ proposal, chain }) => {
     <TableCol className="w-full">
       <tbody>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Created at Block
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Created at Block</TdCol>
           <TdCol>
             <BlockLink blockNumber={proposal?.created_block} />
           </TdCol>
@@ -41,39 +39,27 @@ const Page: React.FC<Props> = ({ proposal, chain }) => {
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Bounty Value
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Bounty Value</TdCol>
           <TdCol>
             <Balance value={proposal.value} token={chain.nativeTokenConf} />
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Proposer Bond
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Proposer Bond</TdCol>
           <TdCol>
             <Balance value={proposal.bond} token={chain.nativeTokenConf} />
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Curator Deposit
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Curator Deposit</TdCol>
           <TdCol>
-            <Balance
-              value={proposal.curator_deposit}
-              token={chain.nativeTokenConf}
-            />
+            <Balance value={proposal.curator_deposit} token={chain.nativeTokenConf} />
           </TdCol>
         </TrCol>
         <TrCol>
           <TdCol className="font-semibold whitespace-nowrap">Curator Fee</TdCol>
           <TdCol>
-            <Balance
-              value={proposal.curator_fee}
-              token={chain.nativeTokenConf}
-            />
+            <Balance value={proposal.curator_fee} token={chain.nativeTokenConf} />
           </TdCol>
         </TrCol>
         <TrCol>
@@ -90,7 +76,7 @@ const Page: React.FC<Props> = ({ proposal, chain }) => {
         </TrCol>
       </tbody>
     </TableCol>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

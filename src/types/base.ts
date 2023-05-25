@@ -1,2 +1,2 @@
-export type BlockNumber = number;
-export type Timestamp = number;
+export type BlockNumber = number
+export type Timestamp = number

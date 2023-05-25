@@ -1,18 +1,15 @@
-import React from 'react';
-import { BareProps, BareServerSideProps } from '@/types/page';
-import { TableCol, TdCol, TrCol, Text, Flex } from '@/ui';
-import { BlockLink } from '@/components/Links';
-import { ExtrinsicDetail } from '@/types/api';
-import { Time, TimeFromNow } from '@/components/Time';
-import { BlockStatus } from '../BlockList';
-import {
-  ExtrinsicCall,
-  ExtrinsicModule,
-} from '@/components/ExtrinsicModuleCall';
-import { Parameters } from '@/components/Parameters';
+import React from 'react'
+import { BareProps, BareServerSideProps } from '@/types/page'
+import { TableCol, TdCol, TrCol, Text, Flex } from '@/ui'
+import { BlockLink } from '@/components/Links'
+import { ExtrinsicDetail } from '@/types/api'
+import { Time, TimeFromNow } from '@/components/Time'
+import { BlockStatus } from '../BlockList'
+import { ExtrinsicCall, ExtrinsicModule } from '@/components/ExtrinsicModuleCall'
+import { Parameters } from '@/components/Parameters'
 
 interface Props extends BareProps, BareServerSideProps {
-  extrinsic: ExtrinsicDetail;
+  extrinsic: ExtrinsicDetail
 }
 
 const Page: React.FC<Props> = ({ extrinsic, chain }) => {
@@ -29,9 +26,7 @@ const Page: React.FC<Props> = ({ extrinsic, chain }) => {
         ) : null}
         {extrinsic?.block_timestamp ? (
           <TrCol>
-            <TdCol className="font-semibold whitespace-nowrap">
-              Block Time
-            </TdCol>
+            <TdCol className="font-semibold whitespace-nowrap">Block Time</TdCol>
             <TdCol>
               <TimeFromNow date={extrinsic?.block_timestamp} />
             </TdCol>
@@ -51,8 +46,7 @@ const Page: React.FC<Props> = ({ extrinsic, chain }) => {
           <TdCol>
             {extrinsic?.lifetime ? (
               <>
-                <BlockLink blockNumber={extrinsic?.lifetime?.birth} /> -{' '}
-                <BlockLink blockNumber={extrinsic?.lifetime?.death} />
+                <BlockLink blockNumber={extrinsic?.lifetime?.birth} /> - <BlockLink blockNumber={extrinsic?.lifetime?.death} />
               </>
             ) : (
               <Text>immortal</Text>
@@ -60,9 +54,7 @@ const Page: React.FC<Props> = ({ extrinsic, chain }) => {
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Extrinsic Hash
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Extrinsic Hash</TdCol>
           <TdCol>
             <Text>{extrinsic.extrinsic_hash}</Text>
           </TdCol>
@@ -99,7 +91,7 @@ const Page: React.FC<Props> = ({ extrinsic, chain }) => {
         </TrCol>
       </tbody>
     </TableCol>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

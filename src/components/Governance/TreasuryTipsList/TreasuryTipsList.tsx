@@ -1,14 +1,14 @@
-import React from 'react';
-import { BareProps, BareServerSideProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import { TreasuryTipsLink } from '@/components/Links';
-import { TimeFromNow } from '@/components/Time';
-import { TreasuryTip } from '@/types/api';
-import { Identicon } from '@/components/Identicon';
-import { Balance } from '@/components/Balance';
+import React from 'react'
+import { BareProps, BareServerSideProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { TreasuryTipsLink } from '@/components/Links'
+import { TimeFromNow } from '@/components/Time'
+import { TreasuryTip } from '@/types/api'
+import { Identicon } from '@/components/Identicon'
+import { Balance } from '@/components/Balance'
 
 interface Props extends BareProps, BareServerSideProps {
-  proposals: TreasuryTip[];
+  proposals: TreasuryTip[]
 }
 
 const Page: React.FC<Props> = ({ proposals, chain }) => {
@@ -41,10 +41,7 @@ const Page: React.FC<Props> = ({ proposals, chain }) => {
                 <Text>{proposal.tipper_num}</Text>
               </Td>
               <Td>
-                <Balance
-                  value={proposal.amount}
-                  token={chain.nativeTokenConf}
-                />
+                <Balance value={proposal.amount} token={chain.nativeTokenConf} />
               </Td>
               <Td>
                 <TimeFromNow date={proposal.block_timestamp} />
@@ -56,11 +53,11 @@ const Page: React.FC<Props> = ({ proposals, chain }) => {
                 <TreasuryTipsLink index={proposal.hash} />
               </Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

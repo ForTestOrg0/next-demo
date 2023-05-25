@@ -1,17 +1,13 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import {
-  BlockLink,
-  ExtrinsicLink,
-  TechcommProposalLink,
-} from '@/components/Links';
-import { TimeFromNow } from '@/components/Time';
-import { CouncilProposal } from '@/types/api';
-import TechcommProposalStatus from './TechcommProposalStatus';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { BlockLink, ExtrinsicLink, TechcommProposalLink } from '@/components/Links'
+import { TimeFromNow } from '@/components/Time'
+import { CouncilProposal } from '@/types/api'
+import TechcommProposalStatus from './TechcommProposalStatus'
 
 interface Props extends BareProps {
-  proposals: CouncilProposal[];
+  proposals: CouncilProposal[]
 }
 
 const Page: React.FC<Props> = ({ proposals }) => {
@@ -53,25 +49,21 @@ const Page: React.FC<Props> = ({ proposals }) => {
                   query={{
                     module: proposal.call_module,
                     call: proposal.call_name,
-                  }}
-                >{`${proposal.call_module} (${proposal.call_name})`}</ExtrinsicLink>
+                  }}>{`${proposal.call_module} (${proposal.call_name})`}</ExtrinsicLink>
               </Td>
               <Td>
                 <TimeFromNow date={proposal.block_timestamp} />
               </Td>
               <Td>
-                <TechcommProposalStatus
-                  status={proposal.status}
-                  text={proposal.status}
-                />
+                <TechcommProposalStatus status={proposal.status} text={proposal.status} />
               </Td>
               <Td>action</Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

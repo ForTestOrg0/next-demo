@@ -1,10 +1,10 @@
-import { FC, ReactNode } from 'react';
-import Image from 'next/image';
-import noData from './assets/no-data.png';
+import { FC, ReactNode } from 'react'
+import Image from 'next/image'
+import noData from './assets/no-data.png'
 
 export interface EmptyProps {
-  description?: ReactNode;
-  className?: string;
+  description?: ReactNode
+  className?: string
 }
 
 const Empty: FC<EmptyProps> = ({ description, className }) => {
@@ -13,7 +13,7 @@ const Empty: FC<EmptyProps> = ({ description, className }) => {
       <Image alt="no data" src={noData} />
       {description}
     </div>
-  );
-};
+  )
+}
 
-export default Empty;
+export default Empty

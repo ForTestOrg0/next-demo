@@ -1,12 +1,12 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { TableCol, TdCol, TrCol, Text } from '@/ui';
-import { BlockLink } from '@/components/Links';
-import { TreasuryProposalDetail, TreasuryTipDetail } from '@/types/api';
-import { Identicon } from '@/components/Identicon';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { TableCol, TdCol, TrCol, Text } from '@/ui'
+import { BlockLink } from '@/components/Links'
+import { TreasuryProposalDetail, TreasuryTipDetail } from '@/types/api'
+import { Identicon } from '@/components/Identicon'
 
 interface Props extends BareProps {
-  proposal: TreasuryTipDetail;
+  proposal: TreasuryTipDetail
 }
 
 const Page: React.FC<Props> = ({ proposal }) => {
@@ -14,24 +14,14 @@ const Page: React.FC<Props> = ({ proposal }) => {
     <TableCol className="w-full">
       <tbody>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap w-44">
-            Created at Block
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap w-44">Created at Block</TdCol>
           <TdCol>
             <BlockLink blockNumber={proposal?.block_num} />
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap w-44">
-            Updated at Block
-          </TdCol>
-          <TdCol>
-            {proposal?.close_block_num ? (
-              <BlockLink blockNumber={proposal?.close_block_num} />
-            ) : (
-              '-'
-            )}
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap w-44">Updated at Block</TdCol>
+          <TdCol>{proposal?.close_block_num ? <BlockLink blockNumber={proposal?.close_block_num} /> : '-'}</TdCol>
         </TrCol>
         <TrCol>
           <TdCol className="font-semibold whitespace-nowrap">Finder</TdCol>
@@ -61,7 +51,7 @@ const Page: React.FC<Props> = ({ proposal }) => {
         </TrCol>
       </tbody>
     </TableCol>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

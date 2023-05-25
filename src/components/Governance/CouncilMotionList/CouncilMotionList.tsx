@@ -1,19 +1,14 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import {
-  BlockLink,
-  CouncilProposalLink,
-  ExtrinsicLink,
-  ReferendaLink,
-} from '@/components/Links';
-import { TimeFromNow } from '@/components/Time';
-import { CouncilProposal, DemocracyReferendum } from '@/types/api';
-import { ResultStatus } from '@/components/Status';
-import CouncilMotionStatus from './CouncilMotionStatus';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { BlockLink, CouncilProposalLink, ExtrinsicLink, ReferendaLink } from '@/components/Links'
+import { TimeFromNow } from '@/components/Time'
+import { CouncilProposal, DemocracyReferendum } from '@/types/api'
+import { ResultStatus } from '@/components/Status'
+import CouncilMotionStatus from './CouncilMotionStatus'
 
 interface Props extends BareProps {
-  proposals: CouncilProposal[];
+  proposals: CouncilProposal[]
 }
 
 const CouncilMotionList: React.FC<Props> = ({ proposals }) => {
@@ -55,25 +50,21 @@ const CouncilMotionList: React.FC<Props> = ({ proposals }) => {
                   query={{
                     module: proposal.call_module,
                     call: proposal.call_name,
-                  }}
-                >{`${proposal.call_module} (${proposal.call_name})`}</ExtrinsicLink>
+                  }}>{`${proposal.call_module} (${proposal.call_name})`}</ExtrinsicLink>
               </Td>
               <Td>
                 <TimeFromNow date={proposal.block_timestamp} />
               </Td>
               <Td>
-                <CouncilMotionStatus
-                  status={proposal.status}
-                  text={proposal.status}
-                />
+                <CouncilMotionStatus status={proposal.status} text={proposal.status} />
               </Td>
               <Td>action</Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default CouncilMotionList;
+export default CouncilMotionList

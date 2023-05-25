@@ -1,14 +1,14 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import { Identicon } from '@/components/Identicon';
-import { ExtrinsicLink } from '@/components/Links';
-import { SimpleProposalVote } from '@/types/api';
-import { Time } from '@/components/Time';
-import { ReplyStatus } from '@/components/Status';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { Identicon } from '@/components/Identicon'
+import { ExtrinsicLink } from '@/components/Links'
+import { SimpleProposalVote } from '@/types/api'
+import { Time } from '@/components/Time'
+import { ReplyStatus } from '@/components/Status'
 
 interface Props extends BareProps {
-  votes: SimpleProposalVote[];
+  votes: SimpleProposalVote[]
 }
 
 const SimpleProposalVotes: React.FC<Props> = ({ votes }) => {
@@ -38,11 +38,11 @@ const SimpleProposalVotes: React.FC<Props> = ({ votes }) => {
                 <ReplyStatus type={item.passed} />
               </Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default SimpleProposalVotes;
+export default SimpleProposalVotes

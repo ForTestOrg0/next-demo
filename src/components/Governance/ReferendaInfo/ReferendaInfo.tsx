@@ -1,12 +1,12 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { TableCol, TdCol, TrCol } from '@/ui';
-import { BlockLink } from '@/components/Links';
-import { DemocracyReferendumDetail } from '@/types/api';
-import { VotePredict } from '@/components/VoteThreshold';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { TableCol, TdCol, TrCol } from '@/ui'
+import { BlockLink } from '@/components/Links'
+import { DemocracyReferendumDetail } from '@/types/api'
+import { VotePredict } from '@/components/VoteThreshold'
 
 interface Props extends BareProps {
-  referenda: DemocracyReferendumDetail;
+  referenda: DemocracyReferendumDetail
 }
 
 const ReferendaInfo: React.FC<Props> = ({ referenda }) => {
@@ -22,9 +22,7 @@ const ReferendaInfo: React.FC<Props> = ({ referenda }) => {
         <TrCol>
           <TdCol className="font-semibold">Updated at Block</TdCol>
           <TdCol>
-            <BlockLink
-              blockNumber={referenda?.updated_block || referenda?.created_block}
-            />
+            <BlockLink blockNumber={referenda?.updated_block || referenda?.created_block} />
           </TdCol>
         </TrCol>
         <TrCol>
@@ -59,7 +57,7 @@ const ReferendaInfo: React.FC<Props> = ({ referenda }) => {
         </TrCol>
       </tbody>
     </TableCol>
-  );
-};
+  )
+}
 
-export default ReferendaInfo;
+export default ReferendaInfo

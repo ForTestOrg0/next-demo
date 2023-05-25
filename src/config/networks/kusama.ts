@@ -1,4 +1,4 @@
-import { Chain } from './template';
+import { Chain } from './template'
 
 export const kusama: Chain = {
   name: 'kusama',
@@ -49,4 +49,4 @@ export const kusama: Chain = {
     VALIDATOR: true,
     SS58: true,
   },
-};
+}

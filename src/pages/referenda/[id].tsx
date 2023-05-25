@@ -1,59 +1,39 @@
-import {
-  Boundary,
-  PageContent,
-  Container,
-  Text,
-  TabGroup,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  LinkRouter,
-  Button,
-} from '@/ui';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import {
-  getDemocracyReferendum,
-  GetDemocracyReferendumProps,
-} from '@/utils/api';
-import {
-  ProposalPreImage,
-  ProposalTimeLine,
-  ReferendaInfo,
-  ReferendaVotesClient,
-} from '@/components/Governance';
-import { PAGE_ROW, TAB_ROW } from '@/config/constants';
-import { getChainProps } from '@/utils/chain';
-import { BareServerSideProps } from '@/types/page';
-import METADATA from '@/config/metadata';
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, LinkRouter, Button } from '@/ui'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { getDemocracyReferendum, GetDemocracyReferendumProps } from '@/utils/api'
+import { ProposalPreImage, ProposalTimeLine, ReferendaInfo, ReferendaVotesClient } from '@/components/Governance'
+import { PAGE_ROW, TAB_ROW } from '@/config/constants'
+import { getChainProps } from '@/utils/chain'
+import { BareServerSideProps } from '@/types/page'
+import METADATA from '@/config/metadata'
 
 export const getServerSideProps: GetServerSideProps<
   {
-    host: string;
-    data: GetDemocracyReferendumProps;
-    tab: string;
-    referendumIndex: number;
+    host: string
+    data: GetDemocracyReferendumProps
+    tab: string
+    referendumIndex: number
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || '';
-  const tab = (context.query.tab || '')?.toString();
-  const referendumIndex = context.params?.id;
+  const host = context.req.headers.host || ''
+  const tab = (context.query.tab || '')?.toString()
+  const referendumIndex = context.params?.id
 
   if (typeof referendumIndex === 'undefined') {
     return {
       notFound: true,
-    };
+    }
   }
   const data = await getDemocracyReferendum(host, {
     referendum_index: parseInt(referendumIndex),
-  });
-  const chainProps = await getChainProps(context.req.headers.host);
+  })
+  const chainProps = await getChainProps(context.req.headers.host)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
-    };
+    }
   }
 
   return {
@@ -68,15 +48,10 @@ export const getServerSideProps: GetServerSideProps<
         title: METADATA['referendum']['title'] + referendumIndex,
       },
     },
-  };
-};
+  }
+}
 
-export default function Page({
-  host,
-  data,
-  chain,
-  referendumIndex,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ host, data, chain, referendumIndex }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
       <Container className="flex-1">
@@ -99,25 +74,12 @@ export default function Page({
             </TabList>
             <TabPanels>
               <TabPanel>
-                <ReferendaVotesClient
-                  chain={chain}
-                  host={host}
-                  page={0}
-                  row={TAB_ROW}
-                  referendumIndex={referendumIndex}
-                />
+                <ReferendaVotesClient chain={chain} host={host} page={0} row={TAB_ROW} referendumIndex={referendumIndex} />
               </TabPanel>
               <TabPanel>
                 <ProposalTimeLine timeline={data.info.timeline} />
               </TabPanel>
-              <TabPanel>
-                {data.info?.pre_image ? (
-                  <ProposalPreImage
-                    preimage={data.info?.pre_image}
-                    chain={chain}
-                  />
-                ) : null}
-              </TabPanel>
+              <TabPanel>{data.info?.pre_image ? <ProposalPreImage preimage={data.info?.pre_image} chain={chain} /> : null}</TabPanel>
               <TabPanel>post</TabPanel>
               <TabPanel>comments</TabPanel>
             </TabPanels>
@@ -125,5 +87,5 @@ export default function Page({
         </Boundary>
       </Container>
     </PageContent>
-  );
+  )
 }

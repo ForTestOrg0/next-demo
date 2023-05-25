@@ -1,13 +1,6 @@
-import {
-  getDaysInMonth,
-  getDay,
-  format,
-  isSameDay,
-  isBefore,
-  isAfter,
-} from 'date-fns';
-import { Month, MonthDate } from './types';
-import { DISPLAY_DATA_EVERY_MONTH } from './config';
+import { getDaysInMonth, getDay, format, isSameDay, isBefore, isAfter } from 'date-fns'
+import { Month, MonthDate } from './types'
+import { DISPLAY_DATA_EVERY_MONTH } from './config'
 
 /**
  *
@@ -16,8 +9,8 @@ import { DISPLAY_DATA_EVERY_MONTH } from './config';
  * @returns days in month
  */
 const getTotalDaysInMonth = (month: number, year: number) => {
-  return getDaysInMonth(new Date(year, month - 1));
-};
+  return getDaysInMonth(new Date(year, month - 1))
+}
 
 /**
  *
@@ -25,8 +18,8 @@ const getTotalDaysInMonth = (month: number, year: number) => {
  * @returns 0 | 1 | 2 | 3 | 4 | 5 | 6, the day of week, 0 represents Sunday
  */
 export const getDayOfWeek = (date: Date) => {
-  return getDay(date);
-};
+  return getDay(date)
+}
 
 /**
  *
@@ -35,8 +28,8 @@ export const getDayOfWeek = (date: Date) => {
  * @returns 0 | 1 | 2 | 3 | 4 | 5 | 6, the day of week, 0 represents Sunday
  */
 const getDayOfWeekOfMonthFirstDay = (month: number, year: number) => {
-  return getDay(new Date(year, month - 1, 1));
-};
+  return getDay(new Date(year, month - 1, 1))
+}
 
 /**
  *
@@ -49,14 +42,14 @@ const getPreviousMonth = (currentMonth: number, currentYear: number) => {
     return {
       month: 12,
       year: currentYear - 1,
-    };
+    }
   }
 
   return {
     month: currentMonth - 1,
     year: currentYear,
-  };
-};
+  }
+}
 
 /**
  *
@@ -69,14 +62,14 @@ const getNextMonth = (currentMonth: number, currentYear: number) => {
     return {
       month: 1,
       year: currentYear + 1,
-    };
+    }
   }
 
   return {
     month: currentMonth + 1,
     year: currentYear,
-  };
-};
+  }
+}
 
 /**
  *
@@ -85,28 +78,21 @@ const getNextMonth = (currentMonth: number, currentYear: number) => {
  * @returns month days
  */
 const getMonthDays = (month: number, year: number) => {
-  const result: MonthDate[] = [];
+  const result: MonthDate[] = []
 
-  const totalDaysInThisMonth = getTotalDaysInMonth(month, year);
-  const dayOfWeekOfThisMonthFirstDay = getDayOfWeekOfMonthFirstDay(month, year);
+  const totalDaysInThisMonth = getTotalDaysInMonth(month, year)
+  const dayOfWeekOfThisMonthFirstDay = getDayOfWeekOfMonthFirstDay(month, year)
 
-  const nextMonth = getNextMonth(month, year);
-  const previousMonth = getPreviousMonth(month, year);
-  const totalDaysInPreviousMonth = getTotalDaysInMonth(
-    previousMonth.month,
-    previousMonth.year
-  );
+  const nextMonth = getNextMonth(month, year)
+  const previousMonth = getPreviousMonth(month, year)
+  const totalDaysInPreviousMonth = getTotalDaysInMonth(previousMonth.month, previousMonth.year)
 
   // previous month overflow days
   for (let i = dayOfWeekOfThisMonthFirstDay - 1; i >= 0; i--) {
     result.push({
-      date: new Date(
-        previousMonth.year,
-        previousMonth.month - 1,
-        totalDaysInPreviousMonth - i
-      ),
+      date: new Date(previousMonth.year, previousMonth.month - 1, totalDaysInPreviousMonth - i),
       isCurrentMonth: false,
-    });
+    })
   }
 
   // days of current month
@@ -114,22 +100,22 @@ const getMonthDays = (month: number, year: number) => {
     result.push({
       date: new Date(year, month - 1, i),
       isCurrentMonth: true,
-    });
+    })
   }
 
   // next month overflow days
   if (result.length < DISPLAY_DATA_EVERY_MONTH) {
-    const count = DISPLAY_DATA_EVERY_MONTH - result.length;
+    const count = DISPLAY_DATA_EVERY_MONTH - result.length
     for (let i = 1; i <= count; i++) {
       result.push({
         date: new Date(nextMonth.year, nextMonth.month - 1, i),
         isCurrentMonth: false,
-      });
+      })
     }
   }
 
-  return result;
-};
+  return result
+}
 
 /**
  *
@@ -138,36 +124,33 @@ const getMonthDays = (month: number, year: number) => {
  * @returns calendar
  */
 export const getCalendar = (defaultDate: Date, monthCount = 1) => {
-  let lastYear = 0;
-  let lastMonth = 0;
-  const calendar: Month[] = [];
+  let lastYear = 0
+  let lastMonth = 0
+  const calendar: Month[] = []
 
   for (let i = 0; i < monthCount; i++) {
     if (i === 0) {
-      lastYear = defaultDate.getFullYear();
-      lastMonth = defaultDate.getMonth() + 1;
+      lastYear = defaultDate.getFullYear()
+      lastMonth = defaultDate.getMonth() + 1
 
       calendar.push({
         month: new Date(defaultDate.getFullYear(), defaultDate.getMonth()),
-        dates: getMonthDays(
-          defaultDate.getMonth() + 1,
-          defaultDate.getFullYear()
-        ),
-      });
+        dates: getMonthDays(defaultDate.getMonth() + 1, defaultDate.getFullYear()),
+      })
     } else {
-      const next = getNextMonth(lastMonth, lastYear);
+      const next = getNextMonth(lastMonth, lastYear)
       calendar.push({
         month: new Date(next.year, next.month - 1),
         dates: getMonthDays(next.month, next.year),
-      });
+      })
 
-      lastYear = next.year;
-      lastMonth = next.month;
+      lastYear = next.year
+      lastMonth = next.month
     }
   }
 
-  return calendar;
-};
+  return calendar
+}
 
 /**
  *
@@ -175,8 +158,8 @@ export const getCalendar = (defaultDate: Date, monthCount = 1) => {
  * @returns 2020 e.g.
  */
 export const getYear = (date: Date) => {
-  return date.getFullYear();
-};
+  return date.getFullYear()
+}
 
 /**
  *
@@ -184,8 +167,8 @@ export const getYear = (date: Date) => {
  * @returns 0 ... 11
  */
 export const getMonth = (date: Date) => {
-  return date.getMonth();
-};
+  return date.getMonth()
+}
 
 /**
  *
@@ -193,8 +176,8 @@ export const getMonth = (date: Date) => {
  * @returns Jan, Feb, ..., Dec
  */
 export const getMonthText = (date: Date) => {
-  return format(date, 'MMM');
-};
+  return format(date, 'MMM')
+}
 
 /**
  *
@@ -202,8 +185,8 @@ export const getMonthText = (date: Date) => {
  * @returns 1, 2, ..., 31
  */
 export const getDayText = (date: Date) => {
-  return format(date, 'd');
-};
+  return format(date, 'd')
+}
 
 /**
  *
@@ -212,18 +195,14 @@ export const getDayText = (date: Date) => {
  * @param compare the compare time
  * @returns compare is between start and end or not
  */
-export const isDayBetween = (
-  start: Date | number,
-  end: Date | number,
-  compare: Date
-) => {
+export const isDayBetween = (start: Date | number, end: Date | number, compare: Date) => {
   if (isSameDay(start, compare) || isSameDay(end, compare)) {
-    return true;
+    return true
   }
 
   if (isBefore(start, compare) && isAfter(end, compare)) {
-    return true;
+    return true
   }
 
-  return false;
-};
+  return false
+}

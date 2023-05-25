@@ -1,12 +1,12 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import { BlockLink, ExtrinsicLink, ReferendaLink } from '@/components/Links';
-import { TimeFromNow } from '@/components/Time';
-import { DemocracyReferendum } from '@/types/api';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { BlockLink, ExtrinsicLink, ReferendaLink } from '@/components/Links'
+import { TimeFromNow } from '@/components/Time'
+import { DemocracyReferendum } from '@/types/api'
 
 interface Props extends BareProps {
-  referendums: DemocracyReferendum[];
+  referendums: DemocracyReferendum[]
 }
 
 const ReferendaList: React.FC<Props> = ({ referendums }) => {
@@ -40,8 +40,7 @@ const ReferendaList: React.FC<Props> = ({ referendums }) => {
                   query={{
                     module: referendum.call_module,
                     call: referendum.call_name,
-                  }}
-                >{`${referendum.call_module} (${referendum.call_name})`}</ExtrinsicLink>
+                  }}>{`${referendum.call_module} (${referendum.call_name})`}</ExtrinsicLink>
               </Td>
               <Td>
                 <TimeFromNow date={referendum.block_timestamp} />
@@ -49,11 +48,11 @@ const ReferendaList: React.FC<Props> = ({ referendums }) => {
               <Td>{referendum.status}</Td>
               <Td>action</Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default ReferendaList;
+export default ReferendaList

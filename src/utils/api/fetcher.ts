@@ -1,23 +1,19 @@
-import { getChainConfigBySubdomain } from '@/config/chains';
-import { APIWarpperProps } from '@/types/api';
-import { getSubdomain } from '../url';
+import { getChainConfigBySubdomain } from '@/config/chains'
+import { APIWarpperProps } from '@/types/api'
+import { getSubdomain } from '../url'
 
 export function unwrap<T>(apiData: APIWarpperProps<T> | undefined): T | null {
   if (!apiData || apiData.code !== 0) {
-    return null;
+    return null
   }
 
-  return apiData.data;
+  return apiData.data
 }
 
-export async function subscanFetch(
-  hostname: string,
-  path: string,
-  params = {}
-) {
-  const chainConf = getChainConfigBySubdomain(getSubdomain(hostname));
-  console.info(`subscanFetch(${path}):`);
-  console.info({ api: chainConf?.api, path, params });
+export async function subscanFetch(hostname: string, path: string, params = {}) {
+  const chainConf = getChainConfigBySubdomain(getSubdomain(hostname))
+  console.info(`subscanFetch(${path}):`)
+  console.info({ api: chainConf?.api, path, params })
 
   const res = await fetch(`${chainConf?.api}/${path}`, {
     method: 'POST',
@@ -26,17 +22,13 @@ export async function subscanFetch(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params || {}),
-  });
-  const data = await res.json();
-  console.info(`subscanFetch(${path}) result:`);
-  console.info(data);
-  return data;
+  })
+  const data = await res.json()
+  console.info(`subscanFetch(${path}) result:`)
+  console.info(data)
+  return data
 }
 
-export const swrFetcher = async ([hostname, path, params]: [
-  string,
-  string,
-  object
-]) => {
-  return await subscanFetch(hostname, path, params);
-};
+export const swrFetcher = async ([hostname, path, params]: [string, string, object]) => {
+  return await subscanFetch(hostname, path, params)
+}

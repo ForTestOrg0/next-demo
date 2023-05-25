@@ -1,22 +1,14 @@
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import {
-  childrenPropType,
-  onSelectPropType,
-  selectedIndexPropType,
-} from '../helpers/propTypes';
-import UncontrolledTabs from './UncontrolledTabs';
-import { getTabsCount } from '../helpers/count';
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { childrenPropType, onSelectPropType, selectedIndexPropType } from '../helpers/propTypes'
+import UncontrolledTabs from './UncontrolledTabs'
+import { getTabsCount } from '../helpers/count'
 
-const MODE_CONTROLLED = 0;
-const MODE_UNCONTROLLED = 1;
+const MODE_CONTROLLED = 0
+const MODE_UNCONTROLLED = 1
 const propTypes = {
   children: childrenPropType,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.object,
-  ]),
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   defaultFocus: PropTypes.bool,
   defaultIndex: PropTypes.number,
   direction: PropTypes.oneOf(['rtl', 'ltr']),
@@ -31,7 +23,7 @@ const propTypes = {
   selectedIndex: selectedIndexPropType,
   selectedTabClassName: PropTypes.string,
   selectedTabPanelClassName: PropTypes.string,
-};
+}
 const defaultProps = {
   defaultFocus: false,
   focusTabOnClick: true,
@@ -41,24 +33,20 @@ const defaultProps = {
   environment: null,
   disableUpDownKeys: false,
   disableLeftRightKeys: false,
-};
+}
 
 const getModeFromProps = (props) => {
-  return props.selectedIndex === null ? MODE_UNCONTROLLED : MODE_CONTROLLED;
-};
+  return props.selectedIndex === null ? MODE_UNCONTROLLED : MODE_CONTROLLED
+}
 
 const checkForIllegalModeChange = (props, mode) => {
-  if (
-    process.env.NODE_ENV !== 'production' &&
-    mode != undefined &&
-    mode !== getModeFromProps(props)
-  ) {
+  if (process.env.NODE_ENV !== 'production' && mode != undefined && mode !== getModeFromProps(props)) {
     throw new Error(
       `Switching between controlled mode (by using \`selectedIndex\`) and uncontrolled mode is not supported in \`Tabs\`.
 For more information about controlled and uncontrolled mode of react-tabs see https://github.com/reactjs/react-tabs#controlled-vs-uncontrolled-mode.`
-    );
+    )
   }
-};
+}
 
 /**
  * State:
@@ -68,68 +56,65 @@ For more information about controlled and uncontrolled mode of react-tabs see ht
  *          It is initialized from the prop defaultFocus, and after the first render it is reset back to false. Later it can become true again when using keys to navigate the tabs.
  */
 const Tabs = (props) => {
-  const { children, defaultFocus, defaultIndex, focusTabOnClick, onSelect } =
-    props;
+  const { children, defaultFocus, defaultIndex, focusTabOnClick, onSelect } = props
 
-  const [focus, setFocus] = useState(defaultFocus);
-  const [mode] = useState(getModeFromProps(props));
-  const [selectedIndex, setSelectedIndex] = useState(
-    mode === MODE_UNCONTROLLED ? defaultIndex || 0 : null
-  );
+  const [focus, setFocus] = useState(defaultFocus)
+  const [mode] = useState(getModeFromProps(props))
+  const [selectedIndex, setSelectedIndex] = useState(mode === MODE_UNCONTROLLED ? defaultIndex || 0 : null)
 
   useEffect(() => {
     // Reset focus after initial render, see comment above
-    setFocus(false);
-  }, []);
+    setFocus(false)
+  }, [])
 
   if (mode === MODE_UNCONTROLLED) {
     // Ensure that we handle removed tabs and don't let selectedIndex get out of bounds
-    const tabsCount = getTabsCount(children);
+    const tabsCount = getTabsCount(children)
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       if (selectedIndex != null) {
-        const maxTabIndex = Math.max(0, tabsCount - 1);
-        setSelectedIndex(Math.min(selectedIndex, maxTabIndex));
+        const maxTabIndex = Math.max(0, tabsCount - 1)
+        setSelectedIndex(Math.min(selectedIndex, maxTabIndex))
       }
-    }, [tabsCount]);
+    }, [tabsCount])
   }
 
-  checkForIllegalModeChange(props, mode);
+  checkForIllegalModeChange(props, mode)
 
   const handleSelected = (index, last, event) => {
     // Call change event handler
     if (typeof onSelect === 'function') {
       // Check if the change event handler cancels the tab change
-      if (onSelect(index, last, event) === false) return;
+      if (onSelect(index, last, event) === false) return
     }
 
     // Always set focus on tabs unless it is disabled
     if (focusTabOnClick) {
-      setFocus(true);
+      setFocus(true)
     }
 
     if (mode === MODE_UNCONTROLLED) {
       // Update selected index
-      setSelectedIndex(index);
+      setSelectedIndex(index)
     }
-  };
+  }
 
-  let subProps = { ...props };
+  let subProps = { ...props }
 
-  subProps.focus = focus;
-  subProps.onSelect = handleSelected;
+  subProps.focus = focus
+  subProps.onSelect = handleSelected
 
   if (selectedIndex != null) {
-    subProps.selectedIndex = selectedIndex;
+    subProps.selectedIndex = selectedIndex
   }
-  delete subProps.defaultFocus;
-  delete subProps.defaultIndex;
-  delete subProps.focusTabOnClick;
-  return <UncontrolledTabs {...subProps}>{children}</UncontrolledTabs>;
-};
+  delete subProps.defaultFocus
+  delete subProps.defaultIndex
+  delete subProps.focusTabOnClick
+  return <UncontrolledTabs {...subProps}>{children}</UncontrolledTabs>
+}
 
-Tabs.propTypes = propTypes;
-Tabs.defaultProps = defaultProps;
-Tabs.tabsRole = 'Tabs';
+Tabs.propTypes = propTypes
+Tabs.defaultProps = defaultProps
+Tabs.tabsRole = 'Tabs'
 
-export default Tabs;
+export default Tabs

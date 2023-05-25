@@ -1,15 +1,15 @@
-import React from 'react';
-import { BareProps, BareServerSideProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import { Identicon } from '@/components/Identicon';
-import { ExtrinsicLink } from '@/components/Links';
-import { DemocracyVote } from '@/types/api';
-import { Time } from '@/components/Time';
-import { ReplyStatus } from '@/components/Status';
-import { Balance } from '@/components/Balance';
+import React from 'react'
+import { BareProps, BareServerSideProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { Identicon } from '@/components/Identicon'
+import { ExtrinsicLink } from '@/components/Links'
+import { DemocracyVote } from '@/types/api'
+import { Time } from '@/components/Time'
+import { ReplyStatus } from '@/components/Status'
+import { Balance } from '@/components/Balance'
 
 interface Props extends BareProps, BareServerSideProps {
-  votes: DemocracyVote[];
+  votes: DemocracyVote[]
 }
 
 const ReferendaVotes: React.FC<Props> = ({ votes, chain }) => {
@@ -35,8 +35,7 @@ const ReferendaVotes: React.FC<Props> = ({ votes, chain }) => {
               </Td>
               <Td>
                 <Text className="whitespace-nowrap">
-                  {item.conviction} x{' '}
-                  <Balance value={item.amount} token={chain?.nativeTokenConf} />
+                  {item.conviction} x <Balance value={item.amount} token={chain?.nativeTokenConf} />
                 </Text>
               </Td>
               <Td>
@@ -46,11 +45,11 @@ const ReferendaVotes: React.FC<Props> = ({ votes, chain }) => {
                 <ReplyStatus type={item.passed} />
               </Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default ReferendaVotes;
+export default ReferendaVotes

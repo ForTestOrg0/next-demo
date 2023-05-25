@@ -1,14 +1,14 @@
-import React from 'react';
-import clsx from 'clsx';
-import { BareProps } from '@/types/page';
-import { CheckCircleIcon, CircleTimesIcon, WaitIcon } from '@/ui/Svg';
-import { Flex, Text } from '@/ui';
+import React from 'react'
+import clsx from 'clsx'
+import { BareProps } from '@/types/page'
+import { CheckCircleIcon, CircleTimesIcon, WaitIcon } from '@/ui/Svg'
+import { Flex, Text } from '@/ui'
 
-export type ResultStatusType = 1 | -1 | 0;
+export type ResultStatusType = 1 | -1 | 0
 
 interface Props extends BareProps {
-  type: ResultStatusType;
-  text?: string;
+  type: ResultStatusType
+  text?: string
 }
 
 const Component: React.FC<Props> = ({ children, type, text, className }) => {
@@ -33,7 +33,7 @@ const Component: React.FC<Props> = ({ children, type, text, className }) => {
         </Flex>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
-export default Component;
+export default Component

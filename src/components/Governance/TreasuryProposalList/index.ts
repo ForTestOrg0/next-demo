@@ -1,1 +1,1 @@
-export { default as TreasuryProposalList } from './TreasuryProposalList';
+export { default as TreasuryProposalList } from './TreasuryProposalList'

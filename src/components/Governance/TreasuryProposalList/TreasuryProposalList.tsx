@@ -1,13 +1,13 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import { BlockLink, TreasuryProposalLink } from '@/components/Links';
-import { TimeFromNow } from '@/components/Time';
-import { TreasuryProposal } from '@/types/api';
-import { Identicon } from '@/components/Identicon';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { BlockLink, TreasuryProposalLink } from '@/components/Links'
+import { TimeFromNow } from '@/components/Time'
+import { TreasuryProposal } from '@/types/api'
+import { Identicon } from '@/components/Identicon'
 
 interface Props extends BareProps {
-  proposals: TreasuryProposal[];
+  proposals: TreasuryProposal[]
 }
 
 const Page: React.FC<Props> = ({ proposals }) => {
@@ -48,11 +48,11 @@ const Page: React.FC<Props> = ({ proposals }) => {
               <Td>{proposal.status}</Td>
               <Td>action</Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

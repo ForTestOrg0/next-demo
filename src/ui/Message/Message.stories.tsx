@@ -1,26 +1,25 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { message } from '.';
-import { useRef } from 'react';
+import { message } from '.'
+import { useRef } from 'react'
 
 interface Props {
-  content: JSX.Element | string;
-  duration?: number;
+  content: JSX.Element | string
+  duration?: number
 }
 
-const methods = ['success', 'error', 'warn', 'info'] as const;
+const methods = ['success', 'error', 'warn', 'info'] as const
 
 const Demo = ({ content, duration }: Props) => {
-  const ref = useRef<(() => void)[]>([]);
+  const ref = useRef<(() => void)[]>([])
   return (
     <div className="flex items-center gap-2">
       <button
         onClick={() => {
-          ref.current.forEach((closer) => closer());
-          ref.current = [];
+          ref.current.forEach((closer) => closer())
+          ref.current = []
         }}
-        className="border rounded px-2"
-      >
+        className="border rounded px-2">
         Close All
       </button>
       <div>|</div>
@@ -28,17 +27,16 @@ const Demo = ({ content, duration }: Props) => {
         <button
           key={index}
           onClick={() => {
-            const closer = message[method](content, duration);
-            ref.current.push(closer);
+            const closer = message[method](content, duration)
+            ref.current.push(closer)
           }}
-          className="border rounded px-2 capitalize"
-        >
+          className="border rounded px-2 capitalize">
           {method}
         </button>
       ))}
     </div>
-  );
-};
+  )
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Demo> = {
@@ -46,11 +44,11 @@ const meta: Meta<typeof Demo> = {
   component: Demo,
   tags: ['autodocs'],
   argTypes: {},
-};
+}
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof Demo>;
+type Story = StoryObj<typeof Demo>
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
@@ -58,4 +56,4 @@ export const Primary: Story = {
     content: 'This is Content',
     duration: 3000,
   },
-};
+}

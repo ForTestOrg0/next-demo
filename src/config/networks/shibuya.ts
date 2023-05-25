@@ -1,4 +1,4 @@
-import { Chain } from './template';
+import { Chain } from './template'
 
 export const shibuya: Chain = {
   name: 'shibuya',
@@ -49,4 +49,4 @@ export const shibuya: Chain = {
     VALIDATOR: false,
     SS58: true,
   },
-};
+}

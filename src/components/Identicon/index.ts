@@ -1,1 +1,1 @@
-export { default as Identicon } from './Identicon';
+export { default as Identicon } from './Identicon'

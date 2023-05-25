@@ -24,11 +24,11 @@ export enum DayOfTheWeek {
 }
 
 export interface MonthDate {
-  isCurrentMonth: boolean;
-  date: Date;
+  isCurrentMonth: boolean
+  date: Date
 }
 
 export interface Month {
-  month: Date;
-  dates: MonthDate[];
+  month: Date
+  dates: MonthDate[]
 }

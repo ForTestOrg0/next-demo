@@ -1,44 +1,38 @@
-import React, { useMemo } from 'react';
-import clsx from 'clsx';
-import BigNumber from 'bignumber.js';
-import { BareProps } from '@/types/page';
-import Image from 'next/image';
-import ayeImg from '@/styles/images/aye.png';
-import nayImg from '@/styles/images/nay.png';
+import React, { useMemo } from 'react'
+import clsx from 'clsx'
+import BigNumber from 'bignumber.js'
+import { BareProps } from '@/types/page'
+import Image from 'next/image'
+import ayeImg from '@/styles/images/aye.png'
+import nayImg from '@/styles/images/nay.png'
 
 interface Props extends BareProps {
-  ayeAmount: number;
-  nayAmount: number;
+  ayeAmount: number
+  nayAmount: number
 }
 
-const BaseVoteStatistics: React.FC<Props> = ({
-  ayeAmount,
-  nayAmount,
-  className,
-}) => {
+const BaseVoteStatistics: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => {
   const currentProgress = useMemo(() => {
     if (ayeAmount == 0) {
       if (nayAmount == 0) {
-        return 50;
+        return 50
       } else {
-        return 0;
+        return 0
       }
     }
     if (nayAmount == 0) {
-      return 100;
+      return 100
     }
     return new BigNumber(Number(ayeAmount))
-      .div(
-        new BigNumber(Number(ayeAmount)).plus(new BigNumber(Number(nayAmount)))
-      )
+      .div(new BigNumber(Number(ayeAmount)).plus(new BigNumber(Number(nayAmount))))
       .times(100)
-      .toNumber();
-  }, [ayeAmount, nayAmount]);
+      .toNumber()
+  }, [ayeAmount, nayAmount])
   const cssVars = useMemo(() => {
     return {
       '--aye-progress': Math.min(Math.max(currentProgress, 5), 100) + '%',
-    };
-  }, [currentProgress]) as React.CSSProperties;
+    }
+  }, [currentProgress]) as React.CSSProperties
   return (
     <div className={clsx('flex', className)}>
       <div className="relative inline-block px-5 pt-2.5 pb-11" style={cssVars}>
@@ -62,7 +56,7 @@ const BaseVoteStatistics: React.FC<Props> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BaseVoteStatistics;
+export default BaseVoteStatistics

@@ -1,44 +1,36 @@
-import {
-  Boundary,
-  PageContent,
-  Container,
-  Text,
-  TabsServer,
-  LinkRouter,
-  Button,
-} from '@/ui';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { getBountiesProposals, GetBountiesProposalsProps } from '@/utils/api';
-import { PAGE_ROW } from '@/config/constants';
-import { BountiesList } from '@/components/Governance';
-import { getChainProps } from '@/utils/chain';
-import { BareServerSideProps } from '@/types/page';
+import { Boundary, PageContent, Container, Text, TabsServer, LinkRouter, Button } from '@/ui'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { getBountiesProposals, GetBountiesProposalsProps } from '@/utils/api'
+import { PAGE_ROW } from '@/config/constants'
+import { BountiesList } from '@/components/Governance'
+import { getChainProps } from '@/utils/chain'
+import { BareServerSideProps } from '@/types/page'
 
 const statusMap = {
   waiting: 'active',
   historical: 'historical',
-};
+}
 
 export const getServerSideProps: GetServerSideProps<
   {
-    data: GetBountiesProposalsProps;
-    type: keyof typeof statusMap;
+    data: GetBountiesProposalsProps
+    type: keyof typeof statusMap
   } & BareServerSideProps
 > = async (context) => {
-  const tab = (context.query.tab || '')?.toString() as keyof typeof statusMap;
-  const type = typeof statusMap[tab] === 'undefined' ? 'waiting' : tab;
-  const status = statusMap[type] || statusMap.waiting;
+  const tab = (context.query.tab || '')?.toString() as keyof typeof statusMap
+  const type = typeof statusMap[tab] === 'undefined' ? 'waiting' : tab
+  const status = statusMap[type] || statusMap.waiting
   const data = await getBountiesProposals(context.req.headers.host || '', {
     row: PAGE_ROW,
     page: 0,
     status: status,
-  });
-  const chainProps = await getChainProps(context.req.headers.host);
+  })
+  const chainProps = await getChainProps(context.req.headers.host)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
-    };
+    }
   }
 
   return {
@@ -47,14 +39,10 @@ export const getServerSideProps: GetServerSideProps<
       type,
       chain: chainProps,
     },
-  };
-};
+  }
+}
 
-export default function Page({
-  data,
-  type,
-  chain,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ data, type, chain }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
       <Container className="flex-1">
@@ -88,5 +76,5 @@ export default function Page({
         </LinkRouter>
       </Container>
     </PageContent>
-  );
+  )
 }

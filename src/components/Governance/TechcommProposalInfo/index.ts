@@ -1,1 +1,1 @@
-export { default as TechcommProposalInfo } from './TechcommProposalInfo';
+export { default as TechcommProposalInfo } from './TechcommProposalInfo'

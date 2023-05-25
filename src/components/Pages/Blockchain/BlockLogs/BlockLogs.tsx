@@ -1,11 +1,11 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import { Log } from '@/types/api';
-import { BlockLink } from '@/components/Links';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { Log } from '@/types/api'
+import { BlockLink } from '@/components/Links'
 
 interface Props extends BareProps {
-  logs: Log[];
+  logs: Log[]
 }
 
 export const BlockLogs: React.FC<Props> = ({ logs }) => {
@@ -35,9 +35,9 @@ export const BlockLogs: React.FC<Props> = ({ logs }) => {
                 <Text>{item.engine}</Text>
               </Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}

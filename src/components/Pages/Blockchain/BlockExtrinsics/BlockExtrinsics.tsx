@@ -1,20 +1,17 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import { BlockLink, ExtrinsicLink } from '@/components/Links';
-import { Extrinsic } from '@/types/api';
-import { TimeFromNow } from '@/components/Time';
-import { ResultStatus } from '@/components/Status';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { BlockLink, ExtrinsicLink } from '@/components/Links'
+import { Extrinsic } from '@/types/api'
+import { TimeFromNow } from '@/components/Time'
+import { ResultStatus } from '@/components/Status'
 
 interface Props extends BareProps {
-  extrinsics: Extrinsic[];
-  disableColumn?: Partial<Record<'block', boolean>>;
+  extrinsics: Extrinsic[]
+  disableColumn?: Partial<Record<'block', boolean>>
 }
 
-export const BlockExtrinsics: React.FC<Props> = ({
-  extrinsics,
-  disableColumn,
-}) => {
+export const BlockExtrinsics: React.FC<Props> = ({ extrinsics, disableColumn }) => {
   return (
     <Table className="w-full">
       <tbody>
@@ -31,10 +28,7 @@ export const BlockExtrinsics: React.FC<Props> = ({
           return (
             <Tr key={item.extrinsic_index}>
               <Td>
-                <ExtrinsicLink
-                  empty={!item.extrinsic_index}
-                  extrinsicIndex={item.extrinsic_index}
-                />
+                <ExtrinsicLink empty={!item.extrinsic_index} extrinsicIndex={item.extrinsic_index} />
               </Td>
               {!disableColumn?.block && (
                 <Td>
@@ -42,10 +36,7 @@ export const BlockExtrinsics: React.FC<Props> = ({
                 </Td>
               )}
               <Td>
-                <ExtrinsicLink
-                  empty={!item.extrinsic_hash}
-                  extrinsicIndex={item.extrinsic_hash}
-                />
+                <ExtrinsicLink empty={!item.extrinsic_hash} extrinsicIndex={item.extrinsic_hash} />
               </Td>
               <Td>
                 <TimeFromNow date={item.block_timestamp} />
@@ -59,13 +50,12 @@ export const BlockExtrinsics: React.FC<Props> = ({
                   query={{
                     module: item.call_module,
                     call: item.call_module_function,
-                  }}
-                >{`${item.call_module} (${item.call_module_function})`}</ExtrinsicLink>
+                  }}>{`${item.call_module} (${item.call_module_function})`}</ExtrinsicLink>
               </Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}

@@ -1,11 +1,11 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { TableCol, TdCol, TrCol } from '@/ui';
-import { BlockLink } from '@/components/Links';
-import { GetDemocracyProposalByIdDataProps } from '@/utils/api';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { TableCol, TdCol, TrCol } from '@/ui'
+import { BlockLink } from '@/components/Links'
+import { GetDemocracyProposalByIdDataProps } from '@/utils/api'
 
 interface Props extends BareProps {
-  proposal: GetDemocracyProposalByIdDataProps['info'];
+  proposal: GetDemocracyProposalByIdDataProps['info']
 }
 
 const ProposalInfo: React.FC<Props> = ({ proposal }) => {
@@ -13,17 +13,13 @@ const ProposalInfo: React.FC<Props> = ({ proposal }) => {
     <TableCol className="w-full">
       <tbody>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Created at Block
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Created at Block</TdCol>
           <TdCol>
             <BlockLink blockNumber={proposal?.created_block} />
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Updated at Block
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Updated at Block</TdCol>
           <TdCol>
             <BlockLink blockNumber={proposal?.updated_block} />
           </TdCol>
@@ -42,7 +38,7 @@ const ProposalInfo: React.FC<Props> = ({ proposal }) => {
         </TrCol>
       </tbody>
     </TableCol>
-  );
-};
+  )
+}
 
-export default ProposalInfo;
+export default ProposalInfo

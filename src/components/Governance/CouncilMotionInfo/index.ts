@@ -1,1 +1,1 @@
-export { default as CouncilMotionInfo } from './CouncilMotionInfo';
+export { default as CouncilMotionInfo } from './CouncilMotionInfo'

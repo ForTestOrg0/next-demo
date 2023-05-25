@@ -1,1 +1,1 @@
-export { default as ReferendaInfo } from './ReferendaInfo';
+export { default as ReferendaInfo } from './ReferendaInfo'

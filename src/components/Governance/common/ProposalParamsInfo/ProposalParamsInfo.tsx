@@ -1,23 +1,16 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { TableCol, TdCol, TrCol } from '@/ui';
-import {
-  ExtrinsicCall,
-  ExtrinsicModule,
-} from '@/components/ExtrinsicModuleCall';
-import { Parameters } from '@/components/Parameters';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { TableCol, TdCol, TrCol } from '@/ui'
+import { ExtrinsicCall, ExtrinsicModule } from '@/components/ExtrinsicModuleCall'
+import { Parameters } from '@/components/Parameters'
 
 interface Props extends BareProps {
-  callModule?: string;
-  callName?: string;
-  params?: string;
+  callModule?: string
+  callName?: string
+  params?: string
 }
 
-const ProposalParamsInfo: React.FC<Props> = ({
-  callModule,
-  callName,
-  params,
-}) => {
+const ProposalParamsInfo: React.FC<Props> = ({ callModule, callName, params }) => {
   return (
     <TableCol className="w-full">
       <tbody>
@@ -41,7 +34,7 @@ const ProposalParamsInfo: React.FC<Props> = ({
         </TrCol>
       </tbody>
     </TableCol>
-  );
-};
+  )
+}
 
-export default ProposalParamsInfo;
+export default ProposalParamsInfo

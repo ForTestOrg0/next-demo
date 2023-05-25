@@ -1,4 +1,4 @@
-import { Chain } from './template';
+import { Chain } from './template'
 
 export const darwinia_para: Chain = {
   name: 'darwinia-parachain',
@@ -50,4 +50,4 @@ export const darwinia_para: Chain = {
     VALIDATOR: false,
     SS58: false,
   },
-};
+}

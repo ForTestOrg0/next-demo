@@ -1,1 +1,1 @@
-export { default as ProposalTimeLine } from './ProposalTimeLine';
+export { default as ProposalTimeLine } from './ProposalTimeLine'

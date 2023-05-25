@@ -23,40 +23,23 @@ export const docCookies = {
   getItem: function (cookie: string, sKey: string) {
     return (
       decodeURIComponent(
-        cookie.replace(
-          new RegExp(
-            '(?:(?:^|.*;)\\s*' +
-              encodeURIComponent(sKey).replace(/[-.+*]/g, '\\$&') +
-              '\\s*\\=\\s*([^;]*).*$)|^.*$'
-          ),
-          '$1'
-        )
+        cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(sKey).replace(/[-.+*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')
       ) || null
-    );
+    )
   },
-  setItem: function (
-    sKey: string,
-    sValue: string,
-    vEnd?: number,
-    sPath?: string,
-    sDomain?: string,
-    bSecure?: boolean
-  ) {
+  setItem: function (sKey: string, sValue: string, vEnd?: number, sPath?: string, sDomain?: string, bSecure?: boolean) {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
-      return false;
+      return false
     }
-    var sExpires = '';
+    var sExpires = ''
     if (vEnd) {
       switch (vEnd.constructor) {
         case Number:
-          sExpires =
-            vEnd === Infinity
-              ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT'
-              : '; max-age=' + vEnd;
-          break;
+          sExpires = vEnd === Infinity ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT' : '; max-age=' + vEnd
+          break
         case String:
-          sExpires = '; expires=' + vEnd;
-          break;
+          sExpires = '; expires=' + vEnd
+          break
         // case Date:
         //   sExpires = "; expires=" + vEnd.toUTCString();
         //   break;
@@ -69,8 +52,8 @@ export const docCookies = {
       sExpires +
       (sDomain ? '; domain=' + sDomain : '') +
       (sPath ? '; path=' + sPath : '') +
-      (bSecure ? '; secure' : '');
-    return true;
+      (bSecure ? '; secure' : '')
+    return true
   },
   // removeItem: function (sKey, sPath, sDomain) {
   //   if (!sKey || !this.hasItem(sKey)) { return false; }
@@ -78,21 +61,13 @@ export const docCookies = {
   //   return true;
   // },
   hasItem: function (cookie: string, sKey: string) {
-    return new RegExp(
-      '(?:^|;\\s*)' +
-        encodeURIComponent(sKey).replace(/[-.+*]/g, '\\$&') +
-        '\\s*\\='
-    ).test(cookie);
+    return new RegExp('(?:^|;\\s*)' + encodeURIComponent(sKey).replace(/[-.+*]/g, '\\$&') + '\\s*\\=').test(cookie)
   },
-  keys: /* optional method: you can safely remove it! */ function (
-    cookie: string
-  ) {
-    var aKeys = cookie
-      .replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '')
-      .split(/\s*(?:\=[^;]*)?;\s*/);
+  keys: /* optional method: you can safely remove it! */ function (cookie: string) {
+    var aKeys = cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/)
     for (var nIdx = 0; nIdx < aKeys.length; nIdx++) {
-      aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]);
+      aKeys[nIdx] = decodeURIComponent(aKeys[nIdx])
     }
-    return aKeys;
+    return aKeys
   },
-};
+}

@@ -1,37 +1,31 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { BareProps, BareServerSideProps } from '@/types/page';
-import { unwrap, useDemocracyVotes } from '@/utils/api';
-import { PAGE_ROW } from '@/config/constants';
-import { Button, LinkRouter } from '@/ui';
-import { Empty } from '@/components/Empty';
-import ReferendaVotes from './ReferendaVotes';
-import { Loading } from '@/components/Loading';
+import React from 'react'
+import { BareProps, BareServerSideProps } from '@/types/page'
+import { unwrap, useDemocracyVotes } from '@/utils/api'
+import { PAGE_ROW } from '@/config/constants'
+import { Button, LinkRouter } from '@/ui'
+import { Empty } from '@/components/Empty'
+import ReferendaVotes from './ReferendaVotes'
+import { Loading } from '@/components/Loading'
 
 interface Props extends BareProps, BareServerSideProps {
-  host: string;
-  row?: number;
-  page?: number;
-  referendumIndex: number;
+  host: string
+  row?: number
+  page?: number
+  referendumIndex: number
 }
 
-const ReferendaVotesClient: React.FC<Props> = ({
-  host,
-  page = 0,
-  row = PAGE_ROW,
-  referendumIndex,
-  chain,
-}) => {
+const ReferendaVotesClient: React.FC<Props> = ({ host, page = 0, row = PAGE_ROW, referendumIndex, chain }) => {
   const { data, error, isLoading } = useDemocracyVotes(host, {
     page,
     row,
     referendum_index: referendumIndex,
-  });
-  const seconds = unwrap(data);
+  })
+  const seconds = unwrap(data)
 
-  if (isLoading) return <Loading />;
-  if (!seconds) return <Empty />;
+  if (isLoading) return <Loading />
+  if (!seconds) return <Empty />
 
   return (
     <div>
@@ -42,7 +36,7 @@ const ReferendaVotesClient: React.FC<Props> = ({
         </Button>
       </LinkRouter>
     </div>
-  );
-};
+  )
+}
 
-export default ReferendaVotesClient;
+export default ReferendaVotesClient

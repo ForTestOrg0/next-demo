@@ -1,2 +1,2 @@
-export * from './Table';
-export * from './TableCol';
+export * from './Table'
+export * from './TableCol'

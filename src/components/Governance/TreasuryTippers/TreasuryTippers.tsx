@@ -1,12 +1,12 @@
-import React from 'react';
-import { BareProps } from '@/types/page';
-import { Table, Td, Th, Tr, Text } from '@/ui';
-import { Identicon } from '@/components/Identicon';
-import { ExtrinsicLink } from '@/components/Links';
-import { TreasuryTipper } from '@/types/api';
+import React from 'react'
+import { BareProps } from '@/types/page'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { Identicon } from '@/components/Identicon'
+import { ExtrinsicLink } from '@/components/Links'
+import { TreasuryTipper } from '@/types/api'
 
 interface Props extends BareProps {
-  tippers: TreasuryTipper[];
+  tippers: TreasuryTipper[]
 }
 
 const Component: React.FC<Props> = ({ tippers }) => {
@@ -32,11 +32,11 @@ const Component: React.FC<Props> = ({ tippers }) => {
                 <Text>{item.amount}</Text>
               </Td>
             </Tr>
-          );
+          )
         })}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export default Component;
+export default Component

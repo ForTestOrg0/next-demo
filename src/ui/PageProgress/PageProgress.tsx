@@ -4,54 +4,54 @@
  * https://github.com/apal21/nextjs-progressbar/
  */
 
-import Router from 'next/router';
-import * as NProgress from 'nprogress';
-import * as PropTypes from 'prop-types';
-import * as React from 'react';
+import Router from 'next/router'
+import * as NProgress from 'nprogress'
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
 
 export interface NextNProgressProps {
   /**
    * The color of the bar.
    * @default "#29D"
    */
-  color?: string;
+  color?: string
   /**
    * The start position of the bar.
    * @default 0.3
    */
-  startPosition?: number;
+  startPosition?: number
   /**
    * The stop delay in milliseconds.
    * @default 200
    */
-  stopDelayMs?: number;
+  stopDelayMs?: number
   /**
    * The height of the bar.
    * @default 3
    */
-  height?: number;
+  height?: number
   /**
    * Whether to show the bar on shallow routes.
    * @default true
    */
-  showOnShallow?: boolean;
+  showOnShallow?: boolean
   /**
    * The other NProgress configuration options to pass to NProgress.
    * @default null
    */
-  options?: Partial<NProgress.NProgressOptions>;
+  options?: Partial<NProgress.NProgressOptions>
   /**
    * The nonce attribute to use for the `style` tag.
    * @default undefined
    */
-  nonce?: string;
+  nonce?: string
 
   /**
    * Use your custom CSS tag instead of the default one.
    * This is useful if you want to use a different style or minify the CSS.
    * @default (css) => <style nonce={nonce}>{css}</style>
    */
-  transformCSS?: (css: string) => JSX.Element;
+  transformCSS?: (css: string) => JSX.Element
 }
 
 const NextNProgress = ({
@@ -64,51 +64,51 @@ const NextNProgress = ({
   nonce,
   transformCSS = (css) => <style nonce={nonce}>{css}</style>,
 }: NextNProgressProps) => {
-  let timer: NodeJS.Timeout | null = null;
+  let timer: NodeJS.Timeout | null = null
 
   React.useEffect(() => {
     if (options) {
-      NProgress.configure(options);
+      NProgress.configure(options)
     }
-    Router.events.on('routeChangeStart', routeChangeStart);
-    Router.events.on('routeChangeComplete', routeChangeEnd);
-    Router.events.on('routeChangeError', routeChangeError);
+    Router.events.on('routeChangeStart', routeChangeStart)
+    Router.events.on('routeChangeComplete', routeChangeEnd)
+    Router.events.on('routeChangeError', routeChangeError)
     return () => {
-      Router.events.off('routeChangeStart', routeChangeStart);
-      Router.events.off('routeChangeComplete', routeChangeEnd);
-      Router.events.off('routeChangeError', routeChangeError);
-    };
-  }, []);
+      Router.events.off('routeChangeStart', routeChangeStart)
+      Router.events.off('routeChangeComplete', routeChangeEnd)
+      Router.events.off('routeChangeError', routeChangeError)
+    }
+  }, [])
 
   const routeChangeStart = (
     _: string,
     {
       shallow,
     }: {
-      shallow: boolean;
+      shallow: boolean
     }
   ) => {
     if (!shallow || showOnShallow) {
-      NProgress.set(startPosition);
-      NProgress.start();
+      NProgress.set(startPosition)
+      NProgress.start()
     }
-  };
+  }
 
   const routeChangeEnd = (
     _: string,
     {
       shallow,
     }: {
-      shallow: boolean;
+      shallow: boolean
     }
   ) => {
     if (!shallow || showOnShallow) {
-      if (timer) clearTimeout(timer);
+      if (timer) clearTimeout(timer)
       timer = setTimeout(() => {
-        NProgress.done(true);
-      }, stopDelayMs);
+        NProgress.done(true)
+      }, stopDelayMs)
     }
-  };
+  }
 
   const routeChangeError = (
     _err: Error,
@@ -116,16 +116,16 @@ const NextNProgress = ({
     {
       shallow,
     }: {
-      shallow: boolean;
+      shallow: boolean
     }
   ) => {
     if (!shallow || showOnShallow) {
-      if (timer) clearTimeout(timer);
+      if (timer) clearTimeout(timer)
       timer = setTimeout(() => {
-        NProgress.done(true);
-      }, stopDelayMs);
+        NProgress.done(true)
+      }, stopDelayMs)
     }
-  };
+  }
 
   return transformCSS(`
     #nprogress {
@@ -194,8 +194,8 @@ const NextNProgress = ({
         transform: rotate(360deg);
       }
     }
-  `);
-};
+  `)
+}
 
 NextNProgress.propTypes = {
   color: PropTypes.string,
@@ -206,6 +206,6 @@ NextNProgress.propTypes = {
   options: PropTypes.object,
   nonce: PropTypes.string,
   transformCSS: PropTypes.func,
-};
+}
 
-export default React.memo(NextNProgress);
+export default React.memo(NextNProgress)

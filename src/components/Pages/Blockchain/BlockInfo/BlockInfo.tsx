@@ -1,14 +1,14 @@
-import React from 'react';
-import { BareProps, BareServerSideProps } from '@/types/page';
-import { TableCol, TdCol, TrCol, Text } from '@/ui';
-import { BlockLink, RuntimeLink } from '@/components/Links';
-import { BlockDetail } from '@/types/api';
-import { Identicon } from '@/components/Identicon';
-import { Time, TimeFromNow } from '@/components/Time';
-import { BlockStatus } from '../BlockList';
+import React from 'react'
+import { BareProps, BareServerSideProps } from '@/types/page'
+import { TableCol, TdCol, TrCol, Text } from '@/ui'
+import { BlockLink, RuntimeLink } from '@/components/Links'
+import { BlockDetail } from '@/types/api'
+import { Identicon } from '@/components/Identicon'
+import { Time, TimeFromNow } from '@/components/Time'
+import { BlockStatus } from '../BlockList'
 
 interface Props extends BareProps, BareServerSideProps {
-  block: BlockDetail;
+  block: BlockDetail
 }
 
 const Page: React.FC<Props> = ({ block, chain }) => {
@@ -25,9 +25,7 @@ const Page: React.FC<Props> = ({ block, chain }) => {
         ) : null}
         {block?.block_timestamp ? (
           <TrCol>
-            <TdCol className="font-semibold whitespace-nowrap">
-              Block Time
-            </TdCol>
+            <TdCol className="font-semibold whitespace-nowrap">Block Time</TdCol>
             <TdCol>
               <TimeFromNow date={block?.block_timestamp} />
             </TdCol>
@@ -36,10 +34,7 @@ const Page: React.FC<Props> = ({ block, chain }) => {
         <TrCol>
           <TdCol className="font-semibold whitespace-nowrap">Status</TdCol>
           <TdCol>
-            <BlockStatus
-              finalized={block?.finalized}
-              text={block?.finalized ? 'Finalized' : 'Unfinalized'}
-            />
+            <BlockStatus finalized={block?.finalized} text={block?.finalized ? 'Finalized' : 'Unfinalized'} />
           </TdCol>
         </TrCol>
         <TrCol>
@@ -52,9 +47,7 @@ const Page: React.FC<Props> = ({ block, chain }) => {
           <TdCol className="font-semibold whitespace-nowrap">Parent Hash</TdCol>
           <TdCol>
             {(block?.block_num || 0) - 1 > -1 ? (
-              <BlockLink blockNumber={block?.block_num - 1}>
-                {block?.parent_hash}
-              </BlockLink>
+              <BlockLink blockNumber={block?.block_num - 1}>{block?.parent_hash}</BlockLink>
             ) : (
               <Text>{block?.parent_hash}</Text>
             )}
@@ -67,9 +60,7 @@ const Page: React.FC<Props> = ({ block, chain }) => {
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Extrinsics Root
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Extrinsics Root</TdCol>
           <TdCol>
             <Text>{block?.extrinsics_root}</Text>
           </TdCol>
@@ -81,21 +72,16 @@ const Page: React.FC<Props> = ({ block, chain }) => {
           </TdCol>
         </TrCol>
         <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">
-            Spec Version
-          </TdCol>
+          <TdCol className="font-semibold whitespace-nowrap">Spec Version</TdCol>
           <TdCol>
-            <RuntimeLink
-              module=""
-              query={{ version: block?.spec_version.toString() }}
-            >
+            <RuntimeLink module="" query={{ version: block?.spec_version.toString() }}>
               {block?.spec_version}
             </RuntimeLink>
           </TdCol>
         </TrCol>
       </tbody>
     </TableCol>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

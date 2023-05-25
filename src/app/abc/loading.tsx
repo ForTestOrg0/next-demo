@@ -1,4 +1,4 @@
-import { SkeletonCard } from '@/components/SkeletonCard';
+import { SkeletonCard } from '@/components/SkeletonCard'
 export default function Loading() {
   return (
     <div className="space-y-4">
@@ -12,5 +12,5 @@ export default function Loading() {
         <SkeletonCard isLoading={true} />
       </div>
     </div>
-  );
+  )
 }

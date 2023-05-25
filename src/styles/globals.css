@@ -20,9 +20,8 @@
   --ui-b2: 157 157 157; /* #9d9d9d */
   --ui-b3: 216 216 216; /* #d8d8d8 */
   --ui-b4: 242 244 250; /* #f2f4fa */
-  --ui-bg: 251 251 253;   /* #fbfbfd */
+  --ui-bg: 251 251 253; /* #fbfbfd */
   --ui-hover: 251 251 251; /* #fbfbfb */
-
 
   --ui-black-light: 48 43 60; /* #302b3c */
   --ui-white-light: 255 255 255; /* #ffffff */
@@ -33,7 +32,7 @@
   --ui-b2-light: 157 157 157; /* #9d9d9d */
   --ui-b3-light: 216 216 216; /* #d8d8d8 */
   --ui-b4-light: 242 244 250; /* #f2f4fa */
-  --ui-bg-light: 251 251 253;   /* #fbfbfd */
+  --ui-bg-light: 251 251 253; /* #fbfbfd */
   --ui-hover-light: 251 251 251; /* #fbfbfb */
 
   --ui-black-dark: 255 255 255; /* #ffffff */
@@ -45,7 +44,7 @@
   --ui-b2-dark: 157 157 157; /* #9d9d9d */
   --ui-b3-dark: 216 216 216; /* #d8d8d8 */
   --ui-b4-dark: 38 34 48; /* #262230 */
-  --ui-bg-dark: 27 30 31;   /* #1b1e1f */
+  --ui-bg-dark: 27 30 31; /* #1b1e1f */
   --ui-hover-dark: 251 251 251; /* #fbfbfb */
 }
 
@@ -63,7 +62,7 @@ html.dark {
   --ui-b2: 157 157 157; /* #9d9d9d */
   --ui-b3: 216 216 216; /* #d8d8d8 */
   --ui-b4: 38 34 48; /* #262230 */
-  --ui-bg: 27 30 31;   /* #1b1e1f */
+  --ui-bg: 27 30 31; /* #1b1e1f */
   --ui-hover: 251 251 251; /* #fbfbfb */
 }
 

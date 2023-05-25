@@ -1,19 +1,8 @@
-'use client';
+'use client'
 
-import { EMAIL, GITHUB, MEDIUM, RIOT, TWITTER } from '@/config/constants';
-import {
-  Container,
-  Flex,
-  Link,
-  LinkRouter,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  PageContent,
-  Text,
-} from '@/ui';
-import { Drawer } from '@/ui/Drawer';
+import { EMAIL, GITHUB, MEDIUM, RIOT, TWITTER } from '@/config/constants'
+import { Container, Flex, Link, LinkRouter, Menu, MenuButton, MenuItem, MenuItems, PageContent, Text } from '@/ui'
+import { Drawer } from '@/ui/Drawer'
 import {
   ArrowDownFillingIcon,
   ArrowRightBoldIcon,
@@ -29,56 +18,40 @@ import {
   RiotIcon,
   TwitterBlockIcon,
   TwitterIcon,
-} from '@/ui/Svg';
-import { Disclosure } from '@headlessui/react';
-import clsx from 'clsx';
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { useSsr } from 'usehooks-ts';
-import { LanguageSwitcher } from '../Footer/Footer';
-import { navTree } from './menu';
+} from '@/ui/Svg'
+import { Disclosure } from '@headlessui/react'
+import clsx from 'clsx'
+import Image from 'next/image'
+import React, { useState } from 'react'
+import { useSsr } from 'usehooks-ts'
+import { LanguageSwitcher } from '../Footer/Footer'
+import { navTree } from './menu'
 
-function AutoLink({
-  label,
-  href,
-  external,
-  className,
-}: {
-  label: string;
-  href: string;
-  external?: boolean;
-  className?: string;
-}) {
+function AutoLink({ label, href, external, className }: { label: string; href: string; external?: boolean; className?: string }) {
   if (external) {
     return (
       <Link className={className} href={href} external>
         {label}
       </Link>
-    );
+    )
   }
   return (
     <LinkRouter className={className} href={href}>
       {label}
     </LinkRouter>
-  );
+  )
 }
 
 export default function Header() {
-  const [drawerShowing, setDrawerShowing] = useState(false);
-  const { isBrowser } = useSsr();
+  const [drawerShowing, setDrawerShowing] = useState(false)
+  const { isBrowser } = useSsr()
 
   return (
     <PageContent disablePadding className="bg-sub-network">
       {/* desktop */}
       <Container className="flex-1 justify-between items-center hidden lg:flex">
         <LinkRouter href="/">
-          <Image
-            className="h-[25px]"
-            width={119}
-            height={25}
-            src="/website/logo.png"
-            alt="subscan"
-          />
+          <Image className="h-[25px]" width={119} height={25} src="/website/logo.png" alt="subscan" />
         </LinkRouter>
         <Flex className="items-center space-x-5 text-sub-white min-h-[50px]">
           {navTree.map((nav) => {
@@ -95,10 +68,7 @@ export default function Header() {
                         {({ active, close }) => (
                           <div onClick={close}>
                             <AutoLink
-                              className={clsx(
-                                { 'bg-sub-b4': active },
-                                'menu-item text-sm'
-                              )}
+                              className={clsx({ 'bg-sub-b4': active }, 'menu-item text-sm')}
                               label={link.label}
                               href={link.href}
                               external={link.targetBlank}
@@ -109,20 +79,12 @@ export default function Header() {
                     ))}
                   </MenuItems>
                 </Menu>
-              );
+              )
             }
             if (nav.href) {
-              return (
-                <AutoLink
-                  className="text-white text-sm"
-                  key={nav.href}
-                  label={nav.label}
-                  href={nav.href}
-                  external={nav.targetBlank}
-                />
-              );
+              return <AutoLink className="text-white text-sm" key={nav.href} label={nav.label} href={nav.href} external={nav.targetBlank} />
             }
-            return null;
+            return null
           })}
         </Flex>
       </Container>
@@ -132,28 +94,14 @@ export default function Header() {
         <Flex className="flex-1 justify-start"></Flex>
         <Flex className="flex-2 justify-center items-center">
           <LinkRouter href="/">
-            <Image
-              className="h-[25px]"
-              width={119}
-              height={25}
-              src="/website/logo.png"
-              alt="subscan"
-            />
+            <Image className="h-[25px]" width={119} height={25} src="/website/logo.png" alt="subscan" />
           </LinkRouter>
         </Flex>
         <Flex className="flex-1 justify-end">
-          <HamburgerButtonIcon
-            className="w-6 py-3 px-3 box-content cursor-pointer text-sub-white-light"
-            onClick={() => setDrawerShowing(true)}
-          />
+          <HamburgerButtonIcon className="w-6 py-3 px-3 box-content cursor-pointer text-sub-white-light" onClick={() => setDrawerShowing(true)} />
         </Flex>
         {isBrowser ? (
-          <Drawer
-            show={drawerShowing}
-            title="MENU"
-            onClose={() => setDrawerShowing(false)}
-            maskClosable
-          >
+          <Drawer show={drawerShowing} title="MENU" onClose={() => setDrawerShowing(false)} maskClosable>
             <Flex className="flex-col pl-7 pt-8 h-full overflow-y-auto">
               {navTree.map((nav) => {
                 if (nav.menu) {
@@ -162,14 +110,8 @@ export default function Header() {
                       {({ open }) => (
                         <>
                           <Disclosure.Button className="flex w-full py-2 pr-2 justify-between focus:outline-none items-center">
-                            <span className="font-medium text-sub-white-light">
-                              {nav.label}
-                            </span>
-                            <ArrowRightBoldIcon
-                              className={`${
-                                open ? 'rotate-90 transform' : ''
-                              } h-3 w-3 text-sub-b2-light`}
-                            />
+                            <span className="font-medium text-sub-white-light">{nav.label}</span>
+                            <ArrowRightBoldIcon className={`${open ? 'rotate-90 transform' : ''} h-3 w-3 text-sub-b2-light`} />
                           </Disclosure.Button>
                           <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                             {nav.menu?.map((link) => (
@@ -185,7 +127,7 @@ export default function Header() {
                         </>
                       )}
                     </Disclosure>
-                  );
+                  )
                 }
                 if (nav.href) {
                   return (
@@ -196,9 +138,9 @@ export default function Header() {
                       href={nav.href}
                       external={nav.targetBlank}
                     />
-                  );
+                  )
                 }
-                return null;
+                return null
               })}
             </Flex>
             <Flex className="px-2 py-4 justify-between bg-[#3a3545]">
@@ -223,5 +165,5 @@ export default function Header() {
         ) : null}
       </Container>
     </PageContent>
-  );
+  )
 }

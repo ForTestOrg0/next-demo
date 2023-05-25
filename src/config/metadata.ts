@@ -1,7 +1,6 @@
 const METADATA = {
   default: {
-    title:
-      'Subscan | Aggregate Substrate ecological network high-precision Web3 explorer',
+    title: 'Subscan | Aggregate Substrate ecological network high-precision Web3 explorer',
     description:
       'Subscan | Substrate ecological explorer: Search, analyze, and visualize blockchain that occurs on Substrate based network (Polkadot, Kusama, Moonbeam, Acala, Darwinia), such as extrinsics, transfers, accounts, tokens, prices, staking, PLO and other activities.',
   },
@@ -33,5 +32,5 @@ const METADATA = {
     title: 'Subscan | Bounty Detail: ',
     description: '',
   },
-};
-export default METADATA;
+}
+export default METADATA

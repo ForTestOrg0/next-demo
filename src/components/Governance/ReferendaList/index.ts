@@ -1,1 +1,1 @@
-export { default as ReferendaList } from './ReferendaList';
+export { default as ReferendaList } from './ReferendaList'
