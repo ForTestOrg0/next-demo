@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint-fix": "next lint --fix",
-    "prettier": "prettier './src' --write",
+    "prettier": "prettier './src' --check",
+    "prettier-fix": "prettier './src' --write",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -26,7 +27,7 @@
   "lint-staged": {
     "./src": [
       "lint-fix",
-      "prettier"
+      "prettier-fix"
     ]
   },
   "dependencies": {
