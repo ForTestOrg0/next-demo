@@ -21,10 +21,6 @@ import {
 import useSWR from 'swr'
 import { subscanFetch, swrFetcher } from './fetcher'
 
-export async function getTransfers(hostname = '', params: any) {
-  return await subscanFetch(hostname, 'api/v2/scan/transfers', params)
-}
-
 export interface GetDemocracyProposalsDataProps {
   count: number
   list: {

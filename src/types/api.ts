@@ -291,3 +291,24 @@ export interface BlockDetail extends Block {
   extrinsics: Extrinsic[]
   logs: Log[]
 }
+
+export interface Transfer {
+  from: string
+  to: string
+  extrinsic_index: string
+  event_idx: number
+  success: boolean
+  hash: string
+  block_num: number
+  block_timestamp: number
+  module: string
+  amount: string
+  amount_v2: string
+  fee: string
+  nonce: number
+  asset_symbol: string
+  asset_type: string
+  asset_unique_id: string
+  from_account_display: AccountDisplay
+  to_account_display: AccountDisplay
+}

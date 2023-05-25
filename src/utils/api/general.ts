@@ -1,4 +1,4 @@
-import { APIWarpperProps, Block, BlockDetail, Event, Extrinsic, ExtrinsicDetail, TokenMetadata, Log } from '@/types/api'
+import { APIWarpperProps, Block, BlockDetail, Event, Extrinsic, ExtrinsicDetail, TokenMetadata, Log, Transfer } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
 
@@ -155,4 +155,31 @@ export async function getLogs(
   params: { page: number; row: number; engine?: string; type?: string }
 ): Promise<APIWarpperProps<GetLogsProps>> {
   return await subscanFetch(hostname, 'api/v2/scan/logs', params)
+}
+
+/***** Transfers *****/
+export interface GetTransfersProps {
+  count: number
+  transfers: Transfer[]
+}
+
+export async function getTransfers(
+  hostname = '',
+  params: {
+    page: number
+    row: number
+    addres?: string
+    extrinsic_index?: string
+    block_range?: string
+    direction?: 'all' | 'sent' | 'received'
+    min_amount?: string
+    max_amount?: string
+    currency?: 'token' | 'usd'
+    success?: boolean
+    asset_symbol?: string
+    asset_unique_id?: string
+    after_id?: number[]
+  }
+): Promise<APIWarpperProps<GetTransfersProps>> {
+  return await subscanFetch(hostname, 'api/v2/scan/transfers', params)
 }
