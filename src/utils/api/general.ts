@@ -43,7 +43,7 @@ export async function getBlocks(hostname = '', params: { page: number; row: numb
 }
 
 /***** Block Detail *****/
-export interface GetBlockProps extends BlockDetail { }
+export interface GetBlockProps extends BlockDetail {}
 
 export async function getBlock(
   hostname = '',
@@ -101,7 +101,7 @@ export const useExtrinsics = (
   return useSWR<APIWarpperProps<GetExtrinsicsProps>, Error>([hostname, 'api/v2/scan/extrinsics', params], swrFetcher)
 }
 
-export interface GetExtrinsicProps extends ExtrinsicDetail { }
+export interface GetExtrinsicProps extends ExtrinsicDetail {}
 
 export async function getExtrinsic(
   hostname = '',
@@ -200,7 +200,6 @@ export async function getTransfers(
 ): Promise<APIWarpperProps<GetTransfersProps>> {
   return await subscanFetch(hostname, 'api/v2/scan/transfers', params)
 }
-
 
 /***** Assets *****/
 export interface GetTokenProvidersProps {

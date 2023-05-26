@@ -51,8 +51,7 @@ export default function Page({ data, chain, page, holderData }: InferGetServerSi
           {`${tokenDetail.symbol} Holders`}
         </Text>
         <Boundary>
-          <HolderList token={tokenDetail} holders={holders} pageSize={PAGE_ROW}
-            current={page} />
+          <HolderList token={tokenDetail} holders={holders} pageSize={PAGE_ROW} current={page} />
         </Boundary>
         <Flex className="mt-5 flex-row-reverse">
           <Pagination

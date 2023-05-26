@@ -166,7 +166,7 @@ export interface TreasuryTip {
   tipper_num: number
 }
 
-export interface TreasuryTipDetail extends TreasuryTip { }
+export interface TreasuryTipDetail extends TreasuryTip {}
 
 export interface TreasuryTipper {
   amount: string
