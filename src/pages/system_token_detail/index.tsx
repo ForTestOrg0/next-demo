@@ -93,7 +93,7 @@ export default function Page({ host, data, chain, unique_id }: InferGetServerSid
             </TabList>
             <TabPanels>
               <TabPanel>
-                <HolderListClient host={host} page={0} row={TAB_ROW} id={system?.unique_id} />
+                <HolderListClient host={host} page={0} row={TAB_ROW} id={system?.unique_id || ''} />
               </TabPanel>
               {/* <TabPanel>
                 <BlockEventsClient
