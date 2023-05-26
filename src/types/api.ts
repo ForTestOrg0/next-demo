@@ -46,6 +46,20 @@ export interface AccountDisplay {
   }
 }
 
+export interface Holder {
+  account_display: AccountDisplay
+  address: string
+  balance: string
+  balance_lock: string
+  count_extrinsic: number
+  derive_token: string | null
+  evm_account?: string | null
+  is_evm_contract?: boolean
+  registrar_info?: string | null
+  ring_lock: number
+  substrate_account?: string | null
+}
+
 export interface DemocracyReferendum {
   author: AccountDisplay | null
   block_timestamp: Timestamp
@@ -152,7 +166,7 @@ export interface TreasuryTip {
   tipper_num: number
 }
 
-export interface TreasuryTipDetail extends TreasuryTip {}
+export interface TreasuryTipDetail extends TreasuryTip { }
 
 export interface TreasuryTipper {
   amount: string
@@ -178,6 +192,25 @@ export interface BountiesProposalDetail extends BountiesProposal {
   curator_fee: string
   expire_block: BlockNumber
   timeline: ProposalTimeline[]
+}
+
+export interface Token {
+  category: string
+  currency_id: string
+  decimals: number
+  extends?: {
+    holders: number
+  }
+  is_native: boolean
+  metadata: {
+    decimals: number
+    name: string
+    native: boolean
+    symbol: string
+  }
+  name: string
+  symbol: string
+  unique_id: string
 }
 
 export interface TokenMetadata {
@@ -279,6 +312,13 @@ export interface Log {
   log_type: string
   engine: string
   data: string
+}
+
+export interface Provider {
+  can_legacy: boolean
+  id: string
+  is_primary: boolean
+  name: string
 }
 
 export interface BlockDetail extends Block {

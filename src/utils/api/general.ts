@@ -1,4 +1,17 @@
-import { APIWarpperProps, Block, BlockDetail, Event, Extrinsic, ExtrinsicDetail, TokenMetadata, Log, Transfer } from '@/types/api'
+import {
+  APIWarpperProps,
+  Block,
+  BlockDetail,
+  Event,
+  Extrinsic,
+  ExtrinsicDetail,
+  TokenMetadata,
+  Log,
+  Transfer,
+  Provider,
+  Token,
+  Holder,
+} from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
 
@@ -15,6 +28,10 @@ export async function getTokenUniqueId(
   return await subscanFetch(hostname, 'api/scan/token/unique_id', params)
 }
 
+export const useTokenUniqueId = (hostname = '', params: { t?: string; id?: string; q?: string }) => {
+  return useSWR<APIWarpperProps<GetTokenUniqueIdProps>, Error>([hostname, 'api/scan/token/unique_id', params], swrFetcher)
+}
+
 /***** Blocks *****/
 export interface GetBlocksProps {
   count: number
@@ -26,7 +43,7 @@ export async function getBlocks(hostname = '', params: { page: number; row: numb
 }
 
 /***** Block Detail *****/
-export interface GetBlockProps extends BlockDetail {}
+export interface GetBlockProps extends BlockDetail { }
 
 export async function getBlock(
   hostname = '',
@@ -84,7 +101,7 @@ export const useExtrinsics = (
   return useSWR<APIWarpperProps<GetExtrinsicsProps>, Error>([hostname, 'api/v2/scan/extrinsics', params], swrFetcher)
 }
 
-export interface GetExtrinsicProps extends ExtrinsicDetail {}
+export interface GetExtrinsicProps extends ExtrinsicDetail { }
 
 export async function getExtrinsic(
   hostname = '',
@@ -182,4 +199,96 @@ export async function getTransfers(
   }
 ): Promise<APIWarpperProps<GetTransfersProps>> {
   return await subscanFetch(hostname, 'api/v2/scan/transfers', params)
+}
+
+
+/***** Assets *****/
+export interface GetTokenProvidersProps {
+  providers: Provider[]
+}
+
+export async function getTokenProviders(hostname = '', params: {}): Promise<APIWarpperProps<GetTokenProvidersProps>> {
+  return await subscanFetch(hostname, 'api/v2/scan/token/providers', params)
+}
+
+export interface GetTokensProps {
+  provider: string
+  count: number
+  tokens: Token[]
+}
+
+export async function getTokensFromProvider(
+  hostname = '',
+  params: {
+    provider: string
+    row: number
+    page: number
+    include_extends?: boolean
+  }
+): Promise<APIWarpperProps<GetTokensProps>> {
+  return await subscanFetch(hostname, 'api/v2/scan/tokens', params)
+}
+
+export const useTokensFromProvider = (
+  hostname = '',
+  params: {
+    provider?: string
+    row: number
+    page: number
+    include_extends?: boolean
+  }
+) => {
+  return useSWR<APIWarpperProps<GetTokensProps>, Error>([hostname, 'api/v2/scan/tokens', params], swrFetcher)
+}
+export interface GetTokenDetailProps {
+  system?: Token[]
+}
+
+export async function getTokenDetail(
+  hostname = '',
+  params: {
+    unique_ids: string[]
+    include_extends?: boolean
+  }
+): Promise<APIWarpperProps<GetTokenDetailProps>> {
+  return await subscanFetch(hostname, 'api/v2/scan/token/search', params)
+}
+
+export const useTokenDetail = (
+  hostname = '',
+  params: {
+    unique_ids?: string[]
+    include_extends?: boolean
+  }
+) => {
+  return useSWR<APIWarpperProps<GetTokenDetailProps>, Error>([hostname, 'api/v2/scan/token/search', params], swrFetcher)
+}
+
+export interface GetTokenHoldersProps {
+  count: number
+  list: Holder[]
+}
+export async function getTokenHolders(
+  hostname = '',
+  params: {
+    unique_id?: string
+    order?: 'desc' | 'asc'
+    order_field?: string
+    row: number
+    page: number
+  }
+): Promise<APIWarpperProps<GetTokenHoldersProps>> {
+  return await subscanFetch(hostname, 'api/scan/token/holders', params)
+}
+export const useTokenHolders = (
+  hostname = '',
+  params: {
+    unique_id?: string
+    order?: 'desc' | 'asc'
+    order_field?: string
+    row: number
+    page: number
+  }
+) => {
+  return useSWR<APIWarpperProps<GetTokenHoldersProps>, Error>([hostname, 'api/scan/token/holders', params], swrFetcher)
 }
