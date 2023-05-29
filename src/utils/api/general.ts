@@ -8,6 +8,8 @@ import {
   TokenMetadata,
   Log,
   Transfer,
+  Account,
+  AccountDetail,
   Provider,
   Token,
   Holder,
@@ -185,7 +187,7 @@ export async function getTransfers(
   params: {
     page: number
     row: number
-    addres?: string
+    address?: string
     extrinsic_index?: string
     block_range?: string
     direction?: 'all' | 'sent' | 'received'
@@ -199,6 +201,62 @@ export async function getTransfers(
   }
 ): Promise<APIWarpperProps<GetTransfersProps>> {
   return await subscanFetch(hostname, 'api/v2/scan/transfers', params)
+}
+
+export const useTransfers = (hostname = '', params: Parameters<typeof getTransfers>[1]) => {
+  return useSWR<APIWarpperProps<GetTransfersProps>, Error>([hostname, 'api/v2/scan/transfers', params], swrFetcher)
+}
+
+/***** Account List *****/
+export interface GetAccountsProps {
+  count: number
+  list: Account[]
+}
+
+export async function getAccounts(
+  hostname = '',
+  params: {
+    page: number
+    row: number
+    order: 'desc' | 'asc'
+    order_field: 'balance'
+    address?: string | string[]
+    min_balance?: string
+    max_balance?: string
+    filter?:
+      | 'validator'
+      | 'nominator'
+      | 'councilMember'
+      | 'techcomm'
+      | 'registrar'
+      | 'system'
+      | 'module'
+      | 'evm'
+      | 'nominationPool'
+      | 'proxy'
+      | 'proxies'
+      | 'multisig'
+      | 'multisigMember'
+      | 'fellowship'
+      | 'onChainIdentity'
+    token_unique_id?: string
+  }
+): Promise<APIWarpperProps<GetAccountsProps>> {
+  return await subscanFetch(hostname, 'api/v2/scan/accounts', params)
+}
+
+/***** Search Account *****/
+export interface GetSearchAccountProps {
+  account: AccountDetail
+}
+
+export async function getSearchAccount(
+  hostname = '',
+  params: {
+    key: string
+  }
+): Promise<APIWarpperProps<GetSearchAccountProps>> {
+  return await subscanFetch(hostname, 'api/v2/scan/search', params)
 }
 
 /***** Assets *****/
@@ -267,6 +325,7 @@ export interface GetTokenHoldersProps {
   count: number
   list: Holder[]
 }
+
 export async function getTokenHolders(
   hostname = '',
   params: {
@@ -279,6 +338,7 @@ export async function getTokenHolders(
 ): Promise<APIWarpperProps<GetTokenHoldersProps>> {
   return await subscanFetch(hostname, 'api/scan/token/holders', params)
 }
+
 export const useTokenHolders = (
   hostname = '',
   params: {

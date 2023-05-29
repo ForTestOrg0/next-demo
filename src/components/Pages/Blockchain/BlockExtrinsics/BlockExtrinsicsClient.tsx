@@ -17,12 +17,11 @@ interface Props extends BareProps, UseExtrinsicsArgs {
   disableColumn?: BlockExtrinsicsArgs
 }
 
-export const BlockExtrinsicsClient: React.FC<Props> = ({ host, block_num, page = 0, row = TAB_ROW, order, disableColumn }) => {
+export const BlockExtrinsicsClient: React.FC<Props> = ({ host, page = 0, row = TAB_ROW, disableColumn, ...props }) => {
   const { data, error, isLoading } = useExtrinsics(host, {
-    order,
     page,
     row,
-    block_num,
+    ...props,
   })
   const extrinsics = unwrap(data)
 
@@ -33,9 +32,9 @@ export const BlockExtrinsicsClient: React.FC<Props> = ({ host, block_num, page =
     <div>
       <BlockExtrinsics extrinsics={extrinsics?.extrinsics || []} disableColumn={disableColumn} />
       {extrinsics?.count - TAB_ROW > 0 ? (
-        <ExtrinsicLink query={{ block: block_num?.toString() || '' }}>
+        <ExtrinsicLink query={{ block: props.block_num?.toString() || '', account: props.address?.toString() || '' }}>
           <Button outline className="mt-4">
-            View Other {extrinsics?.count - TAB_ROW} Events Details
+            View Other {extrinsics?.count - TAB_ROW} Extrinsic Details
           </Button>
         </ExtrinsicLink>
       ) : null}

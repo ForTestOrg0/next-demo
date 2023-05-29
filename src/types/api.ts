@@ -36,13 +36,21 @@ export interface AccountDisplay {
   address: string
   display?: string
   identity?: boolean
-  judgements?: any[]
+  judgements?: {
+    index: number
+    judgement: string
+  }[]
   account_index?: string
   parent?: {
     address: string
     display?: string
     identity?: boolean
     sub_symbol: string
+  }
+  merkle?: {
+    tag_name: string
+    tag_subtype: string
+    tag_type: string
   }
 }
 
@@ -339,8 +347,8 @@ export interface Transfer {
   event_idx: number
   success: boolean
   hash: string
-  block_num: number
-  block_timestamp: number
+  block_num: BlockNumber
+  block_timestamp: Timestamp
   module: string
   amount: string
   amount_v2: string
@@ -351,4 +359,100 @@ export interface Transfer {
   asset_unique_id: string
   from_account_display: AccountDisplay
   to_account_display: AccountDisplay
+}
+
+export type DeriveToken = {
+  token: string
+  balance: string
+  locked: string
+  unique_id: string
+  reserved: string
+  bonded: string
+  unbonding: string
+}
+export interface Account {
+  account_display: AccountDisplay
+  address: string
+  substrate_account: AccountDisplay
+  balance: string // with decimals
+  balance_lock: string // with decimals
+  count_extrinsic: number
+  derive_token: Record<string, DeriveToken>
+  is_erc20: boolean
+  is_evm_contract: boolean
+  lock: string
+  fellowship_rank: number
+  assets_tag: string[]
+  registrar_info: {
+    registrar_index: number
+    registrar_fee: string
+  }
+}
+
+export type ProxyAccount = {
+  account_display: {
+    address: string
+  }
+  proxy_type: string
+}
+
+export interface Proxy {
+  proxy_account: ProxyAccount[]
+  real_account: ProxyAccount[]
+}
+
+export interface AccountDetail extends Account {
+  bonded: string
+  democracy_lock: string
+  election_lock: string
+  evm_account: string
+  is_council_member: boolean
+  is_erc721: boolean
+  is_fellowship_member: boolean
+  is_module_account: boolean
+  is_registrar: boolean
+  is_techcomm_member: boolean
+  lock: string
+  multisig: {}
+  nonce: number
+  proxy: Proxy
+  registrar_info: {
+    registrar_index: number
+    registrar_fee: string
+  }
+  reserved: string
+  role: string
+  staking_info: {}
+  stash: string
+  unbonding: string
+  vesting: null
+  twitter: string
+  web: string
+}
+
+export interface Validator {
+  rank_validator: number
+  bonded_nominators: string
+  bonded_owner: string
+  count_nominators: number
+  validator_prefs_value: number
+  latest_mining: number
+  reward_point: number
+  session_key: {
+    babe: string
+    grandpa: string
+    im_online: string
+    authority_discovery: string
+  }
+  stash_account_display: AccountDisplay
+  controller_account_display: AccountDisplay
+  node_name: string
+  reward_account: string
+  reward_pot_balance: string
+  grandpa_vote: number
+  bonded_total: string
+}
+
+export interface StakingVoted extends Validator {
+  bonded: string
 }
