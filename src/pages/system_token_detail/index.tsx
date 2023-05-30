@@ -5,8 +5,8 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import Image from 'next/image'
 import { BlockInfo } from '@/components/Pages/Blockchain/BlockInfo'
-import { HolderListClient } from '@/components/Pages/Blockchain/HolderList'
-import { BlockEventsClient } from '@/components/Pages/Blockchain/BlockEvents'
+import { AccountListClient } from '@/components/Pages/Blockchain/AccountList'
+import { TransferListClient } from '@/components/Pages/Blockchain/TransferList'
 import { TAB_ROW } from '@/config/constants'
 import { BlockLogs } from '@/components/Pages/Blockchain/BlockLogs'
 import defaultTokenIcon from '@/styles/images/default-token.png'
@@ -89,22 +89,15 @@ export default function Page({ host, data, chain, unique_id }: InferGetServerSid
           <TabGroup>
             <TabList>
               <Tab>Holders</Tab>
-              {/* <Tab>{`${system?.symbol} Transfers`}</Tab> */}
+              <Tab>{`${system?.symbol} Transfers`}</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
-                <HolderListClient host={host} page={0} row={TAB_ROW} id={system?.unique_id || ''} />
+                <AccountListClient useDecimal id={system?.symbol || ''} chain={chain} host={host} page={0} row={TAB_ROW} />
               </TabPanel>
-              {/* <TabPanel>
-                <BlockEventsClient
-                  host={host}
-                  block_num={data.block_num}
-                  page={0}
-                  row={TAB_ROW}
-                  order="asc"
-                  disableColumn={{ block: true, time: true }}
-                />
-              </TabPanel> */}
+              <TabPanel>
+                <TransferListClient host={host} chain={chain} page={0} row={TAB_ROW} />
+              </TabPanel>
             </TabPanels>
           </TabGroup>
         </Boundary>

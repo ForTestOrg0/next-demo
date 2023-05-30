@@ -2,12 +2,12 @@ import React from 'react'
 import { BareProps } from '@/types/page'
 import { Table, Td, Th, Tr, Text } from '@/ui'
 import { SystemTokenLink, ExtrinsicLink } from '@/components/Links'
-import { Token, Holder } from '@/types/api'
+import { Token, Account } from '@/types/api'
 import { Identicon } from '@/components/Identicon'
 
 interface Props extends BareProps {
   token: Token
-  holders: Holder[]
+  holders: Account[]
   pageSize?: number
   current?: number
 }

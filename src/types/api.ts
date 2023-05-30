@@ -381,6 +381,7 @@ export interface Account {
   is_erc20: boolean
   is_evm_contract: boolean
   lock: string
+  ring_lock?: string
   fellowship_rank: number
   assets_tag: string[]
   registrar_info: {

@@ -323,7 +323,7 @@ export const useTokenDetail = (
 
 export interface GetTokenHoldersProps {
   count: number
-  list: Holder[]
+  list: Account[]
 }
 
 export async function getTokenHolders(

@@ -8,9 +8,10 @@ import { Identicon } from '@/components/Identicon'
 
 interface Props extends BareProps, BareServerSideProps {
   accounts: Account[]
+  useDecimal?: boolean
 }
 
-const Page: React.FC<Props> = ({ accounts, chain }) => {
+const Page: React.FC<Props> = ({ accounts, useDecimal, chain }) => {
   return (
     <Table className="w-full">
       <tbody>
@@ -37,7 +38,7 @@ const Page: React.FC<Props> = ({ accounts, chain }) => {
                 <Balance
                   value={account.balance_lock}
                   token={{
-                    decimals: 0,
+                    decimals: useDecimal ? chain.nativeTokenConf.decimals : 0,
                     symbol: chain.nativeTokenConf.symbol,
                   }}
                 />
@@ -46,7 +47,7 @@ const Page: React.FC<Props> = ({ accounts, chain }) => {
                 <Balance
                   value={account.balance}
                   token={{
-                    decimals: 0,
+                    decimals: useDecimal ? chain.nativeTokenConf.decimals : 0,
                     symbol: chain.nativeTokenConf.symbol,
                   }}
                 />
