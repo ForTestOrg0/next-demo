@@ -53,7 +53,11 @@ export interface AccountDisplay {
     tag_type: string
   }
 }
-
+export interface AssetHolder {
+  holder?: AccountDisplay
+  account_display: AccountDisplay
+  balance: string
+}
 export interface Holder {
   account_display: AccountDisplay
   address: string
@@ -201,7 +205,20 @@ export interface BountiesProposalDetail extends BountiesProposal {
   expire_block: BlockNumber
   timeline: ProposalTimeline[]
 }
-
+export interface Asset {
+  asset_id: string
+  holders: number
+  issuer: AccountDisplay
+  owner: AccountDisplay
+  metadata: {
+    decimals: number
+    name: string
+    native: boolean
+    symbol: string
+  }
+  supply: string
+  unique_id: string
+}
 export interface Token {
   category: string
   currency_id: string

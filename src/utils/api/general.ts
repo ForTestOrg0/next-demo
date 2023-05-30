@@ -12,7 +12,9 @@ import {
   AccountDetail,
   Provider,
   Token,
+  Asset,
   Holder,
+  AssetHolder,
 } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
@@ -207,6 +209,28 @@ export const useTransfers = (hostname = '', params: Parameters<typeof getTransfe
   return useSWR<APIWarpperProps<GetTransfersProps>, Error>([hostname, 'api/v2/scan/transfers', params], swrFetcher)
 }
 
+export async function getAssetTransfers(
+  hostname = '',
+  params: {
+    page: number
+    row: number
+    asset_id?: string
+  }
+): Promise<APIWarpperProps<GetTransfersProps>> {
+  return await subscanFetch(hostname, 'api/scan/assets/transfers', params)
+}
+
+export const useAssetTransfers = (
+  hostname = '',
+  params: {
+    page: number
+    row: number
+    asset_id?: string
+  }
+) => {
+  return useSWR<APIWarpperProps<GetTransfersProps>, Error>([hostname, 'api/scan/assets/transfers', params], swrFetcher)
+}
+
 /***** Account List *****/
 export interface GetAccountsProps {
   count: number
@@ -260,12 +284,55 @@ export async function getSearchAccount(
 }
 
 /***** Assets *****/
+
+export interface GetAssetProps extends Asset {}
+export interface GetAssetsProps {
+  count: number
+  list: Asset[]
+}
+export async function getAssetDetail(
+  hostname = '',
+  params: {
+    asset_id: string
+  }
+): Promise<APIWarpperProps<GetAssetProps>> {
+  return await subscanFetch(hostname, 'api/scan/assets/asset', params)
+}
+export async function getAssets(hostname = '', params: {}): Promise<APIWarpperProps<GetAssetsProps>> {
+  return await subscanFetch(hostname, 'api/scan/assets/assets', params)
+}
+
+export const useAssets = (hostname = '', params: {}) => {
+  return useSWR<APIWarpperProps<GetAssetsProps>, Error>([hostname, 'api/scan/assets/assets', params], swrFetcher)
+}
+
+export interface GetAssetHoldersProps {
+  count: number
+  list: AssetHolder[]
+}
+export async function getAssetHolders(
+  hostname = '',
+  params: {
+    asset_id?: string
+    row: number
+    page: number
+  }
+): Promise<APIWarpperProps<GetAssetHoldersProps>> {
+  return await subscanFetch(hostname, 'api/scan/assets/asset/holders', params)
+}
+export const useAssetHolders = (hostname = '', params: Parameters<typeof getAssetHolders>[1]) => {
+  return useSWR<APIWarpperProps<GetAssetHoldersProps>, Error>([hostname, 'api/scan/assets/asset/holders', params], swrFetcher)
+}
 export interface GetTokenProvidersProps {
   providers: Provider[]
 }
 
 export async function getTokenProviders(hostname = '', params: {}): Promise<APIWarpperProps<GetTokenProvidersProps>> {
   return await subscanFetch(hostname, 'api/v2/scan/token/providers', params)
+}
+
+export const useTokenProviders = (hostname = '', params: {}) => {
+  return useSWR<APIWarpperProps<GetTokenProvidersProps>, Error>([hostname, 'api/v2/scan/token/providers', params], swrFetcher)
 }
 
 export interface GetTokensProps {
@@ -298,7 +365,7 @@ export const useTokensFromProvider = (
   return useSWR<APIWarpperProps<GetTokensProps>, Error>([hostname, 'api/v2/scan/tokens', params], swrFetcher)
 }
 export interface GetTokenDetailProps {
-  system?: Token[]
+  [propName: string]: Token[]
 }
 
 export async function getTokenDetail(
@@ -329,6 +396,7 @@ export interface GetTokenHoldersProps {
 export async function getTokenHolders(
   hostname = '',
   params: {
+    token?: string
     unique_id?: string
     order?: 'desc' | 'asc'
     order_field?: string
@@ -342,6 +410,7 @@ export async function getTokenHolders(
 export const useTokenHolders = (
   hostname = '',
   params: {
+    token?: string
     unique_id?: string
     order?: 'desc' | 'asc'
     order_field?: string

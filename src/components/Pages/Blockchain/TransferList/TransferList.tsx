@@ -1,5 +1,5 @@
 import React from 'react'
-import { BareProps, BareServerSideProps } from '@/types/page'
+import { Token, BareProps, BareServerSideProps } from '@/types/page'
 import { Table, Td, Th, Tr } from '@/ui'
 import { BlockLink, ExtrinsicLink } from '@/components/Links'
 import { TimeFromNow } from '@/components/Time'
@@ -10,14 +10,15 @@ import { TransferStatus } from './TransferStatus'
 
 interface Props extends BareProps, BareServerSideProps {
   transfers: Transfer[]
+  token?: Token
 }
 
-const Page: React.FC<Props> = ({ transfers, chain }) => {
+const Page: React.FC<Props> = ({ transfers, token, chain }) => {
   return (
     <Table className="w-full">
       <tbody>
         <Tr>
-          <Th>Extrinsic Id</Th>
+          <Th>Extrinsic ID</Th>
           <Th>Block</Th>
           <Th>Time</Th>
           <Th>From</Th>
@@ -44,7 +45,7 @@ const Page: React.FC<Props> = ({ transfers, chain }) => {
                 <Identicon account={transfer.to_account_display} />
               </Td>
               <Td>
-                <Balance value={transfer.amount_v2} token={chain.nativeTokenConf} />
+                <Balance value={transfer.amount_v2} token={token || chain.nativeTokenConf} />
               </Td>
               <Td>
                 <TransferStatus success={transfer.success} />

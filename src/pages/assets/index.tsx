@@ -2,11 +2,10 @@ import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPane
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
-import { BlockInfo } from '@/components/Pages/Blockchain/BlockInfo'
 import { SystemAssetsClient } from '@/components/Pages/Blockchain/SystemAssets'
-import { BlockEventsClient } from '@/components/Pages/Blockchain/BlockEvents'
+import { CustomAssetsClient } from '@/components/Pages/Blockchain/CustomAssets'
+import { AssetListClient } from '@/components/Pages/Blockchain/AssetList'
 import { TAB_ROW } from '@/config/constants'
-import { BlockLogs } from '@/components/Pages/Blockchain/BlockLogs'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -41,7 +40,8 @@ export default function Page({ host, chain }: InferGetServerSidePropsType<typeof
           <TabGroup>
             <TabList>
               <Tab>System</Tab>
-              {/* <Tab>Asset</Tab> */}
+              <Tab>Custom</Tab>
+              <Tab>Asset</Tab>
               {/* <Tab>ERC-20 Token</Tab> */}
               {/* <Tab>ERC-721 Token</Tab> */}
             </TabList>
@@ -49,7 +49,12 @@ export default function Page({ host, chain }: InferGetServerSidePropsType<typeof
               <TabPanel>
                 <SystemAssetsClient host={host} page={0} row={TAB_ROW} />
               </TabPanel>
-              {/* <TabPanel><SystemAssetsClient host={host} page={0} row={TAB_ROW} /></TabPanel> */}
+              <TabPanel>
+                <CustomAssetsClient host={host} page={0} row={TAB_ROW} />
+              </TabPanel>
+              <TabPanel>
+                <AssetListClient host={host} page={0} row={TAB_ROW} />
+              </TabPanel>
             </TabPanels>
           </TabGroup>
         </Boundary>
