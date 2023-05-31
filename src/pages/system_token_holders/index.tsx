@@ -6,6 +6,7 @@ import { PAGE_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { AccountList } from '@/components/Pages/Blockchain/AccountList'
+import { SystemTokenLink } from '@/components/Links'
 
 export const getServerSideProps: GetServerSideProps<
   { data: GetTokenDetailProps; holderData: GetTokenHoldersProps; page: number } & BareServerSideProps
@@ -51,8 +52,13 @@ export default function Page({ data, chain, page, holderData }: InferGetServerSi
     <PageContent>
       <Container className="flex-1">
         <Text block bold className="mb-4 break-all">
-          {`${tokenDetail.symbol} Holders`}
+          Holders
         </Text>
+        {tokenDetail && (
+          <Text block bold className="mb-4 break-all">
+            For <SystemTokenLink query={{ unique_id: tokenDetail.unique_id }}>{tokenDetail.symbol}</SystemTokenLink>
+          </Text>
+        )}
         <Boundary>
           <AccountList useDecimal accounts={holders} chain={chain} />
         </Boundary>

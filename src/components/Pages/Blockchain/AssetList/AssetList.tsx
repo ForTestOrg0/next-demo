@@ -48,6 +48,7 @@ const Page: React.FC<Props> = ({ assets, useDecimal }) => {
               <Td>
                 <Balance
                   value={asset.supply}
+                  showSymbol={false}
                   token={{
                     decimals: asset.metadata.decimals,
                     symbol: asset.metadata.symbol,

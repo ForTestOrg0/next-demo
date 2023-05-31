@@ -38,7 +38,7 @@ export default function Page({ data, page }: InferGetServerSidePropsType<typeof 
           <AssetList assets={data.list} />
         </Boundary>
         <Flex className="mt-5 flex-row-reverse">
-          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/transfer?page=${_page}`} />
+          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/asset_token?page=${_page}`} />
         </Flex>
       </Container>
     </PageContent>

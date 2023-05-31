@@ -1,35 +1,25 @@
 import { Boundary, PageContent, Container, Flex, Pagination, Text } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getTransfers, getAssetTransfers, GetTransfersProps, getTokenDetail, getAssetDetail } from '@/utils/api'
+import { getAssetHolders, GetAssetHoldersProps, getTokenDetail, getAssetDetail } from '@/utils/api'
 import { PAGE_ROW } from '@/config/constants'
+import { AssetHolder } from '@/types/api'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps, Token } from '@/types/page'
-import { TransferList } from '@/components/Pages/Blockchain/TransferList'
+import { HolderList } from '@/components/Pages/Blockchain/HolderList'
 import { AssetLink } from '@/components/Links'
 
 export const getServerSideProps: GetServerSideProps<
-  { data: GetTransfersProps; asset_id: string; tokenDetail: Token | null; page: number } & BareServerSideProps
+  { data: GetAssetHoldersProps; asset_id: string; tokenDetail: Token | null; page: number } & BareServerSideProps
 > = async (context) => {
   const page = parseInt(context.query.page as string) || 1
   const asset_unique_id = (context.query.asset_unique_id || '')?.toString()
   const asset_id = (context.query.assetId || '')?.toString()
   let data
   if (asset_id) {
-    data = await getAssetTransfers(context.req.headers.host || '', {
+    data = await getAssetHolders(context.req.headers.host || '', {
       row: PAGE_ROW,
       page: page - 1,
       asset_id,
-    })
-  } else if (asset_unique_id) {
-    data = await getTransfers(context.req.headers.host || '', {
-      row: PAGE_ROW,
-      page: page - 1,
-      asset_unique_id,
-    })
-  } else {
-    data = await getTransfers(context.req.headers.host || '', {
-      row: PAGE_ROW,
-      page: page - 1,
     })
   }
   let tokenData = null
@@ -66,22 +56,28 @@ export const getServerSideProps: GetServerSideProps<
 }
 
 export default function Page({ data, tokenDetail, asset_id, chain, page }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const holders = data?.list as AssetHolder[]
+  holders.forEach((holder) => {
+    if (holder.holder) {
+      holder.account_display = holder.holder
+    }
+  })
   return (
     <PageContent>
       <Container className="flex-1">
         <Text block bold className="mb-4 break-all">
-          Transfers
+          Holders
         </Text>
-        {asset_id && (
+        {tokenDetail && (
           <Text block bold className="mb-4 break-all">
-            For <AssetLink assetId={asset_id}>{tokenDetail?.symbol}</AssetLink>
+            For <AssetLink assetId={asset_id}>{tokenDetail.symbol}</AssetLink>
           </Text>
         )}
         <Boundary>
-          <TransferList transfers={data.transfers} chain={chain} token={tokenDetail ? tokenDetail : chain.nativeTokenConf} />
+          <HolderList token={tokenDetail ? tokenDetail : chain.nativeTokenConf} holders={holders} showSymbol={false} />
         </Boundary>
         <Flex className="mt-5 flex-row-reverse">
-          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/transfer?page=${_page}`} />
+          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/holder?page=${_page}`} />
         </Flex>
       </Container>
     </PageContent>

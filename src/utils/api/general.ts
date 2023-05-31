@@ -15,6 +15,7 @@ import {
   Asset,
   Holder,
   AssetHolder,
+  AssetActivity,
 } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
@@ -304,6 +305,20 @@ export async function getAssets(hostname = '', params: {}): Promise<APIWarpperPr
 
 export const useAssets = (hostname = '', params: {}) => {
   return useSWR<APIWarpperProps<GetAssetsProps>, Error>([hostname, 'api/scan/assets/assets', params], swrFetcher)
+}
+export interface GetAssetActivitiesProps {
+  count: number
+  list: AssetActivity[]
+}
+export const useAssetActivities = (
+  hostname = '',
+  params: {
+    asset_id: string
+    row: number
+    page: number
+  }
+) => {
+  return useSWR<APIWarpperProps<GetAssetActivitiesProps>, Error>([hostname, 'api/scan/assets/activities', params], swrFetcher)
 }
 
 export interface GetAssetHoldersProps {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BareProps, BareServerSideProps } from '@/types/page'
 import { unwrap, useAssetTransfers } from '@/utils/api'
-import { Token } from '@/types/api'
+import { Token } from '@/types/page'
 import { Loading } from '@/components/Loading'
 import { Empty } from '@/components/Empty'
 import { TransferList } from '.'

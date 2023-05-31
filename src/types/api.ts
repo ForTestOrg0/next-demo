@@ -219,6 +219,15 @@ export interface Asset {
   supply: string
   unique_id: string
 }
+export interface AssetActivity {
+  asset_id: string
+  block_num: number
+  block_timestamp: number
+  event_id: string
+  event_index: string
+  extrinsic_index: string
+  module_id: string
+}
 export interface Token {
   category: string
   currency_id: string

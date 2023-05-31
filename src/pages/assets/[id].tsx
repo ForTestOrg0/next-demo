@@ -6,6 +6,7 @@ import { BareServerSideProps } from '@/types/page'
 import Image from 'next/image'
 import { AssetHolderListClient } from '@/components/Pages/Blockchain/HolderList'
 import { AssetTransferListClient } from '@/components/Pages/Blockchain/TransferList'
+import { AssetActivityListClient } from '@/components/Pages/Blockchain/AssetActivityList'
 import { TAB_ROW } from '@/config/constants'
 import defaultTokenIcon from '@/styles/images/default-token.png'
 import { Balance } from '@/components/Balance'
@@ -93,13 +94,17 @@ export default function Page({ host, data, chain, unique_id }: InferGetServerSid
             <TabList>
               <Tab>Holders</Tab>
               <Tab>{`${data.metadata.symbol} Transfers`}</Tab>
+              <Tab>Activities</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
                 <AssetHolderListClient asset={data} host={host} page={0} row={TAB_ROW} />
               </TabPanel>
               <TabPanel>
-                <AssetTransferListClient host={host} chain={chain} page={0} row={TAB_ROW} asset_id={data.asset_id} />
+                <AssetTransferListClient host={host} chain={chain} page={0} row={TAB_ROW} asset_id={data.asset_id} token={data.metadata} />
+              </TabPanel>
+              <TabPanel>
+                <AssetActivityListClient host={host} page={0} row={TAB_ROW} asset_id={data.asset_id} />
               </TabPanel>
             </TabPanels>
           </TabGroup>
