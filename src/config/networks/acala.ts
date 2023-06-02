@@ -1,9 +1,9 @@
 import { Chain } from './template'
 
 export const acala: Chain = {
-  name: 'acala',
+  id: 'acala',
   nativeTokenUniqueId: 'ACA',
-  label: 'Acala',
+  name: 'Acala',
   type: 'mainnet',
   theme: {
     colors: ['#FF4C3B', '#FFA59D', '#d7d7d7'],
@@ -19,6 +19,10 @@ export const acala: Chain = {
     price: 'https://www.coingecko.com/en/coins/acala',
   },
   donate: '24J9ASqUgVu7xRQDDpcFFaAH5qq3BBfUF1UDun6jJG3dwgXb',
+  parachain: {
+    id: 2000,
+    relaychain: 'polkadot',
+  },
   modules: {
     ASSETS_MODULE: false,
     BOUNTY: true,

@@ -1,9 +1,9 @@
 import { Chain } from './template'
 
 export const darwinia_para: Chain = {
-  name: 'darwinia-parachain',
+  id: 'darwinia-parachain',
   nativeTokenUniqueId: 'RING',
-  label: 'Darwinia2',
+  name: 'Darwinia2',
   type: 'mainnet',
   theme: {
     colors: ['#EA3382', '#F499C0', '#d7d7d7'],

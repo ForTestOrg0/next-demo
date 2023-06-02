@@ -1,9 +1,9 @@
 import { Chain } from './template'
 
 export const shibuya: Chain = {
-  name: 'shibuya',
+  id: 'shibuya',
   nativeTokenUniqueId: 'SBY',
-  label: 'Shibuya',
+  name: 'Shibuya',
   type: 'testnet',
   theme: {
     colors: ['#4C68D8', '#A2B0E8', '#d7d7d7'],

@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { BareProps, Token } from '@/types/page'
-import { formatNumber, getDisplayBalanceWithFixd, getFullDisplayBalance } from '@/utils/formatBalance'
+import { formatNumber, getFullDisplayBalance } from '@/utils/formatBalance'
 import BigNumber from 'bignumber.js'
 
 interface Props extends BareProps {

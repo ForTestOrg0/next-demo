@@ -12,8 +12,8 @@ export function unwrap<T>(apiData: APIWarpperProps<T> | undefined): T | null {
 
 export async function subscanFetch(hostname: string, path: string, params = {}) {
   const chainConf = getChainConfigBySubdomain(getSubdomain(hostname))
-  console.info(`subscanFetch(${path}):`)
-  console.info({ api: chainConf?.api, path, params })
+  // console.info(`subscanFetch(${path}):`)
+  // console.info({ api: chainConf?.api, path, params })
 
   const res = await fetch(`${chainConf?.api}/${path}`, {
     method: 'POST',
@@ -24,8 +24,8 @@ export async function subscanFetch(hostname: string, path: string, params = {}) 
     body: JSON.stringify(params || {}),
   })
   const data = await res.json()
-  console.info(`subscanFetch(${path}) result:`)
-  console.info(data)
+  // console.info(`subscanFetch(${path}) result:`)
+  // console.info(data)
   return data
 }
 

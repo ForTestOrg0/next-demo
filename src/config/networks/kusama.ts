@@ -1,9 +1,9 @@
 import { Chain } from './template'
 
 export const kusama: Chain = {
-  name: 'kusama',
+  id: 'kusama',
   nativeTokenUniqueId: 'KSM',
-  label: 'Kusama',
+  name: 'Kusama',
   type: 'mainnet',
   theme: {
     colors: ['#000000', '#7B7C7C', '#d7d7d7'],
@@ -11,7 +11,7 @@ export const kusama: Chain = {
   gtag: 'G-F8SDNKSNRS',
   api: 'https://kusama.webapi.subscan.io',
   domain: 'https://kusama.subscan.io',
-  subdomain: ['kusama', 'localhost'],
+  subdomain: ['kusama'],
   social: {
     telegram: 'https://t.me/kusamanetworkofficial',
     twitter: 'https://twitter.com/kusamanetwork',

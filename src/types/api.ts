@@ -483,3 +483,142 @@ export interface Validator {
 export interface StakingVoted extends Validator {
   bonded: string
 }
+
+export interface ParachainMeta {
+  auction_count: number
+  auction_active: boolean
+  online_count: number
+  upcoming_count: number
+  lease_period: number
+  lease_offset: number
+  ending_period: number
+  retirement_period: number
+  lease_periods_per_slot: number
+  total_slot_num: number
+}
+
+export interface ChainMetadata {
+  addressType: string
+  avgBlockTime: number
+  blockNum: BlockNumber
+  blockTime: number
+  bootTime: number
+  commissionAccuracy: number
+  count_account: number
+  count_event: number
+  count_signed_extrinsic: number
+  count_transfer: number
+  currentPools: number
+  current_era: number
+  current_validator_count: number
+  epochLength: number
+  epochProcess: number
+  eraLength: number
+  eraProcess: number
+  exist_roles: string[]
+  finalized_blockNum: number
+  history_depth: number
+  implName: string
+  maxNominatorRewardedPerValidator: number
+  maxPools: number
+  networkNode: string
+  specVersion: number
+  unbondDuration: number
+  validator_count: number
+  waiting_validator: number
+}
+
+export interface ParachainFund {
+  fund_id: string
+  bid_id: string
+  para_id: number
+  first_period: number
+  last_period: number
+  auction_index: number
+  owner: string
+  owner_display: AccountDisplay
+  cap: string
+  end_block: number
+  raised: string
+  balance: string
+  status: number
+  start_block: number
+  start_block_at: number
+  last_change_block: number
+  last_change_timestamp: number
+  extrinsic_index: string
+}
+
+export interface ParachainBid {
+  bid_id: string
+  fund_id: string
+  auction_index: number
+  first_period: number
+  last_period: number
+  para_id: number
+  bidder_account: string
+  amount: string
+  /** Enum(1:Slot|2:Crowdloan) */
+  source: number
+  /** Enum(1:Accepted|2:Leased|3:Renewal) */
+  status: number
+  block_num: number
+  block_timestamp: number
+  extrinsic_index: string
+  event_index: string
+  bidder_account_display: AccountDisplay
+  bid_count: number
+}
+
+export interface AuctionLeadingBlocks {
+  bid_id: string
+  para_id: number
+  fund_id: string
+  leading_blocks: number
+  unique_key: string
+}
+
+export interface ParachainAuction {
+  auction_index: number
+  lease_index: number
+  start_block: number
+  early_end_block: number
+  end_block: number
+  extinguish_block: number
+  status: number
+  winners: {
+    bid_id: string
+    fund_id: string
+    auction_index: number
+    first_period: number
+    last_period: number
+    para_id: number
+    bidder_account: string
+    bidder_account_display: AccountDisplay
+    bid_count: number
+    amount: string
+    source: number
+    status: number
+    block_num: number
+    block_timestamp: number
+    extrinsic_index: string
+    event_index: string
+  }[]
+}
+
+export interface Parachain {
+  para_id: number
+  status: string
+  begin_period: number
+  first_period: number
+  last_period: number
+  manager_display: AccountDisplay
+  reserved_extrinsic_index: string
+  fund_id: string
+  bid_id: string
+  open_channel_count: number
+  xcm_receive_message_count: number
+  xcm_receive_transfer_count: number
+  xcm_send_message_count: number
+  xcm_send_transfer_count: number
+}

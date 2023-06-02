@@ -1,7 +1,7 @@
 export interface Chain {
-  name: string
+  id: string
   nativeTokenUniqueId: string
-  label: string
+  name: string
   type: string
   theme: {
     colors: string[]
@@ -17,6 +17,10 @@ export interface Chain {
     price?: string
   }
   donate: string
+  parachain?: {
+    id: string | number
+    relaychain: RelaychainName
+  }
   modules?: {
     ASSETS_MODULE: boolean
     BOUNTY: boolean

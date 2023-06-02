@@ -1,9 +1,9 @@
 import { Chain } from './template'
 
 export const polkadot: Chain = {
-  name: 'polkadot',
+  id: 'polkadot',
   nativeTokenUniqueId: 'DOT',
-  label: 'Polkadot',
+  name: 'Polkadot',
   type: 'mainnet',
   theme: {
     colors: ['#E90979', '#F081B9', '#d7d7d7'],
@@ -11,7 +11,7 @@ export const polkadot: Chain = {
   gtag: 'G-1HVHK949MH',
   api: 'https://polkadot.webapi.subscan.io',
   domain: 'https://polkadot.subscan.io',
-  subdomain: ['polkadot'],
+  subdomain: ['polkadot', 'localhost'],
   social: {
     telegram: 'https://t.me/polkadotofficial',
     twitter: 'https://twitter.com/Polkadot',

@@ -1,5 +1,5 @@
 import { GetTokenUniqueIdProps } from '@/utils/api'
-import { TokenMetadata } from './api'
+import { ChainMetadata, TokenMetadata } from './api'
 import { Chain } from '@/config/networks/template'
 
 export type PageProps = any
@@ -20,6 +20,7 @@ export interface ChainProps {
   tokens: GetTokenUniqueIdProps
   nativeToken: TokenMetadata
   nativeTokenConf: Token
+  metadata: ChainMetadata
 }
 
 export interface BareServerSideProps {

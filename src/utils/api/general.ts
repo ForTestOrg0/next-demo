@@ -37,6 +37,42 @@ export const useTokenUniqueId = (hostname = '', params: { t?: string; id?: strin
   return useSWR<APIWarpperProps<GetTokenUniqueIdProps>, Error>([hostname, 'api/scan/token/unique_id', params], swrFetcher)
 }
 
+/***** Metadata *****/
+export interface GetMetadataProps {
+  addressType: string
+  avgBlockTime: string
+  blockNum: string
+  blockTime: string
+  bootTime: string
+  commissionAccuracy: string
+  count_account: string
+  count_event: string
+  count_signed_extrinsic: string
+  count_transfer: string
+  currentPools: string
+  current_era: string
+  current_validator_count: string
+  epochLength: string
+  epochProcess: string
+  eraLength: string
+  eraProcess: string
+  exist_roles: string
+  finalized_blockNum: string
+  history_depth: string
+  implName: string
+  maxNominatorRewardedPerValidator: string
+  maxPools: string
+  networkNode: string
+  specVersion: string
+  unbondDuration: string
+  validator_count: string
+  waiting_validator: string
+}
+
+export async function getMetadata(hostname = ''): Promise<APIWarpperProps<GetMetadataProps>> {
+  return await subscanFetch(hostname, 'api/scan/metadata')
+}
+
 /***** Blocks *****/
 export interface GetBlocksProps {
   count: number
