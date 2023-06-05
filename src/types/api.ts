@@ -6,7 +6,41 @@ export interface APIWarpperProps<T> {
   generated_at: number
   message: string
 }
+/** EVM **/
+export interface EvmToken {
+  base_token_uri: string
+  category: string
+  contract: string
+  decimals: number
+  holders: number
+  name: string
+  price: string
+  symbol: string
+  totalSupply: string
+  transfer_count: number
+}
 
+export interface EvmTokenHolder {
+  ID: number
+  contract: string
+  holder?: string
+  account_display: AccountDisplay
+  balance: string
+}
+export interface EvmTokenTransfer {
+  contract: string
+  create_at: number
+  decimals: number
+  from: string
+  from_display: AccountDisplay
+  hash: string
+  name: string
+  symbol: string
+  to: string
+  to_display: AccountDisplay
+  token_id?: string
+  value: string
+}
 /** Governance **/
 export interface ProposalPreImage {
   amount: string

@@ -8,8 +8,8 @@ import { TransferList } from '.'
 import { TransferLink } from '@/components/Links'
 import { Button } from '@/ui'
 
-type useAssetTransfersArgs = Parameters<typeof useAssetTransfers>[1]
-interface Props extends BareProps, BareServerSideProps, useAssetTransfersArgs {
+type UseAssetTransfersArgs = Parameters<typeof useAssetTransfers>[1]
+interface Props extends BareProps, BareServerSideProps, UseAssetTransfersArgs {
   host: string
   token?: Token
 }

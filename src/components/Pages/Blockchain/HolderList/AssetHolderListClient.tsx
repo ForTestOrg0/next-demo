@@ -11,8 +11,8 @@ import { HolderList } from './HolderList'
 import { CustomTokenHolderLink } from '@/components/Links'
 import { Button } from '@/ui'
 
-type useAssetHoldersArgs = Parameters<typeof useAssetHolders>[1]
-interface Props extends BareProps, useAssetHoldersArgs {
+type UseAssetHoldersArgs = Parameters<typeof useAssetHolders>[1]
+interface Props extends BareProps, UseAssetHoldersArgs {
   host: string
   page: number
   row: number

@@ -5,6 +5,8 @@ import { BareServerSideProps } from '@/types/page'
 import { SystemAssetsClient } from '@/components/Pages/Blockchain/SystemAssets'
 import { CustomAssetsClient } from '@/components/Pages/Blockchain/CustomAssets'
 import { AssetListClient } from '@/components/Pages/Blockchain/AssetList'
+import { ERC20TokenListClient } from '@/components/Pages/Blockchain/ERC20TokenList'
+import { ERC721TokenListClient } from '@/components/Pages/Blockchain/ERC721TokenList'
 import { TAB_ROW } from '@/config/constants'
 
 export const getServerSideProps: GetServerSideProps<
@@ -42,8 +44,8 @@ export default function Page({ host, chain }: InferGetServerSidePropsType<typeof
               <Tab>System</Tab>
               <Tab>Custom</Tab>
               <Tab>Asset</Tab>
-              {/* <Tab>ERC-20 Token</Tab> */}
-              {/* <Tab>ERC-721 Token</Tab> */}
+              <Tab>ERC-20 Token</Tab>
+              <Tab>ERC-721 Token</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -54,6 +56,12 @@ export default function Page({ host, chain }: InferGetServerSidePropsType<typeof
               </TabPanel>
               <TabPanel>
                 <AssetListClient host={host} page={0} row={TAB_ROW} />
+              </TabPanel>
+              <TabPanel>
+                <ERC20TokenListClient host={host} page={0} row={TAB_ROW} />
+              </TabPanel>
+              <TabPanel>
+                <ERC721TokenListClient host={host} page={0} row={TAB_ROW} />
               </TabPanel>
             </TabPanels>
           </TabGroup>

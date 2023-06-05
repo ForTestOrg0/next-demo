@@ -1,25 +1,52 @@
 import { Boundary, PageContent, Container, Flex, Pagination, Text } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getAssetHolders, GetAssetHoldersProps, getTokenDetail, getAssetDetail } from '@/utils/api'
+import {
+  getAssetHolders,
+  GetAssetHoldersProps,
+  GetEvmTokenHoldersProps,
+  getEvmTokens,
+  getTokenDetail,
+  getAssetDetail,
+  getEvmTokenHolders,
+} from '@/utils/api'
 import { PAGE_ROW } from '@/config/constants'
-import { AssetHolder } from '@/types/api'
+import { AssetHolder, EvmToken } from '@/types/api'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps, Token } from '@/types/page'
 import { HolderList } from '@/components/Pages/Blockchain/HolderList'
-import { AssetLink } from '@/components/Links'
+import { AssetLink, ERC20TokenLink } from '@/components/Links'
 
 export const getServerSideProps: GetServerSideProps<
-  { data: GetAssetHoldersProps; asset_id: string; tokenDetail: Token | null; page: number } & BareServerSideProps
+  {
+    data: GetAssetHoldersProps | GetEvmTokenHoldersProps
+    asset_id: string
+    tokenDetail: (Token | EvmToken) | null
+    page: number
+  } & BareServerSideProps
 > = async (context) => {
   const page = parseInt(context.query.page as string) || 1
   const asset_unique_id = (context.query.asset_unique_id || '')?.toString()
   const asset_id = (context.query.assetId || '')?.toString()
+  const address = (context.query.address || '')?.toString()
   let data
   if (asset_id) {
     data = await getAssetHolders(context.req.headers.host || '', {
       row: PAGE_ROW,
       page: page - 1,
       asset_id,
+    })
+  } else if (address) {
+    data = await getEvmTokenHolders(context.req.headers.host || '', {
+      row: PAGE_ROW,
+      page: page - 1,
+      contract: address,
+    })
+    data.data?.list.forEach((holder) => {
+      if (holder.holder) {
+        holder.account_display = {
+          address: holder.holder,
+        }
+      }
     })
   }
   let tokenData = null
@@ -35,6 +62,11 @@ export const getServerSideProps: GetServerSideProps<
       asset_id,
     })
     tokenData = data.data.metadata
+  } else if (address) {
+    const data = await getEvmTokens(context.req.headers.host || '', {
+      contracts: [address || ''],
+    })
+    tokenData = data.data.list[0]
   }
   const chainProps = await getChainProps(context.req.headers.host)
 
@@ -58,7 +90,7 @@ export const getServerSideProps: GetServerSideProps<
 export default function Page({ data, tokenDetail, asset_id, chain, page }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const holders = data?.list as AssetHolder[]
   holders.forEach((holder) => {
-    if (holder.holder) {
+    if (!holder.account_display && holder.holder) {
       holder.account_display = holder.holder
     }
   })
@@ -68,7 +100,12 @@ export default function Page({ data, tokenDetail, asset_id, chain, page }: Infer
         <Text block bold className="mb-4 break-all">
           Holders
         </Text>
-        {tokenDetail && (
+        {tokenDetail && (tokenDetail as EvmToken).category === 'erc20' && (
+          <Text block bold className="mb-4 break-all">
+            For <ERC20TokenLink address={(tokenDetail as EvmToken).contract}>{tokenDetail.symbol}</ERC20TokenLink>
+          </Text>
+        )}
+        {tokenDetail && !(tokenDetail as EvmToken).category && (
           <Text block bold className="mb-4 break-all">
             For <AssetLink assetId={asset_id}>{tokenDetail.symbol}</AssetLink>
           </Text>

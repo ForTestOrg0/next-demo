@@ -1,4 +1,5 @@
 export * from './governance'
 export * from './general'
 export * from './staking'
+export * from './evm'
 export { unwrap } from './fetcher'
