@@ -1,4 +1,4 @@
-import { APIWarpperProps, EvmToken, EvmTokenHolder, EvmTokenTransfer } from '@/types/api'
+import { APIWarpperProps, EvmToken, EvmTokenHolder, EvmTokenTransfer, EvmTransaction } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
 
@@ -59,4 +59,23 @@ export async function getERC20Transfers(
 
 export const useERC20Transfers = (hostname = '', params: Parameters<typeof getERC20Transfers>[1]) => {
   return useSWR<APIWarpperProps<GetEvmTokenTransfersProps>, Error>([hostname, 'api/scan/evm/erc20/transfer', params], swrFetcher)
+}
+
+export interface GetEvmTransactionsProps {
+  count: number
+  list: EvmTransaction[]
+}
+export async function getEvmTransactions(
+  hostname = '',
+  params: {
+    contract?: string
+    row: number
+    page: number
+  }
+): Promise<APIWarpperProps<GetEvmTransactionsProps>> {
+  return await subscanFetch(hostname, 'api/scan/evm/v2/transactions', params)
+}
+
+export const useEvmTransactions = (hostname = '', params: Parameters<typeof getEvmTransactions>[1]) => {
+  return useSWR<APIWarpperProps<GetEvmTransactionsProps>, Error>([hostname, 'api/scan/evm/v2/transactions', params], swrFetcher)
 }

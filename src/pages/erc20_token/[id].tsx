@@ -6,7 +6,7 @@ import { BareServerSideProps } from '@/types/page'
 import Image from 'next/image'
 import { EvmTokenHolderListClient } from '@/components/Pages/Blockchain/HolderList'
 import { ERC20TransferListClient } from '@/components/Pages/Blockchain/ERC20TransferList'
-import { AssetActivityListClient } from '@/components/Pages/Blockchain/AssetActivityList'
+import { TransactionListClient } from '@/components/Pages/Blockchain/TransactionList'
 import { TAB_ROW } from '@/config/constants'
 import defaultTokenIcon from '@/styles/images/default-token.png'
 import { Balance } from '@/components/Balance'
@@ -99,6 +99,7 @@ export default function Page({ host, data, chain, unique_id }: InferGetServerSid
             <TabList>
               <Tab>Holders</Tab>
               <Tab>{`${detail.symbol} Transfers`}</Tab>
+              <Tab>Transactions</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -106,6 +107,9 @@ export default function Page({ host, data, chain, unique_id }: InferGetServerSid
               </TabPanel>
               <TabPanel>
                 <ERC20TransferListClient host={host} page={0} row={TAB_ROW} chain={chain} token={detail} />
+              </TabPanel>
+              <TabPanel>
+                <TransactionListClient host={host} page={0} row={TAB_ROW} chain={chain} token={detail} />
               </TabPanel>
             </TabPanels>
           </TabGroup>

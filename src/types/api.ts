@@ -41,6 +41,58 @@ export interface EvmTokenTransfer {
   token_id?: string
   value: string
 }
+export interface EvmTransaction {
+  block_timestamp: number
+  contract: string
+  contract_name: string
+  effective_gas_price: string
+  extrinsic_id: number
+  from: string
+  from_display: AccountDisplay
+  gas_price: string
+  gas_used: string
+  hash: string
+  method: string
+  success: boolean
+  to: string
+  to_display: AccountDisplay
+  value: string
+}
+
+/** XCM **/
+export interface XCMAsset {
+  amount: string
+  asset_module: string
+  decimals: number
+  enum_key: string
+  symbol: string
+}
+export interface XCM {
+  assets: XCMAsset[] | null
+  block_num: number
+  child_dest: string
+  child_para_id: number
+  confirm_block_timestamp: number
+  dest_event_index: string
+  dest_extrinsic_index: string
+  dest_para_id: number
+  extrinsic_index: string
+  from_account_id: string
+  instructions: any
+  message_hash: string
+  message_type: string
+  origin_block_timestamp: number
+  origin_event_index: string
+  origin_para_id: number
+  protocol: string
+  relayed_block_timestamp: number
+  relayed_event_index: string
+  status: string
+  to_account_id: string
+  unique_id: string
+  xcm_version: number
+}
+
 /** Governance **/
 export interface ProposalPreImage {
   amount: string

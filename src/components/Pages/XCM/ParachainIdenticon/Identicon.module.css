@@ -1,0 +1,6 @@
+.good {
+  @apply bg-sub-network;
+}
+.bad {
+  background-color: brown;
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import { BareProps, BareServerSideProps } from '@/types/page'
 import { Button, Link, Table, Td, Text, Th, Tr } from '@/ui'
 import { Parachain } from '@/types/api'
-import { CrowdloanLink, ParachainLink, XCMChannelsLink, XCMTransferLink } from '@/components/Links'
+import { CrowdloanLink, ParachainLink, XCMChannelsLink, XCMTransferListLink } from '@/components/Links'
 import { DEFAULT_PARACHAIN, getParachainProjectInfoById } from '@/config/parachains'
 import { getChainConfigByParachainId } from '@/config/chains'
 import { Identicon } from '@/components/Identicon'
@@ -101,16 +101,16 @@ const Component: React.FC<Props> = ({ children, className, chain, parachains, di
               )}
               {!disableColumn?.sentXCM && (
                 <Td>
-                  <XCMTransferLink empty={!parachain.xcm_send_transfer_count} query={{ fromChain: parachain.para_id.toString() }}>
+                  <XCMTransferListLink empty={!parachain.xcm_send_transfer_count} query={{ fromChain: parachain.para_id.toString() }}>
                     {parachain.xcm_send_transfer_count}
-                  </XCMTransferLink>
+                  </XCMTransferListLink>
                 </Td>
               )}
               {!disableColumn?.receiveXCM && (
                 <Td>
-                  <XCMTransferLink empty={!parachain.xcm_receive_transfer_count} query={{ toChain: parachain.para_id.toString() }}>
+                  <XCMTransferListLink empty={!parachain.xcm_receive_transfer_count} query={{ toChain: parachain.para_id.toString() }}>
                     {parachain.xcm_receive_transfer_count}
-                  </XCMTransferLink>
+                  </XCMTransferListLink>
                 </Td>
               )}
               {!disableColumn?.channel && (
