@@ -46,17 +46,6 @@ jobs:
           branch: ${{ env.branch }}
           wranglerVersion: 3.0.0
 
-      - name: check pages deployment status
-        run: |
-          sleep 10
-          result=$(curl -X GET \
-             https://api.cloudflare.com/client/v4/accounts/${{ env.CLOUDFLARE_ACCOUNT_ID }}/pages/projects/${{ env.project_name }}/deployments \
-             -H 'Accept: application/json' \
-             -H 'Authorization: Bearer ${{ env.CLOUDFLARE_API_TOKEN }}')
-          status=$(echo $result | jq '.result[] | select(.url == "${{ steps.deploy-pages.outputs.url }}").latest_stage.status')
-          echo "deployment status: $status"
-          [[ $status == "failure" ]] && exit 1
-
       - uses: marocchino/sticky-pull-request-comment@v2
         if: failure() == false
         with:
