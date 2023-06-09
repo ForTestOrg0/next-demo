@@ -51,7 +51,7 @@ jobs:
              -H 'Authorization: Bearer ${{ env.CLOUDFLARE_API_TOKEN }}')
           status=$(echo $result | jq '.result[] | select(.url == "${{ steps.deploy-pages.outputs.url }}").latest_stage.status')
           echo "deployment status: $status"
-          echo $status | grep -q 'success' || exit 1
+          [[ $status == "failure" ]] && exit 1
 
       - uses: 8398a7/action-slack@v3
         if: failure()
