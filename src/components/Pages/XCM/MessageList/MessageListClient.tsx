@@ -12,9 +12,10 @@ type UseXCMListArgs = Parameters<typeof useXCMList>[1]
 interface Props extends BareProps, BareServerSideProps, UseXCMListArgs {
   host: string
   token?: Token
+  disableColumn?: Partial<Record<'version' | 'value', boolean>>
 }
 
-const Page: React.FC<Props> = ({ host, token, chain, ...props }) => {
+const Page: React.FC<Props> = ({ host, token, disableColumn, chain, ...props }) => {
   const { data, error, isLoading } = useXCMList(host, {
     ...props,
   })
@@ -24,9 +25,14 @@ const Page: React.FC<Props> = ({ host, token, chain, ...props }) => {
   if (!transfers) return <Empty />
   return (
     <div>
-      <MessageList transfers={transfers.list} chain={chain} token={token} />
+      <MessageList transfers={transfers.list} chain={chain} token={token} disableColumn={disableColumn} />
       {transfers?.count - props.row > 0 && (
-        <XCMMessageListLink query={{ address: props.address?.toString() || '' }}>
+        <XCMMessageListLink
+          query={{
+            address: props.address?.toString() || '',
+            fromChain: props.origin_para_id?.toString() || '',
+            toChain: props.dest_para_id?.toString() || '',
+          }}>
           <Button outline className="mt-4">
             View Other {transfers?.count - props.row} Messages
           </Button>

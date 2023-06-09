@@ -8,21 +8,25 @@ import { formatHash } from '@/utils/formatText'
 import styles from './Identicon.module.css'
 
 interface Props extends BareProps {
-  address: string
+  address?: string
+  paraId?: number | string
 }
 
-const Identicon: React.FC<Props> = ({ address, className }) => {
-  if (!address) return <Text>-</Text>
+const Identicon: React.FC<Props> = ({ address, paraId, className }) => {
+  if (!address && !paraId) return <Text>-</Text>
   return (
     <div className={clsx('flex', className)}>
       <div className={clsx('flex items-center')}>
         <Tooltip copyable>
           <TooltipTrigger>
-            <AccountLink address={address}>
-              <Text>{formatHash(address)}</Text>
-            </AccountLink>
+            {address && (
+              <AccountLink address={address}>
+                <Text>{formatHash(address)}</Text>
+              </AccountLink>
+            )}
+            {paraId && <Text>{paraId}</Text>}
           </TooltipTrigger>
-          <TooltipContent className="Tooltip">{address}</TooltipContent>
+          <TooltipContent className="Tooltip">{address || paraId}</TooltipContent>
         </Tooltip>
       </div>
     </div>

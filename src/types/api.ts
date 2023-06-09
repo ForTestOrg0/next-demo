@@ -67,6 +67,16 @@ export interface XCMAsset {
   enum_key: string
   symbol: string
 }
+export interface XCMChanel {
+  active_at: number
+  message_count: number
+  proposed_max_capacity: number
+  proposed_max_message_size: number
+  recipient: number
+  sender: number
+  status: string
+  transfer_count: number
+}
 export interface XCM {
   assets: XCMAsset[] | null
   block_num: number
