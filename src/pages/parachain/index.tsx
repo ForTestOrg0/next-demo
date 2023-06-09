@@ -6,8 +6,7 @@ import { BareServerSideProps } from '@/types/page'
 import { ParachainListClient } from '@/components/Pages/Parachain/ParachainList'
 import { parachainListStatusMap } from '@/components/Pages/Parachain/ParachainList/ParachainList'
 
-export const getServerSideProps: GetServerSideProps<{ page: number; host: string } & BareServerSideProps> = async (context) => {
-  const page = parseInt(context.query.page as string) || 1
+export const getServerSideProps: GetServerSideProps<{ host: string } & BareServerSideProps> = async (context) => {
   const host = context.req.headers.host || ''
   const chainProps = await getChainProps(host)
 
@@ -19,14 +18,13 @@ export const getServerSideProps: GetServerSideProps<{ page: number; host: string
 
   return {
     props: {
-      page,
       chain: chainProps,
       host,
     },
   }
 }
 
-export default function Page({ chain, page, host }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ chain, host }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
       <Container className="flex-1">

@@ -595,7 +595,7 @@ export const parachainProjectInfoBuddle: ParachainInfos = relaychain.reduce(
       buddle[currentRelaychainName][paraId] = { ...parachainInfos[currentRelaychainName][paraId] }
     })
     localParachainInfos[currentRelaychainName].forEach((projectInfo) => {
-      buddle[currentRelaychainName][projectInfo.ParaID] = { ...projectInfo }
+      buddle[currentRelaychainName][projectInfo.ParaID] = { ...buddle[currentRelaychainName][projectInfo.ParaID], ...projectInfo }
     })
     return buddle
   },

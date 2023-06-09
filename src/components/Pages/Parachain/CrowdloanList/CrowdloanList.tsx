@@ -55,7 +55,6 @@ const Component: React.FC<Props> = ({ children, className, chain, style, funds }
                 <ParachainLink id={fund.para_id} />
               </Td>
               <Td>
-                {/* <Image src={projectInfo.Logo} alt={projectInfo['Project Name']} width={30} height={30} /> */}
                 <Text>{projectInfo['Project Name']}</Text>
               </Td>
               <Td>

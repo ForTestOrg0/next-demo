@@ -4,9 +4,12 @@ import {
   Parachain,
   ParachainAuction,
   ParachainBid,
+  ParachainContributes,
   ParachainFund,
+  ParachainFundTimeline,
+  ParachainInfo,
   ParachainMeta,
-  StakingVoted,
+  ParachainTimeline,
 } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
@@ -105,7 +108,7 @@ export interface GetParachainAuctionsProps {
 export async function getParachainAuctions(
   hostname = '',
   params: {
-    auction_id?: number
+    auction_index?: number
     /** Enum(1:Started|2:Closed) */
     status?: number
     row: number
@@ -141,4 +144,94 @@ export async function getParachainList(
 
 export const useParachainList = (hostname = '', params: Parameters<typeof getParachainList>[1]) => {
   return useSWR<APIWarpperProps<GetParachainListProps>, Error>([hostname, 'api/scan/parachain/list', params], swrFetcher)
+}
+
+/***** PLO Timeline *****/
+export interface GetParachainTimelineProps {
+  count: number
+  list: ParachainTimeline[]
+}
+
+export async function getParachainTimeline(
+  hostname = '',
+  params: {
+    para_id: number
+    order?: 'asc' | 'desc'
+  }
+): Promise<APIWarpperProps<GetParachainTimelineProps>> {
+  return await subscanFetch(hostname, 'api/scan/parachain/timeline', params)
+}
+
+export const useParachainTimeline = (hostname = '', params: Parameters<typeof getParachainTimeline>[1]) => {
+  return useSWR<APIWarpperProps<GetParachainTimelineProps>, Error>([hostname, 'api/scan/parachain/timeline', params], swrFetcher)
+}
+
+/***** Parachain Contributes *****/
+export interface GetParachainContributesProps {
+  count: number
+  contributes: ParachainContributes[]
+}
+
+export async function getParachainContributes(
+  hostname = '',
+  params: {
+    fund_id?: string
+    para_id?: number
+    row: number
+    page: number
+    order?: 'asc' | 'desc'
+    who?: string
+    from_hisotry?: boolean
+  }
+): Promise<APIWarpperProps<GetParachainContributesProps>> {
+  return await subscanFetch(hostname, 'api/scan/parachain/contributes', params)
+}
+
+export const useParachainContributes = (hostname = '', params: Parameters<typeof getParachainContributes>[1]) => {
+  return useSWR<APIWarpperProps<GetParachainContributesProps>, Error>([hostname, 'api/scan/parachain/contributes', params], swrFetcher)
+}
+
+/***** Parachain Fund Timeline *****/
+export interface GetParachainFundTimelineProps {
+  count: number
+  list: ParachainFundTimeline[]
+}
+
+export async function getParachainFundTimeline(
+  hostname = '',
+  params: {
+    fund_id?: string
+    order?: 'asc' | 'desc'
+  }
+): Promise<APIWarpperProps<GetParachainFundTimelineProps>> {
+  return await subscanFetch(hostname, 'api/scan/parachain/fund_timeline', params)
+}
+
+export const useParachainFundTimeline = (hostname = '', params: Parameters<typeof getParachainFundTimeline>[1]) => {
+  return useSWR<APIWarpperProps<GetParachainFundTimelineProps>, Error>([hostname, 'api/scan/parachain/fund_timeline', params], swrFetcher)
+}
+
+/***** Parachain Info *****/
+export interface GetParachainInfoProps {
+  count: number
+  chains: ParachainInfo[]
+}
+
+export async function getParachainInfo(
+  hostname = '',
+  params: {
+    para_id?: number
+    /** Enum(Onboarding|Parathread|Parachain) */
+    status?: string
+    filter_anonymous?: boolean
+    order?: 'asc' | 'desc'
+    row: number
+    page: number
+  }
+): Promise<APIWarpperProps<GetParachainInfoProps>> {
+  return await subscanFetch(hostname, 'api/scan/parachain/info', params)
+}
+
+export const useParachainInfo = (hostname = '', params: Parameters<typeof getParachainInfo>[1]) => {
+  return useSWR<APIWarpperProps<GetParachainInfoProps>, Error>([hostname, 'api/scan/parachain/info', params], swrFetcher)
 }

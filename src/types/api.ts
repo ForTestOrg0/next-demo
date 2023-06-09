@@ -633,6 +633,8 @@ export interface ParachainFund {
   last_change_block: number
   last_change_timestamp: number
   extrinsic_index: string
+  fund_auction_status: number
+  in_auctions: number[]
 }
 
 export interface ParachainBid {
@@ -664,6 +666,25 @@ export interface AuctionLeadingBlocks {
   unique_key: string
 }
 
+export interface ParachainAuctionWinner {
+  bid_id: string
+  fund_id: string
+  auction_index: number
+  first_period: number
+  last_period: number
+  para_id: number
+  bidder_account: string
+  bidder_account_display: AccountDisplay
+  bid_count: number
+  amount: string
+  source: number
+  status: number
+  block_num: number
+  block_timestamp: number
+  extrinsic_index: string
+  event_index: string
+}
+
 export interface ParachainAuction {
   auction_index: number
   lease_index: number
@@ -672,24 +693,7 @@ export interface ParachainAuction {
   end_block: number
   extinguish_block: number
   status: number
-  winners: {
-    bid_id: string
-    fund_id: string
-    auction_index: number
-    first_period: number
-    last_period: number
-    para_id: number
-    bidder_account: string
-    bidder_account_display: AccountDisplay
-    bid_count: number
-    amount: string
-    source: number
-    status: number
-    block_num: number
-    block_timestamp: number
-    extrinsic_index: string
-    event_index: string
-  }[]
+  winners: ParachainAuctionWinner[]
 }
 
 export interface Parachain {
@@ -707,4 +711,69 @@ export interface Parachain {
   xcm_receive_transfer_count: number
   xcm_send_message_count: number
   xcm_send_transfer_count: number
+}
+
+export interface ParachainTimeline {
+  para_id: number
+  block_num: BlockNumber
+  block_timestamp: Timestamp
+  event_index: string
+  extrinsic_index: string
+  module: string
+  status: string
+  params: {
+    auction_id: number
+  }
+}
+
+export interface ParachainContributes {
+  fund_id: string
+  para_id: number
+  who: string
+  contributed: string
+  contributing: string
+  block_num: BlockNumber
+  block_timestamp: Timestamp
+  extrinsic_index: string
+  event_index: string
+  status: number
+  memo: string
+  who_display: AccountDetail
+}
+
+export interface ParachainFundTimeline {
+  fund_id: string
+  block_num: BlockNumber
+  block_timestamp: Timestamp
+  event_index: string
+  extrinsic_index: string
+  module_name: string
+  event_name: string
+}
+
+export interface ParachainInfo {
+  para_id: number
+  status: string
+  genesis_head: string
+  validation_code_url: string
+  manager: string
+  deposit: string
+  validators: string[]
+  source: number
+  first_period: number
+  last_period: number
+  auction_index: number
+  reserved_extrinsic_index: string
+  xcm_send_transfer_count: number
+  xcm_receive_transfer_count: number
+  xcm_send_message_count: number
+  xcm_receive_message_count: number
+  open_channel_count: number
+  bid_id: string
+  begin_period: number
+  manager_display: AccountDisplay
+  validators_display: AccountDisplay[]
+  fund_id: string
+  fund_account: string
+  fund_account_display: AccountDisplay
 }

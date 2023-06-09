@@ -1,9 +1,9 @@
 import React from 'react'
 import { BareProps, BareServerSideProps } from '@/types/page'
-import { Table, Td, Th, Tr, Text, Flex } from '@/ui'
-import { ParachainAuctionLink, ParachainLink } from '@/components/Links'
+import { Table, Td, Th, Tr, Text } from '@/ui'
+import { ParachainAuctionLink } from '@/components/Links'
 import { ParachainAuction, ParachainMeta } from '@/types/api'
-import { DEFAULT_PARACHAIN, getParachainProjectInfoById } from '@/config/parachains'
+import { AuctionWinner, LeasePeriod } from '../Common'
 
 interface Props extends BareProps, BareServerSideProps {
   auctions: ParachainAuction[]
@@ -28,23 +28,10 @@ const Component: React.FC<Props> = ({ auctions, metaInfo, chain }) => {
                 <ParachainAuctionLink index={item.auction_index} />
               </Td>
               <Td>
-                <Text>
-                  {item.lease_index}-{item.lease_index + metaInfo.lease_periods_per_slot - 1}
-                </Text>
+                <LeasePeriod leaseIndex={item.lease_index} metaInfo={metaInfo} />
               </Td>
               <Td>
-                {!item.winners && <Text>-</Text>}
-                {item.winners?.map((winner) => {
-                  const projectInfo = getParachainProjectInfoById(chain.chainConf.id as RelaychainName, winner.para_id) || DEFAULT_PARACHAIN
-                  return (
-                    <Flex key={winner.bidder_account}>
-                      <ParachainLink id={winner.para_id}>
-                        <Text>{winner.para_id}</Text>
-                        <Text className="ml-3">{projectInfo?.['Project Name'] || 'Un'}</Text>
-                      </ParachainLink>
-                    </Flex>
-                  )
-                })}
+                <AuctionWinner winners={item.winners} chain={chain} />
               </Td>
               <Td>
                 <Text>{item.status}</Text>
