@@ -53,6 +53,18 @@ export const parachainListStatusMap = {
       fundId: true,
     },
   },
+  xcm: {
+    args: {
+      order: 'para_id asc',
+      status: ['Parachain', 'DowngradingParachain', 'OffboardingParachain', 'UpgradingToParachain'],
+      filter_anonymous: true,
+    },
+    title: 'Parachain',
+    disableColumn: {
+      fundId: true,
+      owner: true,
+    },
+  },
 }
 
 interface Props extends BareProps, BareServerSideProps {

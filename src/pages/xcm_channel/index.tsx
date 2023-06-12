@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<
       notFound: true,
     }
   }
-  const virtualTableData = data.data.list.filter((x, i) => i >= PAGE_ROW * page && i < PAGE_ROW * page)
+  const virtualTableData = data.data.list.filter((x, i) => i >= PAGE_ROW * (page - 1) && i < PAGE_ROW * page)
 
   return {
     props: {
