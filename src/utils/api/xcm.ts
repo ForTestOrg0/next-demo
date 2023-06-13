@@ -2,7 +2,20 @@ import { APIWarpperProps, XCM, XCMChanel } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
 
-/***** XCM List *****/
+/***** XCM *****/
+
+export async function getXCMInfo(
+  hostname = '',
+  params: {
+    unique_id: string
+  }
+): Promise<APIWarpperProps<XCM>> {
+  return await subscanFetch(hostname, 'api/scan/xcm/info', params)
+}
+
+export const useXCMInfo = (hostname = '', params: Parameters<typeof getXCMInfo>[1]) => {
+  return useSWR<APIWarpperProps<XCM>, Error>([hostname, 'api/scan/xcm/info', params], swrFetcher)
+}
 export interface GetXCMListProps {
   count: number
   list: XCM[]

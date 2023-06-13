@@ -58,7 +58,31 @@ export interface EvmTransaction {
   to_display: AccountDisplay
   value: string
 }
-
+/** Tool */
+export interface Module {
+  calls: any[]
+  calls_value: {
+    type: number
+  }
+  constants: any[]
+  errors: any[]
+  errors_value: {
+    type: number
+  }
+  events: any[]
+  events_value: {
+    type: number
+  }
+  index: number
+  name: string
+  prefix: string
+  storage: any[]
+}
+export interface Runtime {
+  info: {
+    metadata: Module[]
+  }
+}
 /** XCM **/
 export interface XCMAsset {
   amount: string

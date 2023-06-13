@@ -19,12 +19,12 @@ const Identicon: React.FC<Props> = ({ address, paraId, className }) => {
       <div className={clsx('flex items-center')}>
         <Tooltip copyable>
           <TooltipTrigger>
+            {paraId && <Text>{paraId}</Text>}
             {address && (
               <AccountLink address={address}>
                 <Text>{formatHash(address)}</Text>
               </AccountLink>
             )}
-            {paraId && <Text>{paraId}</Text>}
           </TooltipTrigger>
           <TooltipContent className="Tooltip">{address || paraId}</TooltipContent>
         </Tooltip>
