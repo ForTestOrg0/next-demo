@@ -55,7 +55,7 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
           SLACK_COLOR: ${{ job.status }}
           SLACK_ICON: https://avatars.githubusercontent.com/u/14985020?s=48&v=4
-          SLACK_MESSAGE: "${{ steps.deploy-pages.outputs.url }}"
+          SLACK_MESSAGE: "${{ steps.deploy-pages.outputs.url }} https://${{ env.branch }}.subscan-ui-next-bbg.pages.dev"
           SLACK_TITLE: Preview
           SLACK_USERNAME: Pages
           SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
