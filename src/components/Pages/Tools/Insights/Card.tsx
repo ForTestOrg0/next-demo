@@ -4,7 +4,7 @@ import { BareProps } from '@/types/page'
 import { Flex, Text } from '@/ui'
 
 export const Card: React.FC<BareProps> = ({ children, className }) => {
-  return <div className={clsx('bg-sub-b4 rounded p-3', className)}>{children}</div>
+  return <div className={clsx('bg-sub-bg rounded p-3', className)}>{children}</div>
 }
 
 interface CardXProps extends BareProps {

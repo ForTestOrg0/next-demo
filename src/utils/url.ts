@@ -16,10 +16,16 @@ export function objectToSearchParams(params: Record<string, string> | null | und
  * @param {string} hostname - The hostname to extract the subdomain from.
  * @return {string} The subdomain of the hostname, or 'localhost' if the hostname is localhost, 127.0.0.1 or 0.0.0.0, or if the hostname doesn't have any subdomain.
  */
-export function getSubdomain(hostname: string): string {
+export function getSubdomain(hostname: string, forceNetwork?: string): string {
   if (!hostname) return ''
 
-  if (hostname.indexOf('localhost') > -1 || hostname.indexOf('127.0.0.1') > -1 || hostname.indexOf('0.0.0.0') > -1) return 'localhost'
+  if (
+    hostname.indexOf('pages.dev') > -1 ||
+    hostname.indexOf('localhost') > -1 ||
+    hostname.indexOf('127.0.0.1') > -1 ||
+    hostname.indexOf('0.0.0.0') > -1
+  )
+    return forceNetwork || 'localhost'
 
   const strs = hostname.split('.')
   if (strs.length === 1) return 'localhost'
