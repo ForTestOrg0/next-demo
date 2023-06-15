@@ -1,0 +1,14 @@
+.bg {
+  background: linear-gradient(225deg, #32c5ff 0%, #b620e0 51.26%, #f7b500 100%);
+  mix-blend-mode: normal;
+  opacity: 0.2;
+  filter: blur(25px);
+}
+
+
+.box {
+  box-shadow: 0px 2px 36px #f0e5ff;
+  border-radius: 10px;
+  overflow: hidden;
+  @apply bg-sub-white;
+}

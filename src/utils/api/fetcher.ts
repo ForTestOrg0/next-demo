@@ -11,22 +11,30 @@ export function unwrap<T>(apiData: APIWarpperProps<T> | undefined): T | null {
 }
 
 export async function subscanFetch(hostname: string, path: string, params = {}) {
-  const chainConf = getChainConfigBySubdomain(getSubdomain(hostname))
-  // console.info(`subscanFetch(${path}):`)
-  // console.info({ api: chainConf?.api, path, params })
+  try {
+    const chainConf = getChainConfigBySubdomain(getSubdomain(hostname))
+    // console.info(`subscanFetch(${path}):`)
+    console.info({ api: chainConf?.api, path, params })
 
-  const res = await fetch(`${chainConf?.api}/${path}`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(params || {}),
-  })
-  const data = await res.json()
-  // console.info(`subscanFetch(${path}) result:`)
-  // console.info(data)
-  return data
+    const res = await fetch(`${chainConf?.api}/${path}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params || {}),
+    })
+    const data = await res.json()
+    // console.info(`subscanFetch(${path}) result:`)
+    // console.info(data)
+    return data
+  } catch (error) {
+    console.log('fetch error', error)
+    return {
+      code: 1,
+      data: null,
+    }
+  }
 }
 
 export const swrFetcher = async ([hostname, path, params]: [string, string, object]) => {

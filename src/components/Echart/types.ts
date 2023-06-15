@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react'
+import * as echarts from 'echarts'
 
-export type EChartsOption = any
+export type EChartsOption = echarts.EChartsOption
 
 export type EChartsInstance = any
 

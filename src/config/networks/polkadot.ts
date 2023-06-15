@@ -1,3 +1,4 @@
+import { generateGradientColor } from '@/utils/color'
 import { Chain } from './template'
 
 export const polkadot: Chain = {
@@ -7,11 +8,12 @@ export const polkadot: Chain = {
   type: 'mainnet',
   theme: {
     colors: ['#E90979', '#F081B9', '#d7d7d7'],
+    gradient: generateGradientColor('#d7d7d7', '#E90979', 6),
   },
   gtag: 'G-1HVHK949MH',
   api: 'https://polkadot.webapi.subscan.io',
   domain: 'https://polkadot.subscan.io',
-  subdomain: ['polkadot', 'localhost'],
+  subdomain: ['polkadot'],
   social: {
     telegram: 'https://t.me/polkadotofficial',
     twitter: 'https://twitter.com/Polkadot',

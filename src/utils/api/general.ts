@@ -16,6 +16,7 @@ import {
   Holder,
   AssetHolder,
   AssetActivity,
+  DataStatistics,
 } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
@@ -470,4 +471,21 @@ export const useTokenHolders = (
   }
 ) => {
   return useSWR<APIWarpperProps<GetTokenHoldersProps>, Error>([hostname, 'api/scan/token/holders', params], swrFetcher)
+}
+
+/***** Data Statistics *****/
+export interface GetDataStatisticsProps extends DataStatistics {}
+
+export async function getDataStatistics(
+  hostname = '',
+  params: {
+    start: string
+    end: string
+  }
+): Promise<APIWarpperProps<GetDataStatisticsProps>> {
+  return await subscanFetch(hostname, 'api/v2/scan/data/statistics', params)
+}
+
+export const useDataStatistics = (hostname = '', params: Parameters<typeof getDataStatistics>[1]) => {
+  return useSWR<APIWarpperProps<GetDataStatisticsProps>, Error>([hostname, 'api/v2/scan/data/statistics', params], swrFetcher)
 }

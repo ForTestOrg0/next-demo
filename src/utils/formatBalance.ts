@@ -39,6 +39,6 @@ export const formatNumberToFixed = (number: string | number, decimals = 2) => {
   return new BigNumber(number).toFixed(decimals)
 }
 
-export const formatNumber = (number: string | number) => {
+export const formatNumber = (number: string | number | BigNumber) => {
   return new BigNumber(number).toFormat(BIGNUMBER_FMT)
 }

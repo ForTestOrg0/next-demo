@@ -5,6 +5,7 @@ export interface Chain {
   type: string
   theme: {
     colors: string[]
+    gradient: string[]
   }
   gtag: string
   api: string

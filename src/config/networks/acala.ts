@@ -1,3 +1,4 @@
+import { generateGradientColor } from '@/utils/color'
 import { Chain } from './template'
 
 export const acala: Chain = {
@@ -7,6 +8,7 @@ export const acala: Chain = {
   type: 'mainnet',
   theme: {
     colors: ['#FF4C3B', '#FFA59D', '#d7d7d7'],
+    gradient: generateGradientColor('#d7d7d7', '#FF4C3B', 6),
   },
   gtag: 'G-8661YY7LG2',
   api: 'https://acala.webapi.subscan.io',

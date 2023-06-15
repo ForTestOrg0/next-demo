@@ -40,7 +40,7 @@ export default class EChartsReactCore extends PureComponent<EChartsReactProps> {
   }
 
   private dispose() {
-    this.echarts.dispose()
+    this.echarts?.dispose()
   }
 
   private async renderNewEcharts() {

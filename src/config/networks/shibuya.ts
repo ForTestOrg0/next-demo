@@ -1,3 +1,4 @@
+import { generateGradientColor } from '@/utils/color'
 import { Chain } from './template'
 
 export const shibuya: Chain = {
@@ -7,6 +8,7 @@ export const shibuya: Chain = {
   type: 'testnet',
   theme: {
     colors: ['#4C68D8', '#A2B0E8', '#d7d7d7'],
+    gradient: generateGradientColor('#d7d7d7', '#4C68D8', 6),
   },
   gtag: 'G-81F03NPDEK',
   api: 'https://shibuya.webapi.subscan.io',

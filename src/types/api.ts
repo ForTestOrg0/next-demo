@@ -811,3 +811,35 @@ export interface ParachainInfo {
   fund_account: string
   fund_account_display: AccountDisplay
 }
+
+export interface DataStatistics {
+  extrinsic_count: number
+  transfers_count: number
+  extrinsic_fee_used: string
+  transfers_usd_amount: string
+  up_active_account_count: string
+  up_holder_account_count: string
+  down_active_account_count: string
+  down_holder_account_count: string
+  referendum_active_count: number
+  referendum_vote_account_count: number
+  referendum_vote_amount: string
+}
+
+export interface Price {
+  feed_at: number
+  price: string
+}
+
+export interface AccountStatisticsRole {
+  role: string
+  count: number
+}
+
+export interface AccountStatisticsAssets {
+  name: string
+  max_balance: string
+  min_balance: string
+  total: string
+  account_count: number
+}

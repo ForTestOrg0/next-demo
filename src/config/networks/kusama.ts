@@ -1,3 +1,4 @@
+import { generateGradientColor } from '@/utils/color'
 import { Chain } from './template'
 
 export const kusama: Chain = {
@@ -7,11 +8,12 @@ export const kusama: Chain = {
   type: 'mainnet',
   theme: {
     colors: ['#000000', '#7B7C7C', '#d7d7d7'],
+    gradient: generateGradientColor('#d7d7d7', '#000000', 6),
   },
   gtag: 'G-F8SDNKSNRS',
   api: 'https://kusama.webapi.subscan.io',
   domain: 'https://kusama.subscan.io',
-  subdomain: ['kusama'],
+  subdomain: ['kusama', 'localhost'],
   social: {
     telegram: 'https://t.me/kusamanetworkofficial',
     twitter: 'https://twitter.com/kusamanetwork',

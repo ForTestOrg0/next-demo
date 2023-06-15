@@ -10,7 +10,7 @@ interface Props extends BareProps {
 
 const Component: React.FC<Props> = ({ children, className, numerator, denominator }) => {
   const percent = new BigNumber(numerator).div(denominator).times(100).toFixed(2)
-  return <div className={clsx('flex', className)}>{percent} %</div>
+  return <span className={className}>{percent} %</span>
 }
 
 export default Component

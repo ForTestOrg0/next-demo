@@ -1,3 +1,4 @@
+import { generateGradientColor } from '@/utils/color'
 import { Chain } from './template'
 
 export const darwinia_para: Chain = {
@@ -7,6 +8,7 @@ export const darwinia_para: Chain = {
   type: 'mainnet',
   theme: {
     colors: ['#EA3382', '#F499C0', '#d7d7d7'],
+    gradient: generateGradientColor('#d7d7d7', '#EA3382', 6),
   },
   gtag: 'G-MYEDJ9WZY6',
   api: 'https://darwinia.webapi.subscan.io',
