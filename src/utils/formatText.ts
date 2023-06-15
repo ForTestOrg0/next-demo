@@ -13,3 +13,18 @@ export function formatHash(hash: string, units = 12) {
     return hash
   }
 }
+
+export function trimSpecialChar(str: string) {
+  let result = str || ''
+  if (result) {
+    // 去掉空格
+    result = result.replace(/\s+/g, '')
+    // 去掉回车换行
+    result = result.replace(/[\r\n]/g, '')
+    // 去掉逗号
+    result = result.replace(/，|,/g, '')
+    // 去掉/
+    result = result.replace(/\//g, '')
+  }
+  return result
+}
