@@ -58,8 +58,8 @@ const Legend: React.FC<LegendProps> = ({ children, title, value, color, classNam
 export const InsightsAccount: React.FC<Props> = ({ children, host, chain, dataStatistics, className, args }) => {
   const { data, error, isLoading } = useAccountStatistics(host, args)
   const accountStatistics = unwrap(data)
-  const isHolderGrow = new BigNumber(dataStatistics.up_holder_account_count).gte(dataStatistics.down_holder_account_count)
-  const isActiveAccountGrow = new BigNumber(dataStatistics.up_active_account_count).gte(dataStatistics.down_active_account_count)
+  const isHolderGrow = new BigNumber(dataStatistics.down_holder_account_count).gte(dataStatistics.up_holder_account_count)
+  const isActiveAccountGrow = new BigNumber(dataStatistics.down_active_account_count).gte(dataStatistics.up_active_account_count)
 
   if (isLoading) return <Loading />
   if (!accountStatistics) return <Empty />
@@ -73,11 +73,11 @@ export const InsightsAccount: React.FC<Props> = ({ children, host, chain, dataSt
           <Text>Holders</Text>
           <Flex className="justify-between mt-5">
             <Text bold className="!text-[22px]">
-              {dataStatistics.up_holder_account_count}
+              {formatNumber(dataStatistics.down_holder_account_count)}
             </Text>
             <Text bold className={clsx('!text-[22px]', isHolderGrow ? 'text-sub-success' : 'text-sub-error')}>
               {isHolderGrow && '+'}
-              {formatNumber(new BigNumber(dataStatistics.up_holder_account_count).minus(dataStatistics.down_holder_account_count))}
+              {formatNumber(new BigNumber(dataStatistics.down_holder_account_count).minus(dataStatistics.up_holder_account_count))}
             </Text>
           </Flex>
           <Flex className="justify-between mt-1">
@@ -89,13 +89,13 @@ export const InsightsAccount: React.FC<Props> = ({ children, host, chain, dataSt
           <Text>Active Accounts</Text>
           <Flex className="justify-between  mt-5">
             <Text bold className="!text-[22px]">
-              {dataStatistics.up_active_account_count}
+              {formatNumber(dataStatistics.down_active_account_count)}
             </Text>
             <Text bold className={clsx('!text-[22px]', isActiveAccountGrow ? 'text-sub-success' : 'text-sub-error')}>
               {isActiveAccountGrow ? '+' : '-'}
               <Percentage
-                numerator={new BigNumber(dataStatistics.up_active_account_count).minus(dataStatistics.down_active_account_count).abs().toNumber()}
-                denominator={stringToNumber(dataStatistics.up_active_account_count)}
+                numerator={new BigNumber(dataStatistics.down_active_account_count).minus(dataStatistics.up_active_account_count).abs().toNumber()}
+                denominator={stringToNumber(dataStatistics.down_active_account_count)}
               />
             </Text>
           </Flex>
@@ -132,7 +132,7 @@ export const InsightsAccount: React.FC<Props> = ({ children, host, chain, dataSt
                 value={
                   <>
                     <Text bold className="text-sub-network">
-                      {item.account_count}
+                      {formatNumber(item.account_count)}
                     </Text>
                     <Percentage className="ml-2 text-xs" numerator={item.account_count} denominator={totalAccount} />
                   </>

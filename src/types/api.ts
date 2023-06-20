@@ -843,3 +843,10 @@ export interface AccountStatisticsAssets {
   total: string
   account_count: number
 }
+
+export interface Screenshot {
+  success: boolean
+  url: string
+  key: string
+  err: string
+}

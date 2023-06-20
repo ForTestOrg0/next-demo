@@ -48,6 +48,7 @@ export const govLinks = [
 
 export const toolsLinks = [
   { href: '/insights?start=2023-05-01&end=2023-05-31', label: 'Insights' },
+  { href: '/insights_download?start=2023-05-01&end=2023-05-31', label: 'Insights Download' },
   { href: '/tools/charts', label: 'Charts' },
   { href: '/tools/format_transform', label: 'Account Format Transform' },
   { href: '/tools/price_converter', label: 'Price Converter' },

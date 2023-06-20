@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Eina01';
+  src: url(/fonts/Eina01.otf);
+}
+@font-face {
+  font-family: 'Eina01';
+  src: url(/fonts/Eina01-SemiBold.otf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Eina01';
+  src: url(/fonts/Eina01-Bold.otf);
+  font-weight: 700;
+}
+
 /* https://www.w3schools.com/colors/colors_hexadecimal.asp */
 /* hex -> rgb */
 :root {
@@ -89,3 +105,4 @@ body {
     @apply flex w-full items-center rounded px-2 py-2 text-sm cursor-pointer whitespace-nowrap !text-sub-black;
   }
 }
+

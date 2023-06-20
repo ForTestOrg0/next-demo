@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import METADATA from '@/config/metadata'
-import localFont from 'next/font/local'
 import { GetServerSidePropsContext } from 'next'
 import type { AppProps } from 'next/app'
 type MetaProps = {
@@ -10,19 +9,19 @@ type MetaProps = {
   }
 }
 
-const eina = localFont({
-  src: [
-    {
-      path: '../styles/fonts/Eina01.otf',
-      weight: '400',
-    },
-    {
-      path: '../styles/fonts/Eina01-SemiBold.otf',
-      weight: '600',
-    },
-  ],
-  variable: '--font-eina',
-})
+// const eina = localFont({
+//   src: [
+//     {
+//       path: '../styles/fonts/Eina01.otf',
+//       weight: '400',
+//     },
+//     {
+//       path: '../styles/fonts/Eina01-SemiBold.otf',
+//       weight: '600',
+//     },
+//   ],
+//   variable: '--font-eina',
+// })
 export default function RootLayout({
   context,
   children,
@@ -34,7 +33,7 @@ export default function RootLayout({
 }) {
   const metadata = pageProps?.metadata || {}
   return (
-    <div id="subscan-app" className={`${eina.variable} font-sans flex h-screen flex-col ${context?.req.cookies.theme || ''}`}>
+    <div id="subscan-app" className={`font-sans flex h-screen flex-col ${context?.req.cookies.theme || ''}`}>
       <Head>
         <title>{metadata?.title || METADATA['default']['title']}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0"></meta>

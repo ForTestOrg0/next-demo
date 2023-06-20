@@ -6,6 +6,7 @@ import { CardX } from '../Card'
 import { Balance } from '@/components/Balance'
 import { TokenIcon, EraIcon, VoterIcon } from '@/ui/Svg'
 import { GetDataStatisticsProps } from '@/utils/api'
+import { formatNumber } from '@/utils/formatBalance'
 
 interface Props extends BareProps, BareServerSideProps {
   dataStatistics: GetDataStatisticsProps
@@ -19,13 +20,13 @@ export const InsightsReferenda: React.FC<Props> = ({ chain, dataStatistics }) =>
           className="flex-1 items-center"
           icon={<EraIcon className="text-sub-white-light" width={22} />}
           title="Active Proposal"
-          value={dataStatistics.referendum_active_count}
+          value={formatNumber(dataStatistics.referendum_active_count)}
         />
         <CardX
           className="flex-1 items-center"
           icon={<VoterIcon className="text-sub-white-light" width={18} />}
           title="Voter"
-          value={dataStatistics.referendum_vote_account_count}
+          value={formatNumber(dataStatistics.referendum_vote_account_count)}
         />
         <CardX
           className="flex-1 items-center"
