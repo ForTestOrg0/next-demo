@@ -1,7 +1,6 @@
 import { generateGradientColor } from '@/utils/color'
-import { Chain } from './template'
-
-export const shibuya: Chain = {
+import { Chain } from '../types'
+export const Shibuya: Chain = {
   id: 'shibuya',
   nativeTokenUniqueId: 'SBY',
   name: 'Shibuya',
@@ -15,15 +14,16 @@ export const shibuya: Chain = {
   domain: 'https://shibuya.subscan.io',
   subdomain: ['shibuya'],
   social: {
-    telegram: 'https://t.me/PlasmOfficial',
-    twitter: 'https://twitter.com/AstarNetwork',
-    github: 'https://github.com/AstarNetwork/Astar',
+    telegram: 'https://t.me/PlasmOfficial ',
+    twitter: 'https://twitter.com/AstarNetwork ',
+    github: 'https://github.com/AstarNetwork/Astar ',
+    price: '',
   },
   donate: 'ZMqsV8Tm3XVB8NthAD8N4q9rR7ZuGWsJJhZqMtDyz5CXyX7',
   modules: {
     SYSTEM_ACCOUNT: false,
     VESTING: true,
-    GRANDPA_VOTE: false,
+    GRANDPA_VOTE: true,
     BOUNTY: false,
     NOMINATION_POOL: false,
     NOMINATE_FEATURE: false,
@@ -39,7 +39,6 @@ export const shibuya: Chain = {
     CONTRACT_SOURCIFY: true,
     ETH_ADDRESS: true,
     EVM: true,
-    ASSETS_MODULE: true,
     PARATHREAD: false,
     REFERENDA_V2: false,
     FELLOWSHIP: false,

@@ -1,7 +1,6 @@
 import { generateGradientColor } from '@/utils/color'
-import { Chain } from './template'
-
-export const kusama: Chain = {
+import { Chain } from '../types'
+export const Kusama: Chain = {
   id: 'kusama',
   nativeTokenUniqueId: 'KSM',
   name: 'Kusama',
@@ -13,18 +12,18 @@ export const kusama: Chain = {
   gtag: 'G-F8SDNKSNRS',
   api: 'https://kusama.webapi.subscan.io',
   domain: 'https://kusama.subscan.io',
-  subdomain: ['kusama', 'localhost'],
+  subdomain: ['kusama'],
   social: {
-    telegram: 'https://t.me/kusamanetworkofficial',
-    twitter: 'https://twitter.com/kusamanetwork',
-    github: 'https://github.com/paritytech/polkadot/',
+    telegram: 'https://t.me/kusamanetworkofficial ',
+    twitter: 'https://twitter.com/kusamanetwork ',
+    github: 'https://github.com/paritytech/polkadot/ ',
     price: 'https://www.coingecko.com/en/coins/kusama',
   },
   donate: 'Fzs6WWFcAuJhxAVyZa4EN2suxggjidJjV3AzJxKbRHjh2Jc',
   modules: {
     SYSTEM_ACCOUNT: false,
-    VESTING: false,
-    GRANDPA_VOTE: false,
+    VESTING: true,
+    GRANDPA_VOTE: true,
     BOUNTY: true,
     NOMINATION_POOL: true,
     NOMINATE_FEATURE: true,
@@ -40,13 +39,13 @@ export const kusama: Chain = {
     CONTRACT_SOURCIFY: false,
     ETH_ADDRESS: false,
     EVM: false,
-    ASSETS_MODULE: false,
     PARATHREAD: false,
     REFERENDA_V2: true,
     FELLOWSHIP: true,
     V2_API: false,
     WASM_CONTRACT: false,
     WASM_CONTRACT_SOURCIFY: false,
+    // has hide prefix before
     TREASURY_CHART: true,
     VALIDATOR: true,
     SS58: true,

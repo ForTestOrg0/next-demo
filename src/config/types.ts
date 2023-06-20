@@ -23,7 +23,6 @@ export interface Chain {
     relaychain: RelaychainName
   }
   modules?: {
-    ASSETS_MODULE: boolean
     BOUNTY: boolean
     CONTRACT: boolean
     CONTRACT_SOURCIFY: boolean
