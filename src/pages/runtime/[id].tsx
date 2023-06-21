@@ -5,10 +5,7 @@ import { getRuntimeInfo } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
 import { Runtime, Module } from '@/types/api'
 import { BareServerSideProps } from '@/types/page'
-import Image from 'next/image'
-import { Time, TimeFromNow } from '@/components/Time'
-import { MessageListClient } from '@/components/Pages/XCM/MessageList'
-import { TAB_ROW } from '@/config/constants'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -19,7 +16,7 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const moduleId = context.params?.id
 
@@ -29,8 +26,8 @@ export const getServerSideProps: GetServerSideProps<
     }
   }
 
-  const chainProps = await getChainProps(context.req.headers.host)
-  let data = await getRuntimeInfo(context.req.headers.host || '', {
+  const chainProps = await getChainProps(subdomain)
+  let data = await getRuntimeInfo(subdomain, {
     spec: chainProps?.metadata.specVersion,
   })
 
@@ -42,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       moduleId,

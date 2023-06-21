@@ -4,14 +4,10 @@ import { getXCMInfo } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
 import { XCM } from '@/types/api'
 import { BareServerSideProps } from '@/types/page'
-import Image from 'next/image'
-import { Time, TimeFromNow } from '@/components/Time'
-import { TAB_ROW } from '@/config/constants'
-import { Balance } from '@/components/Balance'
-import { ResultStatus } from '@/components/Status'
 import { Identicon } from '@/components/Pages/XCM/ParachainIdenticon'
 import { Progress } from '@/components/Pages/XCM/MessageList'
 import { Parameters } from '@/components/Parameters'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -22,7 +18,7 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const msgId = context.params?.id
 
@@ -32,10 +28,10 @@ export const getServerSideProps: GetServerSideProps<
     }
   }
 
-  const data = await getXCMInfo(host, {
+  const data = await getXCMInfo(subdomain, {
     unique_id: msgId.split('-')[1],
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -45,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       msgId,

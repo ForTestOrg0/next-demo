@@ -1,25 +1,25 @@
 import { Boundary, PageContent, Container, Flex, Pagination, Text } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getTransfers, getXCMList, GetXCMListProps } from '@/utils/api'
+import { getXCMList, GetXCMListProps } from '@/utils/api'
 import { PAGE_ROW, TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
-import { BareServerSideProps, Token } from '@/types/page'
+import { BareServerSideProps } from '@/types/page'
 import { MessageListClient } from '@/components/Pages/XCM/MessageList'
 import { ChannelListClient } from '@/components/Pages/XCM/ChannelList'
-import { AssetLink } from '@/components/Links'
 import { ParachainListClient } from '@/components/Pages/Parachain/ParachainList'
 import { parachainListStatusMap } from '@/components/Pages/Parachain/ParachainList/ParachainList'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ data: GetXCMListProps; host: string; page: number } & BareServerSideProps> = async (
   context
 ) => {
   const page = parseInt(context.query.page as string) || 1
-  const host = context.req.headers.host || ''
-  let data = await getXCMList(host, {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  let data = await getXCMList(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
   })
-  const chainProps = await getChainProps(host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<{ data: GetXCMListProps; hos
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       page,
       chain: chainProps,

@@ -5,18 +5,19 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { GetParachainBidsProps, getParachainBids } from '@/utils/api/parachain'
 import { BidList } from '@/components/Pages/Parachain/BidList'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ data: GetParachainBidsProps; page: number } & BareServerSideProps> = async (context) => {
   const page = parseInt(context.query.page as string) || 1
-  const host = context.req.headers.host || ''
-  const data = await getParachainBids(host, {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const data = await getParachainBids(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
     order: 'auction_index desc',
     status: 0,
   })
 
-  const chainProps = await getChainProps(host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

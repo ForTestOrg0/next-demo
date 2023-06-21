@@ -22,7 +22,7 @@ const ProposalList: React.FC<Props> = ({ proposals }) => {
           <Th>Status</Th>
           <Th></Th>
         </Tr>
-        {proposals.map((proposal) => {
+        {proposals?.map((proposal) => {
           return (
             <Tr key={proposal.proposal_id}>
               <Td>

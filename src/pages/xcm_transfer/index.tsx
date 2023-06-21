@@ -1,20 +1,21 @@
 import { Boundary, PageContent, Container, Flex, Pagination, Text } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getTransfers, getXCMList, GetXCMListProps } from '@/utils/api'
+import { getXCMList, GetXCMListProps } from '@/utils/api'
 import { PAGE_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
-import { BareServerSideProps, Token } from '@/types/page'
+import { BareServerSideProps } from '@/types/page'
 import { MessageList } from '@/components/Pages/XCM/MessageList'
-import { AssetLink } from '@/components/Links'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ data: GetXCMListProps; page: number } & BareServerSideProps> = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
-  let data = await getXCMList(context.req.headers.host || '', {
+  let data = await getXCMList(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
     message_type: 'transfer',
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

@@ -5,10 +5,11 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { ParachainListClient } from '@/components/Pages/Parachain/ParachainList'
 import { parachainListStatusMap } from '@/components/Pages/Parachain/ParachainList/ParachainList'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ host: string } & BareServerSideProps> = async (context) => {
-  const host = context.req.headers.host || ''
-  const chainProps = await getChainProps(host)
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const chainProps = await getChainProps(subdomain)
 
   if (!chainProps) {
     return {
@@ -19,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<{ host: string } & BareServe
   return {
     props: {
       chain: chainProps,
-      host,
+      host: subdomain,
     },
   }
 }

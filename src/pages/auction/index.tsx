@@ -6,17 +6,19 @@ import { BareServerSideProps } from '@/types/page'
 import { GetParachainAuctionsProps, getParachainAuctions, getParachainMeta } from '@/utils/api/parachain'
 import { AuctionList } from '@/components/Pages/Parachain/AuctionList'
 import { ParachainMeta } from '@/types/api'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { data: GetParachainAuctionsProps; page: number; parachainMetaInfo: ParachainMeta } & BareServerSideProps
 > = async (context) => {
   const page = parseInt(context.query.page as string) || 1
-  const data = await getParachainAuctions(context.req.headers.host || '', {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const data = await getParachainAuctions(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
   })
-  const parachainMetaInfo = await getParachainMeta(context.req.headers.host || '')
-  const chainProps = await getChainProps(context.req.headers.host)
+  const parachainMetaInfo = await getParachainMeta(subdomain)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps || parachainMetaInfo.code !== 0) {
     return {

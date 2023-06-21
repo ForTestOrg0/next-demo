@@ -6,6 +6,7 @@ import ProposalSeconds from '@/components/Governance/ProposalSeconds/ProposalSec
 import { ReferendaVotes } from '@/components/Governance'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -18,9 +19,10 @@ export const getServerSideProps: GetServerSideProps<
     id: string
   }
 > = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
   const referendumIndex = parseInt(context.params?.id.toString() || '')
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (Number.isNaN(referendumIndex)) {
     return {
@@ -28,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<
     }
   }
 
-  const data = await getDemocracyVotes(context.req.headers.host || '', {
+  const data = await getDemocracyVotes(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
     referendum_index: referendumIndex,

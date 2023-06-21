@@ -6,6 +6,7 @@ import { TreasuryTipsList } from '@/components/Governance'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { serializeContext } from '@/utils/contextProps'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -13,9 +14,10 @@ export const getServerSideProps: GetServerSideProps<
     page: number
   } & BareServerSideProps
 > = async (context) => {
-  const chainProps = await getChainProps(context.req.headers.host)
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const chainProps = await getChainProps(subdomain)
   const page = parseInt(context.query.page as string) || 1
-  const data = await getTreasuryTips(context.req.headers.host || '', {
+  const data = await getTreasuryTips(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
   })

@@ -1,13 +1,12 @@
 import { getChainConfigBySubdomain } from '@/config/chains'
-import { getSubdomain } from './url'
 import { getMetadata, getTokenUniqueId, unwrap } from './api'
 import { ChainProps, Token } from '@/types/page'
 
-export async function getChainProps(hostname = ''): Promise<ChainProps | null> {
-  const chainConf = getChainConfigBySubdomain(getSubdomain(hostname))
+export async function getChainProps(subdomain: string): Promise<ChainProps | null> {
+  const chainConf = getChainConfigBySubdomain(subdomain)
   if (!chainConf) return null
 
-  const tokens = await getTokenUniqueId(hostname, {})
+  const tokens = await getTokenUniqueId(subdomain, {})
 
   const unwrapedToken = unwrap(tokens)
   if (!unwrapedToken) return null
@@ -19,7 +18,7 @@ export async function getChainProps(hostname = ''): Promise<ChainProps | null> {
     }
   }
 
-  const metadata = await getMetadata(hostname)
+  const metadata = await getMetadata(subdomain)
 
   const unwrapedMetadata = unwrap(metadata)
   if (!unwrapedMetadata) return null

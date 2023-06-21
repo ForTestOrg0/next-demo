@@ -7,6 +7,7 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { TransactionList } from '@/components/Pages/Blockchain/TransactionList'
 import { ERC20TokenLink, ERC721TokenLink } from '@/components/Links'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -15,11 +16,12 @@ export const getServerSideProps: GetServerSideProps<
     page: number
   } & BareServerSideProps
 > = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
   const address = (context.query.block || '')?.toString()
   let data
   if (address) {
-    data = await getEvmTransactions(context.req.headers.host || '', {
+    data = await getEvmTransactions(subdomain, {
       row: PAGE_ROW,
       page: page - 1,
       contract: address,
@@ -27,12 +29,12 @@ export const getServerSideProps: GetServerSideProps<
   }
   let tokenData = null
   if (address) {
-    const data = await getEvmTokens(context.req.headers.host || '', {
+    const data = await getEvmTokens(subdomain, {
       contracts: [address || ''],
     })
     tokenData = data.data.list[0]
   }
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

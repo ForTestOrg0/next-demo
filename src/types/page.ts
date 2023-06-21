@@ -30,3 +30,8 @@ export interface BareServerSideProps {
 export interface DownloadRef {
   downloadCsv: (param: any[][], name: string) => void
 }
+
+export interface RequestHeaders {
+  host?: string
+  cookie?: string
+}

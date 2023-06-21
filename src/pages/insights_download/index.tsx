@@ -4,12 +4,13 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { DownloadScreenshot } from '@/components/Pages/Tools/Insights'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ host: string; start: string; end: string } & BareServerSideProps> = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const start = context.query.start as string
   const end = context.query.end as string
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!chainProps) {
     return {
@@ -19,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<{ host: string; start: strin
 
   return {
     props: {
-      host,
+      host: subdomain,
       chain: chainProps,
       start,
       end,
@@ -30,7 +31,7 @@ export const getServerSideProps: GetServerSideProps<{ host: string; start: strin
 export default function Page({ host, chain, start, end }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
-      <Container className="flex-1 z-10">
+      <Container className="flex-1">
         <Text>Generate Stg</Text>
         <DownloadScreenshot
           url={`https://develop.subscan-ui-next-bbg.pages.dev/insights?start=${start}&end=${end}`}

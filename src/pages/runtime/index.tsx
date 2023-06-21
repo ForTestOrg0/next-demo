@@ -1,16 +1,16 @@
-import { Boundary, PageContent, Container, Flex, Pagination, Text } from '@/ui'
+import { Boundary, PageContent, Container, Text } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getTransfers, getRuntimeInfo, GetRuntimeInfoProps } from '@/utils/api'
-import { PAGE_ROW } from '@/config/constants'
+import { getRuntimeInfo, GetRuntimeInfoProps } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
-import { BareServerSideProps, Token } from '@/types/page'
+import { BareServerSideProps } from '@/types/page'
 import { RuntimeList } from '@/components/Pages/Tools/RuntimeList'
-import { AssetLink } from '@/components/Links'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ data: GetRuntimeInfoProps; page: number } & BareServerSideProps> = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
-  const chainProps = await getChainProps(context.req.headers.host)
-  let data = await getRuntimeInfo(context.req.headers.host || '', {
+  const chainProps = await getChainProps(subdomain)
+  let data = await getRuntimeInfo(subdomain, {
     spec: chainProps?.metadata.specVersion,
   })
   if (!data || data.code !== 0 || !chainProps) {

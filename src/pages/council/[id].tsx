@@ -5,6 +5,7 @@ import { CouncilMotionInfo, SimpleProposalVotes, ProposalParamsInfo, ProposalPre
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import METADATA from '@/config/metadata'
+import { getSubdomainFromHeaders } from '@/utils/url'
 // import { useTranslation } from 'next-i18next'
 
 export const getServerSideProps: GetServerSideProps<
@@ -16,7 +17,7 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const proposalId = context.params?.id
 
@@ -25,10 +26,10 @@ export const getServerSideProps: GetServerSideProps<
       notFound: true,
     }
   }
-  const data = await getCouncilProposal(host, {
+  const data = await getCouncilProposal(subdomain, {
     proposal_id: parseInt(proposalId),
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -38,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       proposalId: parseInt(proposalId),

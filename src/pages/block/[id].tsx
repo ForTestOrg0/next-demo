@@ -8,6 +8,7 @@ import { BlockExtrinsicsClient } from '@/components/Pages/Blockchain/BlockExtrin
 import { BlockEventsClient } from '@/components/Pages/Blockchain/BlockEvents'
 import { TAB_ROW } from '@/config/constants'
 import { BlockLogs } from '@/components/Pages/Blockchain/BlockLogs'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -18,7 +19,7 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const blockId = context.params?.id
 
@@ -30,11 +31,11 @@ export const getServerSideProps: GetServerSideProps<
 
   const numberReg = /^[0-9]+$/
   const isNumber = numberReg.test(blockId || '')
-  const data = await getBlock(host, {
+  const data = await getBlock(subdomain, {
     only_head: true,
     ...(isNumber ? { block_num: parseInt(blockId) } : { block_hash: blockId }),
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -44,7 +45,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       blockId,

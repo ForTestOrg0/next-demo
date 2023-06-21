@@ -1,10 +1,11 @@
 import { Boundary, PageContent, Container, Text, Pagination, Flex } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getDemocracyReferendums, GetDemocracyReferendumsProps, getDemocracySeconded, GetDemocracySecondedProps } from '@/utils/api'
+import { getDemocracyReferendums, GetDemocracyReferendumsProps } from '@/utils/api'
 import { PAGE_ROW } from '@/config/constants'
 import { ReferendaList } from '@/components/Governance'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -12,12 +13,13 @@ export const getServerSideProps: GetServerSideProps<
     page: number
   } & BareServerSideProps
 > = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
-  const data = await getDemocracyReferendums(context.req.headers.host || '', {
+  const data = await getDemocracyReferendums(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

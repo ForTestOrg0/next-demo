@@ -27,3 +27,5 @@ export const EVENT_PHASE = {
   FINALIZATION: 1,
   INITIALIZATION: 2,
 }
+
+export const CURRENT_CHAIN_COOKIE_KEY = 'currentchain'

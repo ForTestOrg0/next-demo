@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import { Boundary, PageContent, Container, Flex, Text, Input, Menu, MenuButton, MenuItem, MenuItems, Button } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { PAGE_ROW, TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
-import { BareServerSideProps, Token } from '@/types/page'
+import { BareServerSideProps } from '@/types/page'
 import { ArrowDownFillingIcon } from '@/ui/Svg'
 import { trimSpecialChar } from '@/utils/formatText'
-import { u8aToHex } from '@polkadot/util'
-import { getAddress, isAddress } from 'ethers'
-import { encodeAddress, decodeAddress, addressToEvm } from '@polkadot/util-crypto'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export type OutputType = {
   name: string
@@ -18,8 +15,8 @@ export type OutputType = {
 
 export const getServerSideProps: GetServerSideProps<{ host: string; page: number } & BareServerSideProps> = async (context) => {
   const page = parseInt(context.query.page as string) || 1
-  const host = context.req.headers.host || ''
-  const chainProps = await getChainProps(host)
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const chainProps = await getChainProps(subdomain)
   if (!chainProps) {
     return {
       notFound: true,
@@ -28,7 +25,7 @@ export const getServerSideProps: GetServerSideProps<{ host: string; page: number
 
   return {
     props: {
-      host,
+      host: subdomain,
       page,
       chain: chainProps,
     },

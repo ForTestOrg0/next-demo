@@ -1,16 +1,14 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
+import { Boundary, PageContent, Container, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getTokenDetail, GetTokenDetailProps } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import Image from 'next/image'
-import { BlockInfo } from '@/components/Pages/Blockchain/BlockInfo'
-import { AccountListClient } from '@/components/Pages/Blockchain/AccountList'
 import { HolderListClient } from '@/components/Pages/Blockchain/HolderList'
 import { TransferListClient } from '@/components/Pages/Blockchain/TransferList'
 import { TAB_ROW } from '@/config/constants'
-import { BlockLogs } from '@/components/Pages/Blockchain/BlockLogs'
 import defaultTokenIcon from '@/styles/images/default-token.png'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -21,7 +19,7 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const unique_id = (context.query.customTokenId || '')?.toString()
 
@@ -31,11 +29,11 @@ export const getServerSideProps: GetServerSideProps<
     }
   }
 
-  const data = await getTokenDetail(host, {
+  const data = await getTokenDetail(subdomain, {
     include_extends: true,
     unique_ids: [unique_id],
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -45,7 +43,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       unique_id,

@@ -5,19 +5,20 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { GetParachainContributesProps, getParachainContributes } from '@/utils/api/parachain'
 import { ContributeList } from '@/components/Pages/Parachain/ContributeList'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { data: GetParachainContributesProps; page: number; fundId: string } & BareServerSideProps
 > = async (context) => {
   const page = parseInt(context.query.page as string) || 1
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const fundId = context.query.fund_id as string
-  const data = await getParachainContributes(host, {
+  const data = await getParachainContributes(subdomain, {
     fund_id: fundId,
     row: PAGE_ROW,
     page: page - 1,
   })
-  const chainProps = await getChainProps(host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

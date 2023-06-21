@@ -1,10 +1,11 @@
-import { Boundary, PageContent, Container, Text, Table, Th, Td, Tr, LinkRouter, Pagination, Flex } from '@/ui'
+import { Boundary, PageContent, Container, Text, Pagination, Flex } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getDemocracyProposals, GetDemocracyProposalsDataProps } from '@/utils/api'
 import { PAGE_ROW } from '@/config/constants'
 import { ProposalList } from '@/components/Governance'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 const orderFieldMap = {
   waiting: 'seconded_count',
@@ -25,17 +26,17 @@ export const getServerSideProps: GetServerSideProps<
 > = async (context) => {
   const tab = (context.query.status || '')?.toString() as keyof typeof orderFieldMap
   const page = parseInt(context.query.page as string) || 1
-
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const type = typeof orderFieldMap[tab] === 'undefined' ? 'waiting' : tab
   const orderField = typeof orderFieldMap[type] === 'undefined' ? orderFieldMap.waiting : orderFieldMap[type]
   const status = typeof statusMap[type] === 'undefined' ? statusMap.waiting : statusMap[type]
-  const data = await getDemocracyProposals(context.req.headers.host || '', {
+  const data = await getDemocracyProposals(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
     order_field: orderField,
     status: status,
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

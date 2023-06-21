@@ -5,6 +5,7 @@ import { PAGE_ROW } from '@/config/constants'
 import ProposalSeconds from '@/components/Governance/ProposalSeconds/ProposalSeconds'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -17,9 +18,10 @@ export const getServerSideProps: GetServerSideProps<
     id: string
   }
 > = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
   const proposalId = parseInt(context.params?.id.toString() || '')
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (Number.isNaN(proposalId)) {
     return {
@@ -27,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<
     }
   }
 
-  const data = await getDemocracySeconded(context.req.headers.host || '', {
+  const data = await getDemocracySeconded(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
     proposal_id: proposalId,

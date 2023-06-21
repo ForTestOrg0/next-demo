@@ -5,6 +5,7 @@ import { PAGE_ROW } from '@/config/constants'
 import { ProposalList } from '@/components/Governance'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 const orderFieldMap = {
   waiting: 'seconded_count',
@@ -22,17 +23,18 @@ export const getServerSideProps: GetServerSideProps<
     type: keyof typeof orderFieldMap
   } & BareServerSideProps
 > = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString() as keyof typeof orderFieldMap
   const type = typeof orderFieldMap[tab] === 'undefined' ? 'waiting' : tab
   const orderField = orderFieldMap[type] || orderFieldMap.waiting
   const status = statusMap[type] || statusMap.waiting
-  const data = await getDemocracyProposals(context.req.headers.host || '', {
+  const data = await getDemocracyProposals(subdomain, {
     row: PAGE_ROW,
     page: 0,
     order_field: orderField,
     status: status,
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

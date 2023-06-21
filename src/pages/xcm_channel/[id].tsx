@@ -4,14 +4,12 @@ import { getXCMChannel } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
 import { XCMChanel } from '@/types/api'
 import { BareServerSideProps } from '@/types/page'
-import Image from 'next/image'
-import { Time, TimeFromNow } from '@/components/Time'
+import { TimeFromNow } from '@/components/Time'
 import { MessageListClient } from '@/components/Pages/XCM/MessageList'
 import { TAB_ROW } from '@/config/constants'
-import defaultTokenIcon from '@/styles/images/default-token.png'
-import { Balance } from '@/components/Balance'
 import { ResultStatus } from '@/components/Status'
 import { Identicon } from '@/components/Pages/XCM/ParachainIdenticon'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -22,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const channelId = context.params?.id
 
@@ -32,11 +30,11 @@ export const getServerSideProps: GetServerSideProps<
     }
   }
 
-  const data = await getXCMChannel(host, {
+  const data = await getXCMChannel(subdomain, {
     recipient: +channelId.split('-')[0],
     sender: +channelId.split('-')[1],
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -46,7 +44,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       channelId,

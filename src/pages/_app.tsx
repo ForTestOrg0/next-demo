@@ -44,27 +44,6 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-export const getInitialProps: GetServerSideProps<{
-  data: GetTokenUniqueIdProps
-  page: number
-}> = async (context) => {
-  const page = parseInt(context.query.page as string) || 1
-  const data = await getTokenUniqueId(context.req.headers.host || '', {})
-
-  if (!data || data.code !== 0) {
-    return {
-      notFound: true,
-    }
-  }
-
-  return {
-    props: {
-      data: data.data,
-      page: page,
-    },
-  }
-}
-
 const MyApp: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
   const router = useRouter()
   useEffect(() => {

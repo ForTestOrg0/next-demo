@@ -11,20 +11,21 @@ import { TAB_ROW } from '@/config/constants'
 import { CrowdloanTimelineListClient } from '@/components/Pages/Parachain/CrowdloanTimelineList'
 import { ParachainDataClient } from '@/components/Pages/Parachain/ParachainData'
 import { ProjectInfo } from '@/components/Pages/Parachain/ProjectInfo'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { parachainMeta: GetParachainMetaProps; fundId: string; host: string; fund: ParachainFund | undefined } & BareServerSideProps
 > = async (context) => {
   const fundId = context.query.id as string
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
 
-  const data = await getParachainMeta(host)
-  const funds = await getParachainFunds(host, {
+  const data = await getParachainMeta(subdomain)
+  const funds = await getParachainFunds(subdomain, {
     row: 1,
     page: 0,
     fund_id: fundId,
   })
-  const chainProps = await getChainProps(host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !unwrap(funds) || unwrap(funds)?.funds.length === 0 || !chainProps) {
     return {
@@ -36,7 +37,7 @@ export const getServerSideProps: GetServerSideProps<
     props: {
       parachainMeta: data.data,
       fundId,
-      host,
+      host: subdomain,
       chain: chainProps,
       fund: unwrap(funds)?.funds[0],
     },

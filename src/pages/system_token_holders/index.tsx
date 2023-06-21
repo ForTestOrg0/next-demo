@@ -7,24 +7,26 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { AccountList } from '@/components/Pages/Blockchain/AccountList'
 import { SystemTokenLink } from '@/components/Links'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { data: GetTokenDetailProps; holderData: GetTokenHoldersProps; page: number } & BareServerSideProps
 > = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
   const unique_id = (context.query.unique_id || '')?.toString()
-  const data = await getTokenDetail(context.req.headers.host || '', {
+  const data = await getTokenDetail(subdomain, {
     include_extends: true,
     unique_ids: [unique_id],
   })
-  const holderData = await getTokenHolders(context.req.headers.host || '', {
+  const holderData = await getTokenHolders(subdomain, {
     order: 'desc',
     order_field: 'balance',
     page: page - 1,
     row: PAGE_ROW,
     unique_id: unique_id,
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

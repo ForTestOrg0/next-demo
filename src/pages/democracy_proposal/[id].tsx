@@ -6,6 +6,7 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import METADATA from '@/config/metadata'
 import { TAB_ROW } from '@/config/constants'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -16,7 +17,7 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const democracyId = context.params?.id
 
@@ -25,10 +26,10 @@ export const getServerSideProps: GetServerSideProps<
       notFound: true,
     }
   }
-  const data = await getDemocracyProposalById(host, {
+  const data = await getDemocracyProposalById(subdomain, {
     democracy_id: parseInt(democracyId),
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
   if (!data || data.code !== 0 || !chainProps) {
     return {
       notFound: true,
@@ -37,7 +38,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       democracyId: parseInt(democracyId),

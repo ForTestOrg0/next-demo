@@ -8,19 +8,20 @@ import { MetaInfo } from '@/components/Pages/Parachain/MetaInfo'
 import { CrowdloanListClient } from '@/components/Pages/Parachain/CrowdloanList'
 import { BidListClient } from '@/components/Pages/Parachain/BidList'
 import { GetParachainAuctionsProps, GetParachainMetaProps, getParachainAuctions, getParachainMeta } from '@/utils/api/parachain'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { data: GetParachainMetaProps; page: number; host: string; auctions: GetParachainAuctionsProps | null } & BareServerSideProps
 > = async (context) => {
   const page = parseInt(context.query.page as string) || 1
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
 
-  const data = await getParachainMeta(host)
-  const auctions = await getParachainAuctions(host, {
+  const data = await getParachainMeta(subdomain)
+  const auctions = await getParachainAuctions(subdomain, {
     row: 1,
     page: 0,
   })
-  const chainProps = await getChainProps(host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -32,7 +33,7 @@ export const getServerSideProps: GetServerSideProps<
     props: {
       data: data.data,
       page,
-      host,
+      host: subdomain,
       chain: chainProps,
       auctions: unwrap(auctions),
     },

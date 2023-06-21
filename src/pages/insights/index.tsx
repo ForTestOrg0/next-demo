@@ -9,16 +9,17 @@ import { InsightsAccount, InsightsBasic, InsightsReferenda, InsightsStaking } fr
 import { SimpleFooter } from '@/components/Footer'
 import { GetDataStatisticsProps, getDataStatistics } from '@/utils/api'
 import { TimeToAbbreviatedName } from '@/components/Time'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { host: string; dataStatistics: GetDataStatisticsProps; start: string; end: string } & BareServerSideProps
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const start = context.query.start as string
   const end = context.query.end as string
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
-  const dataStatistics = await getDataStatistics(host, {
+  const dataStatistics = await getDataStatistics(subdomain, {
     start,
     end,
   })
@@ -31,7 +32,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       chain: chainProps,
       dataStatistics: dataStatistics.data,
       start,

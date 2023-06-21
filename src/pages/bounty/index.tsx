@@ -5,6 +5,7 @@ import { PAGE_ROW } from '@/config/constants'
 import { BountiesList } from '@/components/Governance'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 const statusMap = {
   waiting: 'active',
@@ -20,12 +21,13 @@ export const getServerSideProps: GetServerSideProps<
   const tab = (context.query.tab || '')?.toString() as keyof typeof statusMap
   const type = typeof statusMap[tab] === 'undefined' ? 'waiting' : tab
   const status = statusMap[type] || statusMap.waiting
-  const data = await getBountiesProposals(context.req.headers.host || '', {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const data = await getBountiesProposals(subdomain, {
     row: PAGE_ROW,
     page: 0,
     status: status,
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

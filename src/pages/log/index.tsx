@@ -7,14 +7,16 @@ import { getChainProps } from '@/utils/chain'
 import { BlockLogs } from '@/components/Pages/Blockchain/BlockLogs'
 import { BareServerSideProps, DownloadRef } from '@/types/page'
 import { CsvDownload } from '@/components/CsvDownload'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ data: GetLogsProps; page: number } & BareServerSideProps> = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
-  const data = await getLogs(context.req.headers.host || '', {
+  const data = await getLogs(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

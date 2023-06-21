@@ -6,20 +6,22 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps, Token } from '@/types/page'
 import { ERC721TransferList } from '@/components/Pages/Blockchain/ERC721TransferList'
 import { ERC721TokenLink } from '@/components/Links'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { data: GetEvmTokenTransfersProps; address: string; symbol: string; page: number } & BareServerSideProps
 > = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
   const address = (context.query.address || '')?.toString()
   const symbol = (context.query.symbol || '')?.toString()
-  let data = await getERC20Transfers(context.req.headers.host || '', {
+  let data = await getERC20Transfers(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
     category: 'erc721',
     contract: address,
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

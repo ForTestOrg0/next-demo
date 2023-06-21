@@ -6,17 +6,19 @@ import { PAGE_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { HolderList } from '@/components/Pages/Blockchain/HolderList'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { data: GetTokenDetailProps; holderData: GetTokenHoldersProps; page: number; tokenDetail: Token } & BareServerSideProps
 > = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
   const unique_id = (context.query.customTokenUniqueId || '')?.toString()
-  const data = await getTokenDetail(context.req.headers.host || '', {
+  const data = await getTokenDetail(subdomain, {
     include_extends: true,
     unique_ids: [unique_id],
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -25,7 +27,7 @@ export const getServerSideProps: GetServerSideProps<
   }
   const provider = unique_id?.split('/')[0] || 'system'
   const tokenDetail = data.data?.[provider]?.[0] as Token
-  const holderData = await getTokenHolders(context.req.headers.host || '', {
+  const holderData = await getTokenHolders(subdomain, {
     order: 'desc',
     order_field: 'balance',
     page: page - 1,

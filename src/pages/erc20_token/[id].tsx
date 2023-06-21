@@ -1,15 +1,14 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
+import { Boundary, PageContent, Container, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getEvmTokens, GetEvmTokensProps } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
-import Image from 'next/image'
 import { EvmTokenHolderListClient } from '@/components/Pages/Blockchain/HolderList'
 import { ERC20TransferListClient } from '@/components/Pages/Blockchain/ERC20TransferList'
 import { TransactionListClient } from '@/components/Pages/Blockchain/TransactionList'
 import { TAB_ROW } from '@/config/constants'
-import defaultTokenIcon from '@/styles/images/default-token.png'
 import { Balance } from '@/components/Balance'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -20,7 +19,7 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const unique_id = (context.query.unique_id || '')?.toString()
   const assetId = context.params?.id
@@ -31,10 +30,10 @@ export const getServerSideProps: GetServerSideProps<
     }
   }
 
-  const data = await getEvmTokens(host, {
+  const data = await getEvmTokens(subdomain, {
     contracts: [assetId || ''],
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -44,7 +43,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       unique_id,

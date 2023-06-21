@@ -8,6 +8,7 @@ import { AssetListClient } from '@/components/Pages/Blockchain/AssetList'
 import { ERC20TokenListClient } from '@/components/Pages/Blockchain/ERC20TokenList'
 import { ERC721TokenListClient } from '@/components/Pages/Blockchain/ERC721TokenList'
 import { TAB_ROW } from '@/config/constants'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -16,8 +17,8 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps
 > = async (context) => {
   const tab = (context.query.tab || '')?.toString()
-  const host = context.req.headers.host || ''
-  const chainProps = await getChainProps(context.req.headers.host)
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const chainProps = await getChainProps(subdomain)
 
   if (!chainProps) {
     return {
@@ -27,7 +28,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       tab,
       chain: chainProps,
     },

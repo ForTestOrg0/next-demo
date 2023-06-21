@@ -7,23 +7,24 @@ import { BareServerSideProps } from '@/types/page'
 import { MetaInfo } from '@/components/Pages/Parachain/MetaInfo'
 import { CrowdloanListClient } from '@/components/Pages/Parachain/CrowdloanList'
 import { BidListClient } from '@/components/Pages/Parachain/BidList'
-import { GetParachainAuctionsProps, GetParachainMetaProps, getParachainAuctions, getParachainMeta } from '@/utils/api/parachain'
+import { GetParachainMetaProps, getParachainAuctions, getParachainMeta } from '@/utils/api/parachain'
 import { ParachainAuction } from '@/types/api'
 import { AuctionInfo } from '@/components/Pages/Parachain/AuctionInfo'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { parachainMeta: GetParachainMetaProps; auctionId: number; host: string; currentAuction: ParachainAuction | undefined } & BareServerSideProps
 > = async (context) => {
   const auctionId = parseInt(context.query.id as string)
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
 
-  const data = await getParachainMeta(host)
-  const auctions = await getParachainAuctions(host, {
+  const data = await getParachainMeta(subdomain)
+  const auctions = await getParachainAuctions(subdomain, {
     row: 1,
     page: 0,
     auction_index: auctionId,
   })
-  const chainProps = await getChainProps(host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !unwrap(auctions) || unwrap(auctions)?.auctions.length === 0 || !chainProps) {
     return {
@@ -35,7 +36,7 @@ export const getServerSideProps: GetServerSideProps<
     props: {
       parachainMeta: data.data,
       auctionId,
-      host,
+      host: subdomain,
       chain: chainProps,
       currentAuction: unwrap(auctions)?.auctions[0],
     },

@@ -1,11 +1,12 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, LinkRouter, Button } from '@/ui'
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getDemocracyReferendum, GetDemocracyReferendumProps } from '@/utils/api'
 import { ProposalPreImage, ProposalTimeLine, ReferendaInfo, ReferendaVotesClient } from '@/components/Governance'
-import { PAGE_ROW, TAB_ROW } from '@/config/constants'
+import { TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import METADATA from '@/config/metadata'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -16,7 +17,7 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const referendumIndex = context.params?.id
 
@@ -25,10 +26,10 @@ export const getServerSideProps: GetServerSideProps<
       notFound: true,
     }
   }
-  const data = await getDemocracyReferendum(host, {
+  const data = await getDemocracyReferendum(subdomain, {
     referendum_index: parseInt(referendumIndex),
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -38,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       referendumIndex: parseInt(referendumIndex),

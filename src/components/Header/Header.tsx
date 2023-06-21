@@ -6,18 +6,12 @@ import { Drawer } from '@/ui/Drawer'
 import {
   ArrowDownFillingIcon,
   ArrowRightBoldIcon,
-  EarthIcon,
   EmailBlockIcon,
   GithubBlockIcon,
-  GithubIcon,
   HamburgerButtonIcon,
-  MailIcon,
   MediumBlockIcon,
-  MediumIcon,
   RiotBlockIcon,
-  RiotIcon,
   TwitterBlockIcon,
-  TwitterIcon,
 } from '@/ui/Svg'
 import { Disclosure } from '@headlessui/react'
 import clsx from 'clsx'
@@ -26,6 +20,7 @@ import React, { useState } from 'react'
 import { useSsr } from 'usehooks-ts'
 import { LanguageSwitcher } from '../Footer/Footer'
 import { navTree } from './menu'
+import { ChainSwitcher } from '../ChainSwitcher'
 
 function AutoLink({ label, href, external, className }: { label: string; href: string; external?: boolean; className?: string }) {
   if (external) {
@@ -86,6 +81,7 @@ export default function Header() {
             }
             return null
           })}
+          <ChainSwitcher />
         </Flex>
       </Container>
 

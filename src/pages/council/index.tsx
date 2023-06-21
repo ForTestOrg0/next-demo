@@ -5,6 +5,7 @@ import { PAGE_ROW } from '@/config/constants'
 import { CouncilMotionList } from '@/components/Governance'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
+import { getSubdomainFromHeaders } from '@/utils/url'
 // import { useTranslation } from 'next-i18next'
 
 export const getServerSideProps: GetServerSideProps<
@@ -14,11 +15,12 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps
 > = async (context) => {
   const page = parseInt(context.query.page as string) || 1
-  const data = await getCouncilProposals(context.req.headers.host || '', {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const data = await getCouncilProposals(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

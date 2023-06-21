@@ -6,6 +6,7 @@ import { TreasuryProposalInfo } from '@/components/Governance/TreasuryProposalIn
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import METADATA from '@/config/metadata'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -16,17 +17,17 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const proposalId = context.params?.id
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (typeof proposalId === 'undefined' || !chainProps) {
     return {
       notFound: true,
     }
   }
-  const data = await getTreasuryProposal(host, {
+  const data = await getTreasuryProposal(subdomain, {
     proposal_id: parseInt(proposalId),
   })
 
@@ -38,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       proposalId: parseInt(proposalId),

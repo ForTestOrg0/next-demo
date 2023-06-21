@@ -5,6 +5,7 @@ import { TreasuryTipInfo, TreasuryTippersClient } from '@/components/Governance'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import METADATA from '@/config/metadata'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -15,17 +16,17 @@ export const getServerSideProps: GetServerSideProps<
   } & BareServerSideProps,
   { id: string }
 > = async (context) => {
-  const host = context.req.headers.host || ''
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
   const tab = (context.query.tab || '')?.toString()
   const tipHash = context.params?.id
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (typeof tipHash === 'undefined' || !chainProps) {
     return {
       notFound: true,
     }
   }
-  const data = await getTreasuryTip(host, { hash: tipHash })
+  const data = await getTreasuryTip(subdomain, { hash: tipHash })
 
   if (!data || data.code !== 0) {
     return {
@@ -35,7 +36,7 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
-      host,
+      host: subdomain,
       data: data.data,
       tab,
       tipHash,

@@ -5,14 +5,16 @@ import { PAGE_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { BlockList } from '@/components/Pages/Blockchain/BlockList'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ data: GetBlocksProps; page: number } & BareServerSideProps> = async (context) => {
   const page = parseInt(context.query.page as string) || 1
-  const data = await getBlocks(context.req.headers.host || '', {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const data = await getBlocks(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

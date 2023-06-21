@@ -5,15 +5,17 @@ import { PAGE_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { ERC20TokenList } from '@/components/Pages/Blockchain/ERC20TokenList'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ data: GetEvmTokensProps; page: number } & BareServerSideProps> = async (context) => {
   const page = parseInt(context.query.page as string) || 1
-  const data = await getEvmTokens(context.req.headers.host || '', {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const data = await getEvmTokens(subdomain, {
     row: PAGE_ROW,
     page: page - 1,
     category: 'erc20',
   })
-  const chainProps = await getChainProps(context.req.headers.host)
+  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

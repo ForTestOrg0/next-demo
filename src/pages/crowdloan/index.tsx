@@ -5,11 +5,12 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { CrowdloanListClient } from '@/components/Pages/Parachain/CrowdloanList'
 import { crowdloanListStatusMap } from '@/components/Pages/Parachain/CrowdloanList/CrowdloanList'
+import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<{ page: number; host: string } & BareServerSideProps> = async (context) => {
   const page = parseInt(context.query.page as string) || 1
-  const host = context.req.headers.host || ''
-  const chainProps = await getChainProps(host)
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const chainProps = await getChainProps(subdomain)
 
   if (!chainProps) {
     return {
@@ -21,7 +22,7 @@ export const getServerSideProps: GetServerSideProps<{ page: number; host: string
     props: {
       page,
       chain: chainProps,
-      host,
+      host: subdomain,
     },
   }
 }
