@@ -21,6 +21,7 @@ import { useSsr } from 'usehooks-ts'
 import { LanguageSwitcher } from '../Footer/Footer'
 import { navTree } from './menu'
 import { ChainSwitcher } from '../ChainSwitcher'
+import { BareProps, BareServerSideProps } from '@/types/page'
 
 function AutoLink({ label, href, external, className }: { label: string; href: string; external?: boolean; className?: string }) {
   if (external) {
@@ -37,7 +38,9 @@ function AutoLink({ label, href, external, className }: { label: string; href: s
   )
 }
 
-export default function Header() {
+interface Props extends BareProps, BareServerSideProps {}
+
+const Header: React.FC<Props> = ({ chain, children, className }) => {
   const [drawerShowing, setDrawerShowing] = useState(false)
   const { isBrowser } = useSsr()
 
@@ -81,7 +84,7 @@ export default function Header() {
             }
             return null
           })}
-          <ChainSwitcher />
+          <ChainSwitcher chain={chain} />
         </Flex>
       </Container>
 
@@ -163,3 +166,5 @@ export default function Header() {
     </PageContent>
   )
 }
+
+export default Header

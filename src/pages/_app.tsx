@@ -1,12 +1,11 @@
-import type { ReactElement, ReactNode } from 'react'
+import type { ReactElement } from 'react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import type { GetServerSideProps, NextPage } from 'next'
+import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import RootLayout from './layout'
 import '@/styles/globals.css'
 import '@/ui/Tabs/styles.scss'
-import { GetTokenUniqueIdProps, getTokenUniqueId } from '@/utils/api'
 import BigNumber from 'bignumber.js'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
@@ -14,7 +13,7 @@ import { ChainProps } from '@/types/page'
 import ReactGA from 'react-ga4'
 import utc from 'dayjs/plugin/utc'
 import dayjs from 'dayjs'
-import { PageProgress, Button } from '@/ui'
+import { PageProgress } from '@/ui'
 
 // import { appWithTranslation } from 'next-i18next'
 
@@ -68,7 +67,7 @@ const MyApp: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
   return (
     <RootLayout pageProps={pageProps}>
       <PageProgress />
-      <Header />
+      <Header chain={pageProps?.chain as ChainProps} />
       <div className="flex-1">
         <Component {...pageProps} />
       </div>
