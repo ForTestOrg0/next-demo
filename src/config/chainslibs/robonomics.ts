@@ -14,9 +14,9 @@ export const Robonomics: Chain = {
   domain: 'https://robonomics.subscan.io',
   subdomain: ['robonomics'],
   social: {
-    telegram: 'https://t.me/robonomics ',
-    twitter: 'https://twitter.com/AIRA_Robonomics ',
-    github: 'https://github.com/airalab ',
+    telegram: 'https://t.me/robonomics',
+    twitter: 'https://twitter.com/AIRA_Robonomics',
+    github: 'https://github.com/airalab',
     price: 'https://www.coingecko.com/en/coins/robonomics-network',
   },
   donate: '4FcerGkM8u97PiJR9XxmZQ1dJWyWPDWvPhf7SpFMV58N8fLP',

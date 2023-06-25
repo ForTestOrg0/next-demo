@@ -14,9 +14,9 @@ export const Polkadex: Chain = {
   domain: 'https://polkadex.subscan.io',
   subdomain: ['polkadex'],
   social: {
-    telegram: 'https://t.me/Polkadex ',
-    twitter: 'https://twitter.com/polkadex ',
-    github: 'https://github.com/Polkadex-Substrate ',
+    telegram: 'https://t.me/Polkadex',
+    twitter: 'https://twitter.com/polkadex',
+    github: 'https://github.com/Polkadex-Substrate',
     price: 'https://www.coingecko.com/en/coins/polkadex',
   },
   donate: 'espBwNTdpAxMkx9vck1ivqzbRVghtxE3TFYXYiveSV9819dUm',

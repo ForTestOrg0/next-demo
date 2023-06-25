@@ -14,9 +14,9 @@ export const OrigintrailTestnet: Chain = {
   domain: 'https://origintrail-testnet.subscan.io',
   subdomain: ['origintrail-testnet'],
   social: {
-    telegram: 'https://t.me/OriginTrail ',
-    twitter: 'https://twitter.com/origin_trail ',
-    github: ' ',
+    telegram: 'https://t.me/OriginTrail',
+    twitter: 'https://twitter.com/origin_trail',
+    github: '',
     price: '',
   },
   donate: 'gJqAkRt7Fw22UtzWaJyeh1jryDPgYchvWC7SnbbiwiZqhJhX2',

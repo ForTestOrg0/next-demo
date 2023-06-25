@@ -14,9 +14,9 @@ export const Turing: Chain = {
   domain: 'https://turing.subscan.io',
   subdomain: ['turing'],
   social: {
-    telegram: 'https://t.me/OAKNetworkCommunity ',
-    twitter: 'https://twitter.com/oak_network ',
-    github: ' ',
+    telegram: 'https://t.me/OAKNetworkCommunity',
+    twitter: 'https://twitter.com/oak_network',
+    github: '',
     price: '',
   },
   donate: '69aBm831SRkvMpzEMegDjX4hajh6RhUoyaBc8oU5HKRdV6Vj',

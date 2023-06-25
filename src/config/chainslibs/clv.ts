@@ -14,9 +14,9 @@ export const Clv: Chain = {
   domain: 'https://clv.subscan.io',
   subdomain: ['clv'],
   social: {
-    telegram: 'https://t.me/clover_en/ ',
-    twitter: 'https://twitter.com/clover_finance ',
-    github: 'https://github.com/clover-network ',
+    telegram: 'https://t.me/clover_en/',
+    twitter: 'https://twitter.com/clover_finance',
+    github: 'https://github.com/clover-network',
     price: 'https://www.coingecko.com/en/coins/clover-finance',
   },
   donate: 'jHFWb6Dhx3mLSnRaBQyojWuRG1rnfTPyv9Sjfih3Dp9LHcsAt',

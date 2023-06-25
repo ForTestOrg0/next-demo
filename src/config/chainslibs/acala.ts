@@ -14,9 +14,9 @@ export const Acala: Chain = {
   domain: 'https://acala.subscan.io',
   subdomain: ['acala'],
   social: {
-    telegram: 'https://t.me/acalaofficial ',
-    twitter: 'https://twitter.com/AcalaNetwork ',
-    github: 'https://github.com/AcalaNetwork ',
+    telegram: 'https://t.me/acalaofficial',
+    twitter: 'https://twitter.com/AcalaNetwork',
+    github: 'https://github.com/AcalaNetwork',
     price: 'https://www.coingecko.com/en/coins/acala',
   },
   donate: '24J9ASqUgVu7xRQDDpcFFaAH5qq3BBfUF1UDun6jJG3dwgXb',

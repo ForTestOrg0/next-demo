@@ -14,9 +14,9 @@ export const Sora: Chain = {
   domain: 'https://sora.subscan.io',
   subdomain: ['sora'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/sora_xor ',
-    github: 'https://github.com/sora-xor ',
+    telegram: '',
+    twitter: 'https://twitter.com/sora_xor',
+    github: 'https://github.com/sora-xor',
     price: 'https://www.coingecko.com/en/coins/sora',
   },
   donate: 'cnUuq45FYqAqw2mzXNbz3gDChbepLDNNXsnstbncKTN54vsrK',

@@ -14,9 +14,9 @@ export const Statemine: Chain = {
   domain: 'https://statemine.subscan.io',
   subdomain: ['statemine'],
   social: {
-    telegram: ' ',
-    twitter: ' ',
-    github: ' ',
+    telegram: '',
+    twitter: '',
+    github: '',
     price: 'https://www.coingecko.com/en/coins/kusama',
   },
   donate: 'Fzs6WWFcAuJhxAVyZa4EN2suxggjidJjV3AzJxKbRHjh2Jc',

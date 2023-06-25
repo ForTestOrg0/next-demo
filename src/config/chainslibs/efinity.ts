@@ -14,9 +14,9 @@ export const Efinity: Chain = {
   domain: 'https://efinity.subscan.io',
   subdomain: ['efinity'],
   social: {
-    telegram: 'https://t.me/enjin ',
-    twitter: 'https://twitter.com/efinityio ',
-    github: ' ',
+    telegram: 'https://t.me/enjin',
+    twitter: 'https://twitter.com/efinityio',
+    github: '',
     price: 'https://www.coingecko.com/en/coins/efinity-token',
   },
   donate: 'efSa9KSVpWsudasm6Rzdz2FcjMWyS9VxuruqGSAu757PYFbMp',

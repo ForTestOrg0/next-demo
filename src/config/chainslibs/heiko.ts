@@ -14,9 +14,9 @@ export const Heiko: Chain = {
   domain: 'https://parallel-heiko.subscan.io',
   subdomain: ['parallel-heiko'],
   social: {
-    telegram: 'https://t.me/parallelfi_community ',
-    twitter: 'https://twitter.com/ParallelFi ',
-    github: 'https://github.com/parallel-finance ',
+    telegram: 'https://t.me/parallelfi_community',
+    twitter: 'https://twitter.com/ParallelFi',
+    github: 'https://github.com/parallel-finance',
     price: '',
   },
   donate: 'hJJchKKyVJbo8roXn1eNNWo3jUt3vEGcJqtYQyJANR6LZQhHS',

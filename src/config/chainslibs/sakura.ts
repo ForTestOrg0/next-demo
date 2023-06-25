@@ -14,9 +14,9 @@ export const Sakura: Chain = {
   domain: 'https://sakura.subscan.io',
   subdomain: ['sakura'],
   social: {
-    telegram: 'https://t.me/clover_en/ ',
-    twitter: 'https://twitter.com/clover_finance ',
-    github: 'https://github.com/clover-network ',
+    telegram: 'https://t.me/clover_en/',
+    twitter: 'https://twitter.com/clover_finance',
+    github: 'https://github.com/clover-network',
     price: 'https://www.coingecko.com/en/coins/sakura',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

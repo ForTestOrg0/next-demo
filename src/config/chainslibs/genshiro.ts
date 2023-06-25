@@ -14,9 +14,9 @@ export const Genshiro: Chain = {
   domain: 'https://genshiro.subscan.io',
   subdomain: ['genshiro'],
   social: {
-    telegram: 'https://t.me/genshiro_official ',
-    twitter: 'https://twitter.com/GenshiroDeFi ',
-    github: 'https://github.com/equilibrium-eosdt ',
+    telegram: 'https://t.me/genshiro_official',
+    twitter: 'https://twitter.com/GenshiroDeFi',
+    github: 'https://github.com/equilibrium-eosdt',
     price: 'https://www.coingecko.com/en/coins/genshiro',
   },
   donate: 'cZi9Py5wwdvtu3GD9STP1LsAJsYWhBumujPy5rJHnBuxeuQ7F',

@@ -14,9 +14,9 @@ export const Unique: Chain = {
   domain: 'https://unique.subscan.io',
   subdomain: ['unique'],
   social: {
-    telegram: 'https://t.me/Uniquechain ',
-    twitter: 'https://twitter.com/Unique_NFTchain ',
-    github: 'https://github.com/UniqueNetwork ',
+    telegram: 'https://t.me/Uniquechain',
+    twitter: 'https://twitter.com/Unique_NFTchain',
+    github: 'https://github.com/UniqueNetwork',
     price: 'https://www.coingecko.com/en/coins/unique-network',
   },
   donate: 'unhwbuvnZWqPvkxZdcw8ow3pmbcEigoy6JYVdZXEFvyEccTVv',

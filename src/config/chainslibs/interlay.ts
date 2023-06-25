@@ -14,9 +14,9 @@ export const Interlay: Chain = {
   domain: 'https://interlay.subscan.io',
   subdomain: ['interlay'],
   social: {
-    telegram: 'https://t.me/interlay_community ',
-    twitter: 'https://twitter.com/interlayHQ ',
-    github: 'https://github.com/interlay ',
+    telegram: 'https://t.me/interlay_community',
+    twitter: 'https://twitter.com/interlayHQ',
+    github: 'https://github.com/interlay',
     price: 'https://www.coingecko.com/en/coins/interlay',
   },
   donate: 'wdAvRiVVkbGbTQbDc31o9qZbBCLpUFMpTa9bj1pSWyLgttyZM',

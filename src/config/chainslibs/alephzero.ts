@@ -14,9 +14,9 @@ export const Alephzero: Chain = {
   domain: 'https://alephzero.subscan.io',
   subdomain: ['alephzero'],
   social: {
-    telegram: 'https://t.me/AlephZeroFoundation ',
-    twitter: 'https://twitter.com/Aleph__Zero ',
-    github: 'https://github.com/aleph-zero-foundation ',
+    telegram: 'https://t.me/AlephZeroFoundation',
+    twitter: 'https://twitter.com/Aleph__Zero',
+    github: 'https://github.com/aleph-zero-foundation',
     price: 'https://www.coingecko.com/en/coins/aleph-zero',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

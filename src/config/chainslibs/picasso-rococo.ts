@@ -14,9 +14,9 @@ export const PicassoRococo: Chain = {
   domain: 'https://picasso-rococo.subscan.io',
   subdomain: ['picasso-rococo'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/ComposableFin ',
-    github: 'https://github.com/ComposableFi/ ',
+    telegram: '',
+    twitter: 'https://twitter.com/ComposableFin',
+    github: 'https://github.com/ComposableFi/',
     price: '',
   },
   donate: '5wzsF8xCfr1U3iBJYavAyiXrHmQWKLDmbh5LuSBUMcEevAft',

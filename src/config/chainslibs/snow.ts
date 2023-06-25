@@ -14,9 +14,9 @@ export const Snow: Chain = {
   domain: 'https://snow.subscan.io',
   subdomain: ['snow'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/icenetwork_io ',
-    github: ' ',
+    telegram: '',
+    twitter: 'https://twitter.com/icenetwork_io',
+    github: '',
     price: '',
   },
   donate: 'ni1gZzUF5dKYHuMSFdYD3hyBjSReQnUGju6HDGE8z9TocEZeP',

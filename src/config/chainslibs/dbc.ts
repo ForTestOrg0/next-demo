@@ -14,9 +14,9 @@ export const Dbc: Chain = {
   domain: 'https://dbc.subscan.io',
   subdomain: ['dbc'],
   social: {
-    telegram: 'https://t.me/deepbrainchainglobal ',
-    twitter: 'https://twitter.com/DeepBrainChain ',
-    github: 'https://github.com/DeepBrainChain ',
+    telegram: 'https://t.me/deepbrainchainglobal',
+    twitter: 'https://twitter.com/DeepBrainChain',
+    github: 'https://github.com/DeepBrainChain',
     price: 'https://www.coingecko.com/en/coins/deepbrain-chain',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

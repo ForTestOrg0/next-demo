@@ -14,9 +14,9 @@ export const Polymesh: Chain = {
   domain: 'https://polymesh.subscan.io',
   subdomain: ['polymesh'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/PolymeshNetwork ',
-    github: 'https://github.com/PolymeshAssociation ',
+    telegram: '',
+    twitter: 'https://twitter.com/PolymeshNetwork',
+    github: 'https://github.com/PolymeshAssociation',
     price: 'https://www.coingecko.com/en/coins/polymesh',
   },
   donate: '2FsTgRvHT5eaGYD92tNJ1Nh8Np7dHYvWctaV99PLDyEcWAVc',

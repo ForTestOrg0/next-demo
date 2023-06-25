@@ -14,9 +14,9 @@ export const MangataTestnet: Chain = {
   domain: 'https://mangata-testnet.subscan.io',
   subdomain: ['mangata-testnet'],
   social: {
-    telegram: 'https://t.me/mgtfi ',
-    twitter: 'https://twitter.com/MangataFinance ',
-    github: 'https://github.com/mangata-finance ',
+    telegram: 'https://t.me/mgtfi',
+    twitter: 'https://twitter.com/MangataFinance',
+    github: 'https://github.com/mangata-finance',
     price: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

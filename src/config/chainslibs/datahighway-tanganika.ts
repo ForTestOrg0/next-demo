@@ -14,9 +14,9 @@ export const DatahighwayTanganika: Chain = {
   domain: 'https://datahighway.subscan.io',
   subdomain: ['datahighway'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/DataHighway_DHX ',
-    github: ' ',
+    telegram: '',
+    twitter: 'https://twitter.com/DataHighway_DHX',
+    github: '',
     price: 'https://www.coingecko.com/en/coins/datahighway',
   },
   donate: '4MQK7GHkXC1qYmht44qnwJH3x17oSQ9SaeDF4VtewvirREuw',

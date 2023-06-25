@@ -14,9 +14,9 @@ export const Crust: Chain = {
   domain: 'https://crust.subscan.io',
   subdomain: ['crust'],
   social: {
-    telegram: 'https://t.me/CrustNetwork ',
-    twitter: 'https://twitter.com/CrustNetwork ',
-    github: 'https://github.com/crustio ',
+    telegram: 'https://t.me/CrustNetwork',
+    twitter: 'https://twitter.com/CrustNetwork',
+    github: 'https://github.com/crustio',
     price: 'https://www.coingecko.com/en/coins/crust-network',
   },
   donate: 'cTKmBRbJ93JvP3WKTUP5VBC97WVMsgBUbfCWgUZ8WZBuSty4u',

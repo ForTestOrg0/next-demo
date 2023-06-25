@@ -14,9 +14,9 @@ export const Phala: Chain = {
   domain: 'https://phala.subscan.io',
   subdomain: ['phala'],
   social: {
-    telegram: 'https://t.me/phalanetwork ',
-    twitter: 'https://twitter.com/PhalaNetwork ',
-    github: 'https://github.com/Phala-Network ',
+    telegram: 'https://t.me/phalanetwork',
+    twitter: 'https://twitter.com/PhalaNetwork',
+    github: 'https://github.com/Phala-Network',
     price: 'https://www.coingecko.com/en/coins/phala-network',
   },
   donate: '443LLHfYNKPf5bVVLUCiobUn1YgvGrFt1pYrDSxkZMwPa3Bq',

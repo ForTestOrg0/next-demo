@@ -14,9 +14,9 @@ export const Westend: Chain = {
   domain: 'https://westend.subscan.io',
   subdomain: ['westend'],
   social: {
-    telegram: ' ',
-    twitter: ' ',
-    github: ' ',
+    telegram: '',
+    twitter: '',
+    github: '',
     price: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

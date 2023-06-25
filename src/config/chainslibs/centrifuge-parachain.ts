@@ -14,9 +14,9 @@ export const CentrifugeParachain: Chain = {
   domain: 'https://centrifuge.subscan.io',
   subdomain: ['centrifuge'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/centrifuge ',
-    github: 'https://github.com/centrifuge/centrifuge-chain ',
+    telegram: '',
+    twitter: 'https://twitter.com/centrifuge',
+    github: 'https://github.com/centrifuge/centrifuge-chain',
     price: 'https://www.coingecko.com/en/coins/centrifuge',
   },
   donate: '4emHtEuxg4e21wvGmfUs515KtTYgbx319TsduYpZLVWKGBu8',

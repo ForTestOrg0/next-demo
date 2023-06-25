@@ -14,9 +14,9 @@ export const Astar: Chain = {
   domain: 'https://astar.subscan.io',
   subdomain: ['astar'],
   social: {
-    telegram: 'https://t.me/PlasmOfficial ',
-    twitter: 'https://twitter.com/AstarNetwork ',
-    github: 'https://github.com/AstarNetwork/Astar ',
+    telegram: 'https://t.me/PlasmOfficial',
+    twitter: 'https://twitter.com/AstarNetwork',
+    github: 'https://github.com/AstarNetwork/Astar',
     price: 'https://www.coingecko.com/en/coins/astar',
   },
   donate: 'ZMqsV8Tm3XVB8NthAD8N4q9rR7ZuGWsJJhZqMtDyz5CXyX7',

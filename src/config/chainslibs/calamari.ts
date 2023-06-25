@@ -14,9 +14,9 @@ export const Calamari: Chain = {
   domain: 'https://calamari.subscan.io',
   subdomain: ['calamari'],
   social: {
-    telegram: 'https://t.me/mantanetworkofficial ',
-    twitter: 'https://twitter.com/mantanetwork ',
-    github: 'https://twitter.com/CalamariNetwork ',
+    telegram: 'https://t.me/mantanetworkofficial',
+    twitter: 'https://twitter.com/mantanetwork',
+    github: 'https://twitter.com/CalamariNetwork',
     price: 'https://www.coingecko.com/en/coins/calamari-network',
   },
   donate: 'dmxMmwX7nCkcazb1j5GhjBGPTs9Bhpw4LXZyWyV3k9tZw31uK',

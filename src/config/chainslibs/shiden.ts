@@ -14,9 +14,9 @@ export const Shiden: Chain = {
   domain: 'https://shiden.subscan.io',
   subdomain: ['shiden'],
   social: {
-    telegram: 'https://t.me/PlasmOfficial ',
-    twitter: 'https://twitter.com/ShidenNetwork ',
-    github: 'https://github.com/AstarNetwork/Astar ',
+    telegram: 'https://t.me/PlasmOfficial',
+    twitter: 'https://twitter.com/ShidenNetwork',
+    github: 'https://github.com/AstarNetwork/Astar',
     price: 'https://www.coingecko.com/en/coins/shiden-network',
   },
   donate: 'ZMqsV8Tm3XVB8NthAD8N4q9rR7ZuGWsJJhZqMtDyz5CXyX7',

@@ -14,9 +14,9 @@ export const Picasso: Chain = {
   domain: 'https://picasso.subscan.io',
   subdomain: ['picasso'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/Picasso_Network ',
-    github: 'https://github.com/ComposableFi/ ',
+    telegram: '',
+    twitter: 'https://twitter.com/Picasso_Network',
+    github: 'https://github.com/ComposableFi/',
     price: '',
   },
   donate: '5wzsF8xCfr1U3iBJYavAyiXrHmQWKLDmbh5LuSBUMcEevAft',

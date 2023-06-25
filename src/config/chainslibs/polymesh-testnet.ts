@@ -14,9 +14,9 @@ export const PolymeshTestnet: Chain = {
   domain: 'https://polymesh-testnet.subscan.io',
   subdomain: ['polymesh-testnet'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/PolymeshNetwork ',
-    github: 'https://github.com/PolymeshAssociation ',
+    telegram: '',
+    twitter: 'https://twitter.com/PolymeshNetwork',
+    github: 'https://github.com/PolymeshAssociation',
     price: '',
   },
   donate: '2FsTgRvHT5eaGYD92tNJ1Nh8Np7dHYvWctaV99PLDyEcWAVc',

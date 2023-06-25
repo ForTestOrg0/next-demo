@@ -14,9 +14,9 @@ export const Bajun: Chain = {
   domain: 'https://bajun.subscan.io',
   subdomain: ['bajun'],
   social: {
-    telegram: 'https://t.me/ajunacommunity ',
-    twitter: 'https://twitter.com/AjunaNetwork ',
-    github: 'https://github.com/ajuna-network/ ',
+    telegram: 'https://t.me/ajunacommunity',
+    twitter: 'https://twitter.com/AjunaNetwork',
+    github: 'https://github.com/ajuna-network/',
     price: 'https://www.coingecko.com/en/coins/ajuna-network',
   },
   donate: 'bUMFXq78vbBXMrzKaJNkvZeHUURhyLXwPx8BiBGubAwP2CHEG',

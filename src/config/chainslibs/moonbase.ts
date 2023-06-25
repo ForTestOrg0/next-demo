@@ -14,9 +14,9 @@ export const Moonbase: Chain = {
   domain: 'https://moonbase.subscan.io',
   subdomain: ['moonbase'],
   social: {
-    telegram: 'https://t.me/Moonbeam_Official ',
-    twitter: 'https://twitter.com/moonbeamnetwork ',
-    github: 'https://github.com/PureStake/moonbeam ',
+    telegram: 'https://t.me/Moonbeam_Official',
+    twitter: 'https://twitter.com/moonbeamnetwork',
+    github: 'https://github.com/PureStake/moonbeam',
     price: '',
   },
   donate: '0x9c0fEf6b48Cb0B16EDc72a61d9503A78782c19e2',

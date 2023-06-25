@@ -14,9 +14,9 @@ export const Subspace: Chain = {
   domain: 'https://subspace.subscan.io',
   subdomain: ['subspace'],
   social: {
-    telegram: 'https://t.me/subspace_network ',
-    twitter: 'https://twitter.com/NetworkSubspace ',
-    github: 'https://github.com/subspace ',
+    telegram: 'https://t.me/subspace_network',
+    twitter: 'https://twitter.com/NetworkSubspace',
+    github: 'https://github.com/subspace',
     price: '',
   },
   donate: 'st9gjWgsqgULbhvKe52QVYb9wVynuskJPJNg9tCeeuYQLnJJv',

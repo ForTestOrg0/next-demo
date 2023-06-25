@@ -14,9 +14,9 @@ export const Rockmine: Chain = {
   domain: 'https://rockmine.subscan.io',
   subdomain: ['rockmine'],
   social: {
-    telegram: ' ',
-    twitter: ' ',
-    github: ' ',
+    telegram: '',
+    twitter: '',
+    github: '',
     price: '',
   },
   donate: 'Fzs6WWFcAuJhxAVyZa4EN2suxggjidJjV3AzJxKbRHjh2Jc',

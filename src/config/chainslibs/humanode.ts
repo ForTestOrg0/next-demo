@@ -14,9 +14,9 @@ export const Humanode: Chain = {
   domain: 'https://humanode.subscan.io',
   subdomain: ['humanode'],
   social: {
-    telegram: 'https://t.me/humanode ',
-    twitter: 'https://twitter.com/humanode_io ',
-    github: 'https://github.com/humanode-network ',
+    telegram: 'https://t.me/humanode',
+    twitter: 'https://twitter.com/humanode_io',
+    github: 'https://github.com/humanode-network',
     price: 'https://www.coingecko.com/en/coins/humanode',
   },
   donate: 'hmqtkf9QmNuBjy1BozbAvjWT1roX5NrPxuVSemwfUD6T95prd',

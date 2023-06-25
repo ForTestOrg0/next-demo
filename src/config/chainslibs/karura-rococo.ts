@@ -14,9 +14,9 @@ export const KaruraRococo: Chain = {
   domain: 'https://karura-rococo.subscan.io',
   subdomain: ['karura-rococo'],
   social: {
-    telegram: ' ',
-    twitter: ' ',
-    github: 'https://github.com/AcalaNetwork ',
+    telegram: '',
+    twitter: '',
+    github: 'https://github.com/AcalaNetwork',
     price: 'https://www.coingecko.com/en/coins/karura',
   },
   donate: 'ripeTkfuv9feJbHQkrCVmdRnsYT4pQRs8MxgQp8NYrfP6o2',

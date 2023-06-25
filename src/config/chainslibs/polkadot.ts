@@ -14,9 +14,9 @@ export const Polkadot: Chain = {
   domain: 'https://polkadot.subscan.io',
   subdomain: ['polkadot'],
   social: {
-    telegram: 'https://t.me/polkadotofficial ',
-    twitter: 'https://twitter.com/Polkadot ',
-    github: 'https://github.com/paritytech/polkadot ',
+    telegram: 'https://t.me/polkadotofficial',
+    twitter: 'https://twitter.com/Polkadot',
+    github: 'https://github.com/paritytech/polkadot',
     price: 'https://www.coingecko.com/en/coins/polkadot',
   },
   donate: '14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ',

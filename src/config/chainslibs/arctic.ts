@@ -14,9 +14,9 @@ export const Arctic: Chain = {
   domain: 'https://arctic.subscan.io',
   subdomain: ['arctic'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/icenetwork_io ',
-    github: ' ',
+    telegram: '',
+    twitter: 'https://twitter.com/icenetwork_io',
+    github: '',
     price: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

@@ -14,9 +14,9 @@ export const Chainx: Chain = {
   domain: 'https://chainx.subscan.io',
   subdomain: ['chainx'],
   social: {
-    telegram: 'https://t.me/chainx_org ',
-    twitter: 'https://twitter.com/chainx_org ',
-    github: 'https://github.com/chainx-org/chainx ',
+    telegram: 'https://t.me/chainx_org',
+    twitter: 'https://twitter.com/chainx_org',
+    github: 'https://github.com/chainx-org/chainx',
     price: 'https://www.coingecko.com/en/coins/chainx',
   },
   donate: '5T4ZxBFBkPdqGR9z1vX46DCj4Lh33R5AezJgq1xy3LGDWYBp',

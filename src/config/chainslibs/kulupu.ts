@@ -14,9 +14,9 @@ export const Kulupu: Chain = {
   domain: 'https://kulupu.subscan.io',
   subdomain: ['kulupu'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/home ',
-    github: 'https://github.com/kulupu/kulupu ',
+    telegram: '',
+    twitter: 'https://twitter.com/home',
+    github: 'https://github.com/kulupu/kulupu',
     price: 'https://www.coingecko.com/en/coins/kulupu',
   },
   donate: '2f26iQ5tzF9Utmpzf1tPWykpxkgoWHSbNeo1bsxY5PcZdbZb',

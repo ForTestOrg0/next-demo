@@ -14,9 +14,9 @@ export const Hydradx: Chain = {
   domain: 'https://hydradx.subscan.io',
   subdomain: ['hydradx'],
   social: {
-    telegram: 'https://t.me/hydradx ',
-    twitter: 'https://twitter.com/hydra_dx ',
-    github: 'https://github.com/galacticcouncil ',
+    telegram: 'https://t.me/hydradx',
+    twitter: 'https://twitter.com/hydra_dx',
+    github: 'https://github.com/galacticcouncil',
     price: 'https://www.coingecko.com/en/coins/hydradx',
   },
   donate: '7M26s2Xr3vFeEXqoE3EWGLFoLZQd5u34ErqBX1BgqaZUrrBz',

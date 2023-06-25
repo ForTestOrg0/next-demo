@@ -14,9 +14,9 @@ export const Statemint: Chain = {
   domain: 'https://statemint.subscan.io',
   subdomain: ['statemint'],
   social: {
-    telegram: ' ',
-    twitter: ' ',
-    github: ' ',
+    telegram: '',
+    twitter: '',
+    github: '',
     price: 'https://www.coingecko.com/en/coins/polkadot',
   },
   donate: '14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ',

@@ -14,9 +14,9 @@ export const Bifrost: Chain = {
   domain: 'https://bifrost.subscan.io',
   subdomain: ['bifrost'],
   social: {
-    telegram: 'https://t.me/bifrost_finance ',
-    twitter: 'https://twitter.com/bifrost_finance ',
-    github: 'https://github.com/bifrost-finance ',
+    telegram: 'https://t.me/bifrost_finance',
+    twitter: 'https://twitter.com/bifrost_finance',
+    github: 'https://github.com/bifrost-finance',
     price: 'https://www.coingecko.com/en/coins/bifrost-native-coin',
   },
   donate: 'f9W8Ufs9LQDLBnMbh69jy6aVuFrxT9PVFFhT3XXSqfgpHr9',

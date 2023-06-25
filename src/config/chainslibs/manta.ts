@@ -14,9 +14,9 @@ export const Manta: Chain = {
   domain: 'https://manta.subscan.io',
   subdomain: ['manta'],
   social: {
-    telegram: 'https://t.me/mantanetworkofficial ',
-    twitter: 'https://twitter.com/mantanetwork ',
-    github: 'https://github.com/Manta-Network ',
+    telegram: 'https://t.me/mantanetworkofficial',
+    twitter: 'https://twitter.com/mantanetwork',
+    github: 'https://github.com/Manta-Network',
     price: '',
   },
   donate: 'dfZyZQ2Tyc8e4zq837CQD1bNGW62tKCm2TNX7bjtUXAWj2GuE',

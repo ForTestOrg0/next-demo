@@ -14,9 +14,9 @@ export const Pangoro: Chain = {
   domain: 'https://pangoro.subscan.io',
   subdomain: ['pangoro'],
   social: {
-    telegram: 'https://t.me/DarwiniaNetwork ',
-    twitter: 'https://twitter.com/DarwiniaNetwork ',
-    github: 'https://github.com/darwinia-network ',
+    telegram: 'https://t.me/DarwiniaNetwork',
+    twitter: 'https://twitter.com/DarwiniaNetwork',
+    github: 'https://github.com/darwinia-network',
     price: '',
   },
   donate: '0x9c0fEf6b48Cb0B16EDc72a61d9503A78782c19e2',

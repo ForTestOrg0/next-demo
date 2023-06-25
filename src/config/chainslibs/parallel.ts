@@ -14,9 +14,9 @@ export const Parallel: Chain = {
   domain: 'https://parallel.subscan.io',
   subdomain: ['parallel'],
   social: {
-    telegram: 'https://t.me/parallelfi_community ',
-    twitter: 'https://twitter.com/ParallelFi ',
-    github: 'https://github.com/parallel-finance ',
+    telegram: 'https://t.me/parallelfi_community',
+    twitter: 'https://twitter.com/ParallelFi',
+    github: 'https://github.com/parallel-finance',
     price: 'https://www.coingecko.com/en/coins/parallel-finance',
   },
   donate: 'p8EN6yxPJK4DCbinVxF6crWKszFUi1V7dL8mQDS55g3mQ8r1L',

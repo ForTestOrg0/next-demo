@@ -14,9 +14,9 @@ export const Pioneer: Chain = {
   domain: 'https://pioneer.subscan.io',
   subdomain: ['pioneer'],
   social: {
-    telegram: 'https://t.me/BitCountryOfficialTG ',
-    twitter: 'https://twitter.com/BC_Pioneer ',
-    github: 'https://github.com/bit-country ',
+    telegram: 'https://t.me/BitCountryOfficialTG',
+    twitter: 'https://twitter.com/BC_Pioneer',
+    github: 'https://github.com/bit-country',
     price: 'https://www.coingecko.com/en/coins/metaverse-network-pioneer',
   },
   donate: 'WWasAMueAC7BBRhbiAueRYmHxZ3Hw3yzHwUV3r49FptWkYPx6',

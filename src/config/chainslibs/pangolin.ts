@@ -14,9 +14,9 @@ export const Pangolin: Chain = {
   domain: 'https://pangolin.subscan.io',
   subdomain: ['pangolin'],
   social: {
-    telegram: 'https://t.me/DarwiniaNetwork ',
-    twitter: 'https://twitter.com/DarwiniaNetwork ',
-    github: 'https://github.com/darwinia-network ',
+    telegram: 'https://t.me/DarwiniaNetwork',
+    twitter: 'https://twitter.com/DarwiniaNetwork',
+    github: 'https://github.com/darwinia-network',
     price: '',
   },
   donate: '2rbREPAhkptwCtdvU5eSGnHgFiyPcehdkXuGqFF916oYCJ7s',

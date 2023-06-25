@@ -14,9 +14,9 @@ export const Rococo: Chain = {
   domain: 'https://rococo.subscan.io',
   subdomain: ['rococo'],
   social: {
-    telegram: ' ',
-    twitter: ' ',
-    github: 'https://github.com/paritytech/polkadot ',
+    telegram: '',
+    twitter: '',
+    github: 'https://github.com/paritytech/polkadot',
     price: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

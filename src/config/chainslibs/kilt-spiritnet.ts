@@ -14,9 +14,9 @@ export const KiltSpiritnet: Chain = {
   domain: 'https://spiritnet.subscan.io',
   subdomain: ['spiritnet'],
   social: {
-    telegram: 'https://t.me/KILTProtocolChat ',
-    twitter: 'https://twitter.com/Kiltprotocol ',
-    github: 'https://github.com/KILTprotocol ',
+    telegram: 'https://t.me/KILTProtocolChat',
+    twitter: 'https://twitter.com/Kiltprotocol',
+    github: 'https://github.com/KILTprotocol',
     price: 'https://www.coingecko.com/en/coins/kilt-protocol',
   },
   donate: '4rLcQDzmSePUL4jCajEupocBBRqGiKJ3XLyu8v7AGChHpa9u',

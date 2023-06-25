@@ -14,9 +14,9 @@ export const Basilisk: Chain = {
   domain: 'https://basilisk.subscan.io',
   subdomain: ['basilisk'],
   social: {
-    telegram: 'https://t.me/bsx_fi ',
-    twitter: 'https://twitter.com/bsx_finance ',
-    github: 'https://github.com/galacticcouncil ',
+    telegram: 'https://t.me/bsx_fi',
+    twitter: 'https://twitter.com/bsx_finance',
+    github: 'https://github.com/galacticcouncil',
     price: 'https://www.coingecko.com/en/coins/basilisk',
   },
   donate: 'bXk1xcqYdf5G5Az5M6UfjQHKvSvZyCmM6N72B6Wmpv1bbmG7e',

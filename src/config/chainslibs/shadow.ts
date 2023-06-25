@@ -14,9 +14,9 @@ export const Shadow: Chain = {
   domain: 'https://shadow.subscan.io',
   subdomain: ['shadow'],
   social: {
-    telegram: 'https://t.me/CrustNetwork ',
-    twitter: 'https://twitter.com/CrustNetwork ',
-    github: 'https://github.com/crustio ',
+    telegram: 'https://t.me/CrustNetwork',
+    twitter: 'https://twitter.com/CrustNetwork',
+    github: 'https://github.com/crustio',
     price: 'https://www.coingecko.com/en/coins/crust-shadow',
   },
   donate: 'cTKmBRbJ93JvP3WKTUP5VBC97WVMsgBUbfCWgUZ8WZBuSty4u',

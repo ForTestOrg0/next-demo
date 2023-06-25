@@ -14,9 +14,9 @@ export const AcalaTestnet: Chain = {
   domain: 'https://acala-testnet.subscan.io',
   subdomain: ['acala-testnet'],
   social: {
-    telegram: 'https://t.me/acalaofficial ',
-    twitter: 'https://twitter.com/AcalaNetwork ',
-    github: 'https://github.com/AcalaNetwork ',
+    telegram: 'https://t.me/acalaofficial',
+    twitter: 'https://twitter.com/AcalaNetwork',
+    github: 'https://github.com/AcalaNetwork',
     price: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

@@ -14,9 +14,9 @@ export const Zeitgeist: Chain = {
   domain: 'https://zeitgeist.subscan.io',
   subdomain: ['zeitgeist'],
   social: {
-    telegram: 'https://t.me/zeitgeist_official ',
-    twitter: 'https://twitter.com/ZeitgeistPM ',
-    github: 'https://github.com/ZeitgeistPM ',
+    telegram: 'https://t.me/zeitgeist_official',
+    twitter: 'https://twitter.com/ZeitgeistPM',
+    github: 'https://github.com/ZeitgeistPM',
     price: 'https://www.coingecko.com/en/coins/zeitgeist',
   },
   donate: 'dE2ShE3rmDek11oZHEuC8LuHV3sRcGHZnAahW6mFPzGHtyXwn',

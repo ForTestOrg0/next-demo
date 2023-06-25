@@ -36,9 +36,9 @@ async function buildConfig(networks) {
   domain: 'https://${value.network}.subscan.io',
   subdomain: ['${value.network}'],
   social: {
-    telegram: '${value?.telegram?.value || ''} ',
-    twitter: '${value?.twitter?.value || ''} ',
-    github: '${value?.github?.value || ''} ',
+    telegram: '${value?.telegram?.value || ''}',
+    twitter: '${value?.twitter?.value || ''}',
+    github: '${value?.github?.value || ''}',
     price: '${value?.price_link?.value || ''}',
   },
   donate: '${value?.donate?.address || ''}',

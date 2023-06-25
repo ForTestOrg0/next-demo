@@ -14,9 +14,9 @@ export const Edgeware: Chain = {
   domain: 'https://edgeware.subscan.io',
   subdomain: ['edgeware'],
   social: {
-    telegram: 'https://t.me/heyedgeware ',
-    twitter: 'https://twitter.com/heyedgeware ',
-    github: 'https://github.com/hicommonwealth ',
+    telegram: 'https://t.me/heyedgeware',
+    twitter: 'https://twitter.com/heyedgeware',
+    github: 'https://github.com/hicommonwealth',
     price: 'https://www.coingecko.com/en/coins/edgeware',
   },
   donate: 'kwAPUDGXdGwVFBpWDyB7sN19PQA1dmugBoq4jApuhGB6sAd',

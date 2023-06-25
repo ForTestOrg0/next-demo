@@ -14,9 +14,9 @@ export const Equilibrium: Chain = {
   domain: 'https://equilibrium.subscan.io',
   subdomain: ['equilibrium'],
   social: {
-    telegram: 'https://t.me/equilibrium_eosdt_official ',
-    twitter: 'https://twitter.com/EquilibriumDeFi ',
-    github: 'https://github.com/equilibrium-eosdt ',
+    telegram: 'https://t.me/equilibrium_eosdt_official',
+    twitter: 'https://twitter.com/EquilibriumDeFi',
+    github: 'https://github.com/equilibrium-eosdt',
     price: 'https://www.coingecko.com/en/coins/equilibrium',
   },
   donate: 'cg6XcWabkEYsR326qQXgXWYBWEbfWhe5DobRVE3T3pe1rvEKy',

@@ -14,9 +14,9 @@ export const DarwiniaParachain: Chain = {
   domain: 'https://darwinia.subscan.io',
   subdomain: ['darwinia'],
   social: {
-    telegram: 'https://t.me/DarwiniaNetwork ',
-    twitter: 'https://twitter.com/DarwiniaNetwork ',
-    github: 'https://github.com/darwinia-network ',
+    telegram: 'https://t.me/DarwiniaNetwork',
+    twitter: 'https://twitter.com/DarwiniaNetwork',
+    github: 'https://github.com/darwinia-network',
     price: 'https://www.coingecko.com/en/coins/darwinia-network-native-token',
   },
   donate: '0x9c0fEf6b48Cb0B16EDc72a61d9503A78782c19e2',

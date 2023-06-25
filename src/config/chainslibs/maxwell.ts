@@ -14,9 +14,9 @@ export const Maxwell: Chain = {
   domain: 'https://maxwell.subscan.io',
   subdomain: ['maxwell'],
   social: {
-    telegram: 'https://t.me/CrustNetwork ',
-    twitter: 'https://twitter.com/CrustNetwork ',
-    github: 'https://github.com/crustio ',
+    telegram: 'https://t.me/CrustNetwork',
+    twitter: 'https://twitter.com/CrustNetwork',
+    github: 'https://github.com/crustio',
     price: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

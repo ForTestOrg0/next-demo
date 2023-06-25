@@ -14,9 +14,9 @@ export const Mangatax: Chain = {
   domain: 'https://mangatax.subscan.io',
   subdomain: ['mangatax'],
   social: {
-    telegram: 'https://t.me/mgtfi ',
-    twitter: 'https://twitter.com/MangataFinance ',
-    github: 'https://github.com/mangata-finance ',
+    telegram: 'https://t.me/mgtfi',
+    twitter: 'https://twitter.com/MangataFinance',
+    github: 'https://github.com/mangata-finance',
     price: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

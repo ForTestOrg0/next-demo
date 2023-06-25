@@ -14,9 +14,9 @@ export const Nodle: Chain = {
   domain: 'https://nodle.subscan.io',
   subdomain: ['nodle'],
   social: {
-    telegram: 'https://telegram.me/nodlecommunity/ ',
-    twitter: 'https://twitter.com/NodleNetwork ',
-    github: 'https://github.com/NodleCode ',
+    telegram: 'https://telegram.me/nodlecommunity/',
+    twitter: 'https://twitter.com/NodleNetwork',
+    github: 'https://github.com/NodleCode',
     price: 'https://www.coingecko.com/en/coins/nodle-network',
   },
   donate: '4kYx9ETN4MWkB1KjgCMtSuLkXwgyf8fXLQRmXETroM6oYFqJ',

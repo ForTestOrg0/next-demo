@@ -14,9 +14,9 @@ export const BifrostTestnet: Chain = {
   domain: 'https://bifrost-testnet.subscan.io',
   subdomain: ['bifrost-testnet'],
   social: {
-    telegram: 'https://t.me/bifrost_finance ',
-    twitter: 'https://twitter.com/bifrost_finance ',
-    github: 'https://github.com/bifrost-finance ',
+    telegram: 'https://t.me/bifrost_finance',
+    twitter: 'https://twitter.com/bifrost_finance',
+    github: 'https://github.com/bifrost-finance',
     price: '',
   },
   donate: 'f9W8Ufs9LQDLBnMbh69jy6aVuFrxT9PVFFhT3XXSqfgpHr9',

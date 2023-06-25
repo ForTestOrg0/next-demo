@@ -14,9 +14,9 @@ export const Quartz: Chain = {
   domain: 'https://quartz.subscan.io',
   subdomain: ['quartz'],
   social: {
-    telegram: 'https://t.me/Uniquechain ',
-    twitter: 'https://twitter.com/Unique_NFTchain ',
-    github: 'https://github.com/UniqueNetwork ',
+    telegram: 'https://t.me/Uniquechain',
+    twitter: 'https://twitter.com/Unique_NFTchain',
+    github: 'https://github.com/UniqueNetwork',
     price: 'https://www.coingecko.com/en/coins/quartz',
   },
   donate: 'yGGA43xUyrY68FXkhCQAnhM397m6hZ1tVLXYrLCLTEEMb71nH',

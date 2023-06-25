@@ -14,9 +14,9 @@ export const Altair: Chain = {
   domain: 'https://altair.subscan.io',
   subdomain: ['altair'],
   social: {
-    telegram: 'https://t.me/centrifuge_chat ',
-    twitter: 'https://twitter.com/centrifuge ',
-    github: 'https://github.com/centrifuge/ ',
+    telegram: 'https://t.me/centrifuge_chat',
+    twitter: 'https://twitter.com/centrifuge',
+    github: 'https://github.com/centrifuge/',
     price: 'https://www.coingecko.com/en/coins/altair',
   },
   donate: 'kALaKSAvNpj8akUhh9aDtrHapvJ1DZENQj2NtieKNswmwiGDs',

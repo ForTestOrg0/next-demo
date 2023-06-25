@@ -14,9 +14,9 @@ export const Encointer: Chain = {
   domain: 'https://encointer.subscan.io',
   subdomain: ['encointer'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/encointer ',
-    github: ' ',
+    telegram: '',
+    twitter: 'https://twitter.com/encointer',
+    github: '',
     price: 'https://www.coingecko.com/en/coins/kusama',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

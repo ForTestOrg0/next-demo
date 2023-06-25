@@ -14,9 +14,9 @@ export const Kilt: Chain = {
   domain: 'https://kilt-testnet.subscan.io',
   subdomain: ['kilt-testnet'],
   social: {
-    telegram: 'https://t.me/KILTProtocolChat ',
-    twitter: 'https://twitter.com/Kiltprotocol ',
-    github: 'https://github.com/KILTprotocol ',
+    telegram: 'https://t.me/KILTProtocolChat',
+    twitter: 'https://twitter.com/Kiltprotocol',
+    github: 'https://github.com/KILTprotocol',
     price: '',
   },
   donate: '4rLcQDzmSePUL4jCajEupocBBRqGiKJ3XLyu8v7AGChHpa9u',

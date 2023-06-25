@@ -14,9 +14,9 @@ export const Integritee: Chain = {
   domain: 'https://integritee.subscan.io',
   subdomain: ['integritee'],
   social: {
-    telegram: 'https://t.me/Integritee_Official ',
-    twitter: 'https://twitter.com/integri_t_e_e ',
-    github: 'https://github.com/integritee-network ',
+    telegram: 'https://t.me/Integritee_Official',
+    twitter: 'https://twitter.com/integri_t_e_e',
+    github: 'https://github.com/integritee-network',
     price: 'https://www.coingecko.com/en/coins/integritee',
   },
   donate: '2Mf7wRTgqNXJRbcbwRFKPGxZ2JFvLjZ2oq8ckq2dgpq6ngha',

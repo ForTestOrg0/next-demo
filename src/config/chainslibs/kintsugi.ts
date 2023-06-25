@@ -14,9 +14,9 @@ export const Kintsugi: Chain = {
   domain: 'https://kintsugi.subscan.io',
   subdomain: ['kintsugi'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/kintsugi_btc ',
-    github: 'https://github.com/interlay ',
+    telegram: '',
+    twitter: 'https://twitter.com/kintsugi_btc',
+    github: 'https://github.com/interlay',
     price: 'https://www.coingecko.com/en/coins/kintsugi',
   },
   donate: 'a3ddhYfHgyzUpPKx1T1UEXbpChBACqbwuaNvs9ekzL5SntP4g',

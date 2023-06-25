@@ -14,9 +14,9 @@ export const Reef: Chain = {
   domain: 'https://reef.subscan.io',
   subdomain: ['reef'],
   social: {
-    telegram: 'https://t.me/reefdefi ',
-    twitter: 'https://twitter.com/ReefDeFi ',
-    github: 'https://github.com/reef-defi ',
+    telegram: 'https://t.me/reefdefi',
+    twitter: 'https://twitter.com/ReefDeFi',
+    github: 'https://github.com/reef-defi',
     price: 'https://www.coingecko.com/en/coins/reef',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

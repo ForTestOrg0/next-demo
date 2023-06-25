@@ -14,9 +14,9 @@ export const Dolphin: Chain = {
   domain: 'https://dolphin.subscan.io',
   subdomain: ['dolphin'],
   social: {
-    telegram: 'https://t.me/mantanetworkofficial ',
-    twitter: 'https://twitter.com/mantanetwork ',
-    github: 'https://github.com/Manta-Network ',
+    telegram: 'https://t.me/mantanetworkofficial',
+    twitter: 'https://twitter.com/mantanetwork',
+    github: 'https://github.com/Manta-Network',
     price: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',

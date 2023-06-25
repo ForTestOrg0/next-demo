@@ -48,7 +48,7 @@ export default function Page({ host, chain, dataStatistics, start, end }: InferG
         <Flex className="flex-1">
           <Flex className={clsx('items-center flex-1 justify-between px-5', style.box)}>
             <Flex className="items-center">
-              <img src={`/chains/polkadot/logo-menu.png`} alt={chain.chainConf.name} />
+              <img src={`/chains/${chain.chainConf.id}/logo.png`} alt={chain.chainConf.name} style={{ height: 40 }} />
               <Text className="!text-lg font-semibold ml-3">On-Chain Insights</Text>
             </Flex>
             <Text className="!text-lg font-semibold">

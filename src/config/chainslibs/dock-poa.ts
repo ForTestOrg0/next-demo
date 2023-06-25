@@ -14,9 +14,9 @@ export const DockPoa: Chain = {
   domain: 'https://dock-poa.subscan.io',
   subdomain: ['dock-poa'],
   social: {
-    telegram: 'https://t.me/dockio ',
-    twitter: 'https://twitter.com/docknetwork ',
-    github: 'https://github.com/docknetwork ',
+    telegram: 'https://t.me/dockio',
+    twitter: 'https://twitter.com/docknetwork',
+    github: 'https://github.com/docknetwork',
     price: 'https://www.coingecko.com/en/coins/dock',
   },
   donate: '3Fk4GMLKHzPqq8Fn6DAXnPMNqfYZqPDiWJ7oHypLrXBVKcA1',

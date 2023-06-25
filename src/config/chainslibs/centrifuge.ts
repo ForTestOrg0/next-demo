@@ -14,9 +14,9 @@ export const Centrifuge: Chain = {
   domain: 'https://centrifuge-standalone-history.subscan.io',
   subdomain: ['centrifuge-standalone-history'],
   social: {
-    telegram: ' ',
-    twitter: 'https://twitter.com/centrifuge ',
-    github: 'https://github.com/centrifuge/centrifuge-chain ',
+    telegram: '',
+    twitter: 'https://twitter.com/centrifuge',
+    github: 'https://github.com/centrifuge/centrifuge-chain',
     price: '',
   },
   donate: '4emHtEuxg4e21wvGmfUs515KtTYgbx319TsduYpZLVWKGBu8',

@@ -14,9 +14,9 @@ export const CrustParachain: Chain = {
   domain: 'https://crust-parachain.subscan.io',
   subdomain: ['crust-parachain'],
   social: {
-    telegram: 'https://t.me/CrustNetwork ',
-    twitter: 'https://twitter.com/CrustNetwork ',
-    github: 'https://github.com/crustio ',
+    telegram: 'https://t.me/CrustNetwork',
+    twitter: 'https://twitter.com/CrustNetwork',
+    github: 'https://github.com/crustio',
     price: 'https://www.coingecko.com/en/coins/crust-network',
   },
   donate: 'espBwNTdpAxMkx9vck1ivqzbRVghtxE3TFYXYiveSV9819dUm',
