@@ -75,11 +75,9 @@ const DatePicker = ({ className, value, placeholder = 'Date Picker', onSelect = 
   }, [currentDate])
 
   const btnClassNames = useMemo(() => {
-    const result = [
-      'flex items-center justify-center gap-2 border rounded px-4 py-1 font-normal text-sm active:border-sub-network/40 hover:border-sub-network/60',
-    ]
+    const result = ['flex items-center gap-2 border rounded px-4 py-1 font-normal text-sm active:border-sub-network/40 hover:border-sub-network/60']
     if (value) {
-      result.push('text-sub-network')
+      // result.push('text-sub-network')
     } else if (placeholder) {
       result.push('text-zinc-400')
     }
@@ -88,7 +86,7 @@ const DatePicker = ({ className, value, placeholder = 'Date Picker', onSelect = 
 
   return (
     <>
-      <Button ref={refs.setReference} {...getReferenceProps()} className={`${btnClassNames} ${className}`}>
+      <Button ref={refs.setReference} {...getReferenceProps()} className={`${className} ${btnClassNames} ${className}`}>
         <span>{value ? format(value, DEFAULT_FORMAT) : placeholder}</span>
         {/* TODO: improve clear icon */}
         {value ? (
@@ -110,6 +108,7 @@ const DatePicker = ({ className, value, placeholder = 'Date Picker', onSelect = 
             top: y ?? 0,
             left: x ?? 0,
             width: 'max-content',
+            backgroundColor: 'white',
             ...styles,
           }}
           {...getFloatingProps()}>

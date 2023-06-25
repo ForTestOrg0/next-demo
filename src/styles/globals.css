@@ -64,7 +64,6 @@
   --ui-hover-dark: 251 251 251; /* #fbfbfb */
 }
 
-
 html.dark {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
@@ -105,4 +104,3 @@ body {
     @apply flex w-full items-center rounded px-2 py-2 text-sm cursor-pointer whitespace-nowrap !text-sub-black;
   }
 }
-

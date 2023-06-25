@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 export function timeAgo(time: number | string, now = Date.now(), shouldTruncate?: boolean) {
   const second = +time * 1000
   const d = new Date(second)
@@ -79,5 +80,24 @@ export function timeAgoShort(time: string | number, now = Date.now(), shouldTrun
     } else {
       return `${day}${day === 1 ? 'd' : 'd'}${hr === 0 ? '' : hr === 1 ? ' 1h' : ` ${hr}h`} ago`
     }
+  }
+}
+
+export function parseTimeToUtc(time: string | number, cFormat: string = 'YYYY-MM-DD HH:mm:ss', hasUTCText = true) {
+  if (arguments.length === 0) {
+    return null
+  }
+  if (!time) {
+    return null
+  }
+  if ((time + '').length >= 10) {
+    time = +time * 1000
+  }
+  const format = cFormat
+  const date = dayjs.utc(time)
+  if (hasUTCText) {
+    return `${date.format(format)} (+UTC)`
+  } else {
+    return `${date.format(format)}`
   }
 }

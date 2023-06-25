@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Boundary, PageContent, Container, Flex, Text, Input, Menu, MenuButton, MenuItem, MenuItems, Button } from '@/ui'
+import { Boundary, PageContent, Container, Flex, Text, Input, Menu, MenuButton, MenuItem, MenuItems, Button, Link } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
@@ -140,10 +140,10 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
                 </p>
                 <p>
                   The living specification for the SS58 account format can be found on the
-                  <a target="_blank" href="https://docs.substrate.io/v3/advanced/ss58/">
+                  <Link href={`https://docs.substrate.io/v3/advanced/ss58/`} external>
                     {' '}
                     Substrate wiki
-                  </a>
+                  </Link>
                 </p>
               </div>
             </Boundary>
