@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 import { BareProps } from '@/types/page'
 import { LinkRouter, Text } from '@/ui'
 import { objectToSearchParams } from '@/utils/url'
@@ -15,7 +16,7 @@ const Components: React.FC<Props> = ({ empty, query, children, address = '', cla
   }
   const searchParams = objectToSearchParams(query)
   return (
-    <LinkRouter className="text-sm" href={`/xcm_channel/${address}${searchParams ? `?${searchParams}` : ''}`}>
+    <LinkRouter className={clsx('text-sm', className)} href={`/xcm_channel/${address}${searchParams ? `?${searchParams}` : ''}`}>
       {children ?? address}
     </LinkRouter>
   )

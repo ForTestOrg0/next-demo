@@ -20,6 +20,10 @@ export const Acala: Chain = {
     price: 'https://www.coingecko.com/en/coins/acala',
   },
   donate: '24J9ASqUgVu7xRQDDpcFFaAH5qq3BBfUF1UDun6jJG3dwgXb',
+  parachain: {
+    id: 2000,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: true,
     CONTRACT: false,

@@ -20,6 +20,10 @@ export const Bifrost: Chain = {
     price: 'https://www.coingecko.com/en/coins/bifrost-native-coin',
   },
   donate: 'f9W8Ufs9LQDLBnMbh69jy6aVuFrxT9PVFFhT3XXSqfgpHr9',
+  parachain: {
+    id: 2030,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: true,
     CONTRACT: false,

@@ -20,6 +20,10 @@ export const Interlay: Chain = {
     price: 'https://www.coingecko.com/en/coins/interlay',
   },
   donate: 'wdAvRiVVkbGbTQbDc31o9qZbBCLpUFMpTa9bj1pSWyLgttyZM',
+  parachain: {
+    id: 2032,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

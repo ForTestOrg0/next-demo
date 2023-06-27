@@ -10,11 +10,12 @@ import { Button } from '@/ui'
 
 interface Props extends BareProps, BareServerSideProps {
   host: string
+  type?: string
   args: Parameters<typeof useParachainList>[1]
   disableColumn?: ParachainListDisableColumn
   viewAllQuery?: Record<string, string>
 }
-const Component: React.FC<Props> = ({ children, host, className, chain, args, disableColumn, viewAllQuery }) => {
+const Component: React.FC<Props> = ({ children, host, className, type = 'table', chain, args, disableColumn, viewAllQuery }) => {
   const { data, error, isLoading } = useParachainList(host, args)
   const parachains = unwrap(data)
 
@@ -23,13 +24,22 @@ const Component: React.FC<Props> = ({ children, host, className, chain, args, di
 
   return (
     <>
-      <ParachainList parachains={parachains?.chains} chain={chain} disableColumn={disableColumn} />
-      {parachains.count - args.row > 0 && (
-        <ParachainListLink query={{ status: 'parachain', ...viewAllQuery }}>
-          <Button outline className="mt-4">
-            View Other {parachains.count - args.row} Parachain
-          </Button>
-        </ParachainListLink>
+      {type === 'table' && (
+        <>
+          <ParachainList parachains={parachains?.chains} chain={chain} disableColumn={disableColumn} />
+          {parachains.count - args.row > 0 && (
+            <ParachainListLink query={{ status: 'parachain', ...viewAllQuery }}>
+              <Button outline className="mt-4">
+                View Other {parachains.count - args.row} Parachain
+              </Button>
+            </ParachainListLink>
+          )}
+        </>
+      )}
+      {type === 'list' && (
+        <>
+          <ParachainList parachains={parachains?.chains} chain={chain} disableColumn={disableColumn} />
+        </>
       )}
     </>
   )

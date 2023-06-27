@@ -20,6 +20,10 @@ export const Parallel: Chain = {
     price: 'https://www.coingecko.com/en/coins/parallel-finance',
   },
   donate: 'p8EN6yxPJK4DCbinVxF6crWKszFUi1V7dL8mQDS55g3mQ8r1L',
+  parachain: {
+    id: 2012,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

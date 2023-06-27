@@ -20,6 +20,10 @@ export const Astar: Chain = {
     price: 'https://www.coingecko.com/en/coins/astar',
   },
   donate: 'ZMqsV8Tm3XVB8NthAD8N4q9rR7ZuGWsJJhZqMtDyz5CXyX7',
+  parachain: {
+    id: 2006,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: true,

@@ -8,27 +8,28 @@ import { Flex, Text } from '@/ui'
 
 interface Props extends BareProps {
   type: string
+  iconClass?: string
   text?: string
 }
 
-export const TransferStatus: React.FC<Props> = ({ children, type, text, className }) => {
+export const TransferStatus: React.FC<Props> = ({ children, type, text, className, iconClass }) => {
   return (
     <div className={clsx('flex', className)}>
       {type === 'accepted' ? (
         <Flex className="items-center">
-          <CheckCircleIcon className="w-7 text-sub-success-light" />
+          <CheckCircleIcon className={clsx('w-7 text-sub-success-light', iconClass)} />
           <Text className="ml-1">{text}</Text>
         </Flex>
       ) : null}
       {type === 'canceled' || type === 'closed' ? (
         <Flex className="items-center">
-          <CircleTimesIcon className="w-7 text-sub-error-light" />
+          <CircleTimesIcon className={clsx('w-7 text-sub-error-light', iconClass)} />
           <Text className="ml-1">{text}</Text>
         </Flex>
       ) : null}
       {type === 'requested' ? (
         <Flex className="items-center">
-          <WaitIcon className="w-7 text-sub-warning-light" />
+          <WaitIcon className={clsx('w-7 text-sub-warning-light', iconClass)} />
           <Text className="ml-1">{text}</Text>
         </Flex>
       ) : null}
