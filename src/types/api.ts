@@ -598,6 +598,7 @@ export interface Validator {
   reward_pot_balance: string
   grandpa_vote: number
   bonded_total: string
+  status: string
 }
 
 export interface StakingVoted extends Validator {
@@ -849,4 +850,39 @@ export interface Screenshot {
   url: string
   key: string
   err: string
+}
+
+export interface Nominator {
+  rank_nominator: number
+  nominator_stash: string
+  bonded: string
+  account_display: AccountDisplay
+  validator_stash: string
+}
+
+export interface EraStat {
+  era: number
+  start_block_num: BlockNumber
+  end_block_num: BlockNumber
+  reward: string
+  slash: string
+  block_produced: string
+  reward_point: number
+}
+
+export interface RewardSlash {
+  account: string
+  amount: string
+  block_num: BlockNumber
+  block_timestamp: Timestamp
+  event_id: string
+  event_method: string
+  event_idx: number
+  event_index: string
+  extrinsic_hash: string
+  extrinsic_idx: number
+  extrinsic_index: string
+  module_id: string
+  params: string
+  stash: string
 }

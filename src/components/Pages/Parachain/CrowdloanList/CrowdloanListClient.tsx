@@ -16,8 +16,8 @@ interface Props extends BareProps, BareServerSideProps {
   disableColumn?: ParachainCrowdloadDisableColumn
 }
 
-const Component: React.FC<Props> = ({ children, host, className, chain, style, args, viewAllQuery, disableColumn }) => {
-  const { data, error, isLoading } = useParachainFunds(host, args)
+const Component: React.FC<Props> = ({ host, chain, args, viewAllQuery, disableColumn }) => {
+  const { data, isLoading } = useParachainFunds(host, args)
   const funds = unwrap(data)
 
   if (isLoading) return <Loading />

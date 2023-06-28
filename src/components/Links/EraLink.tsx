@@ -15,7 +15,7 @@ const Components: React.FC<Props> = ({ empty, query, children, className, addres
   }
   const searchParams = objectToSearchParams(query)
   return (
-    <LinkRouter className="text-sm" href={`/nominator${address ? `/${address}` : ''}${searchParams ? `?${searchParams}` : ''}`}>
+    <LinkRouter className="text-sm" href={`/era${address ? `/${address}` : ''}${searchParams ? `?${searchParams}` : ''}`}>
       {children}
     </LinkRouter>
   )

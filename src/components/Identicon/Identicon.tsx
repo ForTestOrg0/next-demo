@@ -1,18 +1,49 @@
-import React, { useMemo } from 'react'
+import React, { ReactElement, useMemo } from 'react'
 import clsx from 'clsx'
 import { BareProps } from '@/types/page'
 import { AccountDisplay } from '@/types/api'
 import { Text, Tooltip, TooltipContent, TooltipTrigger } from '@/ui'
-import { AccountLink } from '@/components/Links'
+import { AccountLink, NominatorLink, ValidatorLink } from '@/components/Links'
 import { formatHash } from '@/utils/formatText'
 import { GOOD_JUDGEMENTS, BAD_JUDGEMENTS } from '@/config/constants'
 import styles from './Identicon.module.css'
 
+type IdenticonType = '' | 'validator' | 'account' | 'nominator'
+
 interface Props extends BareProps {
   account: AccountDisplay
+  type?: IdenticonType
 }
 
-const Identicon: React.FC<Props> = ({ account, className }) => {
+interface DisplayAddressProps extends BareProps {
+  displayName: string
+  account: AccountDisplay
+  type?: IdenticonType
+}
+
+const DisplayAddress: React.FC<DisplayAddressProps> = ({ displayName, className, account, type = '' }) => {
+  return (
+    <>
+      {(!type || type === 'account') && (
+        <AccountLink address={account?.address}>
+          <Text>{formatHash(displayName)}</Text>
+        </AccountLink>
+      )}
+      {type === 'validator' && (
+        <ValidatorLink address={account?.address}>
+          <Text>{formatHash(displayName)}</Text>
+        </ValidatorLink>
+      )}
+      {type === 'nominator' && (
+        <NominatorLink address={account?.address}>
+          <Text>{formatHash(displayName)}</Text>
+        </NominatorLink>
+      )}
+    </>
+  )
+}
+
+const Identicon: React.FC<Props> = ({ account, className, type }) => {
   const judgements = useMemo(() => {
     let result: string[] = []
     account?.judgements?.forEach((item) => {
@@ -77,9 +108,7 @@ const Identicon: React.FC<Props> = ({ account, className }) => {
         ) : null}
         <Tooltip copyable>
           <TooltipTrigger>
-            <AccountLink address={account?.address}>
-              <Text>{formatHash(displayName)}</Text>
-            </AccountLink>
+            <DisplayAddress account={account} displayName={displayName} type={type} />
           </TooltipTrigger>
           <TooltipContent className="Tooltip">{account?.address}</TooltipContent>
         </Tooltip>
