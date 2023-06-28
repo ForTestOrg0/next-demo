@@ -23,7 +23,10 @@ import {
 import { useDarkMode } from 'usehooks-ts'
 
 // import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import type { GetServerSideProps, GetStaticProps, InferGetStaticPropsType } from 'next'
+import { BareServerSideProps } from '@/types/page'
+import { getSubdomainFromHeaders } from '@/utils/url'
+import { getChainProps } from '@/utils/chain'
 type Props = {}
 const TabDemo: React.FC = () => {
   return (
@@ -113,6 +116,23 @@ function UncontrolledPopver() {
 //     ])),
 //   },
 // })
+
+export const getServerSideProps: GetServerSideProps<BareServerSideProps> = async (context) => {
+  const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const chainProps = await getChainProps(subdomain)
+
+  if (!chainProps) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      chain: chainProps,
+    },
+  }
+}
 
 export default function Page() {
   return (

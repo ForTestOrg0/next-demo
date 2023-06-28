@@ -105,9 +105,9 @@ export default function Page({ host, chain, dataStatistics, start, end }: InferG
 
 Page.getLayout = function getLayout(page: ReactElement) {
   return (
-    <div className="h-screen flex flex-col">
+    <>
       {page}
       <SimpleFooter className="z-10" />
-    </div>
+    </>
   )
 }

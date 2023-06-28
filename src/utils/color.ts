@@ -17,7 +17,7 @@ function trim(s: string) {
 }
 
 /* Convert a hex string to an RGB triplet */
-function convertToRGB(hex: string) {
+export function convertToRGB(hex: string) {
   var color = []
   color[0] = parseInt(trim(hex).substring(0, 2), 16)
   color[1] = parseInt(trim(hex).substring(2, 4), 16)

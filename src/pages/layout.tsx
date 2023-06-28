@@ -2,6 +2,8 @@ import Head from 'next/head'
 import METADATA from '@/config/metadata'
 import { GetServerSidePropsContext } from 'next'
 import type { AppProps } from 'next/app'
+import { BareServerSideProps } from '@/types/page'
+import { convertToRGB } from '@/utils/color'
 type MetaProps = {
   metadata: {
     title: string
@@ -29,11 +31,12 @@ export default function RootLayout({
 }: {
   context?: GetServerSidePropsContext
   children: React.ReactNode
-  pageProps: AppProps & MetaProps
+  pageProps: AppProps & MetaProps & BareServerSideProps
 }) {
   const metadata = pageProps?.metadata || {}
+  const rbg = convertToRGB(pageProps?.chain?.chainConf.theme.colors[0] || '#E90979')
   return (
-    <div id="subscan-app" className={`font-sans flex h-screen flex-col ${context?.req.cookies.theme || ''}`}>
+    <div id="subscan-app" className={`font-sans flex h-screen flex-col ${context?.req.cookies.theme || ''} ${pageProps?.chain?.chainConf?.id || ''}`}>
       <Head>
         <title>{metadata?.title || METADATA['default']['title']}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0"></meta>
@@ -48,6 +51,13 @@ export default function RootLayout({
         <meta name="twitter:title" data-vmid="twitter:title" content={metadata?.title || METADATA['default']['title']} />
         <meta name="twitter:image" content="https://www.subscan.io/favicon.png" />
         <meta name="twitter:description" content={metadata?.description || METADATA['default']['description']} />
+        {pageProps?.chain?.chainConf?.id && (
+          <style>{`
+        body {
+          --ui-network: ${rbg[0]} ${rbg[1]} ${rbg[2]};
+        }
+        `}</style>
+        )}
       </Head>
       {children}
     </div>
