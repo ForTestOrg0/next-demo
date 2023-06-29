@@ -812,6 +812,11 @@ export interface ParachainInfo {
   fund_account: string
   fund_account_display: AccountDisplay
 }
+export interface DailyStatistics {
+  time_utc: string
+  total: string
+  transfer_amount: string
+}
 
 export interface DataStatistics {
   extrinsic_count: number

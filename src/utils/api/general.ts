@@ -16,6 +16,7 @@ import {
   Holder,
   AssetHolder,
   AssetActivity,
+  DailyStatistics,
   DataStatistics,
 } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
@@ -471,6 +472,25 @@ export const useTokenHolders = (
   }
 ) => {
   return useSWR<APIWarpperProps<GetTokenHoldersProps>, Error>([hostname, 'api/scan/token/holders', params], swrFetcher)
+}
+/***** Charts *****/
+export interface GetDailyStatisticsProps {
+  list: DailyStatistics[]
+}
+export async function getDailyStatistics(
+  hostname = '',
+  params: {
+    category: string
+    format: string
+    start: string
+    end: string
+  }
+): Promise<APIWarpperProps<GetDailyStatisticsProps>> {
+  return await subscanFetch(hostname, 'api/v2/scan/daily', params)
+}
+
+export const useDailyStatistics = (hostname = '', params: Parameters<typeof getDailyStatistics>[1]) => {
+  return useSWR<APIWarpperProps<GetDailyStatisticsProps>, Error>([hostname, 'api/v2/scan/daily', params], swrFetcher)
 }
 
 /***** Data Statistics *****/
