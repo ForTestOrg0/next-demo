@@ -817,6 +817,11 @@ export interface DailyStatistics {
   total: string
   transfer_amount: string
 }
+export interface DailyXCMStatistics {
+  time_utc: string
+  total: number
+  message_total: number
+}
 
 export interface DataStatistics {
   extrinsic_count: number

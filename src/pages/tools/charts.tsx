@@ -9,7 +9,18 @@ import { BareServerSideProps } from '@/types/page'
 import { ArrowDownFillingIcon } from '@/ui/Svg'
 import { trimSpecialChar } from '@/utils/formatText'
 import { getSubdomainFromHeaders } from '@/utils/url'
-import { Transfer, Extrinsic, Holder, Fee, BlockTime, TreasuryExpense, TreasuryIncome, Token, TokenBond } from '@/components/Pages/Tools/Charts'
+import {
+  Transfer,
+  Extrinsic,
+  Holder,
+  Fee,
+  BlockTime,
+  TreasuryExpense,
+  TreasuryIncome,
+  Token,
+  TokenBond,
+  XCMMessage,
+} from '@/components/Pages/Tools/Charts'
 
 export type OutputType = {
   name: string
@@ -87,6 +98,14 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
     {
       name: 'Daily Bond Value',
       value: 'token_bond',
+    },
+    {
+      name: 'Daily XCM Transfer',
+      value: 'xcm_transfer',
+    },
+    {
+      name: 'Daily XCM Message',
+      value: 'xcm_msg',
     },
   ]
   return (
@@ -219,6 +238,27 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
                       category: 'Bonded',
                       end: endDate,
                       format: 'day',
+                      start: startDate,
+                    }}
+                    chain={chain}
+                  />
+                )}
+                {currentChart === 'xcm_transfer' && (
+                  <XCMMessage
+                    host={host}
+                    type={'transfer'}
+                    args={{
+                      end: endDate,
+                      start: startDate,
+                    }}
+                    chain={chain}
+                  />
+                )}
+                {currentChart === 'xcm_msg' && (
+                  <XCMMessage
+                    host={host}
+                    args={{
+                      end: endDate,
                       start: startDate,
                     }}
                     chain={chain}
