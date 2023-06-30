@@ -20,6 +20,10 @@ export const Equilibrium: Chain = {
     price: 'https://www.coingecko.com/en/coins/equilibrium',
   },
   donate: 'cg6XcWabkEYsR326qQXgXWYBWEbfWhe5DobRVE3T3pe1rvEKy',
+  parachain: {
+    id: 2011,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

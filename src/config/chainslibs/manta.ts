@@ -20,6 +20,10 @@ export const Manta: Chain = {
     price: '',
   },
   donate: 'dfZyZQ2Tyc8e4zq837CQD1bNGW62tKCm2TNX7bjtUXAWj2GuE',
+  parachain: {
+    id: 2104,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

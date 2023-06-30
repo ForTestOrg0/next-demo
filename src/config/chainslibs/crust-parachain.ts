@@ -20,6 +20,10 @@ export const CrustParachain: Chain = {
     price: 'https://www.coingecko.com/en/coins/crust-network',
   },
   donate: 'espBwNTdpAxMkx9vck1ivqzbRVghtxE3TFYXYiveSV9819dUm',
+  parachain: {
+    id: 2008,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

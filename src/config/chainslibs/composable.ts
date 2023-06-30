@@ -20,6 +20,10 @@ export const Composable: Chain = {
     price: '',
   },
   donate: '5wzsF8xCfr1U3iBJYavAyiXrHmQWKLDmbh5LuSBUMcEevAft',
+  parachain: {
+    id: 2019,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

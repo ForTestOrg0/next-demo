@@ -20,6 +20,10 @@ export const Statemint: Chain = {
     price: 'https://www.coingecko.com/en/coins/polkadot',
   },
   donate: '14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ',
+  parachain: {
+    id: 1000,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

@@ -20,6 +20,10 @@ export const OrigintrailParachain: Chain = {
     price: '',
   },
   donate: 'gJqAkRt7Fw22UtzWaJyeh1jryDPgYchvWC7SnbbiwiZqhJhX2',
+  parachain: {
+    id: 2043,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: true,

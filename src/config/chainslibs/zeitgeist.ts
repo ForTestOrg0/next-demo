@@ -20,6 +20,10 @@ export const Zeitgeist: Chain = {
     price: 'https://www.coingecko.com/en/coins/zeitgeist',
   },
   donate: 'dE2ShE3rmDek11oZHEuC8LuHV3sRcGHZnAahW6mFPzGHtyXwn',
+  parachain: {
+    id: 2092,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

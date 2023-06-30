@@ -20,6 +20,10 @@ export const CentrifugeParachain: Chain = {
     price: 'https://www.coingecko.com/en/coins/centrifuge',
   },
   donate: '4emHtEuxg4e21wvGmfUs515KtTYgbx319TsduYpZLVWKGBu8',
+  parachain: {
+    id: 2031,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

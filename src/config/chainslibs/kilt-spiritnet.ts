@@ -20,6 +20,10 @@ export const KiltSpiritnet: Chain = {
     price: 'https://www.coingecko.com/en/coins/kilt-protocol',
   },
   donate: '4rLcQDzmSePUL4jCajEupocBBRqGiKJ3XLyu8v7AGChHpa9u',
+  parachain: {
+    id: 2086,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

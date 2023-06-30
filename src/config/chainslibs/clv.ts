@@ -20,6 +20,10 @@ export const Clv: Chain = {
     price: 'https://www.coingecko.com/en/coins/clover-finance',
   },
   donate: 'jHFWb6Dhx3mLSnRaBQyojWuRG1rnfTPyv9Sjfih3Dp9LHcsAt',
+  parachain: {
+    id: 2002,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

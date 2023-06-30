@@ -20,6 +20,10 @@ export const Nodle: Chain = {
     price: 'https://www.coingecko.com/en/coins/nodle-network',
   },
   donate: '4kYx9ETN4MWkB1KjgCMtSuLkXwgyf8fXLQRmXETroM6oYFqJ',
+  parachain: {
+    id: 2026,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,
