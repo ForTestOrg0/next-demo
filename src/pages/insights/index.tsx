@@ -96,7 +96,7 @@ export default function Page({ host, chain, dataStatistics, start, end }: InferG
       </Container>
       <div className="fixed h-full w-full overflow-hidden top-0">
         <div className={clsx(style.bg, 'rounded-full absolute w-[600px] h-[600px] top-[-200px] right-[-200px]')}></div>
-        <div className={clsx(style.bg, 'rounded-full absolute w-[630px] h-[630px] bottom-[-300px] right-[200px]')}></div>
+        <div className={clsx(style.bg, 'rounded-full absolute w-[830px] h-[830px] bottom-[-300px] right-[-100px]')}></div>
         <div className={clsx(style.bg, 'rounded-full absolute w-[340px] h-[340px] left-[-130px] top-[300px]')}></div>
       </div>
     </PageContent>

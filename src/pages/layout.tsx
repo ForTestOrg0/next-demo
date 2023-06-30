@@ -24,6 +24,9 @@ type MetaProps = {
 //   ],
 //   variable: '--font-eina',
 // })
+
+// TODO
+// https://github.com/garmeeh/next-seo
 export default function RootLayout({
   context,
   children,

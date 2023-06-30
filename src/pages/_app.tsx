@@ -61,11 +61,7 @@ const MyApp: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout
   if (getLayout) {
-    return getLayout(
-      <RootLayout pageProps={pageProps}>
-        <Component {...pageProps} />
-      </RootLayout>
-    )
+    return <RootLayout pageProps={pageProps}>{getLayout(<Component {...pageProps} />)}</RootLayout>
   }
 
   return (

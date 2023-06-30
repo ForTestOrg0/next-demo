@@ -49,7 +49,8 @@ const Header: React.FC<Props> = ({ chain, children, className }) => {
       {/* desktop */}
       <Container className="flex-1 justify-between items-center hidden lg:flex">
         <LinkRouter href="/">
-          <Image className="h-[25px]" width={119} height={25} src="/website/logo.png" alt="subscan" />
+          {/* <Image className="h-[25px]" width={119} height={25} src="/website/logo.png" alt="subscan" /> */}
+          <img src="/website/logo.png" alt="subscan" width={119} height={25} />
         </LinkRouter>
         <Flex className="items-center space-x-5 text-sub-white min-h-[50px]">
           {navTree.map((nav) => {
