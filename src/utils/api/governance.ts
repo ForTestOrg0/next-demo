@@ -7,9 +7,13 @@ import {
   CouncilProposalDetail,
   DemocracyReferendum,
   DemocracyReferendumDetail,
+  DemocracyReferendumV2,
   DemocracyVote,
   ProposalPreImage,
   ProposalTimeline,
+  ReferendaReferendumV2Detail,
+  ReferendaVotesV2,
+  ReferendumTrack,
   TechcommProposal,
   TechcommProposalDetail,
   TreasuryProposal,
@@ -248,4 +252,152 @@ export interface GetBountiesProposalProps extends BountiesProposalDetail {}
 
 export async function getBountiesProposal(hostname = '', params: { proposal_id: number }): Promise<APIWarpperProps<GetBountiesProposalProps>> {
   return await subscanFetch(hostname, 'api/scan/bounties/proposal', params)
+}
+
+/***** ReferendumV2 List *****/
+export interface GetReferendaReferendumsProps {
+  count: number
+  list: DemocracyReferendumV2[]
+}
+
+export async function getReferendaReferendums(
+  hostname = '',
+  params: {
+    row: number
+    page: number
+    status?: 'completed' | 'active'
+    origin?: string
+  }
+): Promise<APIWarpperProps<GetReferendaReferendumsProps>> {
+  return await subscanFetch(hostname, 'api/scan/referenda/referendums', params)
+}
+
+export const useReferendaReferendums = (hostname = '', params: Parameters<typeof getReferendaReferendums>[1]) => {
+  return useSWR<APIWarpperProps<GetReferendaReferendumsProps>, Error>([hostname, 'api/scan/referenda/referendums', params], swrFetcher)
+}
+
+/***** ReferendumV2 Tracks *****/
+export type GetReferendaTracksProps = Record<string, ReferendumTrack>
+
+export async function getReferendaTracks(hostname = ''): Promise<APIWarpperProps<GetReferendaTracksProps>> {
+  return await subscanFetch(hostname, 'api/scan/referenda/tracks')
+}
+
+export const useReferendaTracks = (hostname = '') => {
+  return useSWR<APIWarpperProps<GetReferendaTracksProps>, Error>([hostname, 'api/scan/referenda/tracks'], swrFetcher)
+}
+
+/***** Fellowship List *****/
+export interface GetFellowshipReferendumsProps {
+  count: number
+  list: DemocracyReferendumV2[]
+}
+
+export async function getFellowshipReferendums(
+  hostname = '',
+  params: {
+    row: number
+    page: number
+    status?: 'completed' | 'active'
+    origin?: string
+  }
+): Promise<APIWarpperProps<GetFellowshipReferendumsProps>> {
+  return await subscanFetch(hostname, 'api/scan/fellowship/referendums', params)
+}
+
+export const useFellowshipReferendums = (hostname = '', params: Parameters<typeof getFellowshipReferendums>[1]) => {
+  return useSWR<APIWarpperProps<GetFellowshipReferendumsProps>, Error>([hostname, 'api/scan/fellowship/referendums', params], swrFetcher)
+}
+
+/***** Referenda Referendum *****/
+export interface GetFellowshipReferendumProps extends ReferendaReferendumV2Detail {}
+
+export async function getFellowshipReferendum(
+  hostname = '',
+  params: {
+    referendum_index: number
+  }
+): Promise<APIWarpperProps<GetFellowshipReferendumProps>> {
+  return await subscanFetch(hostname, 'api/scan/fellowship/referendum', params)
+}
+
+export const useFellowshipReferendum = (hostname = '', params: Parameters<typeof getFellowshipReferendum>[1]) => {
+  return useSWR<APIWarpperProps<GetFellowshipReferendumProps>, Error>([hostname, 'api/scan/fellowship/referendum', params], swrFetcher)
+}
+
+/***** Fellowship Tracks *****/
+export type GetFellowshipTracksProps = Record<string, ReferendumTrack>
+
+export async function getFellowshipTracks(hostname = ''): Promise<APIWarpperProps<GetFellowshipTracksProps>> {
+  return await subscanFetch(hostname, 'api/scan/fellowship/tracks')
+}
+
+export const useFellowshipTracks = (hostname = '') => {
+  return useSWR<APIWarpperProps<GetFellowshipTracksProps>, Error>([hostname, 'api/scan/fellowship/tracks'], swrFetcher)
+}
+
+/***** Referenda Referendum *****/
+export interface GetFellowshipVotesProps {
+  count: number
+  list: ReferendaVotesV2[]
+}
+
+export async function getFellowshipVotes(
+  hostname = '',
+  params: {
+    referendum_index: number
+    page: number
+    row: number
+    /** conviction amount votes */
+    sort?: string
+    /** valid invalid */
+    valid?: string
+  }
+): Promise<APIWarpperProps<GetFellowshipVotesProps>> {
+  return await subscanFetch(hostname, 'api/scan/fellowship/votes', params)
+}
+
+export const useFellowshipVotes = (hostname = '', params: Parameters<typeof getFellowshipVotes>[1]) => {
+  return useSWR<APIWarpperProps<GetReferendaVotesProps>, Error>([hostname, 'api/scan/fellowship/votes', params], swrFetcher)
+}
+
+/***** Referenda Referendum *****/
+export interface GetReferendaReferendumProps extends ReferendaReferendumV2Detail {}
+
+export async function getReferendaReferendum(
+  hostname = '',
+  params: {
+    referendum_index: number
+  }
+): Promise<APIWarpperProps<GetReferendaReferendumProps>> {
+  return await subscanFetch(hostname, 'api/scan/referenda/referendum', params)
+}
+
+export const useReferendaReferendum = (hostname = '', params: Parameters<typeof getReferendaReferendum>[1]) => {
+  return useSWR<APIWarpperProps<GetReferendaReferendumProps>, Error>([hostname, 'api/scan/referenda/referendum', params], swrFetcher)
+}
+
+/***** Referenda Referendum *****/
+export interface GetReferendaVotesProps {
+  count: number
+  list: ReferendaVotesV2[]
+}
+
+export async function getReferendaVotes(
+  hostname = '',
+  params: {
+    referendum_index: number
+    page: number
+    row: number
+    /** conviction amount votes */
+    sort?: string
+    /** valid invalid */
+    valid?: string
+  }
+): Promise<APIWarpperProps<GetReferendaVotesProps>> {
+  return await subscanFetch(hostname, 'api/scan/referenda/votes', params)
+}
+
+export const useReferendaVotes = (hostname = '', params: Parameters<typeof getReferendaVotes>[1]) => {
+  return useSWR<APIWarpperProps<GetReferendaVotesProps>, Error>([hostname, 'api/scan/referenda/votes', params], swrFetcher)
 }

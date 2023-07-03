@@ -2,11 +2,11 @@
 
 import React from 'react'
 import { BareProps, BareServerSideProps } from '@/types/page'
-import { unwrap, useDemocracyVotes } from '@/utils/api'
+import { unwrap, useReferendaVotes } from '@/utils/api'
 import { PAGE_ROW } from '@/config/constants'
 import { Button, LinkRouter } from '@/ui'
 import { Empty } from '@/components/Empty'
-import ReferendaVotes from './ReferendaVotes'
+import ReferendaVotes from './ReferendaV2Votes'
 import { Loading } from '@/components/Loading'
 
 interface Props extends BareProps, BareServerSideProps {
@@ -16,8 +16,8 @@ interface Props extends BareProps, BareServerSideProps {
   referendumIndex: number
 }
 
-const ReferendaVotesClient: React.FC<Props> = ({ host, page = 0, row = PAGE_ROW, referendumIndex, chain }) => {
-  const { data, error, isLoading } = useDemocracyVotes(host, {
+const ReferendaV2VotesClient: React.FC<Props> = ({ host, page = 0, row = PAGE_ROW, referendumIndex, chain }) => {
+  const { data, error, isLoading } = useReferendaVotes(host, {
     page,
     row,
     referendum_index: referendumIndex,
@@ -30,13 +30,15 @@ const ReferendaVotesClient: React.FC<Props> = ({ host, page = 0, row = PAGE_ROW,
   return (
     <div>
       <ReferendaVotes votes={votes?.list || []} chain={chain} />
-      <LinkRouter href={`/referenda_vote/${referendumIndex}`}>
-        <Button outline className="mt-4">
-          View Other {votes.count - row} Voting Details
-        </Button>
-      </LinkRouter>
+      {votes.count - row > 0 && (
+        <LinkRouter href={`/referenda_v2_vote/${referendumIndex}`}>
+          <Button outline className="mt-4">
+            View Other {votes.count - row} Voting Details
+          </Button>
+        </LinkRouter>
+      )}
     </div>
   )
 }
 
-export default ReferendaVotesClient
+export default ReferendaV2VotesClient

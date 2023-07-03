@@ -896,3 +896,86 @@ export interface RewardSlash {
   params: string
   stash: string
 }
+
+export interface DemocracyReferendumV2 {
+  referendum_index: number
+  created_block: BlockNumber
+  created_block_timestamp: Timestamp
+  origins_id: number
+  origins: string
+  account: AccountDisplay
+  call_module: string
+  call_name: string
+  /** status enum: Submitted Decision Confirm Approved ConfirmAborted Rejected Cancelled Timeout Killed Executed ExecutedFailed */
+  status: string
+  latest_block_num: BlockNumber
+  latest_block_timestamp: Timestamp
+}
+
+export interface ReferendumTrack {
+  name: string
+  current_deciding: number
+  max_deciding: number
+  decision_deposit: string
+  prepare_period: number
+  decision_period: number
+  confirm_period: number
+  min_enactment_period: number
+  min_approval: {
+    Reciprocal: {
+      factor: string
+      x_offset: string
+      y_offset: string
+    }
+  }
+  min_support: {
+    LinearDecreasing: {
+      length: number
+      floor: number
+      ceil: number
+    }
+  }
+}
+
+export interface ReferendumTrackWithId extends ReferendumTrack {
+  id: string | number
+}
+
+export interface ReferendaReferendumV2Detail {
+  referendum_index: number
+  created_block: number
+  created_block_timestamp: number
+  origins_id: number
+  origins: string
+  account: AccountDisplay
+  deposit_balance: string
+  decision_deposit_account: AccountDisplay
+  decision_deposit_balance: string
+  status: string
+  latest_block_num: number
+  latest_block_timestamp: number
+  pre_image: ProposalPreImage
+  beneficiary: AccountDisplay
+  beneficiary_amount: string
+  ayes_amount: string
+  ayes_count: number
+  nays_amount: string
+  nays_count: number
+  abstains_count: number
+  support_amount: string
+  bare_ayes: string
+  timeline: ProposalTimeline[]
+}
+
+export interface ReferendaVotesV2 {
+  account: AccountDisplay
+  delegate: AccountDisplay
+  amount: string
+  votes: string
+  /** Ayes Nays Abstains */
+  status: 'Ayes' | 'Nays' | 'Abstains'
+  valid: boolean
+  extrinsic_index: string
+  conviction: string
+  voting_time: Timestamp
+}

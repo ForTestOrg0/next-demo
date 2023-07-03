@@ -13,9 +13,10 @@ interface Props extends BareProps {
   nayWithoutConviction?: string
   turnout?: string
   threshold?: string
+  symbol?: string
 }
 
-const VotePredict: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => {
+const VotePredict: React.FC<Props> = ({ ayeAmount, nayAmount, className, symbol }) => {
   const currentProgress = useMemo(() => {
     if (ayeAmount == '0') {
       if (nayAmount == '0') {
@@ -50,14 +51,18 @@ const VotePredict: React.FC<Props> = ({ ayeAmount, nayAmount, className }) => {
             <Image src={ayeImg} width={16} height={16} alt={'aye'} />
           </div>
           <div className="mt-1">Aye</div>
-          <div className="font-semibold">{ayeAmount}</div>
+          <div className="font-semibold">
+            {ayeAmount} {symbol}
+          </div>
         </div>
         <div className="flex absolute top-2.5 flex-col right-0 items-end">
           <div className="w-9 h-7 rounded-r flex justify-center items-center bg-sub-error-light">
             <Image src={nayImg} width={16} height={16} alt={'nay'} />
           </div>
           <div className="mt-1">Nay</div>
-          <div className="font-semibold">{nayAmount}</div>
+          <div className="font-semibold">
+            {nayAmount} {symbol}
+          </div>
         </div>
       </div>
     </div>

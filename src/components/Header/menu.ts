@@ -37,6 +37,8 @@ export const xcmLinks = [
 ]
 
 export const govLinks = [
+  { href: '/referenda_v2', label: 'Referenda V2' },
+  { href: '/fellowship', label: 'Fellowship' },
   { href: '/democracy_proposal', label: 'Democracy Proposals' },
   { href: '/referenda', label: 'Democracy Referenda' },
   { href: '/council', label: 'Council Motions' },

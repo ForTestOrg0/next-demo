@@ -28,3 +28,12 @@ export function trimSpecialChar(str: string) {
   }
   return result
 }
+
+export function toBigCamel(name: string, split = '') {
+  if (!name) return ''
+
+  const smallCamel = name.replace(/_(\w)/g, function (_all, letter) {
+    return `${split}${letter.toUpperCase()}`
+  })
+  return smallCamel.substr(0, 1).toUpperCase() + smallCamel.substr(1)
+}
