@@ -27,16 +27,15 @@ export function getSubdomainFromHeaders(headers: RequestHeaders, forceNetwork?: 
   if (forceNetwork) return forceNetwork
 
   const chainOnCookies = docCookies.getItem(headers.cookie || '', CURRENT_CHAIN_COOKIE_KEY)
+  const isTestWebsite =
+    hostname.indexOf('pages.dev') > -1 ||
+    hostname.indexOf('localhost') > -1 ||
+    hostname.indexOf('127.0.0.1') > -1 ||
+    hostname.indexOf('0.0.0.0') > -1 ||
+    hostname.split('.').length === 1
 
-  if (
-    (hostname.indexOf('pages.dev') > -1 ||
-      hostname.indexOf('localhost') > -1 ||
-      hostname.indexOf('127.0.0.1') > -1 ||
-      hostname.indexOf('0.0.0.0') > -1 ||
-      hostname.split('.').length === 1) &&
-    chainOnCookies
-  )
-    return chainOnCookies
+  if (isTestWebsite && chainOnCookies) return chainOnCookies
+  if (isTestWebsite) return 'localhost'
 
   return hostname
 }

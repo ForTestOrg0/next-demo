@@ -27,8 +27,8 @@ function DonatePopver({ symbol, address }: { symbol: string; address: string }) 
 }
 
 function ThemeSwitcher() {
-  const [isDark, SetIsDark] = useState(true)
-  const { isDarkMode, enable, disable } = useDarkMode()
+  const [isDark, SetIsDark] = useState(false)
+  const { isDarkMode, enable, disable } = useDarkMode(false)
 
   const enableDark = useCallback(() => {
     document.documentElement.classList.add('dark')
