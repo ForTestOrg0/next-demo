@@ -4,6 +4,7 @@ import { Table, Td, Th, Tr } from '@/ui'
 import { AccountLink, XCMMessageLink } from '@/components/Links'
 import { TimeFromNow } from '@/components/Time'
 import { XCM } from '@/types/api'
+import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { Identicon } from '@/components/Pages/XCM/ParachainIdenticon'
 import { Balance } from '@/components/Balance'
 import { TransferStatus } from './TransferStatus'
@@ -17,6 +18,7 @@ interface Props extends BareProps, BareServerSideProps {
 }
 
 const Page: React.FC<Props> = ({ transfers, token, disableColumn, chain }) => {
+  const relayChainSubdomain = getRelaySubdomainFromSubdomain(chain.chainConf.subdomain[0])
   return (
     <Table className="w-full">
       <tbody>
@@ -34,7 +36,7 @@ const Page: React.FC<Props> = ({ transfers, token, disableColumn, chain }) => {
           return (
             <Tr key={transfer.unique_id}>
               <Td>
-                <XCMMessageLink address={`${chain.chainConf.id}-${transfer.unique_id}`}>{formatHash(transfer.message_hash)}</XCMMessageLink>
+                <XCMMessageLink address={`${relayChainSubdomain}-${transfer.unique_id}`}>{formatHash(transfer.message_hash)}</XCMMessageLink>
               </Td>
               <Td>
                 <Identicon address={transfer.from_account_id} />

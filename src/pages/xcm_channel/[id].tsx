@@ -2,6 +2,7 @@ import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPane
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getXCMChannel } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
+import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { XCMChanel } from '@/types/api'
 import { BareServerSideProps } from '@/types/page'
 import { TimeFromNow } from '@/components/Time'
@@ -30,11 +31,12 @@ export const getServerSideProps: GetServerSideProps<
     }
   }
 
-  const data = await getXCMChannel(subdomain, {
+  const chainProps = await getChainProps(subdomain)
+  const relaySubdomain = getRelaySubdomainFromSubdomain(subdomain)
+  const data = await getXCMChannel(relaySubdomain, {
     recipient: +channelId.split('-')[0],
     sender: +channelId.split('-')[1],
   })
-  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

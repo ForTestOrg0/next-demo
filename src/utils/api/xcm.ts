@@ -26,6 +26,7 @@ export async function getXCMList(
   params: {
     address?: boolean
     dest_para_id?: number
+    filter_para_id?: number
     origin_para_id?: number
     protocol?: string
     row: number
@@ -47,6 +48,7 @@ export interface GetXCMChannelsProps {
 export async function getXCMChannels(
   hostname = '',
   params: {
+    filter_para_id?: number
     recipient?: boolean
     sender?: string
     status?: string
@@ -74,11 +76,14 @@ export const useXCMChannel = (hostname = '', params: Parameters<typeof getXCMLis
 }
 
 export interface GetDailyXCMStateProps {
-  all: DailyXCMStatistics[]
+  all?: DailyXCMStatistics[]
+  send?: DailyXCMStatistics[]
+  receiver?: DailyXCMStatistics[]
 }
 export async function getDailyXCMState(
   hostname = '',
   params: {
+    filter_para_id?: number
     start: string
     end: string
   }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { BareProps, BareServerSideProps } from '@/types/page'
 import { unwrap, useXCMChannels } from '@/utils/api'
+import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { Token } from '@/types/api'
 import { TAB_ROW } from '@/config/constants'
 import { Loading } from '@/components/Loading'
@@ -18,7 +19,9 @@ interface Props extends BareProps, BareServerSideProps, UseXCMChannelsArgs {
 }
 
 const Page: React.FC<Props> = ({ host, token, type = 'table', setChannelCount, chain, ...props }) => {
-  const { data, error, isLoading } = useXCMChannels(host, {
+  const relaySubdomain = getRelaySubdomainFromSubdomain(host)
+  const { data, error, isLoading } = useXCMChannels(relaySubdomain, {
+    filter_para_id: relaySubdomain === host ? undefined : chain?.chainConf.parachain?.id,
     ...props,
   })
   const transfers = unwrap(data)

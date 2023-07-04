@@ -19,7 +19,7 @@ export interface Chain {
   }
   donate: string
   parachain?: {
-    id: string | number
+    id: number
     relaychain: RelaychainName
   }
   modules?: {

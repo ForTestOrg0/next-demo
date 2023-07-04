@@ -2,6 +2,7 @@ import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPane
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getXCMInfo } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
+import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { XCM } from '@/types/api'
 import { BareServerSideProps } from '@/types/page'
 import { Identicon } from '@/components/Pages/XCM/ParachainIdenticon'
@@ -27,11 +28,11 @@ export const getServerSideProps: GetServerSideProps<
       notFound: true,
     }
   }
-
-  const data = await getXCMInfo(subdomain, {
+  const chainProps = await getChainProps(subdomain)
+  const relaySubdomain = getRelaySubdomainFromSubdomain(subdomain)
+  const data = await getXCMInfo(relaySubdomain, {
     unique_id: msgId.split('-')[1],
   })
-  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

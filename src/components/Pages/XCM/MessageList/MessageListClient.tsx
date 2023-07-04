@@ -1,6 +1,7 @@
 import React from 'react'
 import { BareProps, BareServerSideProps } from '@/types/page'
 import { unwrap, useXCMList } from '@/utils/api'
+import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { Token } from '@/types/api'
 import { Loading } from '@/components/Loading'
 import { Empty } from '@/components/Empty'
@@ -18,7 +19,9 @@ interface Props extends BareProps, BareServerSideProps, UseXCMListArgs {
 }
 
 const Page: React.FC<Props> = ({ host, token, type = 'table', setTransferCount, disableColumn, chain, ...props }) => {
-  const { data, error, isLoading } = useXCMList(host, {
+  const relaySubdomain = getRelaySubdomainFromSubdomain(host)
+  const { data, error, isLoading } = useXCMList(relaySubdomain, {
+    filter_para_id: relaySubdomain === host ? undefined : chain?.chainConf.parachain?.id,
     ...props,
   })
   const transfers = unwrap(data)

@@ -17,3 +17,11 @@ export function getChainConfigByParachainId(parachainId: number | string, relayc
   }
   return null
 }
+
+export function getRelaySubdomainFromSubdomain(subdomain: string) {
+  const result = CHAINS.filter((chain) => chain.subdomain.indexOf(subdomain) > -1)
+  if (result.length > 0) {
+    return result[0].parachain?.relaychain || ''
+  }
+  return ''
+}

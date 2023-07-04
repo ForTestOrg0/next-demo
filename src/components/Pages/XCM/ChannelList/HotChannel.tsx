@@ -3,6 +3,7 @@ import { Token, BareProps, BareServerSideProps } from '@/types/page'
 import { Text, Link } from '@/ui'
 import { AccountLink, XCMChannelLink } from '@/components/Links'
 import { XCMChanel } from '@/types/api'
+import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { Identicon } from '@/components/Pages/XCM/ParachainIdenticon'
 import { TransferStatus } from './TransferStatus'
 import { ArrowRightBoldIcon } from '@/ui/Svg'
@@ -17,12 +18,13 @@ interface Props extends BareProps, BareServerSideProps {
 }
 
 const Page: React.FC<Props> = ({ channels, token, current = 1, pageSize = 10, chain }) => {
+  const relaySubdomain = getRelaySubdomainFromSubdomain(chain.chainConf.subdomain[0])
   return (
     <div className="w-full">
       {channels.map((item) => {
-        const sendProjectInfo = getParachainProjectInfoById(chain.chainConf.id as RelaychainName, item.sender) || DEFAULT_PARACHAIN
-        const sendChainConfig = getChainConfigByParachainId(item.sender, chain.chainConf.id as RelaychainName)
-        const toChainConfig = getChainConfigByParachainId(item.recipient, chain.chainConf.id as RelaychainName)
+        const sendProjectInfo = getParachainProjectInfoById(relaySubdomain as RelaychainName, item.sender) || DEFAULT_PARACHAIN
+        const sendChainConfig = getChainConfigByParachainId(item.sender, relaySubdomain as RelaychainName)
+        const toChainConfig = getChainConfigByParachainId(item.recipient, relaySubdomain as RelaychainName)
         const barStyle = {
           background: `linear-gradient(90deg, ${sendChainConfig?.theme.colors[0]} 0%, ${toChainConfig?.theme.colors[0]} 100%)`,
         }

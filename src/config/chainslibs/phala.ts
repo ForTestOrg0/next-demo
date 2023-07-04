@@ -20,6 +20,10 @@ export const Phala: Chain = {
     price: 'https://www.coingecko.com/en/coins/phala-network',
   },
   donate: '443LLHfYNKPf5bVVLUCiobUn1YgvGrFt1pYrDSxkZMwPa3Bq',
+  parachain: {
+    id: 2035,
+    relaychain: 'polkadot',
+  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

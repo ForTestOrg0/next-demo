@@ -3,6 +3,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getXCMChannels, GetXCMChannelsProps } from '@/utils/api'
 import { PAGE_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
+import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { BareServerSideProps } from '@/types/page'
 import { XCMChanel } from '@/types/api'
 import { ChannelList } from '@/components/Pages/XCM/ChannelList'
@@ -12,9 +13,12 @@ export const getServerSideProps: GetServerSideProps<
   { data: GetXCMChannelsProps; virtualTableData: XCMChanel[]; page: number } & BareServerSideProps
 > = async (context) => {
   const subdomain = getSubdomainFromHeaders(context.req.headers)
+  const relaySubdomain = getRelaySubdomainFromSubdomain(subdomain)
   const page = parseInt(context.query.page as string) || 1
-  let data = await getXCMChannels(subdomain, {})
   const chainProps = await getChainProps(subdomain)
+  let data = await getXCMChannels(relaySubdomain, {
+    filter_para_id: relaySubdomain === subdomain ? undefined : chainProps?.chainConf.parachain?.id,
+  })
 
   if (!data || data.code !== 0 || !chainProps) {
     return {

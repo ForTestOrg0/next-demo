@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Boundary, PageContent, Container, Flex, Pagination, Text, Button } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getXCMList, GetXCMListProps } from '@/utils/api'
+import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { PAGE_ROW, TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
@@ -18,11 +19,13 @@ export const getServerSideProps: GetServerSideProps<{ data: GetXCMListProps; hos
 ) => {
   const page = parseInt(context.query.page as string) || 1
   const subdomain = getSubdomainFromHeaders(context.req.headers)
-  let data = await getXCMList(subdomain, {
+  const relaySubdomain = getRelaySubdomainFromSubdomain(subdomain)
+  const chainProps = await getChainProps(subdomain)
+  let data = await getXCMList(relaySubdomain, {
     row: PAGE_ROW,
     page: page - 1,
+    filter_para_id: relaySubdomain === subdomain ? undefined : chainProps?.chainConf.parachain?.id,
   })
-  const chainProps = await getChainProps(subdomain)
 
   if (!data || data.code !== 0 || !chainProps) {
     return {
@@ -103,34 +106,36 @@ export default function Page({ host, data, chain, page }: InferGetServerSideProp
             </Boundary>
           </div>
         </Flex>
-        <div className="flex mb-4 mt-7 justify-between">
-          <div className="flex items-center">
-            <ParachainIcon className="w-5" />
-            <Text block bold className="ml-2 break-all">
-              Parachain
-            </Text>
-          </div>
-          <XCMParachainLink>
-            <Button outline className="">
-              View All
-            </Button>
-          </XCMParachainLink>
-        </div>
         {isParachain && (
-          <Boundary>
-            <ParachainListClient
-              host={host}
-              chain={chain}
-              type={'list'}
-              args={{
-                page: 0,
-                row: TAB_ROW,
-                ...parachainListStatusMap.xcm.args,
-              }}
-              disableColumn={parachainListStatusMap.xcm.disableColumn}
-              viewAllQuery={{ status: 'xcm' }}
-            />
-          </Boundary>
+          <>
+            <div className="flex mb-4 mt-7 justify-between">
+              <div className="flex items-center">
+                <ParachainIcon className="w-5" />
+                <Text block bold className="ml-2 break-all">
+                  Parachain
+                </Text>
+              </div>
+              <XCMParachainLink>
+                <Button outline className="">
+                  View All
+                </Button>
+              </XCMParachainLink>
+            </div>
+            <Boundary>
+              <ParachainListClient
+                host={host}
+                chain={chain}
+                type={'list'}
+                args={{
+                  page: 0,
+                  row: TAB_ROW,
+                  ...parachainListStatusMap.xcm.args,
+                }}
+                disableColumn={parachainListStatusMap.xcm.disableColumn}
+                viewAllQuery={{ status: 'xcm' }}
+              />
+            </Boundary>
+          </>
         )}
       </Container>
     </PageContent>
