@@ -93,7 +93,6 @@ const Chart: React.FC<Props> = ({ children, host, type = 'msg', chain, className
   const dailyData = getDailyData()
   if (isLoading) return <Loading />
   if (!dailyStatistics) return <Empty />
-  console.log(dailyData)
 
   return (
     <div className="w-full">
