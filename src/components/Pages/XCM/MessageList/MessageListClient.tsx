@@ -14,14 +14,15 @@ interface Props extends BareProps, BareServerSideProps, UseXCMListArgs {
   host: string
   token?: Token
   type?: string
+  paraId?: number
   setTransferCount?: (count: number) => void
   disableColumn?: Partial<Record<'version' | 'value', boolean>>
 }
 
-const Page: React.FC<Props> = ({ host, token, type = 'table', setTransferCount, disableColumn, chain, ...props }) => {
+const Page: React.FC<Props> = ({ host, token, type = 'table', setTransferCount, paraId, disableColumn, chain, ...props }) => {
   const relaySubdomain = getRelaySubdomainFromSubdomain(host)
   const { data, error, isLoading } = useXCMList(relaySubdomain, {
-    filter_para_id: relaySubdomain === host ? undefined : chain?.chainConf.parachain?.id,
+    filter_para_id: relaySubdomain === host ? paraId || undefined : chain?.chainConf.parachain?.id,
     ...props,
   })
   const transfers = unwrap(data)

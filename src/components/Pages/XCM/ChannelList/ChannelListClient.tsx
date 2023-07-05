@@ -15,13 +15,14 @@ interface Props extends BareProps, BareServerSideProps, UseXCMChannelsArgs {
   host: string
   token?: Token
   type?: string
+  paraId?: number
   setChannelCount?: (count: number) => void
 }
 
-const Page: React.FC<Props> = ({ host, token, type = 'table', setChannelCount, chain, ...props }) => {
+const Page: React.FC<Props> = ({ host, token, type = 'table', setChannelCount, paraId, chain, ...props }) => {
   const relaySubdomain = getRelaySubdomainFromSubdomain(host)
   const { data, error, isLoading } = useXCMChannels(relaySubdomain, {
-    filter_para_id: relaySubdomain === host ? undefined : chain?.chainConf.parachain?.id,
+    filter_para_id: relaySubdomain === host ? paraId || undefined : chain?.chainConf.parachain?.id,
     ...props,
   })
   const transfers = unwrap(data)
