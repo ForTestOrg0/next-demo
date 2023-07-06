@@ -18,8 +18,7 @@ const Component: React.FC<Props> = ({ bids, chain }) => {
           <Th>Bid Id</Th>
           <Th>Acution Index</Th>
           <Th>Lease Period</Th>
-          <Th>Para Id</Th>
-          <Th>Srouce</Th>
+          <Th>Bids</Th>
           <Th>Best Bid ({chain.nativeTokenConf.symbol})</Th>
           <Th>Campaign Status</Th>
         </Tr>
@@ -38,10 +37,8 @@ const Component: React.FC<Props> = ({ bids, chain }) => {
                 </Text>
               </Td>
               <Td>
-                <ParachainLink id={bid.para_id} />
+                <Text>{bid.bid_count}</Text>
               </Td>
-              <Td>{bid.source === 2 ? <CrowdloanLink id={bid.fund_id}>Crowdloan#{bid.fund_id}</CrowdloanLink> : <Text>Bid</Text>}</Td>
-
               <Td>
                 <Balance value={bid.amount} token={chain.nativeTokenConf} showSymbol={false} />
               </Td>

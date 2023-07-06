@@ -25,7 +25,7 @@ const Component: React.FC<Props> = ({ host, chain, args, viewAllQuery, disableCo
 
   return (
     <>
-      <CrowdloanList funds={funds.funds} chain={chain} disableColumn={disableColumn} />
+      <CrowdloanList type={viewAllQuery?.type} funds={funds.funds} chain={chain} disableColumn={disableColumn} />
       {funds.count - args.row > 0 && (
         <CrowdloanLink query={{ status: 'parachain', ...viewAllQuery }}>
           <Button outline className="mt-4">

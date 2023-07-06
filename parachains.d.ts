@@ -2,6 +2,7 @@ type ParachainProjectInfo = {
   ParaID: number
   'Project Name': string
   Logo?: string
+  logo?: any
   'Description (en)'?: string
   'Description (zh)'?: string
   'Parachain Crowdloans Allocation (en)'?: string

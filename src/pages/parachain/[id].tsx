@@ -1,17 +1,46 @@
 import React, { useState } from 'react'
-import { Boundary, PageContent, Container, Text, Flex, Button, TableCol, TrCol, TdCol, CopyBtn, Link } from '@/ui'
+import {
+  Boundary,
+  PageContent,
+  Container,
+  Text,
+  Flex,
+  Button,
+  TableCol,
+  TrCol,
+  TdCol,
+  CopyBtn,
+  Link,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/ui'
 import { Time, TimeFromNow } from '@/components/Time'
 import { Identicon } from '@/components/Identicon'
 import { getParachainInfo, GetParachainInfoProps } from '@/utils/api/parachain'
+import { getChainConfigByParachainId } from '@/config/chains'
+import { DEFAULT_PARACHAIN, getParachainProjectInfoById } from '@/config/parachains'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getChainProps } from '@/utils/chain'
 import { PAGE_ROW, TAB_ROW } from '@/config/constants'
 import { BareServerSideProps } from '@/types/page'
 import { MessageListClient } from '@/components/Pages/XCM/MessageList'
 import { ChannelListClient } from '@/components/Pages/XCM/ChannelList'
-import { TransfersIcon, HotIcon, DownloadCsvIcon, SandglassIcon } from '@/ui/Svg'
+import {
+  TransfersIcon,
+  HotIcon,
+  DownloadCsvIcon,
+  SandglassIcon,
+  GithubIcon,
+  LinkIcon,
+  TelegramIcon,
+  TwitterIcon,
+  MediumIcon,
+  DiscordIcon,
+} from '@/ui/Svg'
 import { PLOTimelineClient } from '@/components/Pages/Parachain/PLOTimeline'
 import { getSubdomainFromHeaders } from '@/utils/url'
+import { formatUrl } from '@/utils/formatText'
 import { XCMTransferListLink, XCMParachainLink, CrowdloanLink, BidLink } from '@/components/Links'
 import background from '@/styles/images/parachain/background.png'
 import avatar from '@/styles/images/parachain/avatar.png'
@@ -62,6 +91,10 @@ export const getServerSideProps: GetServerSideProps<
 
 export default function Page({ host, data, chain, paraId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const info = data?.chains?.[0]
+  const parachainInfo = {
+    ...getChainConfigByParachainId(+paraId, chain.chainConf.id as RelaychainName),
+    ...(getParachainProjectInfoById(chain.chainConf.id as RelaychainName, +paraId) || DEFAULT_PARACHAIN),
+  }
   const [transferCount, setTransferCount] = useState(0)
   const [channelCount, setChannelCount] = useState(0)
   const bgStyle = { background: `url(${background.src})` + ' no-repeat center center', backgroundSize: 'cover' }
@@ -84,19 +117,70 @@ export default function Page({ host, data, chain, paraId }: InferGetServerSidePr
           <div className="rounded bg-sub-white border border-sub-b4 shadow-module flex flex-col w-[390px]" style={bgStyle}>
             <div className="flex-1"></div>
             <div className="flex items-center px-5 pt-5" style={avatarBgStyle}>
-              <img className="rounded-[50%] border border-sub-b3" src={avatar.src} alt={'avatar'} style={{ height: 60 }} />
-              <span className="ml-5 text-lg font-semibold">Unknown</span>
+              <img
+                className="rounded-[50%] border border-sub-b3"
+                src={parachainInfo.logo.default.src || avatar.src}
+                alt={'avatar'}
+                style={{ height: 60 }}
+              />
+              <span className="ml-5 text-lg font-semibold">{parachainInfo['Project Name'] || parachainInfo.name || 'Unknown'}</span>
             </div>
             <div className="bg-white px-5 pb-5">
-              <div className="text-sm mt-2 pt-2 border-t border-sub-b4">
-                This is a mysterious project, Subscan cannot get the true identity of this Para ID. Please contact the developer team to submit
-                project information here and let us know more.
-              </div>
-              <div>
-                <Link external href="https://github.com/subscan-explorer/projects-info">
-                  <Button className="mt-2 w-full">Submit Project Info</Button>
-                </Link>
-              </div>
+              <Tooltip>
+                <TooltipTrigger>
+                  <div className="text-sm mt-2 pt-2 border-t border-sub-b4 line-clamp-3">
+                    {parachainInfo['Description (en)'] ||
+                      'This is a mysterious project, Subscan cannot get the true identity of this Para ID. Please contact the developer team to submit project information here and let us know more.'}
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <div className="w-80">
+                    {parachainInfo['Description (en)'] ||
+                      'This is a mysterious project, Subscan cannot get the true identity of this Para ID. Please contact the developer team to submit project information here and let us know more.'}
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+              {(parachainInfo['Github Link'] || parachainInfo['Twitter Link']) && (
+                <div className="flex">
+                  {parachainInfo['Website Link'] && (
+                    <Link external href={formatUrl(parachainInfo['Website Link'])} className="mt-2 mr-3 text-sub-network/50">
+                      <LinkIcon className="w-5" />
+                    </Link>
+                  )}
+                  {parachainInfo['Twitter Link'] && (
+                    <Link external href={formatUrl(parachainInfo['Twitter Link'])} className="mt-2 mr-3 text-sub-network/50">
+                      <TwitterIcon className="w-5" />
+                    </Link>
+                  )}
+                  {parachainInfo['Telegram Link'] && (
+                    <Link external href={formatUrl(parachainInfo['Telegram Link'])} className="mt-2 mr-3 text-sub-network/50">
+                      <TelegramIcon className="w-5" />
+                    </Link>
+                  )}
+                  {parachainInfo['Discord Link'] && (
+                    <Link external href={formatUrl(parachainInfo['Discord Link'])} className="mt-2 mr-3 text-sub-network/50">
+                      <DiscordIcon className="w-5" />
+                    </Link>
+                  )}
+                  {parachainInfo['Medium Link'] && (
+                    <Link external href={formatUrl(parachainInfo['Medium Link'])} className="mt-2 mr-3 text-sub-network/50">
+                      <MediumIcon className="w-5" />
+                    </Link>
+                  )}
+                  {parachainInfo['Github Link'] && (
+                    <Link external href={formatUrl(parachainInfo['Github Link'])} className="mt-2 mr-3 text-sub-network/50">
+                      <GithubIcon className="w-5" />
+                    </Link>
+                  )}
+                </div>
+              )}
+              {!parachainInfo['Description (en)'] && !parachainInfo['pr'] && (
+                <div>
+                  <Link external href="https://github.com/subscan-explorer/projects-info">
+                    <Button className="mt-2 w-full">Submit Project Info</Button>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex-1">
@@ -120,6 +204,26 @@ export default function Page({ host, data, chain, paraId }: InferGetServerSidePr
                     </TrCol>
                   ) : null}
                   <TrCol>
+                    <TdCol className="font-semibold whitespace-nowrap">{`Sovereign Account (${chain.chainConf.name})`}</TdCol>
+                    <TdCol>
+                      <Identicon account={info?.fund_account_display} />
+                    </TdCol>
+                  </TrCol>
+                  <TrCol>
+                    <TdCol className="font-semibold whitespace-nowrap">{`Sovereign Account (${
+                      parachainInfo['Project Name'] || parachainInfo.name || paraId
+                    })`}</TdCol>
+                    <TdCol>
+                      <Identicon account={info?.fund_account_display} />
+                    </TdCol>
+                  </TrCol>
+                  <TrCol>
+                    <TdCol className="font-semibold whitespace-nowrap">Sovereign Account (Parachain)</TdCol>
+                    <TdCol>
+                      <Identicon account={info?.fund_account_display} />
+                    </TdCol>
+                  </TrCol>
+                  <TrCol>
                     <TdCol className="font-semibold whitespace-nowrap">Register Status</TdCol>
                     <TdCol>{info?.status}</TdCol>
                   </TrCol>
@@ -131,7 +235,7 @@ export default function Page({ host, data, chain, paraId }: InferGetServerSidePr
                   ) : null}
                   <TrCol>
                     <TdCol className="font-semibold whitespace-nowrap">Validator</TdCol>
-                    <TdCol>{info?.validators.length}</TdCol>
+                    <TdCol>{info?.validators?.length}</TdCol>
                   </TrCol>
                   {isParachain() ? (
                     <TrCol>

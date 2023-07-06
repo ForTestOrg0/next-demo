@@ -43,7 +43,7 @@ export const CrowdloanTimelineList: React.FC<Props> = ({ children, className, ch
                     module: timeline.module_name,
                     event: timeline.event_name,
                   }}>
-                  {timeline.module_name} (${timeline.event_name})
+                  {timeline.module_name} ({timeline.event_name})
                 </EventLink>
               </Td>
             </Tr>

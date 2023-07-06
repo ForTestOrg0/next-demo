@@ -52,7 +52,7 @@ export default function Page({ chain, page, host }: InferGetServerSidePropsType<
                     ...crowdloanListStatusMap.active.args,
                   }}
                   // disableColumn={crowdloanListStatusMap.active.disableColumn}
-                  viewAllQuery={{ status: 'parachain' }}
+                  viewAllQuery={{ status: 'parachain', type: 'active' }}
                 />
               </TabPanel>
               <TabPanel>
@@ -78,7 +78,7 @@ export default function Page({ chain, page, host }: InferGetServerSidePropsType<
                     ...crowdloanListStatusMap.retired.args,
                   }}
                   disableColumn={crowdloanListStatusMap.retired.disableColumn}
-                  viewAllQuery={{ status: 'registered' }}
+                  viewAllQuery={{ status: 'registered', type: 'retired' }}
                 />
               </TabPanel>
             </TabPanels>

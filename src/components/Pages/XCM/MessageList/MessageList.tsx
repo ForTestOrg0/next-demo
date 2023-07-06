@@ -32,7 +32,7 @@ const Page: React.FC<Props> = ({ transfers, token, disableColumn, chain }) => {
           {!disableColumn?.version && <Th>Version</Th>}
           <Th>Result</Th>
         </Tr>
-        {transfers.map((transfer) => {
+        {transfers?.map((transfer) => {
           return (
             <Tr key={transfer.unique_id}>
               <Td>

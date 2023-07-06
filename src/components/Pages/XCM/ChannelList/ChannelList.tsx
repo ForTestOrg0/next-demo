@@ -32,7 +32,7 @@ const Page: React.FC<Props> = ({ channels, token, current = 1, pageSize = 10, ch
           <Th>Active Time</Th>
           <Th>Status</Th>
         </Tr>
-        {channels.map((item, index) => {
+        {channels?.map((item, index) => {
           return (
             <Tr key={`${item.sender}-${item.recipient}`}>
               <Td>{getRowIndex(index)}</Td>

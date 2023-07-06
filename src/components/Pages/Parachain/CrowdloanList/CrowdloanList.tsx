@@ -1,6 +1,7 @@
 import React from 'react'
 import { BareProps, BareServerSideProps } from '@/types/page'
 import { Button, Table, Td, Text, Th, Tr } from '@/ui'
+import { countDownByBlock } from '@/utils/time'
 import { CrowdloanLink, ParachainLink } from '@/components/Links'
 import { DEFAULT_PARACHAIN, getParachainProjectInfoById } from '@/config/parachains'
 import { Identicon } from '@/components/Identicon'
@@ -28,10 +29,11 @@ export const crowdloanListStatusMap = {
 
 interface Props extends BareProps, BareServerSideProps {
   funds: ParachainFund[]
+  type?: string
   disableColumn?: ParachainCrowdloadDisableColumn
 }
 
-const Component: React.FC<Props> = ({ children, className, chain, style, funds }) => {
+const Component: React.FC<Props> = ({ children, className, chain, type, style, funds }) => {
   return (
     <Table className="w-full">
       <tbody>
@@ -66,21 +68,29 @@ const Component: React.FC<Props> = ({ children, className, chain, style, funds }
                 </Text>
               </Td>
               <Td>
-                <Balance value={fund.balance} token={chain.nativeTokenConf} showSymbol={false} />
+                {type === 'retired' ? (
+                  <Balance value={fund.raised} token={chain.nativeTokenConf} showSymbol={false} />
+                ) : (
+                  <Balance value={fund.balance} token={chain.nativeTokenConf} showSymbol={false} />
+                )}
               </Td>
               <Td>
                 <Balance value={fund.cap} token={chain.nativeTokenConf} showSymbol={false} />
               </Td>
               <Td>
-                <Text>{fund.end_block}</Text>
+                <Text>{countDownByBlock(fund.end_block, chain.metadata.blockNum, chain.metadata.avgBlockTime)}</Text>
               </Td>
               <Td>
-                <CrowdloanLink id={fund.fund_id} query={{ tab: 'contributor' }} />
-              </Td>
-              <Td>
-                <CrowdloanLink id={fund.fund_id} query={{ tab: 'contribute' }}>
-                  <Button outline>Contribute</Button>
+                <CrowdloanLink id={fund.fund_id} query={{ tab: 'contributor' }}>
+                  {fund.contributors}
                 </CrowdloanLink>
+              </Td>
+              <Td>
+                {type === 'active' ? (
+                  <CrowdloanLink id={fund.fund_id} query={{ tab: 'contribute' }}>
+                    <Button outline>Contribute</Button>
+                  </CrowdloanLink>
+                ) : null}
               </Td>
             </Tr>
           )

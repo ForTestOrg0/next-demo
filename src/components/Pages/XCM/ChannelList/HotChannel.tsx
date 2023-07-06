@@ -21,7 +21,7 @@ const Page: React.FC<Props> = ({ channels, token, current = 1, pageSize = 10, ch
   const relaySubdomain = getRelaySubdomainFromSubdomain(chain.chainConf.subdomain[0])
   return (
     <div className="w-full">
-      {channels.map((item) => {
+      {channels?.map((item) => {
         const sendProjectInfo = getParachainProjectInfoById(relaySubdomain as RelaychainName, item.sender) || DEFAULT_PARACHAIN
         const sendChainConfig = getChainConfigByParachainId(item.sender, relaySubdomain as RelaychainName)
         const toChainConfig = getChainConfigByParachainId(item.recipient, relaySubdomain as RelaychainName)

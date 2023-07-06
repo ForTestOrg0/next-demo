@@ -14,6 +14,14 @@ export function formatHash(hash: string, units = 12) {
   }
 }
 
+export function formatUrl(url: string) {
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  } else {
+    return 'http://' + url
+  }
+}
+
 export function trimSpecialChar(str: string) {
   let result = str || ''
   if (result) {

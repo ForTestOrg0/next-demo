@@ -26,12 +26,12 @@ const Page: React.FC<Props> = ({ host, token, type = 'table', setChannelCount, p
     ...props,
   })
   const transfers = unwrap(data)
-  setChannelCount && setChannelCount(transfers?.list.length || 0)
+  setChannelCount && setChannelCount(transfers?.list?.length || 0)
   const page = 1
   if (isLoading) return <Loading />
   if (!transfers) return <Empty />
-  const virtualTableData = transfers.list.filter((x, i) => i >= TAB_ROW * (page - 1) && i < TAB_ROW * page)
-  let count = transfers?.list.length
+  const virtualTableData = transfers.list?.filter((x, i) => i >= TAB_ROW * (page - 1) && i < TAB_ROW * page)
+  let count = transfers?.list?.length
   return (
     <div>
       {type === 'table' && (

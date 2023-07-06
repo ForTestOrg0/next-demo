@@ -19,7 +19,7 @@ interface Props extends BareProps, BareServerSideProps {
 const Page: React.FC<Props> = ({ transfers, token, disableColumn, chain }) => {
   return (
     <div className="w-full">
-      {transfers.map((transfer) => {
+      {transfers?.map((transfer) => {
         return (
           <div key={transfer.unique_id} className="flex justify-between py-5 h-24 border-sub-b4 border-b">
             <div className="transfer-item-left flex-vertical">

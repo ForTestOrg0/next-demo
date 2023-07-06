@@ -662,6 +662,7 @@ export interface ParachainFund {
   end_block: number
   raised: string
   balance: string
+  contributors: number
   status: number
   start_block: number
   start_block_at: number

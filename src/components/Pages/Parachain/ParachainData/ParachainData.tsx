@@ -19,12 +19,14 @@ export const ParachainData: React.FC<Props> = ({ chainInfo }) => {
             <ParachainLink id={chainInfo.para_id} />
           </TdCol>
         </TrCol>
-        <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">Fund Account</TdCol>
-          <TdCol>
-            <Identicon account={chainInfo.fund_account_display} />
-          </TdCol>
-        </TrCol>
+        {chainInfo.fund_account && (
+          <TrCol>
+            <TdCol className="font-semibold whitespace-nowrap">Fund Account</TdCol>
+            <TdCol>
+              <Identicon account={chainInfo.fund_account_display} />
+            </TdCol>
+          </TrCol>
+        )}
         <TrCol>
           <TdCol className="font-semibold whitespace-nowrap">Head Data</TdCol>
           <TdCol>
