@@ -58,11 +58,12 @@ const Legend: React.FC<LegendProps> = ({ children, title, value, color, classNam
 export const InsightsAccount: React.FC<Props> = ({ children, host, chain, dataStatistics, className, args }) => {
   const { data, error, isLoading } = useAccountStatistics(host, args)
   const accountStatistics = unwrap(data)
+  if (!accountStatistics || !dataStatistics) return <Empty />
   const isHolderGrow = new BigNumber(dataStatistics.down_holder_account_count).gte(dataStatistics.up_holder_account_count)
   const isActiveAccountGrow = new BigNumber(dataStatistics.down_active_account_count).gte(dataStatistics.up_active_account_count)
 
   if (isLoading) return <Loading />
-  if (!accountStatistics) return <Empty />
+
   const totalAccount = (accountStatistics as AccountStatisticsAssets[]).reduce((total, item) => {
     return total + item.account_count
   }, 0)

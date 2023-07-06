@@ -7,12 +7,14 @@ import { Balance } from '@/components/Balance'
 import { TokenIcon, EraIcon, VoterIcon } from '@/ui/Svg'
 import { GetDataStatisticsProps } from '@/utils/api'
 import { formatNumber } from '@/utils/formatBalance'
+import { Empty } from '@/components/Empty'
 
 interface Props extends BareProps, BareServerSideProps {
   dataStatistics: GetDataStatisticsProps
 }
 
 export const InsightsReferenda: React.FC<Props> = ({ chain, dataStatistics }) => {
+  if (!dataStatistics) return <Empty />
   return (
     <TabBox title="Referenda" boxClassName="flex space-x-3 flex-1">
       <Flex className="flex-col space-y-3 flex-1 flex-grow-1">

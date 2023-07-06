@@ -28,7 +28,7 @@ export const InsightsBasic: React.FC<Props> = ({ children, host, chain, dataStat
   const priceHistory = unwrap(data)
 
   if (isLoading) return <Loading />
-  if (!priceHistory) return <Empty />
+  if (!priceHistory || !dataStatistics) return <Empty />
 
   return (
     <TabBox title="Basic" boxClassName="flex space-x-3 flex-1">
