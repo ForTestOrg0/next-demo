@@ -5,6 +5,7 @@ import EChartsReact from '@/components/Echart'
 import { basicAreaChartOption, stackBarChartOption } from '@/components/Echart/chartOptions'
 import { stringToNumber, getFixedNumber } from '@/utils/bigNumber'
 import dayjs from 'dayjs'
+import { EChartsOption } from 'echarts'
 import { unwrap, useDailyXCMState } from '@/utils/api'
 import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { Loading } from '@/components/Loading'
@@ -14,10 +15,12 @@ type UseDailyXCMStateParams = Parameters<typeof useDailyXCMState>[1]
 interface Props extends BareProps, BareServerSideProps {
   host: string
   type?: string
+  config?: EChartsOption
+  style?: React.CSSProperties
   args: UseDailyXCMStateParams
 }
 
-const Chart: React.FC<Props> = ({ children, host, type = 'msg', chain, className, args }) => {
+const Chart: React.FC<Props> = ({ children, host, type = 'msg', chain, style, config, className, args }) => {
   const relaySubdomain = getRelaySubdomainFromSubdomain(host)
   const { data, error, isLoading } = useDailyXCMState(relaySubdomain, {
     filter_para_id: relaySubdomain === host ? undefined : chain?.chainConf.parachain?.id,
@@ -99,6 +102,7 @@ const Chart: React.FC<Props> = ({ children, host, type = 'msg', chain, className
       {isRelayChain && (
         <EChartsReact
           className="w-full h-[480px]"
+          style={style}
           option={{
             ...basicAreaChartOption({
               dataset: {
@@ -111,6 +115,7 @@ const Chart: React.FC<Props> = ({ children, host, type = 'msg', chain, className
                 }),
               },
             }),
+            ...config,
             color: chain.chainConf.theme.gradient,
           }}
         />
@@ -130,6 +135,7 @@ const Chart: React.FC<Props> = ({ children, host, type = 'msg', chain, className
                 }),
               },
             }),
+            ...config,
             color: chain.chainConf.theme.gradient,
           }}
         />

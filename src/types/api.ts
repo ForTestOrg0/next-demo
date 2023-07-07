@@ -127,6 +127,21 @@ export interface XCM {
   xcm_version: number
 }
 
+export interface XCMMeta {
+  all_channel?: number
+  connected_parachain_count?: number
+  online_parachain: number
+  open_channel: number
+  parachain_count_with_requested?: number
+  received_xcm_message_count?: number
+  received_xcm_transfer_count?: number
+  relayed_message_count: number
+  relayed_transfer_count: number
+  send_xcm_message_count?: number
+  send_xcm_transfer_count?: number
+  support_parachain: number
+}
+
 /** Governance **/
 export interface ProposalPreImage {
   amount: string

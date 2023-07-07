@@ -1,4 +1,4 @@
-import { APIWarpperProps, XCM, XCMChanel, DailyXCMStatistics } from '@/types/api'
+import { APIWarpperProps, XCM, XCMChanel, DailyXCMStatistics, XCMMeta } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
 
@@ -93,4 +93,20 @@ export async function getDailyXCMState(
 
 export const useDailyXCMState = (hostname = '', params: Parameters<typeof getDailyXCMState>[1]) => {
   return useSWR<APIWarpperProps<GetDailyXCMStateProps>, Error>([hostname, 'api/scan/xcm/stat', params], swrFetcher)
+}
+
+/***** XCM Meta *****/
+export type GetXCMMetaProps = XCMMeta
+
+export async function getXCMMeta(
+  hostname = '',
+  params: {
+    para_id?: number
+  }
+): Promise<APIWarpperProps<GetXCMMetaProps>> {
+  return await subscanFetch(hostname, 'api/scan/xcm/meta')
+}
+
+export const useXCMMeta = (hostname = '', params: Parameters<typeof getXCMMeta>[1]) => {
+  return useSWR<APIWarpperProps<GetXCMMetaProps>, Error>([hostname, 'api/scan/xcm/meta', params], swrFetcher)
 }

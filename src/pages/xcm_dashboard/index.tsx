@@ -6,6 +6,7 @@ import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { PAGE_ROW, TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
+import { MetaInfoClient } from '@/components/Pages/XCM/MetaInfo'
 import { MessageListClient } from '@/components/Pages/XCM/MessageList'
 import { ChannelListClient } from '@/components/Pages/XCM/ChannelList'
 import { ParachainListClient } from '@/components/Pages/Parachain/ParachainList'
@@ -50,10 +51,16 @@ export default function Page({ host, data, chain, page }: InferGetServerSideProp
   return (
     <PageContent>
       <Container className="flex-1">
-        <Text block bold className="mb-4 break-all">
-          XCM Dashboard
-        </Text>
-        <Flex className="gap-x-5">
+        <div className="flex mb-4 justify-between">
+          <div className="flex items-center">
+            <ParachainIcon className="w-5" />
+            <Text block bold className="ml-2 break-all">
+              XCM Dashboard
+            </Text>
+          </div>
+        </div>
+        <MetaInfoClient chain={chain} host={host} />
+        <Flex className="gap-x-5 mt-7 ">
           <div className="flex-1">
             <div className="flex mb-4 justify-between">
               <div className="flex items-center">
