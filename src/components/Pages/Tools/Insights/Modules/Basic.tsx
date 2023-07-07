@@ -51,7 +51,7 @@ export const InsightsBasic: React.FC<Props> = ({ children, host, chain, dataStat
         <CardX
           icon={<TokenIcon className="text-sub-white-light" width={18} />}
           title="Transfer Value"
-          value={formatNumber(dataStatistics.transfers_usd_amount)}
+          value={<Balance value={dataStatistics.transfers_amount} token={chain.nativeTokenConf} />}
         />
       </Flex>
       <Card className="flex-1 flex flex-col justify-between">

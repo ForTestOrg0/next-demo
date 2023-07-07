@@ -843,6 +843,7 @@ export interface DataStatistics {
   extrinsic_count: number
   transfers_count: number
   extrinsic_fee_used: string
+  transfers_amount: string
   transfers_usd_amount: string
   up_active_account_count: string
   up_holder_account_count: string
