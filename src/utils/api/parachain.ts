@@ -80,6 +80,17 @@ export const useParachainBids = (hostname = '', params: Parameters<typeof getPar
   return useSWR<APIWarpperProps<GetParachainBidsProps>, Error>([hostname, 'api/scan/parachain/bids', params], swrFetcher)
 }
 
+export type GetBestBidProps = ParachainBid
+
+export async function getBestBid(
+  hostname = '',
+  params: {
+    bid_id?: string
+  }
+): Promise<APIWarpperProps<GetBestBidProps>> {
+  return await subscanFetch(hostname, 'api/scan/parachain/bestBid', params)
+}
+
 /***** Auction Leading Blocks *****/
 export type GetParachainAuctionLeadingBlocksProps = AuctionLeadingBlocks[]
 

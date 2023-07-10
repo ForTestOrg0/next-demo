@@ -1,39 +1,29 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, TableCol, TdCol, TrCol } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getBlock, GetBlockProps } from '@/utils/api'
+import { unwrap } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
-import { BlockInfo } from '@/components/Pages/Blockchain/BlockInfo'
-import { BlockExtrinsicsClient } from '@/components/Pages/Blockchain/BlockExtrinsics'
-import { BlockEventsClient } from '@/components/Pages/Blockchain/BlockEvents'
+import { GetParachainMetaProps, getBestBid, getParachainMeta } from '@/utils/api/parachain'
+import { ParachainBid } from '@/types/api'
+import { Balance } from '@/components/Balance'
+import { BidStatus } from '@/components/Pages/Parachain/BidList/BidStatus'
+import { AuctionStatus, AuctionWinner, FundStatus, LeasePeriod, LeasePeriodRange } from '@/components/Pages/Parachain/Common'
+import { ParachainAuctionLink } from '@/components/Links'
+import { BidHistoryListClient } from '@/components/Pages/Parachain/BidList'
+import { CrowdloanInfo } from '@/components/Pages/Parachain/CrowdloanInfo'
+import { ContributeListClient } from '@/components/Pages/Parachain/ContributeList'
 import { TAB_ROW } from '@/config/constants'
-import { BlockLogs } from '@/components/Pages/Blockchain/BlockLogs'
 import { getSubdomainFromHeaders } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
-  {
-    host: string
-    data: GetBlockProps
-    tab: string
-    blockId: string
-  } & BareServerSideProps,
-  { id: string }
+  { parachainMeta: GetParachainMetaProps; bidId: string; host: string; bid: ParachainBid | null } & BareServerSideProps
 > = async (context) => {
+  const bidId = context.query.id as string
   const subdomain = getSubdomainFromHeaders(context.req.headers)
-  const tab = (context.query.tab || '')?.toString()
-  const blockId = context.params?.id
 
-  if (typeof blockId === 'undefined') {
-    return {
-      notFound: true,
-    }
-  }
-
-  const numberReg = /^[0-9]+$/
-  const isNumber = numberReg.test(blockId || '')
-  const data = await getBlock(subdomain, {
-    only_head: true,
-    ...(isNumber ? { block_num: parseInt(blockId) } : { block_hash: blockId }),
+  const data = await getParachainMeta(subdomain)
+  const bid = await getBestBid(subdomain, {
+    bid_id: bidId,
   })
   const chainProps = await getChainProps(subdomain)
 
@@ -45,50 +35,73 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
+      parachainMeta: data.data,
+      bidId,
       host: subdomain,
-      data: data.data,
-      tab,
-      blockId,
       chain: chainProps,
+      bid: bid.data,
     },
   }
 }
 
-export default function Page({ host, data, chain, blockId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ host, parachainMeta, chain, bid, bidId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
       <Container className="flex-1">
         <Text block bold className="mb-4 break-all">
-          Block#{blockId}
+          Bid#{bidId}
         </Text>
-
-        <Boundary>
-          <BlockInfo block={data} chain={chain} />
-        </Boundary>
-
+        {bid && (
+          <Boundary>
+            <TableCol className="w-full">
+              <tbody>
+                <TrCol>
+                  <TdCol className="font-semibold whitespace-nowrap  w-60">Auction Index</TdCol>
+                  <TdCol className="space-x-4">
+                    <ParachainAuctionLink index={bid.auction_index} />
+                  </TdCol>
+                </TrCol>
+                <TrCol>
+                  <TdCol className="font-semibold whitespace-nowrap  w-60">Lease Period</TdCol>
+                  <TdCol>
+                    <LeasePeriodRange firstPeriod={bid.first_period} lastPeriod={bid.last_period} metaInfo={parachainMeta} />
+                  </TdCol>
+                </TrCol>
+                <TrCol>
+                  <TdCol className="font-semibold whitespace-nowrap">Balance</TdCol>
+                  <TdCol>
+                    <Balance value={bid.amount} token={chain.nativeTokenConf} />
+                  </TdCol>
+                </TrCol>
+                <TrCol>
+                  <TdCol className="font-semibold whitespace-nowrap">Campaign Status</TdCol>
+                  <TdCol>
+                    <BidStatus index={bid.status} />
+                  </TdCol>
+                </TrCol>
+              </tbody>
+            </TableCol>
+          </Boundary>
+        )}
         <Boundary className="mt-5">
           <TabGroup>
             <TabList>
-              <Tab>Extrinsics</Tab>
-              <Tab>Events</Tab>
-              <Tab>Log</Tab>
+              <Tab>Bid History</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
-                <BlockExtrinsicsClient host={host} block_num={data.block_num} page={0} row={TAB_ROW} order="asc" disableColumn={{ block: true }} />
-              </TabPanel>
-              <TabPanel>
-                <BlockEventsClient
+                <BidHistoryListClient
+                  parachainMetadata={parachainMeta}
                   host={host}
-                  block_num={data.block_num}
-                  page={0}
-                  row={TAB_ROW}
-                  order="asc"
-                  disableColumn={{ block: true, time: true }}
+                  chain={chain}
+                  args={{
+                    page: 0,
+                    row: TAB_ROW,
+                    from_history: true,
+                    bid_id: bid?.bid_id,
+                    auction_index: bid?.auction_index,
+                  }}
                 />
-              </TabPanel>
-              <TabPanel>
-                <BlockLogs logs={data.logs} />
               </TabPanel>
             </TabPanels>
           </TabGroup>

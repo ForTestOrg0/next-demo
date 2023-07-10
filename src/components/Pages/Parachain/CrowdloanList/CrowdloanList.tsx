@@ -48,7 +48,7 @@ const Component: React.FC<Props> = ({ children, className, chain, type, style, f
           <Th>Contributor</Th>
           <Th></Th>
         </Tr>
-        {funds.map((fund) => {
+        {funds?.map((fund) => {
           const projectInfo = getParachainProjectInfoById(chain.chainConf.id as RelaychainName, fund.para_id) || DEFAULT_PARACHAIN
 
           return (
