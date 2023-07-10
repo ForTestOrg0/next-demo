@@ -42,3 +42,10 @@ export const formatNumberToFixed = (number: string | number, decimals = 2) => {
 export const formatNumber = (number: string | number | BigNumber) => {
   return new BigNumber(number).toFormat(BIGNUMBER_FMT)
 }
+
+export const formatBalance = (number: string | number | BigNumber) => {
+  if (new BigNumber(number).gte(1000)) {
+    return new BigNumber(new BigNumber(number).toFixed(0)).toFormat(BIGNUMBER_FMT)
+  }
+  return new BigNumber(number).toFormat(BIGNUMBER_FMT)
+}
