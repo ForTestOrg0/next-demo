@@ -42,6 +42,9 @@ const Component: React.FC<Props> = ({ children, host, className, chain }) => {
       <div className="flex-1 my-7">
         <MetaInfo className="mb-7" metaInfo={metaInfo} chain={chain} host={host} />
         <div className="w-full pr-12">
+          <Text block bold className="mb-4 break-all !text-base">
+            XCM 30-day Statistics
+          </Text>
           <TabGroup>
             <TabList>
               <Tab>Transfer</Tab>

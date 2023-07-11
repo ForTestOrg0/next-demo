@@ -3,7 +3,7 @@ import { BareProps, BareServerSideProps } from '@/types/page'
 import { Table, Td, Th, Tr, Text } from '@/ui'
 import { ParachainAuctionLink } from '@/components/Links'
 import { ParachainAuction, ParachainMeta } from '@/types/api'
-import { AuctionWinner, LeasePeriod } from '../Common'
+import { AuctionStatus, AuctionWinner, LeasePeriod } from '../Common'
 
 interface Props extends BareProps, BareServerSideProps {
   auctions: ParachainAuction[]
@@ -34,7 +34,7 @@ const Component: React.FC<Props> = ({ auctions, metaInfo, chain }) => {
                 <AuctionWinner winners={item.winners} chain={chain} />
               </Td>
               <Td>
-                <Text>{item.status}</Text>
+                <AuctionStatus status={item.status} isCurrentAuction={item.auction_index === metaInfo.auction_count} />
               </Td>
             </Tr>
           )

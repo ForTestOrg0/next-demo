@@ -1,4 +1,4 @@
-import { Boundary, PageContent, Container, TabGroup, TabList, Tab, TabPanels, TabPanel, Text } from '@/ui'
+import { Boundary, PageContent, Container, TabGroup, TabList, Tab, TabPanels, TabPanel, Text, Button } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { unwrap } from '@/utils/api'
 import { TAB_ROW } from '@/config/constants'
@@ -11,6 +11,7 @@ import { GetParachainMetaProps, getParachainAuctions, getParachainMeta } from '@
 import { ParachainAuction } from '@/types/api'
 import { AuctionInfo } from '@/components/Pages/Parachain/AuctionInfo'
 import { getSubdomainFromHeaders } from '@/utils/url'
+import { ParachainAuctionLink, ParachainAuctionListLink } from '@/components/Links'
 
 export const getServerSideProps: GetServerSideProps<
   { parachainMeta: GetParachainMetaProps; auctionId: number; host: string; currentAuction: ParachainAuction | undefined } & BareServerSideProps
@@ -51,9 +52,25 @@ export default function Page({ host, parachainMeta, chain, currentAuction, aucti
 
         {currentAuction?.status === 2 && (
           <>
-            <Text block bold className="mb-4 mt-6 break-all">
-              Auction #{currentAuction?.auction_index}
-            </Text>
+            <div className="flex mb-4 mt-6 justify-between">
+              <div className="flex items-center">
+                <Text block bold className="break-all">
+                  Auction #{currentAuction?.auction_index}
+                </Text>
+              </div>
+              <div>
+                <ParachainAuctionListLink>
+                  <Button outline>Auction History</Button>
+                </ParachainAuctionListLink>
+                {parachainMeta.auction_count && (
+                  <ParachainAuctionLink index={currentAuction.auction_index - 1 || 1}>
+                    <Button outline className="ml-5">
+                      Last Auction
+                    </Button>
+                  </ParachainAuctionLink>
+                )}
+              </div>
+            </div>
             <Boundary className="mt-5">{currentAuction && <AuctionInfo metaInfo={parachainMeta} chain={chain} auction={currentAuction} />}</Boundary>
           </>
         )}
