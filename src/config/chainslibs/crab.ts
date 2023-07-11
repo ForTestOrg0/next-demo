@@ -18,6 +18,12 @@ export const Crab: Chain = {
     twitter: 'https://twitter.com/DarwiniaNetwork',
     github: 'https://github.com/darwinia-network',
     price: '',
+    website: 'https://crab.network/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2105,
+    relaychain: 'kusama',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

@@ -18,6 +18,12 @@ export const Polkadex: Chain = {
     twitter: 'https://twitter.com/polkadex',
     github: 'https://github.com/Polkadex-Substrate',
     price: 'https://www.coingecko.com/en/coins/polkadex',
+    website: 'https://www.polkadex.trade/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2040,
+    relaychain: 'polkadot',
   },
   donate: 'espBwNTdpAxMkx9vck1ivqzbRVghtxE3TFYXYiveSV9819dUm',
   modules: {

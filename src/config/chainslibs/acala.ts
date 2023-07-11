@@ -18,12 +18,14 @@ export const Acala: Chain = {
     twitter: 'https://twitter.com/AcalaNetwork',
     github: 'https://github.com/AcalaNetwork',
     price: 'https://www.coingecko.com/en/coins/acala',
+    website: 'https://acala.network/',
+    whitePaper: 'https://github.com/AcalaNetwork/Acala-white-paper',
   },
-  donate: '24J9ASqUgVu7xRQDDpcFFaAH5qq3BBfUF1UDun6jJG3dwgXb',
   parachain: {
     id: 2000,
     relaychain: 'polkadot',
   },
+  donate: '24J9ASqUgVu7xRQDDpcFFaAH5qq3BBfUF1UDun6jJG3dwgXb',
   modules: {
     BOUNTY: true,
     CONTRACT: false,

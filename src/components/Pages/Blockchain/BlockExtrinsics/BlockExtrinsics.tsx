@@ -1,6 +1,6 @@
 import React from 'react'
 import { BareProps } from '@/types/page'
-import { Table, Td, Th, Tr, Text } from '@/ui'
+import { Table, Td, Th, Tr } from '@/ui'
 import { BlockLink, ExtrinsicLink } from '@/components/Links'
 import { Extrinsic } from '@/types/api'
 import { TimeFromNow } from '@/components/Time'
@@ -36,7 +36,7 @@ export const BlockExtrinsics: React.FC<Props> = ({ extrinsics, disableColumn }) 
                 </Td>
               )}
               <Td>
-                <ExtrinsicLink empty={!item.extrinsic_hash} extrinsicIndex={item.extrinsic_hash} />
+                <ExtrinsicLink ellipsis empty={!item.extrinsic_hash} extrinsicIndex={item.extrinsic_hash} />
               </Td>
               <Td>
                 <TimeFromNow date={item.block_timestamp} />

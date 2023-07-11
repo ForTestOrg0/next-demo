@@ -18,6 +18,12 @@ export const Sakura: Chain = {
     twitter: 'https://twitter.com/clover_finance',
     github: 'https://github.com/clover-network',
     price: 'https://www.coingecko.com/en/coins/sakura',
+    website: 'https://clover.finance/sakura',
+    whitePaper: 'https://clover.finance/litepaper.pdf',
+  },
+  parachain: {
+    id: 2016,
+    relaychain: 'kusama',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

@@ -18,6 +18,12 @@ export const Turing: Chain = {
     twitter: 'https://twitter.com/oak_network',
     github: '',
     price: '',
+    website: 'https://oak.tech/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2114,
+    relaychain: 'kusama',
   },
   donate: '69aBm831SRkvMpzEMegDjX4hajh6RhUoyaBc8oU5HKRdV6Vj',
   modules: {

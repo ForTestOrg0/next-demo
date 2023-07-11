@@ -18,12 +18,14 @@ export const Composable: Chain = {
     twitter: 'https://twitter.com/ComposableFin',
     github: 'https://github.com/ComposableFi/',
     price: '',
+    website: 'https://www.composable.finance/',
+    whitePaper: '',
   },
-  donate: '5wzsF8xCfr1U3iBJYavAyiXrHmQWKLDmbh5LuSBUMcEevAft',
   parachain: {
     id: 2019,
     relaychain: 'polkadot',
   },
+  donate: '5wzsF8xCfr1U3iBJYavAyiXrHmQWKLDmbh5LuSBUMcEevAft',
   modules: {
     BOUNTY: false,
     CONTRACT: false,

@@ -18,6 +18,12 @@ export const Statemine: Chain = {
     twitter: '',
     github: '',
     price: 'https://www.coingecko.com/en/coins/kusama',
+    website: '',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 1000,
+    relaychain: 'kusama',
   },
   donate: 'Fzs6WWFcAuJhxAVyZa4EN2suxggjidJjV3AzJxKbRHjh2Jc',
   modules: {

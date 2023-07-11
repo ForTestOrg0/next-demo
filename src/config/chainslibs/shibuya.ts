@@ -18,6 +18,8 @@ export const Shibuya: Chain = {
     twitter: 'https://twitter.com/AstarNetwork',
     github: 'https://github.com/AstarNetwork/Astar',
     price: '',
+    website: 'https://astar.network/',
+    whitePaper: '',
   },
   donate: 'ZMqsV8Tm3XVB8NthAD8N4q9rR7ZuGWsJJhZqMtDyz5CXyX7',
   modules: {

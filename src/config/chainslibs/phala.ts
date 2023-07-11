@@ -18,12 +18,14 @@ export const Phala: Chain = {
     twitter: 'https://twitter.com/PhalaNetwork',
     github: 'https://github.com/Phala-Network',
     price: 'https://www.coingecko.com/en/coins/phala-network',
+    website: 'https://www.phala.network/en/',
+    whitePaper: 'https://files.phala.network/phala-paper.pdf',
   },
-  donate: '443LLHfYNKPf5bVVLUCiobUn1YgvGrFt1pYrDSxkZMwPa3Bq',
   parachain: {
     id: 2035,
     relaychain: 'polkadot',
   },
+  donate: '443LLHfYNKPf5bVVLUCiobUn1YgvGrFt1pYrDSxkZMwPa3Bq',
   modules: {
     BOUNTY: false,
     CONTRACT: false,

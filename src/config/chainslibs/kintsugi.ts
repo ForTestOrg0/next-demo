@@ -18,6 +18,12 @@ export const Kintsugi: Chain = {
     twitter: 'https://twitter.com/kintsugi_btc',
     github: 'https://github.com/interlay',
     price: 'https://www.coingecko.com/en/coins/kintsugi',
+    website: 'https://kintsugi.interlay.io/',
+    whitePaper: 'https://docs.interlay.io/#/kintsugi/overview',
+  },
+  parachain: {
+    id: 2092,
+    relaychain: 'kusama',
   },
   donate: 'a3ddhYfHgyzUpPKx1T1UEXbpChBACqbwuaNvs9ekzL5SntP4g',
   modules: {

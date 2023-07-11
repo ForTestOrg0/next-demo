@@ -31,10 +31,10 @@ export const BlockExtrinsicsClient: React.FC<Props> = ({ host, page = 0, row = T
   return (
     <div>
       <BlockExtrinsics extrinsics={extrinsics?.extrinsics || []} disableColumn={disableColumn} />
-      {extrinsics?.count - TAB_ROW > 0 ? (
+      {extrinsics?.count - row > 0 ? (
         <ExtrinsicLink query={{ block: props.block_num?.toString() || '', account: props.address?.toString() || '' }}>
           <Button outline className="mt-4">
-            View Other {extrinsics?.count - TAB_ROW} Extrinsic Details
+            View Other {extrinsics?.count - row} Extrinsic Details
           </Button>
         </ExtrinsicLink>
       ) : null}

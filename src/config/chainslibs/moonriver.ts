@@ -18,6 +18,12 @@ export const Moonriver: Chain = {
     twitter: 'https://twitter.com/moonbeamnetwork',
     github: 'https://github.com/PureStake/moonbeam',
     price: 'https://coinmarketcap.com/currencies/moonriver/',
+    website: 'https://moonbeam.network/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2023,
+    relaychain: 'kusama',
   },
   donate: '0x9c0fEf6b48Cb0B16EDc72a61d9503A78782c19e2',
   modules: {

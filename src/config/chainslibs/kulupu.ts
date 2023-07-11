@@ -18,6 +18,8 @@ export const Kulupu: Chain = {
     twitter: 'https://twitter.com/home',
     github: 'https://github.com/kulupu/kulupu',
     price: 'https://www.coingecko.com/en/coins/kulupu',
+    website: 'https://kulupu.network/',
+    whitePaper: '',
   },
   donate: '2f26iQ5tzF9Utmpzf1tPWykpxkgoWHSbNeo1bsxY5PcZdbZb',
   modules: {

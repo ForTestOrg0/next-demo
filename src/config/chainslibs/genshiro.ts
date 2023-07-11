@@ -18,6 +18,12 @@ export const Genshiro: Chain = {
     twitter: 'https://twitter.com/GenshiroDeFi',
     github: 'https://github.com/equilibrium-eosdt',
     price: 'https://www.coingecko.com/en/coins/genshiro',
+    website: 'https://genshiro.equilibrium.io/en',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2024,
+    relaychain: 'kusama',
   },
   donate: 'cZi9Py5wwdvtu3GD9STP1LsAJsYWhBumujPy5rJHnBuxeuQ7F',
   modules: {

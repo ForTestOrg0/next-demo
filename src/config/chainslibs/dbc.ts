@@ -18,6 +18,8 @@ export const Dbc: Chain = {
     twitter: 'https://twitter.com/DeepBrainChain',
     github: 'https://github.com/DeepBrainChain',
     price: 'https://www.coingecko.com/en/coins/deepbrain-chain',
+    website: 'https://www.deepbrainchain.org/',
+    whitePaper: 'https://deepbrainchain.org/assets/pdf/DeepBrainChainWhitepaper_en.pdf',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

@@ -18,6 +18,12 @@ export const Shiden: Chain = {
     twitter: 'https://twitter.com/ShidenNetwork',
     github: 'https://github.com/AstarNetwork/Astar',
     price: 'https://www.coingecko.com/en/coins/shiden-network',
+    website: 'https://shiden.astar.network/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2007,
+    relaychain: 'kusama',
   },
   donate: 'ZMqsV8Tm3XVB8NthAD8N4q9rR7ZuGWsJJhZqMtDyz5CXyX7',
   modules: {

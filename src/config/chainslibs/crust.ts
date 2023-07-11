@@ -18,6 +18,12 @@ export const Crust: Chain = {
     twitter: 'https://twitter.com/CrustNetwork',
     github: 'https://github.com/crustio',
     price: 'https://www.coingecko.com/en/coins/crust-network',
+    website: 'https://crust.network/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2008,
+    relaychain: 'polkadot',
   },
   donate: 'cTKmBRbJ93JvP3WKTUP5VBC97WVMsgBUbfCWgUZ8WZBuSty4u',
   modules: {

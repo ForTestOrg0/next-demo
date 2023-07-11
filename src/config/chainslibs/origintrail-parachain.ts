@@ -18,12 +18,14 @@ export const OrigintrailParachain: Chain = {
     twitter: 'https://twitter.com/origin_trail',
     github: '',
     price: '',
+    website: 'https://origintrail.io/',
+    whitePaper: 'https://parachain.origintrail.io/whitepaper',
   },
-  donate: 'gJqAkRt7Fw22UtzWaJyeh1jryDPgYchvWC7SnbbiwiZqhJhX2',
   parachain: {
     id: 2043,
     relaychain: 'polkadot',
   },
+  donate: 'gJqAkRt7Fw22UtzWaJyeh1jryDPgYchvWC7SnbbiwiZqhJhX2',
   modules: {
     BOUNTY: false,
     CONTRACT: true,

@@ -18,6 +18,12 @@ export const BifrostKusama: Chain = {
     twitter: 'https://twitter.com/bifrost_finance',
     github: 'https://github.com/bifrost-finance',
     price: 'https://www.coingecko.com/en/coins/bifrost-native-coin',
+    website: 'https://bifrost.finance/',
+    whitePaper: 'https://whitepaper.bifrost.finance/',
+  },
+  parachain: {
+    id: 2001,
+    relaychain: 'kusama',
   },
   donate: 'f9W8Ufs9LQDLBnMbh69jy6aVuFrxT9PVFFhT3XXSqfgpHr9',
   modules: {

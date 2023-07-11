@@ -18,6 +18,12 @@ export const Khala: Chain = {
     twitter: 'https://twitter.com/PhalaNetwork',
     github: 'https://github.com/Phala-Network',
     price: 'https://www.coingecko.com/en/coins/phala-network',
+    website: 'https://phala.network/en/khala',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2004,
+    relaychain: 'kusama',
   },
   donate: '443LLHfYNKPf5bVVLUCiobUn1YgvGrFt1pYrDSxkZMwPa3Bq',
   modules: {

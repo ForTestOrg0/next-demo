@@ -18,12 +18,14 @@ export const Bifrost: Chain = {
     twitter: 'https://twitter.com/bifrost_finance',
     github: 'https://github.com/bifrost-finance',
     price: 'https://www.coingecko.com/en/coins/bifrost-native-coin',
+    website: 'https://bifrost.finance/',
+    whitePaper: 'https://whitepaper.bifrost.finance/',
   },
-  donate: 'f9W8Ufs9LQDLBnMbh69jy6aVuFrxT9PVFFhT3XXSqfgpHr9',
   parachain: {
     id: 2030,
     relaychain: 'polkadot',
   },
+  donate: 'f9W8Ufs9LQDLBnMbh69jy6aVuFrxT9PVFFhT3XXSqfgpHr9',
   modules: {
     BOUNTY: true,
     CONTRACT: false,

@@ -41,13 +41,13 @@ const AccountListClient: React.FC<Props> = ({ host, chain, useDecimal, id, page 
   const tokenDetail = token['system']?.[0] as Token
   const holders = holder?.list as Account[]
   const count = holder?.count || 0
-  holders.forEach((holder) => {
+  holders?.forEach((holder) => {
     holder.balance_lock = holder.ring_lock || holder.balance_lock || ''
   })
 
   return (
     <div>
-      <AccountList accounts={holders} chain={chain} useDecimal={useDecimal} />
+      <AccountList accounts={holders} chain={chain} useDecimal={useDecimal} baseRank={page * row} />
       {count - TAB_ROW > 0 ? (
         <SystemTokenHolderLink query={{ unique_id: id }}>
           <Button outline className="mt-4">

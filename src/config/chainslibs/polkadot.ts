@@ -18,6 +18,8 @@ export const Polkadot: Chain = {
     twitter: 'https://twitter.com/Polkadot',
     github: 'https://github.com/paritytech/polkadot',
     price: 'https://www.coingecko.com/en/coins/polkadot',
+    website: 'https://polkadot.network/',
+    whitePaper: 'https://polkadot.network/PolkaDotPaper.pdf',
   },
   donate: '14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ',
   parachain: {

@@ -480,7 +480,9 @@ export interface GetDailyStatisticsProps {
 export async function getDailyStatistics(
   hostname = '',
   params: {
+    /** transfer extrinsic NewAccount ActiveAccount Treasury TreasurySpend Unbond Fee Bonded AvgBlockTime AccountHolderTotal */
     category: string
+    /** day hour 6hour */
     format: string
     start: string
     end: string

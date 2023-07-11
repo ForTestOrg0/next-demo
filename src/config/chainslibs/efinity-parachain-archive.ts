@@ -18,6 +18,12 @@ export const EfinityParachainArchive: Chain = {
     twitter: 'https://twitter.com/efinityio',
     github: '',
     price: 'https://www.coingecko.com/en/coins/efinity-token',
+    website: 'https://enjin.io/products/efinity',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2021,
+    relaychain: 'polkadot',
   },
   donate: 'efSa9KSVpWsudasm6Rzdz2FcjMWyS9VxuruqGSAu757PYFbMp',
   modules: {

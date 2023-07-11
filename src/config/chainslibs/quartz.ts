@@ -18,6 +18,12 @@ export const Quartz: Chain = {
     twitter: 'https://twitter.com/Unique_NFTchain',
     github: 'https://github.com/UniqueNetwork',
     price: 'https://www.coingecko.com/en/coins/quartz',
+    website: 'https://unique.network/quartz/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2095,
+    relaychain: 'kusama',
   },
   donate: 'yGGA43xUyrY68FXkhCQAnhM397m6hZ1tVLXYrLCLTEEMb71nH',
   modules: {

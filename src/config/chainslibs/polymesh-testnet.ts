@@ -18,6 +18,8 @@ export const PolymeshTestnet: Chain = {
     twitter: 'https://twitter.com/PolymeshNetwork',
     github: 'https://github.com/PolymeshAssociation',
     price: '',
+    website: 'https://polymesh.network/',
+    whitePaper: '',
   },
   donate: '2FsTgRvHT5eaGYD92tNJ1Nh8Np7dHYvWctaV99PLDyEcWAVc',
   modules: {

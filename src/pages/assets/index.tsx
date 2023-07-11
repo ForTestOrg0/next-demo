@@ -1,4 +1,4 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
+import { Boundary, PageContent, Container, TabGroup, TabList, Tab, TabPanels, TabPanel, Flex } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
@@ -9,6 +9,8 @@ import { ERC20TokenListClient } from '@/components/Pages/Blockchain/ERC20TokenLi
 import { ERC721TokenListClient } from '@/components/Pages/Blockchain/ERC721TokenList'
 import { TAB_ROW } from '@/config/constants'
 import { getSubdomainFromHeaders } from '@/utils/url'
+import { NativeTokenInfo } from '@/components/Pages/Blockchain/NativeTokenInfo'
+import { NativeTokenDistributionChart } from '@/components/Pages/Blockchain/NativeTokenDistributionChart'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -39,6 +41,15 @@ export default function Page({ host, chain }: InferGetServerSidePropsType<typeof
   return (
     <PageContent>
       <Container className="flex-1">
+        <Flex className="space-x-5">
+          <Boundary className="">
+            <NativeTokenInfo chain={chain} />
+          </Boundary>
+          <Boundary className="w-auto">
+            <NativeTokenDistributionChart chain={chain} />
+          </Boundary>
+        </Flex>
+
         <Boundary className="mt-5">
           <TabGroup>
             <TabList>

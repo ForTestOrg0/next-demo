@@ -18,6 +18,12 @@ export const Darwinia: Chain = {
     twitter: 'https://twitter.com/DarwiniaNetwork',
     github: 'https://github.com/darwinia-network',
     price: 'https://www.coingecko.com/en/coins/darwinia-network-native-token',
+    website: 'https://darwinia.network/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2046,
+    relaychain: 'polkadot',
   },
   donate: '2rbREPAhkptwCtdvU5eSGnHgFiyPcehdkXuGqFF916oYCJ7s',
   modules: {

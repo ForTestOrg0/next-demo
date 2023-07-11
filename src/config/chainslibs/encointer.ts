@@ -18,6 +18,12 @@ export const Encointer: Chain = {
     twitter: 'https://twitter.com/encointer',
     github: '',
     price: 'https://www.coingecko.com/en/coins/kusama',
+    website: 'https://encointer.org/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 1001,
+    relaychain: 'kusama',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

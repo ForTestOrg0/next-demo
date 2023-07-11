@@ -18,6 +18,8 @@ export const Chainx: Chain = {
     twitter: 'https://twitter.com/chainx_org',
     github: 'https://github.com/chainx-org/chainx',
     price: 'https://www.coingecko.com/en/coins/chainx',
+    website: 'https://chainx.org/',
+    whitePaper: '',
   },
   donate: '5T4ZxBFBkPdqGR9z1vX46DCj4Lh33R5AezJgq1xy3LGDWYBp',
   modules: {

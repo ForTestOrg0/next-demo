@@ -18,6 +18,8 @@ export const DatahighwayTanganika: Chain = {
     twitter: 'https://twitter.com/DataHighway_DHX',
     github: '',
     price: 'https://www.coingecko.com/en/coins/datahighway',
+    website: 'https://www.datahighway.com/',
+    whitePaper: '',
   },
   donate: '4MQK7GHkXC1qYmht44qnwJH3x17oSQ9SaeDF4VtewvirREuw',
   modules: {

@@ -18,6 +18,12 @@ export const Calamari: Chain = {
     twitter: 'https://twitter.com/mantanetwork',
     github: 'https://twitter.com/CalamariNetwork',
     price: 'https://www.coingecko.com/en/coins/calamari-network',
+    website: 'https://calamari.network/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2084,
+    relaychain: 'kusama',
   },
   donate: 'dmxMmwX7nCkcazb1j5GhjBGPTs9Bhpw4LXZyWyV3k9tZw31uK',
   modules: {

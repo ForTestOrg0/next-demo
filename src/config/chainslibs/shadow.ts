@@ -18,6 +18,12 @@ export const Shadow: Chain = {
     twitter: 'https://twitter.com/CrustNetwork',
     github: 'https://github.com/crustio',
     price: 'https://www.coingecko.com/en/coins/crust-shadow',
+    website: 'https://crust.network/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2012,
+    relaychain: 'kusama',
   },
   donate: 'cTKmBRbJ93JvP3WKTUP5VBC97WVMsgBUbfCWgUZ8WZBuSty4u',
   modules: {

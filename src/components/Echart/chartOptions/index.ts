@@ -1,4 +1,7 @@
 export * from './pie'
 export * from './area'
 export * from './basicAres'
+export * from './bar'
+export * from './multiBar'
+export * from './pieDoughnutThin'
 export * from './stackBar'

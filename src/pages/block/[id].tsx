@@ -1,4 +1,4 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Flex, Button, LinkRouter } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getBlock, GetBlockProps } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
@@ -9,6 +9,8 @@ import { BlockEventsClient } from '@/components/Pages/Blockchain/BlockEvents'
 import { TAB_ROW } from '@/config/constants'
 import { BlockLogs } from '@/components/Pages/Blockchain/BlockLogs'
 import { getSubdomainFromHeaders } from '@/utils/url'
+import { ButtonLeftIcon, ButtonRightIcon } from '@/ui/Svg'
+import { BlockLink } from '@/components/Links'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -55,12 +57,24 @@ export const getServerSideProps: GetServerSideProps<
 }
 
 export default function Page({ host, data, chain, blockId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const preBlock = data.block_num - 1 >= 0 ? data.block_num - 1 : data.block_num
+  const nextBlock = data.block_num + 1
   return (
     <PageContent>
       <Container className="flex-1">
-        <Text block bold className="mb-4 break-all">
-          Block#{blockId}
-        </Text>
+        <Flex className="mb-module">
+          <Flex className="items-center space-x-4">
+            <BlockLink blockNumber={preBlock} className="flex justify-center items-center w-[30px] h-[30px] bg-sub-network rounded">
+              <ButtonLeftIcon className="text-sub-white h-5" />
+            </BlockLink>
+            <Text block bold className="text-lg break-all">
+              Block#{blockId}
+            </Text>
+            <BlockLink blockNumber={nextBlock} className="flex justify-center items-center w-[30px] h-[30px] bg-sub-network rounded">
+              <ButtonRightIcon className="text-sub-white h-5" />
+            </BlockLink>
+          </Flex>
+        </Flex>
 
         <Boundary>
           <BlockInfo block={data} chain={chain} />

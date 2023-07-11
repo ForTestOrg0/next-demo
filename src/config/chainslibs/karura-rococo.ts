@@ -18,6 +18,8 @@ export const KaruraRococo: Chain = {
     twitter: '',
     github: 'https://github.com/AcalaNetwork',
     price: 'https://www.coingecko.com/en/coins/karura',
+    website: 'https://acala.network/karura',
+    whitePaper: 'https://github.com/AcalaNetwork/Acala-white-paper',
   },
   donate: 'ripeTkfuv9feJbHQkrCVmdRnsYT4pQRs8MxgQp8NYrfP6o2',
   modules: {

@@ -18,12 +18,14 @@ export const Astar: Chain = {
     twitter: 'https://twitter.com/AstarNetwork',
     github: 'https://github.com/AstarNetwork/Astar',
     price: 'https://www.coingecko.com/en/coins/astar',
+    website: 'https://astar.network/',
+    whitePaper: '',
   },
-  donate: 'ZMqsV8Tm3XVB8NthAD8N4q9rR7ZuGWsJJhZqMtDyz5CXyX7',
   parachain: {
     id: 2006,
     relaychain: 'polkadot',
   },
+  donate: 'ZMqsV8Tm3XVB8NthAD8N4q9rR7ZuGWsJJhZqMtDyz5CXyX7',
   modules: {
     BOUNTY: false,
     CONTRACT: true,

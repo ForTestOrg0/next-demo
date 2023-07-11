@@ -18,6 +18,8 @@ export const Efinity: Chain = {
     twitter: 'https://twitter.com/efinityio',
     github: '',
     price: 'https://www.coingecko.com/en/coins/efinity-token',
+    website: 'https://enjin.io/products/efinity',
+    whitePaper: '',
   },
   donate: 'efSa9KSVpWsudasm6Rzdz2FcjMWyS9VxuruqGSAu757PYFbMp',
   modules: {

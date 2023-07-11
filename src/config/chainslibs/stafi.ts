@@ -18,6 +18,8 @@ export const Stafi: Chain = {
     twitter: 'https://twitter.com/Stafi_Protocol',
     github: 'https://github.com/stafiprotocol/stafi-node',
     price: 'https://www.coingecko.com/en/coins/stafi',
+    website: 'https://stafi.io',
+    whitePaper: 'https://docs.stafi.io/stafi-whitepaper/stafi-whitepaper',
   },
   donate: '34AjkNFWXQePX1SrH9QV2apXYhFyj1xg8R1Y4cXjvozWknPN',
   modules: {

@@ -7,6 +7,9 @@ import { Time, TimeFromNow } from '@/components/Time'
 import { BlockStatus } from '../BlockList'
 import { ExtrinsicCall, ExtrinsicModule } from '@/components/ExtrinsicModuleCall'
 import { Parameters } from '@/components/Parameters'
+import { Identicon } from '@/components/Identicon'
+import { Balance } from '@/components/Balance'
+import { ExtrinsicStatus } from './ExtrinsicStatus'
 
 interface Props extends BareProps, BareServerSideProps {
   extrinsic: ExtrinsicDetail
@@ -71,10 +74,30 @@ const Page: React.FC<Props> = ({ extrinsic, chain }) => {
             <ExtrinsicCall call={extrinsic.call_module_function} />
           </TdCol>
         </TrCol>
+        {!!(extrinsic.signature && extrinsic.account_id) && (
+          <TrCol>
+            <TdCol className="font-semibold whitespace-nowrap">Sennder</TdCol>
+            <TdCol>
+              <Identicon account={extrinsic.account_display} />
+            </TdCol>
+          </TrCol>
+        )}
+        <TrCol>
+          <TdCol className="font-semibold whitespace-nowrap">Estimated Fee</TdCol>
+          <TdCol>
+            <Balance value={extrinsic.fee} token={chain.nativeTokenConf} displayDecimals={chain.nativeTokenConf.decimals} />
+          </TdCol>
+        </TrCol>
+        <TrCol>
+          <TdCol className="font-semibold whitespace-nowrap">Used Fee</TdCol>
+          <TdCol>
+            <Balance value={extrinsic.fee_used} token={chain.nativeTokenConf} displayDecimals={chain.nativeTokenConf.decimals} />
+          </TdCol>
+        </TrCol>
         <TrCol>
           <TdCol className="font-semibold whitespace-nowrap">Result</TdCol>
           <TdCol>
-            <Text>{extrinsic.success.toString()}</Text>
+            <ExtrinsicStatus status={extrinsic.success} />
           </TdCol>
         </TrCol>
         <TrCol>

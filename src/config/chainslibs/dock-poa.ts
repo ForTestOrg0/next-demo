@@ -18,6 +18,8 @@ export const DockPoa: Chain = {
     twitter: 'https://twitter.com/docknetwork',
     github: 'https://github.com/docknetwork',
     price: 'https://www.coingecko.com/en/coins/dock',
+    website: 'https://www.dock.io/',
+    whitePaper: '',
   },
   donate: '3Fk4GMLKHzPqq8Fn6DAXnPMNqfYZqPDiWJ7oHypLrXBVKcA1',
   modules: {

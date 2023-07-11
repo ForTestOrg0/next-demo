@@ -75,7 +75,7 @@ export default function Page({ host, data, chain, extrinsicIndex }: InferGetServ
                   page={0}
                   row={TAB_ROW}
                   order="asc"
-                  disableColumn={{ block: true }}
+                  disableColumn={{ block: true, time: true, type: true }}
                 />
               </TabPanel>
             </TabPanels>

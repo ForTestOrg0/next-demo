@@ -18,6 +18,8 @@ export const AcalaTestnet: Chain = {
     twitter: 'https://twitter.com/AcalaNetwork',
     github: 'https://github.com/AcalaNetwork',
     price: '',
+    website: 'https://acala.network/',
+    whitePaper: 'https://github.com/AcalaNetwork/Acala-white-paper',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

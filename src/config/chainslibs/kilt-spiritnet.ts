@@ -18,12 +18,10 @@ export const KiltSpiritnet: Chain = {
     twitter: 'https://twitter.com/Kiltprotocol',
     github: 'https://github.com/KILTprotocol',
     price: 'https://www.coingecko.com/en/coins/kilt-protocol',
+    website: 'https://www.kilt.io/',
+    whitePaper: 'https://www.kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf',
   },
   donate: '4rLcQDzmSePUL4jCajEupocBBRqGiKJ3XLyu8v7AGChHpa9u',
-  parachain: {
-    id: 2086,
-    relaychain: 'polkadot',
-  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

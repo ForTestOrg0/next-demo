@@ -18,12 +18,14 @@ export const Parallel: Chain = {
     twitter: 'https://twitter.com/ParallelFi',
     github: 'https://github.com/parallel-finance',
     price: 'https://www.coingecko.com/en/coins/parallel-finance',
+    website: 'https://parallel.fi/',
+    whitePaper: '',
   },
-  donate: 'p8EN6yxPJK4DCbinVxF6crWKszFUi1V7dL8mQDS55g3mQ8r1L',
   parachain: {
     id: 2012,
     relaychain: 'polkadot',
   },
+  donate: 'p8EN6yxPJK4DCbinVxF6crWKszFUi1V7dL8mQDS55g3mQ8r1L',
   modules: {
     BOUNTY: false,
     CONTRACT: false,

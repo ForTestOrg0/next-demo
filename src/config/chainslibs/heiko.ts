@@ -18,6 +18,12 @@ export const Heiko: Chain = {
     twitter: 'https://twitter.com/ParallelFi',
     github: 'https://github.com/parallel-finance',
     price: '',
+    website: 'https://parallel.fi/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2085,
+    relaychain: 'kusama',
   },
   donate: 'hJJchKKyVJbo8roXn1eNNWo3jUt3vEGcJqtYQyJANR6LZQhHS',
   modules: {

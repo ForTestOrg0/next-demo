@@ -7,7 +7,7 @@ export function timeAgo(time: number | string, now = Date.now(), shouldTruncate?
   if (diff < 1) {
     return '0 sec ago'
   } else if (diff < 60) {
-    return `${diff} ${diff === 1 ? 'sec' : 'secs'} ago`
+    return `${parseInt(diff.toString())} ${diff === 1 ? 'sec' : 'secs'} ago`
   } else if (diff < 3600) {
     // less 1 hour
     const min = Math.floor(diff / 60)

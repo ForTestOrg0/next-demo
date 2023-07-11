@@ -7,9 +7,10 @@ import { BareServerSideProps, Token } from '@/types/page'
 import { TransferList } from '@/components/Pages/Blockchain/TransferList'
 import { AssetLink } from '@/components/Links'
 import { getSubdomainFromHeaders } from '@/utils/url'
+import { TransferHistoryChart } from '@/components/Pages/Blockchain/TransferHistoryChart'
 
 export const getServerSideProps: GetServerSideProps<
-  { data: GetTransfersProps; asset_id: string; tokenDetail: Token | null; page: number } & BareServerSideProps
+  { data: GetTransfersProps; asset_id: string; tokenDetail: Token | null; page: number; host: string } & BareServerSideProps
 > = async (context) => {
   const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
@@ -63,14 +64,18 @@ export const getServerSideProps: GetServerSideProps<
       asset_id,
       tokenDetail: tokenData,
       chain: chainProps,
+      host: subdomain,
     },
   }
 }
 
-export default function Page({ data, tokenDetail, asset_id, chain, page }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ data, tokenDetail, asset_id, chain, page, host }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
       <Container className="flex-1">
+        <div className="mb-module">
+          <TransferHistoryChart host={host} chain={chain} />
+        </div>
         <Text block bold className="mb-4 break-all">
           Transfers
         </Text>

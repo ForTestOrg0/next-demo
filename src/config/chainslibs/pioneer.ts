@@ -18,6 +18,12 @@ export const Pioneer: Chain = {
     twitter: 'https://twitter.com/BC_Pioneer',
     github: 'https://github.com/bit-country',
     price: 'https://www.coingecko.com/en/coins/metaverse-network-pioneer',
+    website: 'https://bit.country/',
+    whitePaper: 'https://metaversenw.gitbook.io/bit-country/',
+  },
+  parachain: {
+    id: 2096,
+    relaychain: 'kusama',
   },
   donate: 'WWasAMueAC7BBRhbiAueRYmHxZ3Hw3yzHwUV3r49FptWkYPx6',
   modules: {

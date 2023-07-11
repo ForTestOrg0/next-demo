@@ -18,6 +18,8 @@ export const Rockmine: Chain = {
     twitter: '',
     github: '',
     price: '',
+    website: '',
+    whitePaper: '',
   },
   donate: 'Fzs6WWFcAuJhxAVyZa4EN2suxggjidJjV3AzJxKbRHjh2Jc',
   modules: {

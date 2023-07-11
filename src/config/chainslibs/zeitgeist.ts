@@ -18,12 +18,14 @@ export const Zeitgeist: Chain = {
     twitter: 'https://twitter.com/ZeitgeistPM',
     github: 'https://github.com/ZeitgeistPM',
     price: 'https://www.coingecko.com/en/coins/zeitgeist',
+    website: 'https://zeitgeist.pm/',
+    whitePaper: '',
   },
-  donate: 'dE2ShE3rmDek11oZHEuC8LuHV3sRcGHZnAahW6mFPzGHtyXwn',
   parachain: {
     id: 2092,
     relaychain: 'polkadot',
   },
+  donate: 'dE2ShE3rmDek11oZHEuC8LuHV3sRcGHZnAahW6mFPzGHtyXwn',
   modules: {
     BOUNTY: false,
     CONTRACT: false,

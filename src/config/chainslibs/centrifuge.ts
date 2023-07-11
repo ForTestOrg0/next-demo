@@ -18,6 +18,12 @@ export const Centrifuge: Chain = {
     twitter: 'https://twitter.com/centrifuge',
     github: 'https://github.com/centrifuge/centrifuge-chain',
     price: '',
+    website: 'https://centrifuge.io/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2031,
+    relaychain: 'polkadot',
   },
   donate: '4emHtEuxg4e21wvGmfUs515KtTYgbx319TsduYpZLVWKGBu8',
   modules: {

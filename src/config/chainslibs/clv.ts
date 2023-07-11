@@ -18,12 +18,14 @@ export const Clv: Chain = {
     twitter: 'https://twitter.com/clover_finance',
     github: 'https://github.com/clover-network',
     price: 'https://www.coingecko.com/en/coins/clover-finance',
+    website: 'https://clover.finance/',
+    whitePaper: 'https://clover.finance/litepaper.pdf',
   },
-  donate: 'jHFWb6Dhx3mLSnRaBQyojWuRG1rnfTPyv9Sjfih3Dp9LHcsAt',
   parachain: {
     id: 2002,
     relaychain: 'polkadot',
   },
+  donate: 'jHFWb6Dhx3mLSnRaBQyojWuRG1rnfTPyv9Sjfih3Dp9LHcsAt',
   modules: {
     BOUNTY: false,
     CONTRACT: false,

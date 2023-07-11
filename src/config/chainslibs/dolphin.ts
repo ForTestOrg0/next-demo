@@ -18,6 +18,8 @@ export const Dolphin: Chain = {
     twitter: 'https://twitter.com/mantanetwork',
     github: 'https://github.com/Manta-Network',
     price: '',
+    website: 'https://manta.network/',
+    whitePaper: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

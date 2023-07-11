@@ -12,12 +12,14 @@ export const Kusama: Chain = {
   gtag: 'G-F8SDNKSNRS',
   api: 'https://kusama.webapi.subscan.io',
   domain: 'https://kusama.subscan.io',
-  subdomain: ['kusama', 'localhost'],
+  subdomain: ['kusama'],
   social: {
     telegram: 'https://t.me/kusamanetworkofficial',
     twitter: 'https://twitter.com/kusamanetwork',
     github: 'https://github.com/paritytech/polkadot/',
     price: 'https://www.coingecko.com/en/coins/kusama',
+    website: 'https://kusama.network/',
+    whitePaper: '',
   },
   donate: 'Fzs6WWFcAuJhxAVyZa4EN2suxggjidJjV3AzJxKbRHjh2Jc',
   modules: {

@@ -18,12 +18,10 @@ export const CentrifugeParachain: Chain = {
     twitter: 'https://twitter.com/centrifuge',
     github: 'https://github.com/centrifuge/centrifuge-chain',
     price: 'https://www.coingecko.com/en/coins/centrifuge',
+    website: 'https://centrifuge.io/',
+    whitePaper: '',
   },
   donate: '4emHtEuxg4e21wvGmfUs515KtTYgbx319TsduYpZLVWKGBu8',
-  parachain: {
-    id: 2031,
-    relaychain: 'polkadot',
-  },
   modules: {
     BOUNTY: false,
     CONTRACT: false,

@@ -18,6 +18,12 @@ export const Bajun: Chain = {
     twitter: 'https://twitter.com/AjunaNetwork',
     github: 'https://github.com/ajuna-network/',
     price: 'https://www.coingecko.com/en/coins/ajuna-network',
+    website: 'https://ajuna.io/',
+    whitePaper: 'https://parachain.origintrail.io/whitepaper',
+  },
+  parachain: {
+    id: 2119,
+    relaychain: 'kusama',
   },
   donate: 'bUMFXq78vbBXMrzKaJNkvZeHUURhyLXwPx8BiBGubAwP2CHEG',
   modules: {

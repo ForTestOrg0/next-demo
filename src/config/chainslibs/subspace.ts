@@ -18,6 +18,8 @@ export const Subspace: Chain = {
     twitter: 'https://twitter.com/NetworkSubspace',
     github: 'https://github.com/subspace',
     price: '',
+    website: 'https://subspace.network/',
+    whitePaper: 'https://subspace.network/news/subspace-network-whitepaper',
   },
   donate: 'st9gjWgsqgULbhvKe52QVYb9wVynuskJPJNg9tCeeuYQLnJJv',
   modules: {

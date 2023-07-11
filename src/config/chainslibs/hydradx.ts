@@ -18,6 +18,8 @@ export const Hydradx: Chain = {
     twitter: 'https://twitter.com/hydra_dx',
     github: 'https://github.com/galacticcouncil',
     price: 'https://www.coingecko.com/en/coins/hydradx',
+    website: 'https://hydradx.io/',
+    whitePaper: '',
   },
   donate: '7M26s2Xr3vFeEXqoE3EWGLFoLZQd5u34ErqBX1BgqaZUrrBz',
   modules: {

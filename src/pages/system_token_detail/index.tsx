@@ -9,6 +9,7 @@ import { TransferListClient } from '@/components/Pages/Blockchain/TransferList'
 import { TAB_ROW } from '@/config/constants'
 import defaultTokenIcon from '@/styles/images/default-token.png'
 import { getSubdomainFromHeaders } from '@/utils/url'
+import { SystemTokenInfo } from '@/components/Pages/Blockchain/SystemTokenInfo'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -59,29 +60,7 @@ export default function Page({ host, data, chain, unique_id }: InferGetServerSid
     <PageContent>
       <Container className="flex-1">
         <Boundary className="lg:px-7 lg:py-7 flex items-start">
-          <div className="symbol-img mr-7">
-            <Image src={defaultTokenIcon} width={70} height={70} alt={'token'} />
-            {/* <div className="asset-name">
-            <span className="symbol">{system?.symbol}</span>
-            {system?.name}
-            </div> */}
-          </div>
-          <div className="w-full">
-            <div className="flex">
-              <div className="flex items-center">
-                <div className="text-xl mr-[60px]">{system?.symbol}</div>
-              </div>
-              <div className="w-px h-[70px] bg-[#e7eaf3] ml-12 mr-7"></div>
-              <div className="flex flex-col justify-between mr-12">
-                <div className="label text-sm font-semibold">Decimals</div>
-                <div className="text-sm">{system?.decimals || '-'}</div>
-              </div>
-              <div className="flex flex-col justify-between">
-                <div className="label text-sm font-semibold">Holders</div>
-                <div className="text-sm">{holders > 0 ? ` ${holders}` : '-'}</div>
-              </div>
-            </div>
-          </div>
+          <SystemTokenInfo token={system} holdersCount={holders} />
         </Boundary>
 
         <Boundary className="mt-5">
@@ -95,7 +74,14 @@ export default function Page({ host, data, chain, unique_id }: InferGetServerSid
                 <AccountListClient useDecimal id={system?.symbol || ''} chain={chain} host={host} page={0} row={TAB_ROW} />
               </TabPanel>
               <TabPanel>
-                <TransferListClient host={host} chain={chain} page={0} row={TAB_ROW} />
+                <TransferListClient
+                  asset_unique_id={unique_id}
+                  host={host}
+                  chain={chain}
+                  page={0}
+                  row={TAB_ROW}
+                  disableColumn={{ block: true, result: true }}
+                />
               </TabPanel>
             </TabPanels>
           </TabGroup>

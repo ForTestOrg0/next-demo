@@ -18,6 +18,8 @@ export const Humanode: Chain = {
     twitter: 'https://twitter.com/humanode_io',
     github: 'https://github.com/humanode-network',
     price: 'https://www.coingecko.com/en/coins/humanode',
+    website: 'https://humanode.io/',
+    whitePaper: 'https://papers.humanode.io/whitepaper.pdf',
   },
   donate: 'hmqtkf9QmNuBjy1BozbAvjWT1roX5NrPxuVSemwfUD6T95prd',
   modules: {

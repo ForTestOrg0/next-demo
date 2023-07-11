@@ -18,12 +18,14 @@ export const Nodle: Chain = {
     twitter: 'https://twitter.com/NodleNetwork',
     github: 'https://github.com/NodleCode',
     price: 'https://www.coingecko.com/en/coins/nodle-network',
+    website: 'https://www.nodle.com/',
+    whitePaper: '',
   },
-  donate: '4kYx9ETN4MWkB1KjgCMtSuLkXwgyf8fXLQRmXETroM6oYFqJ',
   parachain: {
     id: 2026,
     relaychain: 'polkadot',
   },
+  donate: '4kYx9ETN4MWkB1KjgCMtSuLkXwgyf8fXLQRmXETroM6oYFqJ',
   modules: {
     BOUNTY: false,
     CONTRACT: false,

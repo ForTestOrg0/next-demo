@@ -1,7 +1,7 @@
 import React from 'react'
 import { BareProps } from '@/types/page'
 import { Table, Td, Th, Tr, Text } from '@/ui'
-import { SystemTokenLink, ExtrinsicLink } from '@/components/Links'
+import { SystemTokenLink, ExtrinsicLink, SystemTokenHolderLink } from '@/components/Links'
 import { Token } from '@/types/api'
 
 interface Props extends BareProps {
@@ -24,8 +24,21 @@ export const SystemAssets: React.FC<Props> = ({ tokens }) => {
               <Td>
                 <SystemTokenLink query={{ unique_id: item.unique_id }}></SystemTokenLink>
               </Td>
-              <Td>{item.decimals}</Td>
-              <Td>{item.extends?.holders}</Td>
+              <Td>
+                <Text>{item.decimals}</Text>
+              </Td>
+              <Td>
+                {item.extends?.holders && item.extends?.holders > 0 ? (
+                  <SystemTokenHolderLink
+                    query={{
+                      unique_id: item.unique_id,
+                    }}>
+                    {item.extends?.holders}
+                  </SystemTokenHolderLink>
+                ) : (
+                  <Text>{item.extends?.holders}</Text>
+                )}
+              </Td>
             </Tr>
           )
         })}

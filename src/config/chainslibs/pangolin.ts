@@ -18,6 +18,8 @@ export const Pangolin: Chain = {
     twitter: 'https://twitter.com/DarwiniaNetwork',
     github: 'https://github.com/darwinia-network',
     price: '',
+    website: 'https://darwinia.network/',
+    whitePaper: '',
   },
   donate: '2rbREPAhkptwCtdvU5eSGnHgFiyPcehdkXuGqFF916oYCJ7s',
   modules: {

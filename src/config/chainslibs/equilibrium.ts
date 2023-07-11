@@ -18,12 +18,14 @@ export const Equilibrium: Chain = {
     twitter: 'https://twitter.com/EquilibriumDeFi',
     github: 'https://github.com/equilibrium-eosdt',
     price: 'https://www.coingecko.com/en/coins/equilibrium',
+    website: 'https://equilibrium.io',
+    whitePaper: '',
   },
-  donate: 'cg6XcWabkEYsR326qQXgXWYBWEbfWhe5DobRVE3T3pe1rvEKy',
   parachain: {
     id: 2011,
     relaychain: 'polkadot',
   },
+  donate: 'cg6XcWabkEYsR326qQXgXWYBWEbfWhe5DobRVE3T3pe1rvEKy',
   modules: {
     BOUNTY: false,
     CONTRACT: false,

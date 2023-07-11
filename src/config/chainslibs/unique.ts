@@ -18,6 +18,12 @@ export const Unique: Chain = {
     twitter: 'https://twitter.com/Unique_NFTchain',
     github: 'https://github.com/UniqueNetwork',
     price: 'https://www.coingecko.com/en/coins/unique-network',
+    website: 'https://unique.network/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2037,
+    relaychain: 'polkadot',
   },
   donate: 'unhwbuvnZWqPvkxZdcw8ow3pmbcEigoy6JYVdZXEFvyEccTVv',
   modules: {

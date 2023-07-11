@@ -18,6 +18,8 @@ export const Edgeware: Chain = {
     twitter: 'https://twitter.com/heyedgeware',
     github: 'https://github.com/hicommonwealth',
     price: 'https://www.coingecko.com/en/coins/edgeware',
+    website: 'https://edgewa.re/',
+    whitePaper: 'https://arena-attachments.s3.amazonaws.com/4643268/c8d128724f36b716660e4bf21823e760.pdf?1563310093',
   },
   donate: 'kwAPUDGXdGwVFBpWDyB7sN19PQA1dmugBoq4jApuhGB6sAd',
   modules: {

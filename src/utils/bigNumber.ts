@@ -34,7 +34,7 @@ export const stringToNumber = (str: string) => {
  * @param {number} digits - The number of digits after the decimal point.
  * @return {string} The abbreviated number as a string.
  */
-export const abbreviateNumber = (number: number | string, digits: number) => {
+export const abbreviateNumber = (number: number | string, digits = 3) => {
   const lookup = [
     { value: 1, symbol: '' },
     { value: 1e3, symbol: 'K' },

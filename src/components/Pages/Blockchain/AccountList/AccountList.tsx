@@ -5,13 +5,15 @@ import { AccountLink } from '@/components/Links'
 import { Account } from '@/types/api'
 import { Balance } from '@/components/Balance'
 import { Identicon } from '@/components/Identicon'
+import { Rank } from '@/components/Rank'
 
 interface Props extends BareProps, BareServerSideProps {
+  baseRank?: number
   accounts: Account[]
   useDecimal?: boolean
 }
 
-const Page: React.FC<Props> = ({ accounts, useDecimal, chain }) => {
+const Page: React.FC<Props> = ({ baseRank = 0, accounts, useDecimal, chain }) => {
   return (
     <Table className="w-full">
       <tbody>
@@ -22,17 +24,21 @@ const Page: React.FC<Props> = ({ accounts, useDecimal, chain }) => {
           <Th>Locked ({chain.nativeToken.symbol})</Th>
           <Th>Balance ({chain.nativeToken.symbol})</Th>
         </Tr>
-        {accounts.map((account, index) => {
+        {accounts?.map((account, index) => {
           return (
             <Tr key={account.address}>
               <Td>
-                <Text>{index + 1}</Text>
+                <Rank rank={baseRank + index + 1}></Rank>
               </Td>
               <Td>
                 <Identicon account={account.account_display} />
               </Td>
               <Td>
-                <AccountLink address={account.address}>{account.count_extrinsic}</AccountLink>
+                {account.count_extrinsic > 0 ? (
+                  <AccountLink address={account.address}>{account.count_extrinsic}</AccountLink>
+                ) : (
+                  <Text>{account.count_extrinsic}</Text>
+                )}
               </Td>
               <Td>
                 <Balance
@@ -41,6 +47,7 @@ const Page: React.FC<Props> = ({ accounts, useDecimal, chain }) => {
                     decimals: useDecimal ? chain.nativeTokenConf.decimals : 0,
                     symbol: chain.nativeTokenConf.symbol,
                   }}
+                  showSymbol={false}
                 />
               </Td>
               <Td>
@@ -50,6 +57,7 @@ const Page: React.FC<Props> = ({ accounts, useDecimal, chain }) => {
                     decimals: useDecimal ? chain.nativeTokenConf.decimals : 0,
                     symbol: chain.nativeTokenConf.symbol,
                   }}
+                  showSymbol={false}
                 />
               </Td>
             </Tr>

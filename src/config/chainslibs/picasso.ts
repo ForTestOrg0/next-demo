@@ -18,6 +18,12 @@ export const Picasso: Chain = {
     twitter: 'https://twitter.com/Picasso_Network',
     github: 'https://github.com/ComposableFi/',
     price: '',
+    website: 'https://picasso.composable.finance/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2087,
+    relaychain: 'kusama',
   },
   donate: '5wzsF8xCfr1U3iBJYavAyiXrHmQWKLDmbh5LuSBUMcEevAft',
   modules: {

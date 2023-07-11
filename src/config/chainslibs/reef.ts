@@ -18,6 +18,8 @@ export const Reef: Chain = {
     twitter: 'https://twitter.com/ReefDeFi',
     github: 'https://github.com/reef-defi',
     price: 'https://www.coingecko.com/en/coins/reef',
+    website: 'https://reef.finance/',
+    whitePaper: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

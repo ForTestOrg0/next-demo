@@ -6,6 +6,7 @@ import { TimeFromNow } from '@/components/Time'
 import { Block } from '@/types/api'
 import { BlockStatus } from './BlockStatus'
 import { Identicon } from '@/components/Identicon'
+import { formatHash } from '@/utils/formatText'
 
 interface Props extends BareProps, BareServerSideProps {
   blocks: Block[]
@@ -52,7 +53,7 @@ const Page: React.FC<Props> = ({ blocks, chain }) => {
                 </ValidatorLink>
               </Td>
               <Td>
-                <BlockLink blockNumber={block.hash} />
+                <BlockLink blockNumber={block.hash}>{formatHash(block.hash)}</BlockLink>
               </Td>
             </Tr>
           )

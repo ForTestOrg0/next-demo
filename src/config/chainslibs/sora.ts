@@ -18,6 +18,12 @@ export const Sora: Chain = {
     twitter: 'https://twitter.com/sora_xor',
     github: 'https://github.com/sora-xor',
     price: 'https://www.coingecko.com/en/coins/sora',
+    website: 'https://sora.org/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2011,
+    relaychain: 'kusama',
   },
   donate: 'cnUuq45FYqAqw2mzXNbz3gDChbepLDNNXsnstbncKTN54vsrK',
   modules: {

@@ -5,7 +5,7 @@ import { Text } from '@/ui'
 
 interface Props extends BareProps {
   colorCls?: string
-  title: string
+  title: string | number
   value: React.ReactNode
 }
 
@@ -17,7 +17,9 @@ export const Legend01: React.FC<Props> = ({ style, children, title, value, color
         <Text block className="scale-[0.83] origin-[0%_50%] text-sub-network mt-[-4px]">
           {title}
         </Text>
-        <Text block>{value}</Text>
+        <Text className="whitespace-nowrap" block>
+          {value}
+        </Text>
       </div>
     </div>
   )

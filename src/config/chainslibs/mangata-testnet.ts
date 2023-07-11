@@ -18,6 +18,8 @@ export const MangataTestnet: Chain = {
     twitter: 'https://twitter.com/MangataFinance',
     github: 'https://github.com/mangata-finance',
     price: '',
+    website: 'https://mangata.finance/',
+    whitePaper: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

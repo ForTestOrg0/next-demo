@@ -18,6 +18,8 @@ export const Rococo: Chain = {
     twitter: '',
     github: 'https://github.com/paritytech/polkadot',
     price: '',
+    website: '',
+    whitePaper: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

@@ -15,6 +15,8 @@ export interface Chain {
     telegram?: string
     twitter?: string
     github?: string
+    website?: string
+    whitePaper?: string
     price?: string
   }
   donate: string

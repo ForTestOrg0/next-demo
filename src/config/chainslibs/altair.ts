@@ -18,6 +18,12 @@ export const Altair: Chain = {
     twitter: 'https://twitter.com/centrifuge',
     github: 'https://github.com/centrifuge/',
     price: 'https://www.coingecko.com/en/coins/altair',
+    website: 'https://centrifuge.io/altair',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2088,
+    relaychain: 'kusama',
   },
   donate: 'kALaKSAvNpj8akUhh9aDtrHapvJ1DZENQj2NtieKNswmwiGDs',
   modules: {

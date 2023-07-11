@@ -18,6 +18,8 @@ export const Moonbase: Chain = {
     twitter: 'https://twitter.com/moonbeamnetwork',
     github: 'https://github.com/PureStake/moonbeam',
     price: '',
+    website: 'https://moonbeam.network/',
+    whitePaper: '',
   },
   donate: '0x9c0fEf6b48Cb0B16EDc72a61d9503A78782c19e2',
   modules: {

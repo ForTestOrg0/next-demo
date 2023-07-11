@@ -18,6 +18,12 @@ export const Integritee: Chain = {
     twitter: 'https://twitter.com/integri_t_e_e',
     github: 'https://github.com/integritee-network',
     price: 'https://www.coingecko.com/en/coins/integritee',
+    website: 'https://integritee.network/',
+    whitePaper: 'https://uploads-ssl.webflow.com/60c21bdfde439ba700ea5c56/612892db018a36f054100b4d_Integritee%20AG%20Lightpaper.pdf',
+  },
+  parachain: {
+    id: 2015,
+    relaychain: 'kusama',
   },
   donate: '2Mf7wRTgqNXJRbcbwRFKPGxZ2JFvLjZ2oq8ckq2dgpq6ngha',
   modules: {

@@ -30,10 +30,10 @@ export const SystemAssetsClient: React.FC<Props> = ({ host, page = 0, row = TAB_
   return (
     <div>
       <SystemAssets tokens={providers?.tokens || []} />
-      {providers?.count - TAB_ROW > 0 ? (
+      {providers?.count - row > 0 ? (
         <ExtrinsicLink query={{ block: '' }}>
           <Button outline className="mt-4">
-            View Other {providers?.count - TAB_ROW} System Token
+            View Other {providers?.count - row} System Token
           </Button>
         </ExtrinsicLink>
       ) : null}

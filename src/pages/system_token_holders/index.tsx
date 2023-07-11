@@ -62,7 +62,7 @@ export default function Page({ data, chain, page, holderData }: InferGetServerSi
           </Text>
         )}
         <Boundary>
-          <AccountList useDecimal accounts={holders} chain={chain} />
+          <AccountList useDecimal accounts={holders} chain={chain} baseRank={(page - 1) * PAGE_ROW} />
         </Boundary>
         <Flex className="mt-5 flex-row-reverse">
           <Pagination

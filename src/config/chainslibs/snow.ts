@@ -18,6 +18,12 @@ export const Snow: Chain = {
     twitter: 'https://twitter.com/icenetwork_io',
     github: '',
     price: '',
+    website: 'https://icenetwork.io/snow/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2129,
+    relaychain: 'kusama',
   },
   donate: 'ni1gZzUF5dKYHuMSFdYD3hyBjSReQnUGju6HDGE8z9TocEZeP',
   modules: {

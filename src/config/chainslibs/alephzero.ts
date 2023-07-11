@@ -18,6 +18,8 @@ export const Alephzero: Chain = {
     twitter: 'https://twitter.com/Aleph__Zero',
     github: 'https://github.com/aleph-zero-foundation',
     price: 'https://www.coingecko.com/en/coins/aleph-zero',
+    website: 'https://alephzero.org/',
+    whitePaper: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

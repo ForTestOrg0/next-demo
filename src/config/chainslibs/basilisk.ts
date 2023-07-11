@@ -18,6 +18,12 @@ export const Basilisk: Chain = {
     twitter: 'https://twitter.com/bsx_finance',
     github: 'https://github.com/galacticcouncil',
     price: 'https://www.coingecko.com/en/coins/basilisk',
+    website: 'https://bsx.fi/',
+    whitePaper: '',
+  },
+  parachain: {
+    id: 2090,
+    relaychain: 'kusama',
   },
   donate: 'bXk1xcqYdf5G5Az5M6UfjQHKvSvZyCmM6N72B6Wmpv1bbmG7e',
   modules: {

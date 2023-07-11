@@ -18,6 +18,8 @@ export const Clover: Chain = {
     twitter: 'https://twitter.com/clover_finance',
     github: 'https://github.com/clover-network',
     price: 'https://www.coingecko.com/en/coins/clover-finance',
+    website: 'https://clover.finance/',
+    whitePaper: 'https://clover.finance/litepaper.pdf',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

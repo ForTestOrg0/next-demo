@@ -18,6 +18,8 @@ export const Arctic: Chain = {
     twitter: 'https://twitter.com/icenetwork_io',
     github: '',
     price: '',
+    website: 'https://icenetwork.io/',
+    whitePaper: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

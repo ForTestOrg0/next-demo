@@ -18,6 +18,8 @@ export const Maxwell: Chain = {
     twitter: 'https://twitter.com/CrustNetwork',
     github: 'https://github.com/crustio',
     price: '',
+    website: 'https://crust.network/',
+    whitePaper: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

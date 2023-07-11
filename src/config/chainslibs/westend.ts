@@ -18,6 +18,8 @@ export const Westend: Chain = {
     twitter: '',
     github: '',
     price: '',
+    website: '',
+    whitePaper: '',
   },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {

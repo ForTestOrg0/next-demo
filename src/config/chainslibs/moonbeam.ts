@@ -18,12 +18,14 @@ export const Moonbeam: Chain = {
     twitter: 'https://twitter.com/moonbeamnetwork',
     github: 'https://github.com/PureStake/moonbeam',
     price: 'https://coinmarketcap.com/currencies/moonbeam/',
+    website: 'https://moonbeam.network/',
+    whitePaper: '',
   },
-  donate: '0x9c0fEf6b48Cb0B16EDc72a61d9503A78782c19e2',
   parachain: {
     id: 2004,
     relaychain: 'polkadot',
   },
+  donate: '0x9c0fEf6b48Cb0B16EDc72a61d9503A78782c19e2',
   modules: {
     BOUNTY: false,
     CONTRACT: true,

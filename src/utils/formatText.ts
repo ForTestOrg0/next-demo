@@ -45,3 +45,7 @@ export function toBigCamel(name: string, split = '') {
   })
   return smallCamel.substr(0, 1).toUpperCase() + smallCamel.substr(1)
 }
+
+export function capitalizeFirstLetter(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}

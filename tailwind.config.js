@@ -36,6 +36,9 @@ module.exports = {
       fontFamily: {
         sans: ['Eina01', ...fontFamily.sans],
       },
+      margin: {
+        module: '1.25rem', // 20px, Vertical spacing of page modules
+      },
       spacing: {
         small: '0.3125rem', // 5px
         middle: '0.625rem', // 10px
@@ -88,6 +91,9 @@ module.exports = {
         'message-fadeout': 'messagefadeout 200ms ease-out',
         'notification-fadeout': 'notificationfadeout 200ms ease-out',
         'marquee-infinite': 'marquee 25s linear infinite',
+      },
+      screens: {
+        xl: '1200px',
       },
     },
   },

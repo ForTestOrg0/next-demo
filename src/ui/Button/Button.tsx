@@ -5,15 +5,18 @@ import clsx from 'clsx'
 
 interface ButtonProps {
   outline?: boolean
+  small?: boolean
 }
 
-const Button: React.FC<ButtonProps & HTMLAttributes<HTMLButtonElement>> = ({ children, className, outline, ...props }) => (
+const Button: React.FC<ButtonProps & HTMLAttributes<HTMLButtonElement>> = ({ children, className, outline, small, ...props }) => (
   <button
     type="button"
     className={clsx(
-      'rounded px-8 py-1.5 text-sm border border-sub-network',
+      'rounded  text-sm border border-sub-network',
       { 'text-sub-network bg-sub-white': outline },
       { 'text-sub-white bg-sub-network': !outline },
+      { 'px-8 py-1.5': !small },
+      { 'px-4 py-0.5': small },
       className
     )}
     {...props}>

@@ -27,7 +27,18 @@ export const CustomAssets: React.FC<Props> = ({ tokens }) => {
               </Td>
               <Td>{item.symbol}</Td>
               <Td>{item.decimals}</Td>
-              <Td>{item.extends?.holders}</Td>
+              <Td>
+                {item.extends?.holders && item.extends?.holders > 0 ? (
+                  <CustomTokenLink
+                    query={{
+                      customTokenId: item.unique_id,
+                    }}>
+                    {item.extends?.holders}
+                  </CustomTokenLink>
+                ) : (
+                  <Text>{item.extends?.holders}</Text>
+                )}
+              </Td>
             </Tr>
           )
         })}

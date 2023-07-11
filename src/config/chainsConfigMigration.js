@@ -6,6 +6,7 @@ const svgr = require('@svgr/core').default
 const babel = require('@babel/core')
 const { dirname } = require('path')
 const v1Networks = require('./v1-networks.json')
+const _ = require('lodash')
 const root = './src/config/chainslibs'
 
 async function ensureWrite(file, text) {
@@ -17,11 +18,32 @@ async function buildConfig(networks) {
   const outDir = `${root}/`
   console.log(`Generating config for ${networks.length} networks`)
   const importString = `import { generateGradientColor } from '@/utils/color'\nimport { Chain } from '../types'\n`
+  const getParachainInfo = (chainId) => {
+    // polkadot
+    const p = _.find(networks[0].value.parachains, { info: chainId })
+    if (p) {
+      return {
+        id: p.paraId,
+        relaychain: 'polkadot',
+      }
+    }
 
+    //kusama
+    const k = _.find(networks[1].value.parachains, { info: chainId })
+    if (k) {
+      return {
+        id: k.paraId,
+        relaychain: 'kusama',
+      }
+    }
+
+    return null
+  }
   await Promise.all(
     networks.map(async ({ name, value }) => {
       try {
         console.log(`Generating config for ${name}`)
+        const parachain = getParachainInfo(name)
         const content = `export const ${camelcase(name, { pascalCase: true })}: Chain = {
   id: '${name}',
   nativeTokenUniqueId: '${value.balances?.value || ''}',
@@ -40,7 +62,17 @@ async function buildConfig(networks) {
     twitter: '${value?.twitter?.value || ''}',
     github: '${value?.github?.value || ''}',
     price: '${value?.price_link?.value || ''}',
-  },
+    website: '${value?.official_site?.value || ''}',
+    whitePaper: '${value?.white_paper?.value || ''}',
+  },${
+    parachain
+      ? `
+  parachain: {
+    id: ${parachain.id},
+    relaychain: '${parachain.relaychain}',
+  },`
+      : ''
+  }
   donate: '${value?.donate?.address || ''}',
   modules: {
     BOUNTY: ${value.hasBounty ? true : false},

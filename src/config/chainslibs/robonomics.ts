@@ -18,6 +18,12 @@ export const Robonomics: Chain = {
     twitter: 'https://twitter.com/AIRA_Robonomics',
     github: 'https://github.com/airalab',
     price: 'https://www.coingecko.com/en/coins/robonomics-network',
+    website: 'https://robonomics.network/',
+    whitePaper: 'https://static.robonomics.network/docs/whitepaper/Robonomics-whitepaper-en.pdf',
+  },
+  parachain: {
+    id: 2048,
+    relaychain: 'kusama',
   },
   donate: '4FcerGkM8u97PiJR9XxmZQ1dJWyWPDWvPhf7SpFMV58N8fLP',
   modules: {

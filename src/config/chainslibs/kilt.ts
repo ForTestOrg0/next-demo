@@ -18,6 +18,8 @@ export const Kilt: Chain = {
     twitter: 'https://twitter.com/Kiltprotocol',
     github: 'https://github.com/KILTprotocol',
     price: '',
+    website: 'https://www.kilt.io/',
+    whitePaper: 'https://www.kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf',
   },
   donate: '4rLcQDzmSePUL4jCajEupocBBRqGiKJ3XLyu8v7AGChHpa9u',
   modules: {

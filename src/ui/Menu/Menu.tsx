@@ -23,7 +23,7 @@ export const MenuItems: React.FC<BareProps> = ({ children, className }) => (
     leaveTo="transform opacity-0 scale-95">
     <HeadlessuiMenu.Items
       className={clsx(
-        'absolute origin-top-right divide-y divide-gray-100 rounded bg-sub-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
+        'absolute origin-top-right divide-y divide-gray-100 rounded bg-sub-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50',
         className
       )}>
       <div className="px-1 py-1">{children}</div>

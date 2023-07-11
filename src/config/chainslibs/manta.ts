@@ -18,12 +18,14 @@ export const Manta: Chain = {
     twitter: 'https://twitter.com/mantanetwork',
     github: 'https://github.com/Manta-Network',
     price: '',
+    website: 'https://manta.network/',
+    whitePaper: '',
   },
-  donate: 'dfZyZQ2Tyc8e4zq837CQD1bNGW62tKCm2TNX7bjtUXAWj2GuE',
   parachain: {
     id: 2104,
     relaychain: 'polkadot',
   },
+  donate: 'dfZyZQ2Tyc8e4zq837CQD1bNGW62tKCm2TNX7bjtUXAWj2GuE',
   modules: {
     BOUNTY: false,
     CONTRACT: false,
