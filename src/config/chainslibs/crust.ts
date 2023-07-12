@@ -21,10 +21,6 @@ export const Crust: Chain = {
     website: 'https://crust.network/',
     whitePaper: '',
   },
-  parachain: {
-    id: 2008,
-    relaychain: 'polkadot',
-  },
   donate: 'cTKmBRbJ93JvP3WKTUP5VBC97WVMsgBUbfCWgUZ8WZBuSty4u',
   modules: {
     BOUNTY: false,

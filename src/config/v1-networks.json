@@ -230,7 +230,7 @@
           "text": "Composable Finance"
         },
         {
-          "info": "crust",
+          "info": "crust-parachain",
           "paraId": 2008,
           "logo": "/static/img/crust-button-mobile.f325f7a4.png",
           "subscan": "https://crust-parachain.subscan.io/",
@@ -507,7 +507,7 @@
           "Owner account": "12jYuVktdKEC6C4g4d5fuW9MLgUDbxvJRhMBkhEGyqarUzbQ"
         },
         {
-          "info": "spiritnet",
+          "info": "kilt-spiritnet",
           "paraId": 2086,
           "text": "KILT Protocol",
           "subscan": "https://spiritnet.subscan.io/",
@@ -517,7 +517,7 @@
         { "info": "subgame", "paraId": 2017, "logo": "/static/img/subgame.0c9971a9.png", "text": "SubGame Gamma" },
         { "info": "unique", "paraId": 2037, "logo": "/static/img/unique.c988e985.svg", "text": "Unique Network" },
         {
-          "info": "darwinia",
+          "info": "darwinia-parachain",
           "paraId": 2046,
           "text": "Darwinia2",
           "subscan": "https://darwinia.subscan.io/",
@@ -795,7 +795,7 @@
           "logo": "/static/img/shadow-button-mobile.c1a5c466.png"
         },
         {
-          "info": "crab",
+          "info": "crab-parachain",
           "paraId": 2105,
           "text": "Crab2",
           "subscan": "https://crab.subscan.io/",

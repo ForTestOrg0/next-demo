@@ -21,10 +21,6 @@ export const Crab: Chain = {
     website: 'https://crab.network/',
     whitePaper: '',
   },
-  parachain: {
-    id: 2105,
-    relaychain: 'kusama',
-  },
   donate: '5FVFSCANyotNxJM4Crm1LQfsmNQSw3p8H7CRbegN7d5Ex91y',
   modules: {
     BOUNTY: true,

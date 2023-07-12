@@ -21,6 +21,10 @@ export const KiltSpiritnet: Chain = {
     website: 'https://www.kilt.io/',
     whitePaper: 'https://www.kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf',
   },
+  parachain: {
+    id: 2086,
+    relaychain: 'polkadot',
+  },
   donate: '4rLcQDzmSePUL4jCajEupocBBRqGiKJ3XLyu8v7AGChHpa9u',
   modules: {
     BOUNTY: false,

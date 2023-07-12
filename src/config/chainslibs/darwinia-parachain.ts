@@ -21,6 +21,10 @@ export const DarwiniaParachain: Chain = {
     website: 'https://darwinia.network/',
     whitePaper: '',
   },
+  parachain: {
+    id: 2046,
+    relaychain: 'polkadot',
+  },
   donate: '0x9c0fEf6b48Cb0B16EDc72a61d9503A78782c19e2',
   modules: {
     BOUNTY: false,
