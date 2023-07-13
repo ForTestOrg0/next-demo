@@ -6,7 +6,7 @@ import { getRelaySubdomainFromSubdomain } from '@/config/chains'
 import { XCM } from '@/types/api'
 import { BareServerSideProps } from '@/types/page'
 import { Identicon } from '@/components/Pages/XCM/ParachainIdenticon'
-import { Progress } from '@/components/Pages/XCM/MessageList'
+import { Progress, MessageInfo } from '@/components/Pages/XCM/MessageList'
 import { Parameters } from '@/components/Parameters'
 import { getSubdomainFromHeaders } from '@/utils/url'
 
@@ -59,60 +59,7 @@ export default function Page({ host, data, chain, msgId }: InferGetServerSidePro
           XCM Message#{msgId}
         </Text>
         <Boundary className="lg:px-7 lg:py-7 flex items-start">
-          <TableCol className="w-full">
-            <tbody>
-              <TrCol>
-                <TdCol className="font-semibold whitespace-nowrap">XCM Transfer Hash</TdCol>
-                <TdCol>
-                  <div className="flex">{data.message_hash}</div>
-                </TdCol>
-              </TrCol>
-              {data.from_account_id && (
-                <TrCol>
-                  <TdCol className="font-semibold whitespace-nowrap">Sender</TdCol>
-                  <TdCol>
-                    <Text>
-                      <Identicon paraId={data.origin_para_id} address={data.from_account_id} />
-                    </Text>
-                  </TdCol>
-                </TrCol>
-              )}
-              {data.dest_para_id && (
-                <TrCol>
-                  <TdCol className="font-semibold whitespace-nowrap">Destination</TdCol>
-                  <TdCol>
-                    <Text>
-                      <Identicon paraId={data.dest_para_id} address={data.to_account_id} />
-                    </Text>
-                  </TdCol>
-                </TrCol>
-              )}
-              {data.protocol && (
-                <TrCol>
-                  <TdCol className="font-semibold whitespace-nowrap">Protocol</TdCol>
-                  <TdCol>{data.protocol !== 'HRMP' ? `VMP(${data.protocol})` : data.protocol}</TdCol>
-                </TrCol>
-              )}
-              {!!data.xcm_version && (
-                <TrCol>
-                  <TdCol className="font-semibold whitespace-nowrap">Version</TdCol>
-                  <TdCol>{data.xcm_version}</TdCol>
-                </TrCol>
-              )}
-              <TrCol>
-                <TdCol className="font-semibold whitespace-nowrap">Raw Value</TdCol>
-                <TdCol>
-                  <Parameters value={JSON.stringify(data.assets)} />
-                </TdCol>
-              </TrCol>
-              <TrCol>
-                <TdCol className="font-semibold whitespace-nowrap">Progress</TdCol>
-                <TdCol>
-                  <Progress value={data} />
-                </TdCol>
-              </TrCol>
-            </tbody>
-          </TableCol>
+          <MessageInfo messageInfo={data} chain={chain} host={host}></MessageInfo>
         </Boundary>
 
         <Boundary className="mt-5">

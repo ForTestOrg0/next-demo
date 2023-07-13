@@ -86,10 +86,11 @@ export interface Runtime {
 /** XCM **/
 export interface XCMAsset {
   amount: string
-  asset_module: string
+  asset_module?: string
   decimals: number
   enum_key: string
   symbol: string
+  raw?: any
 }
 export interface XCMChanel {
   active_at: number
@@ -121,6 +122,7 @@ export interface XCM {
   protocol: string
   relayed_block_timestamp: number
   relayed_event_index: string
+  relayed_extrinsic_index: string
   status: string
   to_account_id: string
   unique_id: string
