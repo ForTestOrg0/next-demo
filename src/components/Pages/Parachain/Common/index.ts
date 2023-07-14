@@ -1,4 +1,5 @@
 export * from './AuctionStatus'
 export * from './LeasePeriod'
 export * from './AuctionWinner'
+export * from './AuctionCountdown'
 export * from './FundStatus'

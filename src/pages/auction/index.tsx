@@ -1,4 +1,4 @@
-import { Boundary, PageContent, Container, Flex, Pagination } from '@/ui'
+import { Boundary, PageContent, Container, Flex, Pagination, Text } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { PAGE_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
@@ -40,6 +40,9 @@ export default function Page({ data, chain, page, parachainMetaInfo }: InferGetS
   return (
     <PageContent>
       <Container className="flex-1">
+        <Text block bold className="mb-4 break-all">
+          Auction History
+        </Text>
         <Boundary>
           <AuctionList auctions={data.auctions} chain={chain} metaInfo={parachainMetaInfo} />
         </Boundary>
