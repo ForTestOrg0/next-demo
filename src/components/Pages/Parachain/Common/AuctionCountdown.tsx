@@ -29,9 +29,9 @@ export const AuctionCountdown: React.FC<Props> = ({ children, parachainMeta, cur
 
   const getReturnValues = (countDown: number) => {
     const days = Math.floor(countDown / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60))
-    const seconds = Math.floor((countDown % (1000 * 60)) / 1000)
+    const hours = ('' + Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0')
+    const minutes = ('' + Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0')
+    const seconds = ('' + Math.floor((countDown % (1000 * 60)) / 1000)).padStart(2, '0')
     return { days, hours, minutes, seconds }
   }
   let distance = 0

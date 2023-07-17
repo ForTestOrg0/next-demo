@@ -5,6 +5,7 @@ import { TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { MetaInfo } from '@/components/Pages/Parachain/MetaInfo'
+import { AuctionCountdown } from '@/components/Pages/Parachain/Common'
 import { CrowdloanListClient } from '@/components/Pages/Parachain/CrowdloanList'
 import { BidListClient } from '@/components/Pages/Parachain/BidList'
 import { GetParachainMetaProps, getParachainAuctions, getParachainMeta } from '@/utils/api/parachain'
@@ -50,7 +51,7 @@ export default function Page({ host, parachainMeta, chain, currentAuction, aucti
       <Container className="flex-1">
         <MetaInfo metaInfo={parachainMeta} chain={chain} />
 
-        {currentAuction?.status === 2 && (
+        {currentAuction?.status === 2 ? (
           <>
             <div className="flex mb-4 mt-6 justify-between">
               <div className="flex items-center">
@@ -73,6 +74,50 @@ export default function Page({ host, parachainMeta, chain, currentAuction, aucti
             </div>
             <Boundary className="mt-5">{currentAuction && <AuctionInfo metaInfo={parachainMeta} chain={chain} auction={currentAuction} />}</Boundary>
           </>
+        ) : (
+          <div className="countdown">
+            <div className="flex mb-4 mt-6 justify-between">
+              <div className="flex items-center">
+                {parachainMeta.auction_active ? (
+                  <Text block bold className="break-all">
+                    Auction #{currentAuction?.auction_index}
+                  </Text>
+                ) : (
+                  <Text block bold className="break-all">
+                    Auction
+                  </Text>
+                )}
+              </div>
+              <div>
+                <ParachainAuctionListLink>
+                  <Button outline>Auction History</Button>
+                </ParachainAuctionListLink>
+                {parachainMeta.auction_count && currentAuction && (
+                  <ParachainAuctionLink index={currentAuction?.auction_index - 1 || 1}>
+                    <Button outline className="ml-5">
+                      Last Auction
+                    </Button>
+                  </ParachainAuctionLink>
+                )}
+              </div>
+            </div>
+            <>
+              {parachainMeta.auction_active && currentAuction ? (
+                <AuctionCountdown currentAuction={currentAuction} parachainMeta={parachainMeta} chain={chain}></AuctionCountdown>
+              ) : (
+                <Boundary className="!py-7 flex justify-center items-center">
+                  <div>
+                    <Text block bold className="text-[#98959f]">
+                      No auctions in progress
+                    </Text>
+                    <Text block bold className="text-[#98959f]">
+                      The next auction is in preparation
+                    </Text>
+                  </div>
+                </Boundary>
+              )}
+            </>
+          </div>
         )}
 
         <Text block bold className="mb-4 mt-6 break-all">

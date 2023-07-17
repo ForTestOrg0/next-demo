@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Flex, Link, Button } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { unwrap } from '@/utils/api'
@@ -99,8 +99,8 @@ export default function Page({ chain, host, parachainMeta, XCMMeta, currentAucti
 
   const getReturnValues = (countDown: number) => {
     const days = Math.floor(countDown / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60))
+    const hours = ('' + Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0')
+    const minutes = ('' + Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0')
     return { days, hours, minutes }
   }
   let distance = 0
@@ -108,7 +108,10 @@ export default function Page({ chain, host, parachainMeta, XCMMeta, currentAucti
     let endBlock = (parachainMeta.ending_period || 0) + currentAuction.early_end_block
     distance = (endBlock - chain.metadata.blockNum) * 6
   }
-  const countdown = useCountdown(dayjs().add(distance, 'seconds').valueOf())
+  const endTime = useMemo(() => {
+    return dayjs().add(distance, 'seconds').valueOf()
+  }, [distance])
+  const countdown = useCountdown(endTime)
 
   return (
     <PageContent>
