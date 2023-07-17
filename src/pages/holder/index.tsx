@@ -8,88 +8,137 @@ import {
   getTokenDetail,
   getAssetDetail,
   getEvmTokenHolders,
+  getTokenHolders,
+  GetTokenHoldersProps,
 } from '@/utils/api'
 import { PAGE_ROW } from '@/config/constants'
-import { AssetHolder, EvmToken } from '@/types/api'
+import { APIWarpperProps, AssetHolder, EvmToken } from '@/types/api'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps, Token } from '@/types/page'
 import { HolderList } from '@/components/Pages/Blockchain/HolderList'
 import { AssetLink, ERC20TokenLink } from '@/components/Links'
-import { getSubdomainFromHeaders } from '@/utils/url'
+import { getSubdomainFromHeaders, objectToSearchParams } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   {
-    data: GetAssetHoldersProps | GetEvmTokenHoldersProps
-    asset_id: string
-    tokenDetail: (Token | EvmToken) | null
+    data: GetAssetHoldersProps | GetEvmTokenHoldersProps | GetTokenHoldersProps
+    assetId: string
+    uniqueId: string
+    address: string
+    tokenInfo: (Token | EvmToken) | null
     page: number
   } & BareServerSideProps
 > = async (context) => {
   const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
-  const asset_unique_id = (context.query.asset_unique_id || '')?.toString()
-  const asset_id = (context.query.assetId || '')?.toString()
+  const unique_id = (context.query.unique_id || '')?.toString()
+  const asset_id = (context.query.asset_id || '')?.toString()
   const address = (context.query.address || '')?.toString()
-  let data
+
+  const chainProps = await getChainProps(subdomain)
+
+  if (!chainProps) {
+    return {
+      notFound: true,
+    }
+  }
+
+  let tokenHolders: APIWarpperProps<GetTokenHoldersProps>
+  let tokenInfo: Token
+  let assetHolders: APIWarpperProps<GetAssetHoldersProps>
+  let assetTokenInfo: Token
+  let evmTokenHolders: APIWarpperProps<GetEvmTokenHoldersProps>
+  let evmTokenInfo: EvmToken
+
+  if (unique_id) {
+    tokenHolders = await getTokenHolders(subdomain, {
+      row: PAGE_ROW,
+      page: page - 1,
+      unique_id,
+    })
+
+    const data = await getTokenDetail(subdomain, {
+      include_extends: true,
+      unique_ids: [unique_id],
+    })
+    const provider = unique_id?.indexOf('/') > 0 ? unique_id?.split('/')[0] : 'system'
+    tokenInfo = data.data?.[provider]?.[0] as Token
+
+    return {
+      props: {
+        data: tokenHolders.data,
+        page,
+        assetId: asset_id,
+        address,
+        uniqueId: unique_id,
+        tokenInfo,
+        chain: chainProps,
+      },
+    }
+  }
+
   if (asset_id) {
-    data = await getAssetHolders(subdomain, {
+    assetHolders = await getAssetHolders(subdomain, {
       row: PAGE_ROW,
       page: page - 1,
       asset_id,
     })
-  } else if (address) {
-    data = await getEvmTokenHolders(subdomain, {
+
+    const data = await getAssetDetail(subdomain, {
+      asset_id,
+    })
+    assetTokenInfo = data.data.metadata
+
+    return {
+      props: {
+        data: assetHolders.data,
+        page,
+        assetId: asset_id,
+        address,
+        uniqueId: unique_id,
+        tokenInfo: assetTokenInfo,
+        chain: chainProps,
+      },
+    }
+  }
+  if (address) {
+    evmTokenHolders = await getEvmTokenHolders(subdomain, {
       row: PAGE_ROW,
       page: page - 1,
       contract: address,
     })
-    data.data?.list.forEach((holder) => {
+    evmTokenHolders.data?.list.forEach((holder) => {
       if (holder.holder) {
         holder.account_display = {
           address: holder.holder,
         }
       }
     })
-  }
-  let tokenData = null
-  if (asset_unique_id) {
-    const data = await getTokenDetail(subdomain, {
-      include_extends: true,
-      unique_ids: [asset_unique_id],
-    })
-    const provider = asset_unique_id?.split('/')[0] || 'system'
-    tokenData = data.data?.[provider]?.[0] as Token
-  } else if (asset_id) {
-    const data = await getAssetDetail(subdomain, {
-      asset_id,
-    })
-    tokenData = data.data.metadata
-  } else if (address) {
+
     const data = await getEvmTokens(subdomain, {
       contracts: [address || ''],
     })
-    tokenData = data.data.list[0]
-  }
-  const chainProps = await getChainProps(subdomain)
+    evmTokenInfo = data.data.list[0]
 
-  if (!data || data.code !== 0 || !chainProps) {
     return {
-      notFound: true,
+      props: {
+        data: evmTokenHolders.data,
+        page,
+        assetId: asset_id,
+        address,
+        uniqueId: unique_id,
+        tokenInfo: evmTokenInfo,
+        chain: chainProps,
+      },
     }
   }
 
   return {
-    props: {
-      data: data.data,
-      page,
-      asset_id,
-      tokenDetail: tokenData,
-      chain: chainProps,
-    },
+    notFound: true,
   }
 }
 
-export default function Page({ data, tokenDetail, asset_id, chain, page }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ data, tokenInfo, assetId, chain, page, uniqueId, address }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const holders = data?.list as AssetHolder[]
   holders.forEach((holder) => {
     if (!holder.account_display && holder.holder) {
@@ -102,21 +151,33 @@ export default function Page({ data, tokenDetail, asset_id, chain, page }: Infer
         <Text block bold className="mb-4 break-all">
           Holders
         </Text>
-        {tokenDetail && (tokenDetail as EvmToken).category === 'erc20' && (
+        {tokenInfo && (tokenInfo as EvmToken).category === 'erc20' && (
           <Text block bold className="mb-4 break-all">
-            For <ERC20TokenLink address={(tokenDetail as EvmToken).contract}>{tokenDetail.symbol}</ERC20TokenLink>
+            For <ERC20TokenLink address={(tokenInfo as EvmToken).contract}>{tokenInfo.symbol}</ERC20TokenLink>
           </Text>
         )}
-        {tokenDetail && !(tokenDetail as EvmToken).category && (
+        {tokenInfo && !(tokenInfo as EvmToken).category && (
           <Text block bold className="mb-4 break-all">
-            For <AssetLink assetId={asset_id}>{tokenDetail.symbol}</AssetLink>
+            For <AssetLink assetId={assetId}>{tokenInfo.symbol}</AssetLink>
           </Text>
         )}
         <Boundary>
-          <HolderList token={tokenDetail ? tokenDetail : chain.nativeTokenConf} holders={holders} showSymbol={false} />
+          <HolderList token={tokenInfo ? tokenInfo : chain.nativeTokenConf} holders={holders} showSymbol={false} baseRank={(page - 1) * PAGE_ROW} />
         </Boundary>
         <Flex className="mt-5 flex-row-reverse">
-          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/holder?page=${_page}`} />
+          <Pagination
+            total={data.count}
+            pageSize={PAGE_ROW}
+            current={page}
+            urlRender={(_page) =>
+              `/holder?${objectToSearchParams({
+                page: _page.toString(),
+                address: address,
+                unique_id: uniqueId,
+                asset_id: assetId,
+              })}`
+            }
+          />
         </Flex>
       </Container>
     </PageContent>

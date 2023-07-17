@@ -54,7 +54,7 @@ const Page: React.FC<Props> = ({ chain, host }) => {
   return (
     <>
       <Text bold className="mb-2">
-        Extrinsic History
+        Transfer History
       </Text>
       <Boundary>
         <Flex className="space-x-3">

@@ -9,6 +9,7 @@ import { TransactionListClient } from '@/components/Pages/Blockchain/Transaction
 import { TAB_ROW } from '@/config/constants'
 import { Balance } from '@/components/Balance'
 import { getSubdomainFromHeaders } from '@/utils/url'
+import { EvmErc20TokenInfo } from '@/components/Pages/Blockchain/EvmErc20TokenInfo'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -58,39 +59,7 @@ export default function Page({ host, data, chain, unique_id }: InferGetServerSid
     <PageContent>
       <Container className="flex-1">
         <Boundary className="lg:px-7 lg:py-7 flex items-start">
-          <div className="symbol-img mr-7">
-            {/* <Image src={defaultTokenIcon} width={70} height={70} alt={'token'} /> */}
-            {/* <div className="asset-name">
-            <span className="symbol">{system?.symbol}</span>
-            {system?.name}
-            </div> */}
-          </div>
-          <div className="w-full">
-            <div className="flex">
-              <div className="flex items-center">
-                <div className="text-xl mr-[60px]">{detail.name}</div>
-              </div>
-              <div className="w-px h-[70px] bg-[#e7eaf3] ml-12 mr-7"></div>
-              <div className="flex flex-col justify-between mr-12">
-                <div className="label text-sm font-semibold">Symbol</div>
-                <div className="text-sm">{detail.symbol || '-'}</div>
-              </div>
-              <div className="flex flex-col justify-between mr-12">
-                <div className="label text-sm font-semibold">Decimals</div>
-                <div className="text-sm">{detail.decimals || '-'}</div>
-              </div>
-              <div className="flex flex-col justify-between mr-12">
-                <div className="label text-sm font-semibold">Holders</div>
-                <div className="text-sm">{detail.holders || '-'}</div>
-              </div>
-              <div className="flex flex-col justify-between">
-                <div className="label text-sm font-semibold">Total Supply</div>
-                <div className="text-sm">
-                  <Balance value={detail.totalSupply} token={detail} showSymbol={false} />
-                </div>
-              </div>
-            </div>
-          </div>
+          <EvmErc20TokenInfo token={detail} />
         </Boundary>
 
         <Boundary className="mt-5">

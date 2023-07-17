@@ -26,7 +26,7 @@ const Page: React.FC<Props> = ({ host, token, chain, ...props }) => {
     <div>
       <TransferList transfers={transfers.transfers} chain={chain} token={token} />
       {transfers?.count - props.row > 0 && (
-        <TransferLink query={{ assetId: props.asset_id?.toString() || '' }}>
+        <TransferLink query={{ asset_id: props.asset_id?.toString() || '' }}>
           <Button outline className="mt-4">
             View Other {transfers?.count - props.row} Transfers
           </Button>

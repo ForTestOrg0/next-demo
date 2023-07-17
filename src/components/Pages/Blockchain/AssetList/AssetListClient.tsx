@@ -2,8 +2,7 @@
 
 import React from 'react'
 import { BareProps } from '@/types/page'
-import { Token, Account } from '@/types/api'
-import { unwrap, useAssets, useTokenHolders } from '@/utils/api'
+import { unwrap, useAssets } from '@/utils/api'
 import { Empty } from '@/components/Empty'
 import { Loading } from '@/components/Loading'
 import { TAB_ROW } from '@/config/constants'
@@ -16,10 +15,9 @@ interface Props extends BareProps, useAssets {
   host: string
   page: number
   row: number
-  useDecimal?: boolean
 }
 
-const AssetListClient: React.FC<Props> = ({ host, useDecimal, page = 0, row = TAB_ROW }) => {
+const AssetListClient: React.FC<Props> = ({ host, page = 0, row = TAB_ROW }) => {
   const { data, error, isLoading } = useAssets(host, {
     page,
     row,
@@ -31,11 +29,11 @@ const AssetListClient: React.FC<Props> = ({ host, useDecimal, page = 0, row = TA
 
   return (
     <div>
-      <AssetList assets={asset.list} useDecimal={useDecimal} />
-      {asset.count - TAB_ROW > 0 ? (
+      <AssetList assets={asset.list} />
+      {asset.count - row > 0 ? (
         <AssetListLink query={{}}>
           <Button outline className="mt-4">
-            View Other {asset.count - TAB_ROW} Asset
+            View Other {asset.count - row} Asset
           </Button>
         </AssetListLink>
       ) : null}

@@ -8,10 +8,9 @@ import { Identicon } from '@/components/Identicon'
 
 interface Props extends BareProps {
   assets: Asset[]
-  useDecimal?: boolean
 }
 
-const Page: React.FC<Props> = ({ assets, useDecimal }) => {
+const Page: React.FC<Props> = ({ assets }) => {
   return (
     <Table className="w-full">
       <tbody>
@@ -43,7 +42,13 @@ const Page: React.FC<Props> = ({ assets, useDecimal }) => {
                 <Identicon account={asset.issuer} />
               </Td>
               <Td>
-                <Text>{asset.holders}</Text>
+                {asset.holders > 0 ? (
+                  <AssetLink assetId={asset.asset_id} query={{ tab: 'holder' }}>
+                    {asset.holders}
+                  </AssetLink>
+                ) : (
+                  <Text>{asset.holders}</Text>
+                )}
               </Td>
               <Td>
                 <Balance

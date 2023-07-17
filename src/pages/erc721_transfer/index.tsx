@@ -1,12 +1,12 @@
 import { Boundary, PageContent, Container, Flex, Pagination, Text } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getERC20Transfers, GetEvmTokenTransfersProps, getTokenDetail, getAssetDetail } from '@/utils/api'
+import { getERC20Transfers, GetEvmTokenTransfersProps } from '@/utils/api'
 import { PAGE_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
-import { BareServerSideProps, Token } from '@/types/page'
+import { BareServerSideProps } from '@/types/page'
 import { ERC721TransferList } from '@/components/Pages/Blockchain/ERC721TransferList'
 import { ERC721TokenLink } from '@/components/Links'
-import { getSubdomainFromHeaders } from '@/utils/url'
+import { getSubdomainFromHeaders, objectToSearchParams } from '@/utils/url'
 
 export const getServerSideProps: GetServerSideProps<
   { data: GetEvmTokenTransfersProps; address: string; symbol: string; page: number } & BareServerSideProps
@@ -56,7 +56,18 @@ export default function Page({ data, address, symbol, chain, page }: InferGetSer
           <ERC721TransferList transfers={data.list} chain={chain} />
         </Boundary>
         <Flex className="mt-5 flex-row-reverse">
-          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/transfer?page=${_page}`} />
+          <Pagination
+            total={data.count}
+            pageSize={PAGE_ROW}
+            current={page}
+            urlRender={(_page) =>
+              `/erc721_transfer?${objectToSearchParams({
+                page: _page.toString(),
+                address,
+                symbol,
+              })}`
+            }
+          />
         </Flex>
       </Container>
     </PageContent>

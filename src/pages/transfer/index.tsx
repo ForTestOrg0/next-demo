@@ -6,16 +6,16 @@ import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps, Token } from '@/types/page'
 import { TransferList } from '@/components/Pages/Blockchain/TransferList'
 import { AssetLink } from '@/components/Links'
-import { getSubdomainFromHeaders } from '@/utils/url'
+import { getSubdomainFromHeaders, objectToSearchParams } from '@/utils/url'
 import { TransferHistoryChart } from '@/components/Pages/Blockchain/TransferHistoryChart'
 
 export const getServerSideProps: GetServerSideProps<
-  { data: GetTransfersProps; asset_id: string; tokenDetail: Token | null; page: number; host: string } & BareServerSideProps
+  { data: GetTransfersProps; assetId: string; assetUniqueId: string; tokenDetail: Token | null; page: number; host: string } & BareServerSideProps
 > = async (context) => {
   const subdomain = getSubdomainFromHeaders(context.req.headers)
   const page = parseInt(context.query.page as string) || 1
   const asset_unique_id = (context.query.asset_unique_id || '')?.toString()
-  const asset_id = (context.query.assetId || '')?.toString()
+  const asset_id = (context.query.asset_id || '')?.toString()
   let data
   if (asset_id) {
     data = await getAssetTransfers(subdomain, {
@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<
       include_extends: true,
       unique_ids: [asset_unique_id],
     })
-    const provider = asset_unique_id?.split('/')[0] || 'system'
+    const provider = asset_unique_id?.indexOf('/') > 0 ? asset_unique_id?.split('/')[0] : 'system'
     tokenData = data.data?.[provider]?.[0] as Token
   } else if (asset_id) {
     const data = await getAssetDetail(subdomain, {
@@ -61,7 +61,8 @@ export const getServerSideProps: GetServerSideProps<
     props: {
       data: data.data,
       page,
-      asset_id,
+      assetUniqueId: asset_unique_id,
+      assetId: asset_id,
       tokenDetail: tokenData,
       chain: chainProps,
       host: subdomain,
@@ -69,26 +70,47 @@ export const getServerSideProps: GetServerSideProps<
   }
 }
 
-export default function Page({ data, tokenDetail, asset_id, chain, page, host }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({
+  data,
+  tokenDetail,
+  assetId,
+  assetUniqueId,
+  chain,
+  page,
+  host,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageContent>
       <Container className="flex-1">
-        <div className="mb-module">
-          <TransferHistoryChart host={host} chain={chain} />
-        </div>
+        {false && (
+          <div className="mb-module">
+            <TransferHistoryChart host={host} chain={chain} />
+          </div>
+        )}
         <Text block bold className="mb-4 break-all">
           Transfers
         </Text>
-        {asset_id && (
+        {!!assetId && (
           <Text block bold className="mb-4 break-all">
-            For <AssetLink assetId={asset_id}>{tokenDetail?.symbol}</AssetLink>
+            For <AssetLink assetId={assetId}>{tokenDetail?.symbol}</AssetLink>
           </Text>
         )}
         <Boundary>
           <TransferList transfers={data.transfers} chain={chain} token={tokenDetail ? tokenDetail : chain.nativeTokenConf} />
         </Boundary>
         <Flex className="mt-5 flex-row-reverse">
-          <Pagination total={data.count} pageSize={PAGE_ROW} current={page} urlRender={(_page) => `/transfer?page=${_page}`} />
+          <Pagination
+            total={data.count}
+            pageSize={PAGE_ROW}
+            current={page}
+            urlRender={(_page) =>
+              `/transfer?${objectToSearchParams({
+                asset_unique_id: assetUniqueId,
+                asset_id: assetId,
+                page: _page.toString(),
+              })}`
+            }
+          />
         </Flex>
       </Container>
     </PageContent>

@@ -3,14 +3,12 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getAssetDetail, GetAssetProps } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
-import Image from 'next/image'
 import { AssetHolderListClient } from '@/components/Pages/Blockchain/HolderList'
 import { AssetTransferListClient } from '@/components/Pages/Blockchain/TransferList'
 import { AssetActivityListClient } from '@/components/Pages/Blockchain/AssetActivityList'
 import { TAB_ROW } from '@/config/constants'
-import defaultTokenIcon from '@/styles/images/default-token.png'
-import { Balance } from '@/components/Balance'
 import { getSubdomainFromHeaders } from '@/utils/url'
+import { AssetTokenInfo } from '@/components/Pages/Blockchain/AssetTokenInfo'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -59,35 +57,7 @@ export default function Page({ host, data, chain, unique_id }: InferGetServerSid
     <PageContent>
       <Container className="flex-1">
         <Boundary className="lg:px-7 lg:py-7 flex items-start">
-          <div className="symbol-img mr-7">
-            <Image src={defaultTokenIcon} width={70} height={70} alt={'token'} />
-            {/* <div className="asset-name">
-            <span className="symbol">{system?.symbol}</span>
-            {system?.name}
-            </div> */}
-          </div>
-          <div className="w-full">
-            <div className="flex">
-              <div className="flex items-center">
-                <div className="text-xl mr-[60px]">{data.metadata.symbol}</div>
-              </div>
-              <div className="w-px h-[70px] bg-[#e7eaf3] ml-12 mr-7"></div>
-              <div className="flex flex-col justify-between mr-12">
-                <div className="label text-sm font-semibold">Asset ID</div>
-                <div className="text-sm">{'#' + data.asset_id}</div>
-              </div>
-              <div className="flex flex-col justify-between mr-12">
-                <div className="label text-sm font-semibold">Decimals</div>
-                <div className="text-sm">{data.metadata.decimals || '-'}</div>
-              </div>
-              <div className="flex flex-col justify-between">
-                <div className="label text-sm font-semibold">Total Supply</div>
-                <div className="text-sm">
-                  <Balance value={data.supply} token={data.metadata} showSymbol={false} />
-                </div>
-              </div>
-            </div>
-          </div>
+          <AssetTokenInfo asset={data} />
         </Boundary>
 
         <Boundary className="mt-5">

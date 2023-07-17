@@ -30,7 +30,7 @@ export const AssetActivityListClient: React.FC<Props> = ({ host, ...props }) => 
       {events?.count - PAGE_ROW > 0 ? (
         <EventLink
           query={{
-            assetId: props.asset_id?.toString() || '',
+            asset_id: props.asset_id?.toString() || '',
           }}>
           <Button outline className="mt-4">
             View Other {events?.count - PAGE_ROW} Activity
