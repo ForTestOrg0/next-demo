@@ -835,6 +835,24 @@ export interface DailyStatistics {
   total: string
   transfer_amount: string
 }
+export interface DailyToken {
+  available: string
+  other: string
+  other_details: {
+    democracy_locked_balance: string
+    election_locked_balance: string
+    nominator_bonded: string
+    reserved_balance: string
+    unbonded_locked_balance: string
+    validator_bonded: string
+    vesting_balance: string
+  }
+  staking: string
+  system_accounts?: string
+  systemTotal?: string
+  time_utc: string
+  total_issuance: string
+}
 export interface DailyXCMStatistics {
   time_utc: string
   total: number

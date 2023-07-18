@@ -36,6 +36,11 @@ module.exports = {
       fontFamily: {
         sans: ['Eina01', ...fontFamily.sans],
       },
+      zIndex: {
+        normal: '1',
+        top: '1000',
+        popper: '2000',
+      },
       margin: {
         module: '1.25rem', // 20px, Vertical spacing of page modules
       },

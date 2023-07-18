@@ -194,7 +194,7 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
                 <Text block bold className="mb-4 break-all">
                   From
                 </Text>
-                <Input className="w-72" value={amount} onChange={handleAmountChange}></Input>
+                <Input className="w-72" placeholder={'Enter the number of '} value={amount} onChange={handleAmountChange}></Input>
               </div>
               <div>
                 <Menu className="w-72">
@@ -215,9 +215,9 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
                 </Menu>
               </div>
             </div>
-            <div>
+            <Flex className="w-8 h-8 rounded-[50%] bg-sub-network/5 items-center justify-center">
               <FromToIcon className="w-7" />
-            </div>
+            </Flex>
             <div>
               <Menu className="w-72">
                 <MenuButton className="w-full">
@@ -237,7 +237,7 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
               </Menu>
             </div>
           </div>
-          <Button outline className="my-5" onClick={calcPrice}>
+          <Button className="my-5" onClick={calcPrice}>
             Convert
           </Button>
           <div className="h-40 bg-sub-bg-light p-5 overflow-auto text-xs">
@@ -277,6 +277,16 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
             )}
           </div>
         </Boundary>
+        {chain.chainConf.social.price && (
+          <div className="text-right mt-2.5 text-[#98959f]">
+            <Text>
+              Price Data from{' '}
+              <Link external href={chain.chainConf.social.price}>
+                CoinGecko
+              </Link>
+            </Text>
+          </div>
+        )}
       </Container>
     </PageContent>
   )

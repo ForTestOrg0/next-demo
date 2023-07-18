@@ -29,7 +29,7 @@ const Chart: React.FC<Props> = ({ children, host, chain, className, args }) => {
         option={{
           ...basicAreaChartOption({
             dataset: {
-              source: dailyStatistics.list.map((item) => {
+              source: dailyStatistics.list?.map((item) => {
                 return [dayjs.utc(item.time_utc).format('YYYY-MM-DD'), stringToNumber(getFixedNumber(item.transfer_amount))]
               }),
             },

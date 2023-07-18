@@ -18,6 +18,7 @@ import {
   AssetActivity,
   DailyStatistics,
   DataStatistics,
+  DailyToken,
 } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
@@ -493,6 +494,25 @@ export async function getDailyStatistics(
 
 export const useDailyStatistics = (hostname = '', params: Parameters<typeof getDailyStatistics>[1]) => {
   return useSWR<APIWarpperProps<GetDailyStatisticsProps>, Error>([hostname, 'api/v2/scan/daily', params], swrFetcher)
+}
+
+export interface GetDailyTokenProps {
+  list: DailyToken[]
+}
+export async function getDailyToken(
+  hostname = '',
+  params: {
+    symbol: string
+    /** day hour 6hour */
+    format: string
+    start: string
+    end: string
+  }
+): Promise<APIWarpperProps<GetDailyTokenProps>> {
+  return await subscanFetch(hostname, 'api/scan/daily_token', params)
+}
+export const useDailyToken = (hostname = '', params: Parameters<typeof getDailyToken>[1]) => {
+  return useSWR<APIWarpperProps<GetDailyTokenProps>, Error>([hostname, 'api/scan/daily_token', params], swrFetcher)
 }
 
 /***** Data Statistics *****/

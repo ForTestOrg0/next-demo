@@ -20,6 +20,12 @@ async function buildConfig(networks) {
   const importString = `import { generateGradientColor } from '@/utils/color'\nimport { Chain } from '../types'\n`
   const getParachainInfo = (chainId) => {
     // polkadot
+    if (chainId === 'polkadot') {
+      return {
+        id: 0,
+        relaychain: 'polkadot',
+      }
+    }
     const p = _.find(networks[0].value.parachains, { info: chainId })
     if (p) {
       return {
@@ -29,6 +35,12 @@ async function buildConfig(networks) {
     }
 
     //kusama
+    if (chainId === 'kusama') {
+      return {
+        id: 0,
+        relaychain: 'kusama',
+      }
+    }
     const k = _.find(networks[1].value.parachains, { info: chainId })
     if (k) {
       return {

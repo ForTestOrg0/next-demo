@@ -10,6 +10,7 @@ import { ArrowDownFillingIcon } from '@/ui/Svg'
 import { trimSpecialChar } from '@/utils/formatText'
 import { getSubdomainFromHeaders } from '@/utils/url'
 import {
+  Account,
   Transfer,
   Extrinsic,
   Holder,
@@ -19,6 +20,7 @@ import {
   TreasuryIncome,
   Token,
   TokenBond,
+  TokenSupply,
   XCMMessage,
 } from '@/components/Pages/Tools/Charts'
 
@@ -72,6 +74,10 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
       value: 'extrinsic',
     },
     {
+      name: 'Daily Active Account & Newly Created Account',
+      value: 'account',
+    },
+    {
       name: 'Daily Holder',
       value: 'holder',
     },
@@ -82,6 +88,14 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
     {
       name: 'Daily Average Block Time',
       value: 'block_time',
+    },
+    {
+      name: 'Daily XCM Transfer',
+      value: 'xcm_transfer',
+    },
+    {
+      name: 'Daily XCM Message',
+      value: 'xcm_msg',
     },
     {
       name: 'Treasury Available Income',
@@ -100,12 +114,8 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
       value: 'token_bond',
     },
     {
-      name: 'Daily XCM Transfer',
-      value: 'xcm_transfer',
-    },
-    {
-      name: 'Daily XCM Message',
-      value: 'xcm_msg',
+      name: 'Daily Native Token Circulating Supply',
+      value: 'token_supply',
     },
   ]
   return (
@@ -152,6 +162,18 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
                     host={host}
                     args={{
                       category: 'extrinsic',
+                      end: endDate,
+                      format: 'day',
+                      start: startDate,
+                    }}
+                    chain={chain}
+                  />
+                )}
+                {currentChart === 'account' && (
+                  <Account
+                    host={host}
+                    args={{
+                      category: 'ActiveAccount',
                       end: endDate,
                       format: 'day',
                       start: startDate,
@@ -259,6 +281,18 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
                     host={host}
                     args={{
                       end: endDate,
+                      start: startDate,
+                    }}
+                    chain={chain}
+                  />
+                )}
+                {currentChart === 'token_supply' && (
+                  <TokenSupply
+                    host={host}
+                    args={{
+                      symbol: chain.nativeToken.symbol,
+                      end: endDate,
+                      format: 'day',
                       start: startDate,
                     }}
                     chain={chain}

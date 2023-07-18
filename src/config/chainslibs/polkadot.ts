@@ -21,11 +21,11 @@ export const Polkadot: Chain = {
     website: 'https://polkadot.network/',
     whitePaper: 'https://polkadot.network/PolkaDotPaper.pdf',
   },
-  donate: '14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ',
   parachain: {
     id: 0,
     relaychain: 'polkadot',
   },
+  donate: '14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ',
   modules: {
     BOUNTY: true,
     CONTRACT: false,

@@ -21,6 +21,10 @@ export const Kusama: Chain = {
     website: 'https://kusama.network/',
     whitePaper: '',
   },
+  parachain: {
+    id: 0,
+    relaychain: 'kusama',
+  },
   donate: 'Fzs6WWFcAuJhxAVyZa4EN2suxggjidJjV3AzJxKbRHjh2Jc',
   modules: {
     BOUNTY: true,

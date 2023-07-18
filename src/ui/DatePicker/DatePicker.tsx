@@ -103,6 +103,7 @@ const DatePicker = ({ className, value, placeholder = 'Date Picker', onSelect = 
       {isMounted && (
         <div
           ref={refs.setFloating}
+          className="z-popper"
           style={{
             position: strategy,
             top: y ?? 0,
