@@ -31,7 +31,7 @@ const Page: React.FC<Props> = ({ baseRank = 0, accounts, useDecimal, chain }) =>
                 <Rank rank={baseRank + index + 1}></Rank>
               </Td>
               <Td>
-                <Identicon account={account.account_display} />
+                <Identicon short={false} account={account.account_display} />
               </Td>
               <Td>
                 {account.count_extrinsic > 0 ? (

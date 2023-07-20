@@ -1,0 +1,70 @@
+.checkboxWrapper {
+  position: absolute; // take it out of document flow
+  opacity: 0; // hide it
+
+  & + span {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+    display: inline-block;
+  }
+
+  // Box.
+  & + span::before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    margin-top: -2px;
+    @apply border border-sub-b3 rounded-sm bg-sub-white;
+  }
+
+  // Box hover
+  &:hover + span::before {
+    @apply border-sub-network
+  }
+  
+  // Box focus
+  &:focus + span::before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+
+  // Box checked
+  &:checked + span::before {
+    @apply bg-sub-network
+  }
+  
+  // Disabled state span.
+  &:disabled + span {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+
+  // Disabled box.
+  &:disabled + span::before {
+    box-shadow: none;
+    background: #ddd;
+  }
+
+  // Checkmark. Could be replaced with an image
+  &:checked + span::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 
+      2px 0 0 white,
+      4px 0 0 white,
+      4px -2px 0 white,
+      4px -4px 0 white,
+      4px -6px 0 white,
+      4px -8px 0 white;
+    transform: rotate(45deg);
+  }
+}

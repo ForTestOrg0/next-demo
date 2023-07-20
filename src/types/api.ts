@@ -832,7 +832,7 @@ export interface ParachainInfo {
 }
 export interface DailyStatistics {
   time_utc: string
-  total: string
+  total: number
   transfer_amount: string
 }
 export interface DailyToken {

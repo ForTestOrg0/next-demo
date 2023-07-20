@@ -68,7 +68,7 @@ const Page: React.FC<Props> = ({ chain, host }) => {
             ...barChartOption({
               dataset: {
                 source: dailyStatistics.list.map((item) => {
-                  return [dayjs(item.time_utc).format('YYYY-MM-DD HH:mm'), stringToNumber(item.total)]
+                  return [dayjs(item.time_utc).format('YYYY-MM-DD HH:mm'), item.total]
                 }),
               },
             }),

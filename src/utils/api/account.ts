@@ -9,6 +9,7 @@ export async function getAccountStatistics(
   hostname = '',
   params: {
     type?: 'assets' | 'role'
+    exclude_system?: boolean
   }
 ): Promise<APIWarpperProps<GetAccountStatisticsProps>> {
   return await subscanFetch(hostname, 'api/scan/accounts/statistics', params)

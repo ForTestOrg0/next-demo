@@ -4,7 +4,7 @@ const nextConfig = {
   // i18n,
   experimental: {
     appDir: false,
-    runtime: 'experimental-edge'
+    runtime: 'experimental-edge',
   },
   async rewrites() {
     return [

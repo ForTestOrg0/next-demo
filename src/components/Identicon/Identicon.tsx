@@ -13,37 +13,28 @@ type IdenticonType = '' | 'validator' | 'account' | 'nominator'
 interface Props extends BareProps {
   account: AccountDisplay
   type?: IdenticonType
+  short?: boolean
 }
 
 interface DisplayAddressProps extends BareProps {
   displayName: string
   account: AccountDisplay
   type?: IdenticonType
+  short?: boolean
 }
 
-const DisplayAddress: React.FC<DisplayAddressProps> = ({ displayName, className, account, type = '' }) => {
+const DisplayAddress: React.FC<DisplayAddressProps> = ({ displayName, className, account, type = '', short }) => {
+  const accountText = short ? <Text>{formatHash(displayName)}</Text> : <Text>{displayName}</Text>
   return (
     <>
-      {(!type || type === 'account') && (
-        <AccountLink address={account?.address}>
-          <Text>{formatHash(displayName)}</Text>
-        </AccountLink>
-      )}
-      {type === 'validator' && (
-        <ValidatorLink address={account?.address}>
-          <Text>{formatHash(displayName)}</Text>
-        </ValidatorLink>
-      )}
-      {type === 'nominator' && (
-        <NominatorLink address={account?.address}>
-          <Text>{formatHash(displayName)}</Text>
-        </NominatorLink>
-      )}
+      {(!type || type === 'account') && <AccountLink address={account?.address}>{accountText}</AccountLink>}
+      {type === 'validator' && <ValidatorLink address={account?.address}>{accountText}</ValidatorLink>}
+      {type === 'nominator' && <NominatorLink address={account?.address}>{accountText}</NominatorLink>}
     </>
   )
 }
 
-const Identicon: React.FC<Props> = ({ account, className, type }) => {
+const Identicon: React.FC<Props> = ({ account, className, type, short = true }) => {
   const judgements = useMemo(() => {
     let result: string[] = []
     account?.judgements?.forEach((item) => {
@@ -108,7 +99,7 @@ const Identicon: React.FC<Props> = ({ account, className, type }) => {
         ) : null}
         <Tooltip copyable>
           <TooltipTrigger>
-            <DisplayAddress account={account} displayName={displayName} type={type} />
+            <DisplayAddress account={account} displayName={displayName} type={type} short={short} />
           </TooltipTrigger>
           <TooltipContent className="Tooltip">{account?.address}</TooltipContent>
         </Tooltip>

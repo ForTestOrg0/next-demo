@@ -48,7 +48,7 @@ const Page: React.FC<Props> = ({ chain, host }) => {
 
   const dataSource =
     dailyStatistics.list?.map((item) => {
-      return [dayjs(item.time_utc).format('YYYY-MM-DD HH:mm'), stringToNumber(item.transfer_amount), stringToNumber(item.total)]
+      return [dayjs(item.time_utc).format('YYYY-MM-DD HH:mm'), stringToNumber(item.transfer_amount), item.total]
     }) || []
 
   return (
