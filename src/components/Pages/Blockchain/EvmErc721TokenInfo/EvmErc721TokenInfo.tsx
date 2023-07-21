@@ -13,7 +13,7 @@ const Page: React.FC<Props> = ({ token }) => {
   return (
     <Flex className="justify-around items-center p-2 w-full">
       <Flex className="justify-between items-center">
-        <img src="/website/assets/nft-default.png" alt={token.symbol} className="w-[70px] h-[70px]" />
+        <img src="/website/assets/nft721-default.png" alt={token.symbol} className="w-[70px] h-[70px]" />
         <Flex className="flex-col space-y-2 ml-5">
           <Flex className="items-center">
             <Text bold className="text-sub-network !text-lg">

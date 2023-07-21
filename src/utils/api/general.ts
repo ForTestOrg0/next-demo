@@ -19,6 +19,12 @@ import {
   DailyStatistics,
   DataStatistics,
   DailyToken,
+  MultichainAccount,
+  Substrate_BuildinToken,
+  Substrate_NativeToken,
+  Substrate_ERC721Token,
+  Substrate_ERC20Token,
+  Substrate_AssetsToken,
 } from '@/types/api'
 import { subscanFetch, swrFetcher } from './fetcher'
 import useSWR from 'swr'
@@ -530,4 +536,42 @@ export async function getDataStatistics(
 
 export const useDataStatistics = (hostname = '', params: Parameters<typeof getDataStatistics>[1]) => {
   return useSWR<APIWarpperProps<GetDataStatisticsProps>, Error>([hostname, 'api/v2/scan/data/statistics', params], swrFetcher)
+}
+
+/***** Multi chain API *****/
+export type GetMultichainAccountProps = MultichainAccount[]
+
+export async function getMultichainAccount(
+  hostname = '',
+  params: {
+    address: string
+  }
+): Promise<APIWarpperProps<GetMultichainAccountProps>> {
+  return await subscanFetch(hostname, 'api/scan/multiChain/account', params)
+}
+
+export const useMultichainAccount = (hostname = '', params: Parameters<typeof getMultichainAccount>[1]) => {
+  return useSWR<APIWarpperProps<GetMultichainAccountProps>, Error>([hostname, 'api/scan/multiChain/account', params], swrFetcher)
+}
+
+/***** Account Tokens *****/
+export type GetAccountTokensProps = {
+  native?: Substrate_NativeToken[]
+  builtin?: Substrate_BuildinToken[]
+  assets?: Substrate_AssetsToken[]
+  ERC20?: Substrate_ERC20Token[]
+  ERC721?: Substrate_ERC721Token[]
+}
+
+export async function getAccountTokens(
+  hostname = '',
+  params: {
+    address: string
+  }
+): Promise<APIWarpperProps<GetAccountTokensProps>> {
+  return await subscanFetch(hostname, 'api/scan/account/tokens', params)
+}
+
+export const useAccountTokens = (hostname = '', params: Parameters<typeof getAccountTokens>[1]) => {
+  return useSWR<APIWarpperProps<GetAccountTokensProps>, Error>([hostname, 'api/scan/account/tokens', params], swrFetcher)
 }

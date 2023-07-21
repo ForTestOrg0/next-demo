@@ -576,8 +576,13 @@ export interface AccountDetail extends Account {
   is_module_account: boolean
   is_registrar: boolean
   is_techcomm_member: boolean
+  is_contract?: boolean
   lock: string
-  multisig: {}
+  multisig?: {
+    multi_account_member: AccountDisplay[]
+    threshold: number
+    multi_account: AccountDisplay[]
+  }
   nonce: number
   proxy: Proxy
   registrar_info: {
@@ -592,6 +597,8 @@ export interface AccountDetail extends Account {
   vesting: null
   twitter: string
   web: string
+  riot: string
+  email: string
 }
 
 export interface Validator {
@@ -1015,4 +1022,74 @@ export interface ReferendaVotesV2 {
   extrinsic_index: string
   conviction: string
   voting_time: Timestamp
+}
+
+export interface MultichainAccount {
+  network: string
+  symbol: string
+  decimal: number
+  price: string
+  category: string
+  asset_id: string
+  balance: string
+  locked: string
+  reserved: string
+  bonded: string
+  unbonding: string
+  democracy_lock: string
+  conviction_lock: string
+  election_lock: string
+  nomination_bonded: string
+  token_unique_id: string
+}
+
+export interface Substrate_NativeToken {
+  symbol: string
+  unique_id: string
+  decimals: number
+  balance: string
+  lock: string
+  reserved: string
+  bonded: string
+  unbonding: string
+  democracy_lock: string
+  conviction_lock: string
+  election_lock: string
+}
+
+export interface Substrate_BuildinToken {
+  symbol: string
+  unique_id: string
+  alias_name: string
+  decimals: number
+  balance: string
+  lock: string
+  reserved: string
+  bonded: string
+  unbonding: string
+  currency_id: string
+}
+
+export interface Substrate_AssetsToken {
+  symbol: string
+  unique_id: string
+  decimals: number
+  balance: string
+  lock: string
+  asset_id: string
+}
+
+export interface Substrate_ERC20Token {
+  symbol: string
+  unique_id: string
+  decimals: number
+  balance: string
+  contract: string
+}
+
+export interface Substrate_ERC721Token {
+  symbol: string
+  unique_id: string
+  balance: string
+  contract: string
 }

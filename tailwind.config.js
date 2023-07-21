@@ -8,7 +8,7 @@ const getNetworkColor = (network) => {
   }
 }
 
-const colorKeys = ['black', 'white', 'link', 'error', 'success', 'warning', 'b2', 'b3', 'b4', 'bg', 'hover', 'network']
+const colorKeys = ['black', 'white', 'link', 'error', 'success', 'warning', 'b2', 'b3', 'b4', 'bg', 'hover', 'network', 'network2']
 const extendColors = () => {
   const colors = {}
   colorKeys.forEach((key) => {

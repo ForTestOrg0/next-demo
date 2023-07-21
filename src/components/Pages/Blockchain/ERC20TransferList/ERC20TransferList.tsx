@@ -1,7 +1,7 @@
 import React from 'react'
 import { Token, BareProps, BareServerSideProps } from '@/types/page'
 import { Table, Td, Th, Tr } from '@/ui'
-import { BlockLink, ExtrinsicLink } from '@/components/Links'
+import { ExtrinsicLink } from '@/components/Links'
 import { TimeFromNow } from '@/components/Time'
 import { EvmTokenTransfer } from '@/types/api'
 import { Identicon } from '@/components/Identicon'
@@ -25,9 +25,9 @@ const Page: React.FC<Props> = ({ transfers, token, chain }) => {
           <Th>Contract</Th>
           <Th>Time</Th>
         </Tr>
-        {transfers.map((transfer) => {
+        {transfers?.map((transfer, index) => {
           return (
-            <Tr key={transfer.hash}>
+            <Tr key={`${transfer.hash}-${index}-${transfer.create_at}`}>
               <Td>
                 <ExtrinsicLink extrinsicIndex={transfer.hash}>{formatHash(transfer.hash)}</ExtrinsicLink>
               </Td>
@@ -38,7 +38,7 @@ const Page: React.FC<Props> = ({ transfers, token, chain }) => {
                 <Identicon account={transfer.to_display} />
               </Td>
               <Td>
-                <Balance value={transfer.value} token={token || { decimals: transfer.decimals, symbol: transfer.symbol } || chain.nativeTokenConf} />
+                <Balance value={transfer.value} token={token || { decimals: transfer.decimals, symbol: transfer.symbol }} />
               </Td>
               <Td>
                 <Identicon account={{ address: transfer.contract }} />

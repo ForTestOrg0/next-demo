@@ -2,6 +2,7 @@ import React from 'react'
 import { BareProps } from '@/types/page'
 import { LinkRouter, Text } from '@/ui'
 import { objectToSearchParams } from '@/utils/url'
+import clsx from 'clsx'
 
 interface Props extends BareProps {
   address?: string
@@ -15,7 +16,7 @@ const Components: React.FC<Props> = ({ empty, query, children, address = '', cla
   }
   const searchParams = objectToSearchParams(query)
   return (
-    <LinkRouter className="text-sm" href={`/erc20_token/${address}${searchParams ? `?${searchParams}` : ''}`}>
+    <LinkRouter className={clsx('text-sm', className)} href={`/erc20_token/${address}${searchParams ? `?${searchParams}` : ''}`}>
       {children ?? address}
     </LinkRouter>
   )

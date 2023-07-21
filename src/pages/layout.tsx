@@ -38,6 +38,7 @@ export default function RootLayout({
 }) {
   const metadata = pageProps?.metadata || {}
   const rbg = convertToRGB(pageProps?.chain?.chainConf.theme.colors[0] || '#E90979')
+  const rbgSub = convertToRGB(pageProps?.chain?.chainConf.theme.colors[1] || '#F081B9')
   return (
     <div id="subscan-app" className={`font-sans flex h-screen flex-col ${context?.req.cookies.theme || ''} ${pageProps?.chain?.chainConf?.id || ''}`}>
       <Head>
@@ -58,6 +59,7 @@ export default function RootLayout({
           <style>{`
         body {
           --ui-network: ${rbg[0]} ${rbg[1]} ${rbg[2]};
+          --ui-network2: ${rbgSub[0]} ${rbgSub[1]} ${rbgSub[2]};
         }
         `}</style>
         )}

@@ -29,7 +29,7 @@ const Page: React.FC<Props> = ({ transfers, token, chain, disableColumn }) => {
           <Th>Value</Th>
           {!disableColumn?.result && <Th>Result</Th>}
         </Tr>
-        {transfers.map((transfer) => {
+        {transfers?.map((transfer) => {
           return (
             <Tr key={transfer.extrinsic_index}>
               <Td>

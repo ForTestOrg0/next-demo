@@ -79,3 +79,23 @@ export async function getEvmTransactions(
 export const useEvmTransactions = (hostname = '', params: Parameters<typeof getEvmTransactions>[1]) => {
   return useSWR<APIWarpperProps<GetEvmTransactionsProps>, Error>([hostname, 'api/scan/evm/v2/transactions', params], swrFetcher)
 }
+
+/** EVM token transfers */
+export async function getEvmTokenTransfer(
+  hostname = '',
+  params: {
+    address?: string
+    contract?: string
+    hash?: string
+    token_id?: string
+    row: number
+    page: number
+    category?: 'erc20' | 'erc721'
+  }
+): Promise<APIWarpperProps<GetEvmTokenTransfersProps>> {
+  return await subscanFetch(hostname, 'api/scan/evm/token/transfer', params)
+}
+
+export const useEvmTokenTransfer = (hostname = '', params: Parameters<typeof getEvmTokenTransfer>[1]) => {
+  return useSWR<APIWarpperProps<GetEvmTokenTransfersProps>, Error>([hostname, 'api/scan/evm/token/transfer', params], swrFetcher)
+}
