@@ -16,6 +16,9 @@ interface Props extends BareProps, BareServerSideProps, UseXCMChannelsArgs {
   token?: Token
   type?: string
   paraId?: number
+  page: number
+  row: number
+  address?: string
   setChannelCount?: (count: number) => void
 }
 
@@ -37,10 +40,10 @@ const Page: React.FC<Props> = ({ host, token, type = 'table', setChannelCount, p
       {type === 'table' && (
         <>
           <ChannelList channels={virtualTableData} chain={chain} token={token} />
-          {count - props.row > 0 && (
+          {count - TAB_ROW > 0 && (
             <XCMMessageListLink query={{ address: props.address?.toString() || '' }}>
               <Button outline className="mt-4">
-                View Other {count - props.row} Channels
+                View Other {count - TAB_ROW} Channels
               </Button>
             </XCMMessageListLink>
           )}

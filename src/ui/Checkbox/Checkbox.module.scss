@@ -24,9 +24,9 @@
 
   // Box hover
   &:hover + span::before {
-    @apply border-sub-network
+    @apply border-sub-network;
   }
-  
+
   // Box focus
   &:focus + span::before {
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
@@ -34,9 +34,9 @@
 
   // Box checked
   &:checked + span::before {
-    @apply bg-sub-network
+    @apply bg-sub-network;
   }
-  
+
   // Disabled state span.
   &:disabled + span {
     color: #b8b8b8;
@@ -58,13 +58,7 @@
     background: white;
     width: 2px;
     height: 2px;
-    box-shadow: 
-      2px 0 0 white,
-      4px 0 0 white,
-      4px -2px 0 white,
-      4px -4px 0 white,
-      4px -6px 0 white,
-      4px -8px 0 white;
+    box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
     transform: rotate(45deg);
   }
 }

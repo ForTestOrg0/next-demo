@@ -13,6 +13,7 @@ import { TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import dayjs from 'dayjs'
 import { BareServerSideProps } from '@/types/page'
+import { GraphChart } from '@/components/Pages/Parachain/Common'
 import { ParachainListClient } from '@/components/Pages/Parachain/ParachainList'
 import { parachainListStatusMap } from '@/components/Pages/Parachain/ParachainList/ParachainList'
 import { getSubdomainFromHeaders } from '@/utils/url'
@@ -127,7 +128,7 @@ export default function Page({ chain, host, parachainMeta, XCMMeta, currentAucti
             </div>
             <Boundary className="!p-5">
               <>
-                <div className="">
+                <div className="h-[70px]">
                   {/* <img alt="logo" :src="networkLogo" /> */}
                   <Flex className="flex-col">
                     <Text className="!text-lg font-semibold">{chain.chainConf.name}</Text>
@@ -196,22 +197,33 @@ export default function Page({ chain, host, parachainMeta, XCMMeta, currentAucti
                     </Flex>
                   </Flex>
                 ) : (
-                  <Text small className="w-full bg-sub-b2 rounded my-5 px-5 py-2.5 text-white">{`Auction #${
+                  <Text className="w-full bg-sub-b2 rounded my-5 px-5 py-2.5 text-white">{`Auction #${
                     parachainMeta.auction_count + 1
                   } is in preparation`}</Text>
                 )}
-                <div className="mt-module rounded px-5 py-2.5 grid grid-cols-3 bg-sub-bg gap-x-10 gap-y-5">
+                <div className="my-module rounded px-5 py-2.5 grid grid-cols-3 bg-sub-bg gap-y-10 gap-x-5">
                   {items.map((meta) => (
                     <Flex key={meta.label} className="flex-1 flex-col">
                       <Text bold>{meta.label}</Text>
-                      <Text className="!text-2xl font-semibold text-sub-network mt-2.5">{meta.value}</Text>
+                      <Text className="!text-[26px] !leading-10 font-semibold text-sub-network mt-2.5">{meta.value}</Text>
                     </Flex>
                   ))}
                 </div>
               </>
             </Boundary>
           </div>
-          <div className="flex-1"></div>
+          <Flex className="flex-1 flex-col">
+            <div className="flex mb-4 justify-between">
+              <div className="flex items-center">
+                <Text block bold className="ml-2 break-all">
+                  Parachain Connection Status
+                </Text>
+              </div>
+            </div>
+            <Boundary className="!p-0 h-full">
+              <GraphChart host={host} chain={chain}></GraphChart>
+            </Boundary>
+          </Flex>
         </Flex>
         <Text block bold className="mb-4 break-all">
           Parachain

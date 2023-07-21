@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="955px" height="955px" viewBox="0 0 955 955" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>bg</title>
+    <defs>
+        <path d="M477.5,955 C741.215968,955 955,741.215968 955,477.5 C955,213.784032 741.215968,0 477.5,0 C213.784032,0 0,213.784032 0,477.5 C0,741.215968 213.784032,955 477.5,955 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="955" height="955" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#EBEBEB" offset="0%"></stop>
+            <stop stop-color="#F9F9F9" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-4" cx="258.5" cy="258.5" r="258.5"></circle>
+        <path d="M258.5,517 C401.265608,517 517,401.265608 517,258.5 C517,115.734392 401.265608,0 258.5,0 C115.734392,0 0,115.734392 0,258.5 C0,401.265608 115.734392,517 258.5,517 Z" id="path-6"></path>
+        <mask id="mask-7" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="517" height="517" fill="white">
+            <use xlink:href="#path-6"></use>
+        </mask>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bg">
+            <circle id="椭圆形备份-9" stroke="#E6007A" stroke-width="12" opacity="0.100000001" cx="477.5" cy="477.5" r="451.5"></circle>
+            <use id="椭圆形备份-14" stroke="#E6007A" mask="url(#mask-2)" stroke-width="24" opacity="0.100000001" stroke-dasharray="6,6" xlink:href="#path-1"></use>
+            <circle id="椭圆形备份-10" stroke="#F5C7E0" stroke-width="5" fill="#F9F9F9" cx="477.922812" cy="476.922812" r="436.422812"></circle>
+            <circle id="椭圆形备份-11" stroke="#F5C7E0" fill="url(#linearGradient-3)" opacity="0.900000036" cx="477.922812" cy="476.922812" r="429.5"></circle>
+            <circle id="椭圆形备份-12" stroke="#FFFFFF" stroke-width="34" fill="#F9F9F9" opacity="0.699999988" cx="477.922812" cy="476.922812" r="370"></circle>
+            <circle id="椭圆形备份-13" stroke="#F5C7E0" stroke-width="2" fill="#F9F9F9" opacity="0.900000036" cx="477.922812" cy="476.922812" r="267"></circle>
+            <g id="位图" transform="translate(219.000000, 219.000000)">
+                <mask id="mask-5" fill="white">
+                    <use xlink:href="#path-4"></use>
+                </mask>
+                <use id="蒙版" fill="#FFFFFF" xlink:href="#path-4"></use>
+                <g id="椭圆形备份-15" opacity="0.049999997" stroke-dasharray="10,10" mask="url(#mask-5)" stroke="#E6007A" stroke-width="24">
+                    <use mask="url(#mask-7)" xlink:href="#path-6"></use>
+                </g>
+            </g>
+            <circle id="椭圆形" stroke="#E6007A" stroke-width="29" opacity="0.429999977" cx="478" cy="477" r="285.5"></circle>
+        </g>
+    </g>
+</svg>

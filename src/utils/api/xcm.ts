@@ -57,7 +57,7 @@ export async function getXCMChannels(
   return await subscanFetch(hostname, 'api/scan/xcm/channels', params)
 }
 
-export const useXCMChannels = (hostname = '', params: Parameters<typeof getXCMList>[1]) => {
+export const useXCMChannels = (hostname = '', params: Parameters<typeof getXCMChannels>[1]) => {
   return useSWR<APIWarpperProps<GetXCMChannelsProps>, Error>([hostname, 'api/scan/xcm/channels', params], swrFetcher)
 }
 

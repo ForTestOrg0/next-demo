@@ -1,0 +1,107 @@
+.chartWrapper {
+  @keyframes rotating {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+}
+.graphWrapper {
+  scale: 1;
+  transition: all 0.3s;
+  &:hover {
+    .chartContent {
+      animation-play-state: paused;
+    }
+    .absoluteContent {
+      animation-play-state: paused;
+      .centerLogo {
+        animation-play-state: paused;
+      }
+    }
+    .graphBg {
+      animation-play-state: paused;
+    }
+  }
+}
+.wave {
+  @keyframes example2 {
+    0% {
+      width: 0px;
+      height: 0px;
+      opacity: 0.05;
+    }
+    25% {
+      width: 75px;
+      height: 75px;
+      opacity: 0.05;
+    }
+    50% {
+      width: 150px;
+      height: 150px;
+      opacity: 0.05;
+    }
+    75% {
+      width: 225px;
+      height: 225px;
+      opacity: 0.025;
+    }
+    100% {
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+    }
+  }
+  width: 0px;
+  height: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #e6007a;
+  opacity: 0.05;
+  border-radius: 50%;
+  // transform: scale(30, 30);
+  animation: example2 6s linear infinite;
+}
+.delay1 {
+  animation-delay: 2s;
+}
+.delay2 {
+  animation-delay: 4s;
+}
+.waveLoading {
+  $count: infinite;
+}
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+.pause {
+  animation-play-state: paused;
+}
+.running {
+  animation: rotating 32s linear infinite;
+}
+.runingReverse {
+  animation: rotating 32s linear infinite reverse;
+}
+.scale {
+  scale: 1.7;
+  transform: translate(-25%, 20%);
+}
+.blur {
+  opacity: 0.1;
+}
+.paraLogo {
+  opacity: 1;
+  transition: opacity 0.3s;
+  &.blur {
+    opacity: 0.1;
+  }
+}

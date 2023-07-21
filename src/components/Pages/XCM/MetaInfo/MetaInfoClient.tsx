@@ -9,6 +9,7 @@ import { unwrap } from '@/utils/api'
 import { Loading } from '@/components/Loading'
 import { Empty } from '@/components/Empty'
 import MetaInfo from './MetaInfo'
+import { GraphChart } from '@/components/Pages/Parachain/Common'
 import { XCMMessage } from '@/components/Pages/Tools/Charts'
 
 interface Props extends BareProps, BareServerSideProps {
@@ -37,8 +38,15 @@ const Component: React.FC<Props> = ({ children, host, className, chain }) => {
   if (!metaInfo) return <Empty />
 
   return (
-    <Boundary className="flex !p-0">
-      <div className="flex-1"></div>
+    <Boundary className="relative flex !p-0">
+      <div className="pointer-events-none">
+        <img className="absolute w-[152px] left-0 bottom-0" src={'/website/assets/xcm/bg1.png'} />
+        <img className="absolute w-[381px] left-[424px]" src={'/website/assets/xcm/bg2.png'} />
+        <img className="absolute w-[220px] right-0 bottom-0" src={'/website/assets/xcm/bg3.png'} />
+      </div>
+      <div className="flex-1">
+        <GraphChart host={host} chain={chain}></GraphChart>
+      </div>
       <div className="flex-1 my-7">
         <MetaInfo className="mb-7" metaInfo={metaInfo} chain={chain} host={host} />
         <div className="w-full pr-12">
@@ -59,7 +67,7 @@ const Component: React.FC<Props> = ({ children, host, className, chain }) => {
                     end: endDate,
                     start: startDate,
                   }}
-                  style={{ height: '280px' }}
+                  style={{ height: '280px', backgroundColor: 'white' }}
                   config={chartConfig}
                   chain={chain}
                 />
@@ -71,7 +79,7 @@ const Component: React.FC<Props> = ({ children, host, className, chain }) => {
                     end: endDate,
                     start: startDate,
                   }}
-                  style={{ height: '280px' }}
+                  style={{ height: '280px', backgroundColor: 'white' }}
                   config={chartConfig}
                   chain={chain}
                 />
