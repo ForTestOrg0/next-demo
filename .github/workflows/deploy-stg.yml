@@ -7,8 +7,8 @@ on:
 jobs:
   deploy:
     name: Deploy
-    runs-on: ubuntu-latest
-
+    runs-on:
+      group: ubuntu-large
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v3
