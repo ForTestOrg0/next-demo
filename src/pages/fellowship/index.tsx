@@ -1,6 +1,13 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Button } from '@/ui'
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Button, Flex } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getFellowshipReferendums, GetFellowshipReferendumsProps, getFellowshipTracks, GetFellowshipTracksProps } from '@/utils/api'
+import {
+  getFellowshipReferendums,
+  GetFellowshipReferendumsProps,
+  getFellowshipStatistics,
+  GetFellowshipStatisticsProps,
+  getFellowshipTracks,
+  GetFellowshipTracksProps,
+} from '@/utils/api'
 import { TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
@@ -8,6 +15,7 @@ import { getSubdomainFromHeaders } from '@/utils/url'
 import { ReferendaV2List } from '@/components/Governance/ReferendaV2List'
 import { ReferendaTracksList } from '@/components/Governance/ReferendaTracksList'
 import { FellowshipListLink, FellowshipOriginsLink } from '@/components/Links'
+import { FellowshipStatusSummary, OriginDistributionSummary } from '@/components/Governance/ReferendaV2Summary'
 
 type Tab = 'active' | 'completed' | 'origins'
 
@@ -15,6 +23,7 @@ export const getServerSideProps: GetServerSideProps<
   {
     activeReferendums: GetFellowshipReferendumsProps
     completedReferendums: GetFellowshipReferendumsProps
+    statistics: GetFellowshipStatisticsProps
     tracks: GetFellowshipTracksProps
     tab: Tab
     origin: string
@@ -36,6 +45,8 @@ export const getServerSideProps: GetServerSideProps<
     status: 'completed',
   })
 
+  const statistics = await getFellowshipStatistics(subdomain, {})
+
   const tracks = await getFellowshipTracks(subdomain)
 
   const chainProps = await getChainProps(subdomain)
@@ -50,6 +61,7 @@ export const getServerSideProps: GetServerSideProps<
     props: {
       completedReferendums: completedReferendums.data,
       activeReferendums: activeReferendums.data,
+      statistics: statistics.data,
       tracks: tracks.data,
       chain: chainProps,
       tab,
@@ -61,6 +73,7 @@ export const getServerSideProps: GetServerSideProps<
 export default function Layout({
   completedReferendums,
   activeReferendums,
+  statistics,
   tab,
   origin,
   tracks,
@@ -77,6 +90,34 @@ export default function Layout({
   return (
     <PageContent>
       <Container className="flex-1">
+        <Flex className="space-x-5 mb-module">
+          <Flex className="flex-col flex-1">
+            <Flex className="mb-4">
+              <Text bold className="ml-2">
+                Fellowship
+              </Text>
+            </Flex>
+
+            <Boundary className="!py-7">
+              <FellowshipStatusSummary statistics={statistics} chain={chain} />
+            </Boundary>
+          </Flex>
+
+          <Flex className="flex-col flex-1">
+            <Flex className="mb-4 justify-between items-center">
+              <Flex className="items-center">
+                <Text bold className="ml-2">
+                  Origin Distribution
+                </Text>
+              </Flex>
+            </Flex>
+
+            <Boundary className="flex-1 flex justify-center !py-5">
+              <OriginDistributionSummary statistics={statistics} chain={chain} />
+            </Boundary>
+          </Flex>
+        </Flex>
+
         <Text block bold className="mb-4 break-all">
           Fellowship Referenda
         </Text>

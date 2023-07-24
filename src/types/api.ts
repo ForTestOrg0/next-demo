@@ -1093,3 +1093,28 @@ export interface Substrate_ERC721Token {
   balance: string
   contract: string
 }
+
+export interface ReferendaStatistics {
+  referendum_locked: string
+  referendum_participate: string
+  voting_total: number
+  confirm_total: number
+  origins: {
+    ID: number
+    Origins: string
+    Count: number
+  }[]
+}
+
+export interface FellowshipStatistics {
+  fellowship_members: string
+  active_fellowship_members: string
+  voting_total: number
+  confirm_total: number
+  OriginsCount: number
+  origins: {
+    ID: number
+    Origins: string
+    Count: number
+  }[]
+}

@@ -9,9 +9,11 @@ import {
   DemocracyReferendumDetail,
   DemocracyReferendumV2,
   DemocracyVote,
+  FellowshipStatistics,
   ProposalPreImage,
   ProposalTimeline,
   ReferendaReferendumV2Detail,
+  ReferendaStatistics,
   ReferendaVotesV2,
   ReferendumTrack,
   TechcommProposal,
@@ -400,4 +402,26 @@ export async function getReferendaVotes(
 
 export const useReferendaVotes = (hostname = '', params: Parameters<typeof getReferendaVotes>[1]) => {
   return useSWR<APIWarpperProps<GetReferendaVotesProps>, Error>([hostname, 'api/scan/referenda/votes', params], swrFetcher)
+}
+
+/***** Referenda Statistics *****/
+export type GetReferendaStatisticsProps = ReferendaStatistics
+
+export async function getReferendaStatistics(hostname = '', params: {}): Promise<APIWarpperProps<GetReferendaStatisticsProps>> {
+  return await subscanFetch(hostname, 'api/scan/referenda/statistics', params)
+}
+
+export const useReferendaStatistics = (hostname = '', params: Parameters<typeof getReferendaStatistics>[1]) => {
+  return useSWR<APIWarpperProps<GetReferendaStatisticsProps>, Error>([hostname, 'api/scan/referenda/statistics', params], swrFetcher)
+}
+
+/***** Fellowship Statistics *****/
+export type GetFellowshipStatisticsProps = FellowshipStatistics
+
+export async function getFellowshipStatistics(hostname = '', params: {}): Promise<APIWarpperProps<GetFellowshipStatisticsProps>> {
+  return await subscanFetch(hostname, 'api/scan/fellowship/statistics', params)
+}
+
+export const useFellowshipStatistics = (hostname = '', params: Parameters<typeof getFellowshipStatistics>[1]) => {
+  return useSWR<APIWarpperProps<GetFellowshipStatisticsProps>, Error>([hostname, 'api/scan/fellowship/statistics', params], swrFetcher)
 }

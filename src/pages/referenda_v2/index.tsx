@@ -1,6 +1,13 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Button } from '@/ui'
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Button, Flex } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getReferendaReferendums, GetReferendaReferendumsProps, getReferendaTracks, GetReferendaTracksProps } from '@/utils/api'
+import {
+  getReferendaReferendums,
+  GetReferendaReferendumsProps,
+  getReferendaStatistics,
+  GetReferendaStatisticsProps,
+  getReferendaTracks,
+  GetReferendaTracksProps,
+} from '@/utils/api'
 import { TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
@@ -8,6 +15,7 @@ import { getSubdomainFromHeaders } from '@/utils/url'
 import { ReferendaV2List } from '@/components/Governance/ReferendaV2List'
 import { ReferendaTracksList } from '@/components/Governance/ReferendaTracksList'
 import { ReferendaV2ListLink, ReferendaV2OriginsLink } from '@/components/Links'
+import { OriginDistributionSummary, ReferendaV2StatusSummary } from '@/components/Governance/ReferendaV2Summary'
 
 type Tab = 'active' | 'completed' | 'origins'
 
@@ -16,6 +24,7 @@ export const getServerSideProps: GetServerSideProps<
     activeReferendums: GetReferendaReferendumsProps
     completedReferendums: GetReferendaReferendumsProps
     tracks: GetReferendaTracksProps
+    referendaStatistics: GetReferendaStatisticsProps
     tab: Tab
     origin: string
   } & BareServerSideProps
@@ -36,6 +45,8 @@ export const getServerSideProps: GetServerSideProps<
     status: 'completed',
   })
 
+  const referendaStatistics = await getReferendaStatistics(subdomain, {})
+
   const tracks = await getReferendaTracks(subdomain)
 
   const chainProps = await getChainProps(subdomain)
@@ -50,6 +61,7 @@ export const getServerSideProps: GetServerSideProps<
     props: {
       completedReferendums: completedReferendums.data,
       activeReferendums: activeReferendums.data,
+      referendaStatistics: referendaStatistics.data,
       tracks: tracks.data,
       chain: chainProps,
       tab,
@@ -61,6 +73,7 @@ export const getServerSideProps: GetServerSideProps<
 export default function Layout({
   completedReferendums,
   activeReferendums,
+  referendaStatistics,
   tab,
   origin,
   tracks,
@@ -77,6 +90,34 @@ export default function Layout({
   return (
     <PageContent>
       <Container className="flex-1">
+        <Flex className="space-x-5 mb-module">
+          <Flex className="flex-col flex-1">
+            <Flex className="mb-4">
+              <Text bold className="ml-2">
+                Referenda V2
+              </Text>
+            </Flex>
+
+            <Boundary className="!py-7">
+              <ReferendaV2StatusSummary statistics={referendaStatistics} chain={chain} />
+            </Boundary>
+          </Flex>
+
+          <Flex className="flex-col flex-1">
+            <Flex className="mb-4 justify-between items-center">
+              <Flex className="items-center">
+                <Text bold className="ml-2">
+                  Origin Distribution
+                </Text>
+              </Flex>
+            </Flex>
+
+            <Boundary className="flex-1 flex justify-center !py-5">
+              <OriginDistributionSummary statistics={referendaStatistics} chain={chain} />
+            </Boundary>
+          </Flex>
+        </Flex>
+
         <Text block bold className="mb-4 break-all">
           Referenda List
         </Text>
