@@ -73,7 +73,7 @@ export default function Page({ data, type, chain }: InferGetServerSidePropsType<
         </Boundary>
         <LinkRouter href={`/bounty?tab=${type}`}>
           <Button outline className="mt-4">
-            View Other {data.count - PAGE_ROW} {type}{' '}
+            View Other {data.count - PAGE_ROW} {type}
           </Button>
         </LinkRouter>
       </Container>

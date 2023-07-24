@@ -80,7 +80,7 @@ export default function Page({ data, type }: InferGetServerSidePropsType<typeof 
         </Boundary>
         <LinkRouter href={`/democracy_proposal_list?tab=${type}`}>
           <Button outline className="mt-4">
-            View Other {data.count - PAGE_ROW} {type}{' '}
+            View Other {data.count - PAGE_ROW} {type}
           </Button>
         </LinkRouter>
       </Container>

@@ -141,7 +141,6 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
                 <p>
                   The living specification for the SS58 account format can be found on the
                   <Link href={`https://docs.substrate.io/v3/advanced/ss58/`} external>
-                    {' '}
                     Substrate wiki
                   </Link>
                 </p>

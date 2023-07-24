@@ -280,7 +280,7 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
         {chain.chainConf.social.price && (
           <div className="text-right mt-2.5 text-[#98959f]">
             <Text>
-              Price Data from{' '}
+              Price Data from
               <Link external href={chain.chainConf.social.price}>
                 CoinGecko
               </Link>

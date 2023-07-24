@@ -21,7 +21,7 @@ const Component: React.FC<Props> = ({ children, className, chainId, symbol, fall
   return (
     <img
       className={clsx('', className)}
-      src={`/chains/${chainId}/tokens/${symbol}.svg`}
+      src={`/chains/${chainId}/tokens/${symbol}.png`}
       alt={`${chainId} - ${symbol}`}
       onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
         if (fallback) {

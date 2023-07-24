@@ -36,10 +36,10 @@ const Component: React.FC<Props> = ({ children, className, address }) => {
       <Flex className="items-center">
         <div className="w-2 h-5 bg-sub-network2 rounded-sm"></div>
         <Text className="ml-2">
-          This account has asset or on-chain data in other{' '}
+          This account has asset or on-chain data in other
           <Link className="font-semibold !text-sub-network" href={`https://www.subscan.io/account/${address}`} external>
             {chainCount - 1}
-          </Link>{' '}
+          </Link>
           networks
         </Text>
       </Flex>

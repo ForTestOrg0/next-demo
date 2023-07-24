@@ -1,10 +1,11 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@/ui'
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Flex } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { TAB_ROW } from '@/config/constants'
 import { getChainProps } from '@/utils/chain'
 import { BareServerSideProps } from '@/types/page'
 import { getSubdomainFromHeaders } from '@/utils/url'
 import { ValidatorListClient, WaitingListClient } from '@/components/Pages/Staking/ValidatorList'
+import { StakingStatusSummary, StakingTokenChartSummary } from '@/components/Pages/Staking/StakingSummary'
 
 export const getServerSideProps: GetServerSideProps<
   {
@@ -32,6 +33,14 @@ export default function Layout({ chain, host }: InferGetServerSidePropsType<type
   return (
     <PageContent>
       <Container className="flex-1">
+        <Flex className="mb-module space-x-5">
+          <Boundary className="flex flex-1 !py-8 !px-16">
+            <StakingStatusSummary chain={chain} />
+          </Boundary>
+          <Boundary className="basis-[360px]">
+            <StakingTokenChartSummary chain={chain} />
+          </Boundary>
+        </Flex>
         <Text block bold className="mb-4 break-all">
           Validator
         </Text>
