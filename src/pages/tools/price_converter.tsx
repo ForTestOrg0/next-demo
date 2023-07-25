@@ -158,13 +158,13 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
           </Text>
           <Menu className="w-full mb-5">
             <MenuButton className="w-full">
-              <Input className="w-full" value={dimensionText} readOnly={true} suffix={<ArrowDownFillingIcon className="w-5" />}></Input>
+              <Input className="w-full" value={dimensionText} readOnly={true} suffix={<ArrowDownFillingIcon className="w-2.5" />}></Input>
             </MenuButton>
             <MenuItems>
               {links.map((link) => (
                 <MenuItem as="div" key={link.value}>
                   {({ active, close }) => (
-                    <div id={link.value} onClick={handleDimensionChange}>
+                    <div className="cursor-pointer px-5 h-8 leading-8 hover:bg-sub-hover" id={link.value} onClick={handleDimensionChange}>
                       {link.name}
                     </div>
                   )}
@@ -185,7 +185,7 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
               <Text block bold className="mb-4 break-all">
                 Time
               </Text>
-              <DatePicker value={date} onSelect={setDate} onClear={() => setDate(null)} className="w-full mb-5 justify-start" />
+              <DatePicker value={date} onSelect={setDate} onClear={() => setDate(null)} className="w-full mb-5 justify-start h-10 leading-10" />
             </>
           )}
           <div className="flex items-end justify-between">
@@ -199,13 +199,13 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
               <div>
                 <Menu className="w-72">
                   <MenuButton className="w-full">
-                    <Input className="w-full" value={fromTokenText} readOnly={true} suffix={<ArrowDownFillingIcon className="w-5" />}></Input>
+                    <Input className="w-full" value={fromTokenText} readOnly={true} suffix={<ArrowDownFillingIcon className="w-2.5" />}></Input>
                   </MenuButton>
                   <MenuItems>
                     {tokens.map((link) => (
                       <MenuItem as="div" key={link.value}>
                         {({ active, close }) => (
-                          <div id={link.value} onClick={handleFromTokenTextChange}>
+                          <div className="cursor-pointer px-5 h-8 leading-8 hover:bg-sub-hover" id={link.value} onClick={handleFromTokenTextChange}>
                             {link.name}
                           </div>
                         )}
@@ -221,13 +221,13 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
             <div>
               <Menu className="w-72">
                 <MenuButton className="w-full">
-                  <Input className="w-full" value={toTokenText} readOnly={true} suffix={<ArrowDownFillingIcon className="w-5" />}></Input>
+                  <Input className="w-full" value={toTokenText} readOnly={true} suffix={<ArrowDownFillingIcon className="w-2.5" />}></Input>
                 </MenuButton>
                 <MenuItems>
                   {tokens.map((link) => (
                     <MenuItem as="div" key={link.value}>
                       {({ active, close }) => (
-                        <div id={link.value} onClick={handleToTokenTextChange}>
+                        <div className="cursor-pointer px-5 h-8 leading-8 hover:bg-sub-hover" id={link.value} onClick={handleToTokenTextChange}>
                           {link.name}
                         </div>
                       )}

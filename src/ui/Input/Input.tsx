@@ -27,13 +27,13 @@ const Input = forwardRef<InputRef & HTMLInputElement, InputProps & HTMLAttribute
     <div className={clsx('relative inline-block', className)}>
       <input
         ref={ref}
-        className={clsx('rounded px-4 py-1 text-sm border w-full', {
+        className={clsx('rounded px-4 py-1 text-sm border w-full h-10 leading-10', {
           'pl-8': prefix,
           'pr-8': suffix,
         })}
         {...props}></input>
-      {prefix && <span className={clsx('absolute top-0 left-1 h-full w-7 flex', prefixCls)}>{prefix}</span>}
-      {suffix && <span className={clsx('absolute top-0 right-1 h-full w-7 flex', suffixCls)}>{suffix}</span>}
+      {prefix && <span className={clsx('absolute top-0 left-2.5 h-full flex', prefixCls)}>{prefix}</span>}
+      {suffix && <span className={clsx('absolute top-0 right-2.5 h-full flex', suffixCls)}>{suffix}</span>}
     </div>
   )
 })

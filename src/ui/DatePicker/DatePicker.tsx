@@ -86,7 +86,7 @@ const DatePicker = ({ className, value, placeholder = 'Date Picker', onSelect = 
 
   return (
     <>
-      <Button ref={refs.setReference} {...getReferenceProps()} className={`${className} ${btnClassNames} ${className}`}>
+      <Button ref={refs.setReference} {...getReferenceProps()} className={`${btnClassNames} ${className}`}>
         <span>{value ? format(value, DEFAULT_FORMAT) : placeholder}</span>
         {/* TODO: improve clear icon */}
         {value ? (

@@ -63,17 +63,18 @@
     "next-intl": "2.13.0",
     "nprogress": "^0.2.0",
     "postcss": "8.4.21",
+    "rc-picker": "^3.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-ga4": "^2.1.0",
     "react-i18next": "^12.2.2",
     "styled-components": "6.0.0-beta.2",
+    "swiper": "10.0.4",
     "swr": "2.1.5",
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4",
     "usehooks-ts": "2.9.1",
-    "xlsx": "^0.18.5",
-    "swiper": "10.0.4"
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

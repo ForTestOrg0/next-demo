@@ -603,7 +603,7 @@ export const parachainProjectInfoBuddle: ParachainInfos = relaychain.reduce(
 )
 
 export function getParachainProjectInfoById(relaychainName: RelaychainName, parachainId: number) {
-  return parachainProjectInfoBuddle[relaychainName][parachainId]
+  return parachainProjectInfoBuddle[relaychainName]?.[parachainId]
 }
 
 export const DEFAULT_PARACHAIN = {

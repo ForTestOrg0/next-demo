@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { BareProps, BareServerSideProps } from '@/types/page'
 import { Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Boundary } from '@/ui'

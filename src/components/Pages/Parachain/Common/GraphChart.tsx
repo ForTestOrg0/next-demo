@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useMemo, useRef, useCallback } from 'react'
 import _ from 'lodash'
 import clsx from 'clsx'

@@ -105,19 +105,19 @@ export default function Page({ host, chain, page }: InferGetServerSidePropsType<
               <Text block bold className="mb-4 break-all">
                 Input Account
               </Text>
-              <Input className="w-full" value={address} onChange={handleTextareaChange}></Input>
+              <Input className="w-full mb-5" value={address} onChange={handleTextareaChange}></Input>
               <Text block bold className="mb-4 break-all">
                 Output Type
               </Text>
               <Menu className="w-full">
                 <MenuButton className="w-full">
-                  <Input className="w-full" value={outputType} readOnly={true} suffix={<ArrowDownFillingIcon className="w-5" />}></Input>
+                  <Input className="w-full" value={outputType} readOnly={true} suffix={<ArrowDownFillingIcon className="w-2.5" />}></Input>
                 </MenuButton>
                 <MenuItems>
                   {links.map((link) => (
                     <MenuItem as="div" key={link.value}>
                       {({ active, close }) => (
-                        <div id={link.value} onClick={handleOutputTypeChange}>
+                        <div className="cursor-pointer px-5 h-8 leading-8 hover:bg-sub-hover" id={link.value} onClick={handleOutputTypeChange}>
                           {link.name}
                         </div>
                       )}
