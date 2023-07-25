@@ -78,11 +78,13 @@ export default function Page({ data, type }: InferGetServerSidePropsType<typeof 
           />
           <ProposalList proposals={data.list} />
         </Boundary>
-        <LinkRouter href={`/democracy_proposal_list?tab=${type}`}>
-          <Button outline className="mt-4">
-            View Other {data.count - PAGE_ROW} {type}
-          </Button>
-        </LinkRouter>
+        {data.count - PAGE_ROW > 0 && (
+          <LinkRouter href={`/democracy_proposal_list?tab=${type}`}>
+            <Button outline className="mt-4">
+              View Other {data.count - PAGE_ROW} {type}
+            </Button>
+          </LinkRouter>
+        )}
       </Container>
     </PageContent>
   )
