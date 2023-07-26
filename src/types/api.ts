@@ -106,6 +106,7 @@ export interface XCM {
   assets: XCMAsset[] | null
   block_num: number
   child_dest: string
+  child_message?: XCM
   child_para_id: number
   confirm_block_timestamp: number
   dest_event_index: string

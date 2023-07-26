@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { BareProps } from '@/types/page'
-import { CheckCircleIcon, CircleTimesIcon, WaitIcon } from '@/ui/Svg'
+import { CheckCircleIcon, CircleTimesIcon, WaitIcon, QuestionIcon } from '@/ui/Svg'
 import { Flex, Text } from '@/ui'
 
 // export type ResultStatusType = 'success' | 'failed' | 'pending' | 'relayed'
@@ -35,7 +35,7 @@ export const TransferStatus: React.FC<Props> = ({ children, type, text, classNam
       ) : null}
       {type === 'relayed' ? (
         <Flex className="items-center">
-          <WaitIcon className={clsx('w-7 text-sub-warning-light', iconClass)} />
+          <QuestionIcon className={clsx('w-7 text-sub-b2', iconClass)} />
           <Text className="ml-1">{text}</Text>
         </Flex>
       ) : null}

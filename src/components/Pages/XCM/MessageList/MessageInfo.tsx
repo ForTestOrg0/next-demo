@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use, useMemo } from 'react'
 import _ from 'lodash'
 import { BareProps, BareServerSideProps } from '@/types/page'
 import { TableCol, TdCol, TrCol, Text } from '@/ui'
@@ -7,6 +7,7 @@ import { Progress } from '@/components/Pages/XCM/MessageList'
 import { Identicon } from '@/components/Pages/XCM/ParachainIdenticon'
 import { Parameters } from '@/components/Parameters'
 import { Balance } from '@/components/Balance'
+import MessageContent from './MessageContent'
 
 interface Props extends BareProps, BareServerSideProps {
   messageInfo: XCM
@@ -14,80 +15,49 @@ interface Props extends BareProps, BareServerSideProps {
 }
 
 const Page: React.FC<Props> = ({ messageInfo, chain, host }) => {
-  const rawAssets = _.filter(messageInfo.assets, (asset) => {
-    return asset.raw
-  })
+  const isMsg = useMemo(() => {
+    return messageInfo.message_type !== 'transfer'
+  }, [messageInfo])
+  const hasChildContent = useMemo(() => {
+    if (isMsg) {
+      return false
+    }
+    return messageInfo.child_para_id > -1
+  }, [messageInfo, isMsg])
+  const hasChildMsg = useMemo(() => {
+    if (isMsg) {
+      return false
+    }
+    return !!messageInfo?.child_message
+  }, [messageInfo, isMsg])
+  const childData = {
+    assets: messageInfo.assets,
+    ...messageInfo.child_message,
+  } as XCM
+  const parentData = {
+    ...messageInfo,
+    to_account_id: messageInfo.child_dest,
+    dest_para_id: messageInfo.child_para_id,
+  } as XCM
   return (
-    <TableCol className="w-full">
-      <tbody>
-        <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">XCM Transfer Hash</TdCol>
-          <TdCol>
-            <div className="flex">{messageInfo.message_hash}</div>
-          </TdCol>
-        </TrCol>
-        {messageInfo.from_account_id && (
-          <TrCol>
-            <TdCol className="font-semibold whitespace-nowrap">Sender</TdCol>
-            <TdCol>
-              <Text>
-                <Identicon paraId={messageInfo.origin_para_id} address={messageInfo.from_account_id} />
-              </Text>
-            </TdCol>
-          </TrCol>
-        )}
-        {messageInfo.dest_para_id && (
-          <TrCol>
-            <TdCol className="font-semibold whitespace-nowrap">Destination</TdCol>
-            <TdCol>
-              <Text>
-                <Identicon paraId={messageInfo.dest_para_id} address={messageInfo.to_account_id} />
-              </Text>
-            </TdCol>
-          </TrCol>
-        )}
-        {messageInfo.protocol && (
-          <TrCol>
-            <TdCol className="font-semibold whitespace-nowrap">Protocol</TdCol>
-            <TdCol>{messageInfo.protocol !== 'HRMP' ? `VMP(${messageInfo.protocol})` : messageInfo.protocol}</TdCol>
-          </TrCol>
-        )}
-        {!!messageInfo.xcm_version && (
-          <TrCol>
-            <TdCol className="font-semibold whitespace-nowrap">Version</TdCol>
-            <TdCol>{messageInfo.xcm_version}</TdCol>
-          </TrCol>
-        )}
-        {rawAssets?.length === 0 && messageInfo.assets && (
-          <TrCol>
-            <TdCol className="font-semibold whitespace-nowrap">Value</TdCol>
-            <TdCol>
-              {messageInfo.assets.map((asset, index) => {
-                return (
-                  <div className="" key={index}>
-                    <Balance value={asset.amount} token={{ decimals: asset.decimals, symbol: asset.symbol }} />
-                  </div>
-                )
-              })}
-            </TdCol>
-          </TrCol>
-        )}
-        {rawAssets?.length > 0 && (
-          <TrCol>
-            <TdCol className="font-semibold whitespace-nowrap">Raw Value</TdCol>
-            <TdCol>
-              <Parameters value={JSON.stringify(rawAssets)} />
-            </TdCol>
-          </TrCol>
-        )}
-        <TrCol>
-          <TdCol className="font-semibold whitespace-nowrap">Progress</TdCol>
-          <TdCol>
-            <Progress value={messageInfo} host={host} />
-          </TdCol>
-        </TrCol>
-      </tbody>
-    </TableCol>
+    <div className="w-full">
+      {hasChildContent && (
+        <Text bold className="pl-2 pb-2.5" v-if="hasChildContent">
+          {'Step 1'}
+        </Text>
+      )}
+      {hasChildContent ? (
+        <MessageContent host={host} chain={chain} isMsg={isMsg} messageInfo={parentData}></MessageContent>
+      ) : (
+        <MessageContent host={host} chain={chain} isMsg={isMsg} messageInfo={messageInfo}></MessageContent>
+      )}
+      {hasChildMsg && (
+        <Text bold className="pl-2 pb-2.5 pt-5" v-if="hasChildContent">
+          {'Step 2'}
+        </Text>
+      )}
+      {hasChildMsg && <MessageContent host={host} chain={chain} isMsg={isMsg} messageInfo={childData}></MessageContent>}
+    </div>
   )
 }
 

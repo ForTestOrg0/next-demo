@@ -52,11 +52,12 @@ export const getServerSideProps: GetServerSideProps<
 }
 
 export default function Page({ host, data, chain, msgId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const isXCMTransfer = data.message_type === 'transfer'
   return (
     <PageContent>
       <Container className="flex-1">
         <Text block bold className="mb-4 break-all">
-          XCM Message#{msgId}
+          {isXCMTransfer ? `XCM Transfer#${msgId}` : `XCM Message#${msgId}`}
         </Text>
         <Boundary className="lg:px-7 lg:py-7 flex items-start">
           <MessageInfo messageInfo={data} chain={chain} host={host}></MessageInfo>

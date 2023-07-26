@@ -2,7 +2,7 @@
 import React, { useState, useMemo, useRef, useCallback } from 'react'
 import _ from 'lodash'
 import clsx from 'clsx'
-import { Flex, Text } from '@/ui'
+import { Flex, Text, Tooltip, TooltipTrigger, TooltipContent, Link, Button } from '@/ui'
 import BigNumber from 'bignumber.js'
 import { BareProps, BareServerSideProps } from '@/types/page'
 import { DEFAULT_PARACHAIN, getParachainProjectInfoById } from '@/config/parachains'
@@ -49,6 +49,7 @@ interface Props extends BareProps, BareServerSideProps {
 
 export const GraphChart: React.FC<Props> = ({ children, host, chain, className }) => {
   const [scale, setScale] = useState(false)
+  const [pauseState, setPauseState] = useState(false)
   const [hightlightList, setHightlightList] = useState<string[]>([])
   const [running, setRunning] = useState(true)
   let echartRef: EChartsInstance = useRef(null)
@@ -278,7 +279,13 @@ export const GraphChart: React.FC<Props> = ({ children, host, chain, className }
   }
   return (
     <Flex className={clsx('relative overflow-hidden w-full h-full justify-center items-center', style.chartWrapper)}>
-      <div className={clsx('relative p-[70px] w-[420px] h-[420px] overflow-hidden rounded-[50%]', style.graphWrapper, scale ? style.scale : '')}>
+      <div
+        className={clsx(
+          'relative p-[70px] w-[420px] h-[420px] overflow-hidden rounded-[50%]',
+          style.graphWrapper,
+          scale ? style.scale : '',
+          pauseState ? style.pause : ''
+        )}>
         <div className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none">
           <img
             src={getGraphBg()}
@@ -336,41 +343,65 @@ export const GraphChart: React.FC<Props> = ({ children, host, chain, className }
           {graphData.graph.nodes.map((item, index) => {
             return (
               <Flex className="absolute w-[30px] flex-col" key={item.id} style={getImgStyle(index)}>
-                <span className="relative w-[30px] h-[30px] flex items-center justify-center rounded-[50%] text-[0px] cursor-pointer">
-                  {getParaInfoById(item.id)?.logo ? (
-                    <img
-                      onMouseEnter={() => {
-                        highlightSymbol(item)
-                      }}
-                      onMouseLeave={() => {
-                        downplaySymbol(item)
-                      }}
-                      className={clsx(
-                        'rounded-[50%]',
-                        style.paraLogo,
-                        hightlightList.length > 0 && hightlightList.indexOf(item.id) === -1 ? style.blur : ''
+                <Tooltip>
+                  <TooltipTrigger>
+                    <span className="relative w-[30px] h-[30px] flex items-center justify-center rounded-[50%] text-[0px] cursor-pointer">
+                      {getParaInfoById(item.id)?.logo ? (
+                        <img
+                          onMouseEnter={() => {
+                            highlightSymbol(item)
+                          }}
+                          onMouseLeave={() => {
+                            downplaySymbol(item)
+                          }}
+                          className={clsx(
+                            'rounded-[50%]',
+                            style.paraLogo,
+                            hightlightList.length > 0 && hightlightList.indexOf(item.id) === -1 ? style.blur : ''
+                          )}
+                          src={getParaInfoById(item.id)?.logo?.default?.src}
+                          alt={item.name}
+                        />
+                      ) : (
+                        <Flex
+                          className={clsx(
+                            'rounded-[50%] relative w-[30px] h-[30px] items-center justify-center text-white font-semibold',
+                            hightlightList.length > 0 && hightlightList.indexOf(item.id) === -1 ? style.blur : '',
+                            style.paraLogo
+                          )}
+                          onMouseEnter={() => {
+                            highlightSymbol(item)
+                          }}
+                          onMouseLeave={() => {
+                            downplaySymbol(item)
+                          }}
+                          style={{ background: `${getParaInfoById(item.id)?.color}` }}>
+                          <span className="text-xs">{item.name}</span>
+                        </Flex>
                       )}
-                      src={getParaInfoById(item.id)?.logo?.default?.src}
-                      alt={item.name}
-                    />
-                  ) : (
-                    <Flex
-                      className={clsx(
-                        'rounded-[50%] relative w-[30px] h-[30px] items-center justify-center text-white font-semibold',
-                        hightlightList.length > 0 && hightlightList.indexOf(item.id) === -1 ? style.blur : '',
-                        style.paraLogo
-                      )}
-                      onMouseEnter={() => {
-                        highlightSymbol(item)
-                      }}
-                      onMouseLeave={() => {
-                        downplaySymbol(item)
-                      }}
-                      style={{ background: `${getParaInfoById(item.id)?.color}` }}>
-                      <span className="text-xs">{item.name}</span>
-                    </Flex>
-                  )}
-                </span>
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <div className="px-1 py-2" onMouseEnter={() => setPauseState(true)} onMouseLeave={() => setPauseState(false)}>
+                      {getParaInfoById(item.id)?.logo ? <Text block>{item.name}</Text> : null}
+                      <Text block>{`Para ID#${item.id}`}</Text>
+                      <Flex className="gap-2.5 mt-2.5">
+                        <Link external href={`${relayChainConf?.domain}/parachain/${item.id}`}>
+                          <Button outline className="w-[90px] text-center px-0">
+                            Detail
+                          </Button>
+                        </Link>
+                        {getParaInfoById(item.id)?.url ? (
+                          <Link external href={getParaInfoById(item.id)?.url} className="main-btn-outlined">
+                            <Button outline className="w-[90px] text-center px-0">
+                              Explorer
+                            </Button>
+                          </Link>
+                        ) : null}
+                      </Flex>
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
                 <img src={getGraphDots()} className="relative w-[14px] mx-2" />
               </Flex>
             )

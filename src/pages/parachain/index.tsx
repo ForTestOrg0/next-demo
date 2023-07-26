@@ -220,7 +220,11 @@ export default function Page({ chain, host, parachainMeta, XCMMeta, currentAucti
                 </Text>
               </div>
             </div>
-            <Boundary className="!p-0 h-full">
+            <Boundary className="!p-0 h-full relative">
+              <div className="pointer-events-none">
+                <img className="absolute w-[232px] left-0 bottom-0" src={'/website/assets/xcm/bg1.png'} />
+                <img className="absolute w-[232px] right-0 top-0" src={'/website/assets/xcm/bg4.png'} />
+              </div>
               <GraphChart host={host} chain={chain}></GraphChart>
             </Boundary>
           </Flex>

@@ -11,6 +11,7 @@
 .graphWrapper {
   scale: 1;
   transition: all 0.3s;
+  &.pause,
   &:hover {
     .chartContent {
       animation-play-state: paused;
