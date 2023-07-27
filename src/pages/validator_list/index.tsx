@@ -42,7 +42,7 @@ export default function Layout({ chain, host, page, status }: InferGetServerSide
           Validator
         </Text>
 
-        {(status === '' || status === 'active') && (
+        {(status === '' || status === 'validator') && (
           <ValidatorListClientWithPagination
             hostname={host}
             args={{

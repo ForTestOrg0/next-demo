@@ -1,7 +1,7 @@
 import React from 'react'
 import { BareProps, BareServerSideProps } from '@/types/page'
 import { Table, Td, Th, Tr } from '@/ui'
-import { BlockLink, ValidatorLink } from '@/components/Links'
+import { BlockLink } from '@/components/Links'
 import { TimeFromNow } from '@/components/Time'
 import { Block } from '@/types/api'
 import { BlockStatus } from './BlockStatus'
@@ -48,9 +48,7 @@ const Page: React.FC<Props> = ({ blocks, chain }) => {
                 </BlockLink>
               </Td>
               <Td>
-                <ValidatorLink address={block?.account_display?.address}>
-                  <Identicon account={block.account_display} />
-                </ValidatorLink>
+                <Identicon account={block.account_display} type="validator" />
               </Td>
               <Td>
                 <BlockLink blockNumber={block.hash}>{formatHash(block.hash)}</BlockLink>

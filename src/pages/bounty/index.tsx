@@ -71,11 +71,13 @@ export default function Page({ data, type, chain }: InferGetServerSidePropsType<
           />
           <BountiesList proposals={data.list} chain={chain} />
         </Boundary>
-        <LinkRouter href={`/bounty?tab=${type}`}>
-          <Button outline className="mt-4">
-            View Other {data.count - PAGE_ROW} {type}
-          </Button>
-        </LinkRouter>
+        {data.count - PAGE_ROW > 0 && (
+          <LinkRouter href={`/bounty?tab=${type}`}>
+            <Button outline className="mt-4">
+              View Other {data.count - PAGE_ROW} {type}
+            </Button>
+          </LinkRouter>
+        )}
       </Container>
     </PageContent>
   )

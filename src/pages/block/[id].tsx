@@ -1,4 +1,4 @@
-import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Flex, Button, LinkRouter } from '@/ui'
+import { Boundary, PageContent, Container, Text, TabGroup, TabList, Tab, TabPanels, TabPanel, Flex } from '@/ui'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getBlock, GetBlockProps } from '@/utils/api'
 import { getChainProps } from '@/utils/chain'
@@ -67,8 +67,8 @@ export default function Page({ host, data, chain, blockId }: InferGetServerSideP
             <BlockLink blockNumber={preBlock} className="flex justify-center items-center w-[30px] h-[30px] bg-sub-network rounded">
               <ButtonLeftIcon className="text-sub-white h-5" />
             </BlockLink>
-            <Text block bold className="text-lg break-all">
-              Block#{blockId}
+            <Text block bold className="!text-lg break-all">
+              Block#{data.block_num}
             </Text>
             <BlockLink blockNumber={nextBlock} className="flex justify-center items-center w-[30px] h-[30px] bg-sub-network rounded">
               <ButtonRightIcon className="text-sub-white h-5" />

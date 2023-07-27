@@ -6,17 +6,18 @@ import { Flex } from '@/ui'
 
 interface Props extends BareProps {
   type: boolean
+  valid?: boolean
 }
 
-const Component: React.FC<Props> = ({ children, type, className }) => {
+const Component: React.FC<Props> = ({ children, type, className, valid = true }) => {
   return (
     <div className={clsx('flex', className)}>
       {type ? (
-        <Flex className="justify-center items-center bg-sub-success-light p-[6px] rounded-full">
+        <Flex className={clsx('justify-center items-center  p-[6px] rounded-full', valid ? 'bg-sub-success-light' : 'bg-sub-b2-light')}>
           <AyeIcon className="w-4 text-sub-white-light" />
         </Flex>
       ) : (
-        <Flex className="justify-center items-center bg-sub-error-light p-[6px] rounded-full">
+        <Flex className={clsx('justify-center items-center  p-[6px] rounded-full', valid ? 'bg-sub-error-light' : 'bg-sub-b2-light')}>
           <NayIcon className="w-4 text-sub-white-light" />
         </Flex>
       )}

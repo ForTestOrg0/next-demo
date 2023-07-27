@@ -54,7 +54,7 @@ export default function Page({ host, data, chain, extrinsicIndex }: InferGetServ
   return (
     <PageContent>
       <Container className="flex-1">
-        <Text block bold className="mb-4 break-all">
+        <Text block bold className="mb-4 break-all !text-lg">
           Extrinsic#{extrinsicIndex}
         </Text>
 

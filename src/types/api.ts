@@ -249,6 +249,10 @@ export interface DemocracyVote {
   extrinsic_index: string
   passed: boolean
   voting_time: string
+
+  delegate_account: AccountDisplay
+  votes: string
+  valid: boolean
 }
 
 export interface CouncilProposal {
@@ -1014,7 +1018,7 @@ export interface ReferendaReferendumV2Detail {
 
 export interface ReferendaVotesV2 {
   account: AccountDisplay
-  delegate: AccountDisplay
+  delegate_account: AccountDisplay
   amount: string
   votes: string
   /** Ayes Nays Abstains */

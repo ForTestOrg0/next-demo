@@ -57,13 +57,13 @@ const Component: React.FC<Props> = ({ children, className, host, chain }) => {
         <Text bold className="!text-[26px]">
           {formatNumber(activeCount)}
         </Text>
-        <Text bold className={`!text-[26px] ${activeCount - activeOrigin >= 0 ? 'text-sub-success' : 'text-sub-error'}`}>
-          <Percentage numerator={activeCount - activeOrigin} denominator={activeOrigin} />
+        <Text bold className={`${activeCount - activeOrigin >= 0 ? 'text-sub-success' : 'text-sub-error'}`}>
+          <Percentage className="!text-[26px]" numerator={activeCount - activeOrigin} denominator={activeOrigin} />
         </Text>
       </Flex>
       <Flex className="justify-between items-center mt-2">
         <Text>Daily Active Account</Text>
-        <Text>Last 24h</Text>
+        <Text>24h change</Text>
       </Flex>
     </div>
   )

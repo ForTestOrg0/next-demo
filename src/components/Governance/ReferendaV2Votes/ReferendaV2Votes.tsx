@@ -7,6 +7,8 @@ import { ReferendaVotesV2 } from '@/types/api'
 import { Time } from '@/components/Time'
 import { ReplyV2Status } from '@/components/Status'
 import { Balance } from '@/components/Balance'
+import { getBalanceAmount } from '@/utils/formatBalance'
+import BigNumber from 'bignumber.js'
 
 interface Props extends BareProps, BareServerSideProps {
   votes: ReferendaVotesV2[]
@@ -19,7 +21,10 @@ const ReferendaV2Votes: React.FC<Props> = ({ votes, chain }) => {
         <Tr>
           <Th>Extrinsic ID</Th>
           <Th>Account</Th>
-          <Th>Locked Value</Th>
+          <Th>Delegate to</Th>
+          <Th>Conviction</Th>
+          <Th>Value</Th>
+          <Th>Effective Votes</Th>
           <Th>Time</Th>
           <Th>Voted</Th>
         </Tr>
@@ -34,9 +39,16 @@ const ReferendaV2Votes: React.FC<Props> = ({ votes, chain }) => {
                 <Identicon account={item.account} />
               </Td>
               <Td>
-                <Text className="whitespace-nowrap">
-                  {item.conviction} x <Balance value={item.amount} token={chain?.nativeTokenConf} />
-                </Text>
+                <Identicon account={item.delegate_account} />
+              </Td>
+              <Td>
+                <Text>{item.conviction}</Text>
+              </Td>
+              <Td>
+                <Balance value={item.amount} token={chain?.nativeTokenConf} />
+              </Td>
+              <Td>
+                <Text>{getBalanceAmount(new BigNumber(item.amount), chain.nativeTokenConf.decimals).times(item.conviction).toString()}</Text>
               </Td>
               <Td>
                 <Time date={item.voting_time} />

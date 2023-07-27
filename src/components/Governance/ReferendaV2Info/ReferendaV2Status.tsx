@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { BareProps } from '@/types/page'
 import { ResultStatus } from '@/components/Status'
 import { ResultStatusType } from '@/components/Status/ResultStatus'
+import { Text } from '@/ui'
 
 interface Props extends BareProps {
   status: string
@@ -37,6 +38,7 @@ export const ReferendaV2Status: React.FC<Props> = ({ children, className, status
   return (
     <div className={clsx('flex', className)}>
       <ResultStatus type={getReferendaV2Status(status)} />
+      <Text>{status}</Text>
     </div>
   )
 }

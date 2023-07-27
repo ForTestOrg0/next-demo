@@ -9,7 +9,7 @@ interface Props extends BareProps {
 
 const Time: React.FC<Props> = ({ date, className }) => {
   const time = dayjs.unix(+date).utc().format('YYYY-MM-DD HH:mm:ss')
-  return <div className={clsx('flex', className)}>{time}</div>
+  return <div className={clsx('flex', className)}>{time} (+UTC)</div>
 }
 
 export default Time

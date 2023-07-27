@@ -9,24 +9,20 @@ interface Props extends BareProps {
   valid: boolean
 }
 
-const Component: React.FC<Props> = ({ children, type, className }) => {
+const Component: React.FC<Props> = ({ children, type, className, valid }) => {
   return (
     <div className={clsx('flex', className)}>
       {type === 'Ayes' && (
-        <Flex className="justify-center items-center bg-sub-success-light p-[6px] rounded-full">
+        <Flex className={clsx('justify-center items-center  p-[6px] rounded-full', valid ? 'bg-sub-success-light' : 'bg-sub-b2-light')}>
           <AyeIcon className="w-4 text-sub-white-light" />
         </Flex>
       )}
       {type === 'Nays' && (
-        <Flex className="justify-center items-center bg-sub-error-light p-[6px] rounded-full">
+        <Flex className={clsx('justify-center items-center  p-[6px] rounded-full', valid ? 'bg-sub-error-light' : 'bg-sub-b2-light')}>
           <NayIcon className="w-4 text-sub-white-light" />
         </Flex>
       )}
-      {type === 'Abstains' && (
-        <Flex className="justify-center items-center bg-sub-error-light p-[6px] rounded-full">
-          <NayIcon className="w-4 text-sub-white-light" /> Abstains
-        </Flex>
-      )}
+      {type === 'Abstains' && <Flex className="justify-center items-center bg-sub-b2-light p-[6px] rounded-full">Abstains</Flex>}
     </div>
   )
 }

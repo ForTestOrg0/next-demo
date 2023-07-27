@@ -29,7 +29,7 @@ export const ValidatorListClientWithPagination: React.FC<Props> = ({ chain, host
     <Boundary>
       <ValidatorList validators={validators.list.slice(start, end)} chain={chain} />
       <Flex className="mt-5 flex-row-reverse">
-        <Pagination total={count} pageSize={row} current={page} urlRender={(_page) => `/validator_list?status=active&page=${_page}`} />
+        <Pagination total={count} pageSize={row} current={page} urlRender={(_page) => `/validator_list?status=validator&page=${_page}`} />
       </Flex>
     </Boundary>
   )

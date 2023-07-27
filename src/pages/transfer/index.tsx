@@ -82,7 +82,7 @@ export default function Page({
   return (
     <PageContent>
       <Container className="flex-1">
-        {false && (
+        {!assetId && !assetUniqueId && (
           <div className="mb-module">
             <TransferHistoryChart host={host} chain={chain} />
           </div>

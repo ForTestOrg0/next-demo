@@ -70,7 +70,7 @@ html.dark {
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
 
-  --ui-black: 255 255 255; /* #ffffff */
+  --ui-black: 199 195 187; /* #c7c3bb */
   --ui-white: 24 26 27; /* #181a1b */
   --ui-link: 0 133 255; /* #0085ff */
   --ui-error: 255 71 93; /* #ff475d */
