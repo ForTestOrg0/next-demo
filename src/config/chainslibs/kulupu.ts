@@ -52,4 +52,5 @@ export const Kulupu: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: true,
 }

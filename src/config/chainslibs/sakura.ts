@@ -56,4 +56,5 @@ export const Sakura: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: false,
 }

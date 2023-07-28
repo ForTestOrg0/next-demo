@@ -52,4 +52,5 @@ export const PicassoRococo: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: false,
 }

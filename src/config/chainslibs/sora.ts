@@ -56,4 +56,5 @@ export const Sora: Chain = {
     TREASURY_CHART: false,
     VALIDATOR: true,
   },
+  disable: false,
 }

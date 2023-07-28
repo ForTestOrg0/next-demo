@@ -52,4 +52,5 @@ export const Darwinia: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: true,
 }

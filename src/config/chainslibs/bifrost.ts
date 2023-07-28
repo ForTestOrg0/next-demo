@@ -56,4 +56,5 @@ export const Bifrost: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: false,
 }

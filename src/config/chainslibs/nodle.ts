@@ -56,4 +56,5 @@ export const Nodle: Chain = {
     TREASURY_CHART: false,
     VALIDATOR: false,
   },
+  disable: false,
 }

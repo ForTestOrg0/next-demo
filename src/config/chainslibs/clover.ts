@@ -52,4 +52,5 @@ export const Clover: Chain = {
     TREASURY_CHART: false,
     VALIDATOR: true,
   },
+  disable: false,
 }

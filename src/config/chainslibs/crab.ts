@@ -52,4 +52,5 @@ export const Crab: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: true,
 }

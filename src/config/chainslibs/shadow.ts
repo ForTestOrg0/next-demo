@@ -56,4 +56,5 @@ export const Shadow: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: false,
 }

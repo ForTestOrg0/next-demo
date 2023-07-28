@@ -54,4 +54,5 @@ export interface Chain {
     TREASURY_CHART: boolean
     VALIDATOR: boolean
   }
+  disable: boolean
 }

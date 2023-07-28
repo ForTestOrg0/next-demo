@@ -52,4 +52,5 @@ export const Maxwell: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: true,
 }

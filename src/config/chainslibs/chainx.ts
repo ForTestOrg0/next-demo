@@ -52,4 +52,5 @@ export const Chainx: Chain = {
     TREASURY_CHART: false,
     VALIDATOR: true,
   },
+  disable: true,
 }

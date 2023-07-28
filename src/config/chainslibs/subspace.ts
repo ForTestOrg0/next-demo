@@ -52,4 +52,5 @@ export const Subspace: Chain = {
     TREASURY_CHART: false,
     VALIDATOR: false,
   },
+  disable: false,
 }

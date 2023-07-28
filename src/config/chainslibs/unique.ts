@@ -56,4 +56,5 @@ export const Unique: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: false,
 }

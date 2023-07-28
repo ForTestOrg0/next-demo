@@ -52,4 +52,5 @@ export const BifrostTestnet: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: false,
 }

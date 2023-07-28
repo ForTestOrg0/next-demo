@@ -56,4 +56,5 @@ export const Calamari: Chain = {
     TREASURY_CHART: false,
     VALIDATOR: true,
   },
+  disable: false,
 }

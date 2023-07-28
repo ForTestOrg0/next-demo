@@ -56,4 +56,5 @@ export const Clv: Chain = {
     TREASURY_CHART: false,
     VALIDATOR: false,
   },
+  disable: false,
 }

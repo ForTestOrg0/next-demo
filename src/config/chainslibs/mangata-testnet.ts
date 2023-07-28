@@ -52,4 +52,5 @@ export const MangataTestnet: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: true,
 }

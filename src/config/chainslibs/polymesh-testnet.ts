@@ -52,4 +52,5 @@ export const PolymeshTestnet: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: false,
 }

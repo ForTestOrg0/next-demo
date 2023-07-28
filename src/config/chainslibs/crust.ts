@@ -52,4 +52,5 @@ export const Crust: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: false,
 }

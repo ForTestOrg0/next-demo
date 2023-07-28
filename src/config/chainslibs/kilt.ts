@@ -52,4 +52,5 @@ export const Kilt: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: false,
 }

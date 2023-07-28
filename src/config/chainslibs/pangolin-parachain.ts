@@ -52,4 +52,5 @@ export const PangolinParachain: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: true,
 }

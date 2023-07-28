@@ -52,4 +52,5 @@ export const Hydradx: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: false,
 }

@@ -52,4 +52,5 @@ export const DockPoa: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: true,
 }

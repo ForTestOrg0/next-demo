@@ -56,4 +56,5 @@ export const EfinityParachainArchive: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: true,
 }

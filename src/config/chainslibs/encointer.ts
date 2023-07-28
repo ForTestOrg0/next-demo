@@ -56,4 +56,5 @@ export const Encointer: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: false,
 }

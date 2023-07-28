@@ -52,4 +52,5 @@ export const Westend: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: false,
 }

@@ -56,4 +56,5 @@ export const Centrifuge: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: true,
 }

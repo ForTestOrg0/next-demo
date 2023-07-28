@@ -56,4 +56,5 @@ export const Phala: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: false,
 }

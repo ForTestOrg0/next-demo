@@ -52,4 +52,5 @@ export const Moonbase: Chain = {
     TREASURY_CHART: false,
     VALIDATOR: true,
   },
+  disable: false,
 }

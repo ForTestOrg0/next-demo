@@ -56,4 +56,5 @@ export const Moonbeam: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: true,
   },
+  disable: false,
 }

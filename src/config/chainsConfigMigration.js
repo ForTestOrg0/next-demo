@@ -116,8 +116,8 @@ async function buildConfig(networks) {
     TREASURY_CHART: ${!value.hideTreasuryChart ? true : false},
     VALIDATOR: ${!value.hideValidator ? true : false},
   },
+  disable: ${value.hide ? true : false},
 }\n`
-
         return ensureWrite(`${outDir}/${name}.ts`, `${importString}${content}`)
       } catch (error) {
         console.log(name, error)

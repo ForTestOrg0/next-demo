@@ -56,4 +56,5 @@ export const Bajun: Chain = {
     TREASURY_CHART: true,
     VALIDATOR: false,
   },
+  disable: false,
 }
