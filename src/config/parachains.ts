@@ -1,4 +1,4 @@
-import { parachainInfos } from '@subscan/parachains-info'
+// import { parachainInfos } from '@subscan/parachains-info'
 
 const localParachainInfos: Record<RelaychainName, ParachainProjectInfo[]> = {
   rococo: [
@@ -591,9 +591,9 @@ const relaychain: RelaychainName[] = ['kusama', 'polkadot', 'rococo', 'westend']
 
 export const parachainProjectInfoBuddle: ParachainInfos = relaychain.reduce(
   (buddle, currentRelaychainName) => {
-    Object.keys(parachainInfos[currentRelaychainName]).forEach((paraId) => {
-      buddle[currentRelaychainName][paraId] = { ...parachainInfos[currentRelaychainName][paraId] }
-    })
+    // Object.keys(parachainInfos[currentRelaychainName]).forEach((paraId) => {
+    //   buddle[currentRelaychainName][paraId] = { ...parachainInfos[currentRelaychainName][paraId] }
+    // })
     localParachainInfos[currentRelaychainName].forEach((projectInfo) => {
       buddle[currentRelaychainName][projectInfo.ParaID] = { ...buddle[currentRelaychainName][projectInfo.ParaID], ...projectInfo }
     })
