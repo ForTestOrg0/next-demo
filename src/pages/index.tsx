@@ -1,4 +1,4 @@
-'use client'
+import { encodeAddress } from '@polkadot/util-crypto'
 
 import {
   Tab,
@@ -27,6 +27,7 @@ import type { GetServerSideProps, GetStaticProps, InferGetStaticPropsType } from
 import { BareServerSideProps } from '@/types/page'
 import { getSubdomainFromHeaders } from '@/utils/url'
 import { getChainProps } from '@/utils/chain'
+import { useEffect } from 'react'
 type Props = {}
 const TabDemo: React.FC = () => {
   return (
@@ -135,6 +136,9 @@ export const getServerSideProps: GetServerSideProps<BareServerSideProps> = async
 }
 
 export default function Page() {
+  useEffect(() => {
+    encodeAddress('EGP7XztdTosm1EmaATZVMjSWujGEj9nNidhjqA2zZtttkFg')
+  }, [])
   return (
     <div>
       Home
@@ -144,6 +148,7 @@ export default function Page() {
       <a>asdfasdf</a>
       <TabDemo />
       <Dark />
+      <p></p>
     </div>
   )
 }
