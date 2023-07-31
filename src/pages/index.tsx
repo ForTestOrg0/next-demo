@@ -137,7 +137,7 @@ export const getServerSideProps: GetServerSideProps<BareServerSideProps> = async
 
 export default function Page() {
   useEffect(() => {
-    encodeAddress('EGP7XztdTosm1EmaATZVMjSWujGEj9nNidhjqA2zZtttkFg')
+    console.log(encodeAddress('EGP7XztdTosm1EmaATZVMjSWujGEj9nNidhjqA2zZtttkFg'))
   }, [])
   return (
     <div>
